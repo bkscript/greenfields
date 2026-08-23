@@ -123,8 +123,7 @@ MB.page = function mandiPage() {
     "</section>" +
     '<div class="chips">' +
     nearby +
-    "</div>" +
-    dynamicFaqSection;
+    "</div>";
 
   const seo = (MB.seo && MB.seo[slug]) || {};
   if (seoReady) {
@@ -150,5 +149,15 @@ MB.page = function mandiPage() {
       (seo.en || "") +
       "</p>" +
       tables;
+  }
+
+  // Keep the article directly below the table, then place live price FAQs
+  // before the normal static FAQ section, matching the crop-page order.
+  if (dynamicFaqSection) {
+    const article = document.querySelector("main .article-section");
+    const staticFaq = document.querySelector("main .faq-section:not(.dynamic-faq)");
+    if (article) article.insertAdjacentHTML("afterend", dynamicFaqSection);
+    else if (staticFaq) staticFaq.insertAdjacentHTML("beforebegin", dynamicFaqSection);
+    else box.insertAdjacentHTML("beforeend", dynamicFaqSection);
   }
 };
