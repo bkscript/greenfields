@@ -30,10 +30,15 @@ MB.page = function statePage() {
     .sort((a, b) => {
       const freshOrder = Number(byCrop[b].some(u.isFreshPrice)) - Number(byCrop[a].some(u.isFreshPrice));
       if (freshOrder) return freshOrder;
-      return Math.max(...byCrop[b].map((row) => row.modal)) - Math.max(...byCrop[a].map((row) => row.modal));
+      const freshB = byCrop[b].filter(u.isFreshPrice);
+      const freshA = byCrop[a].filter(u.isFreshPrice);
+      const maxB = freshB.length ? Math.max(...freshB.map((row) => row.modal)) : 0;
+      const maxA = freshA.length ? Math.max(...freshA.map((row) => row.modal)) : 0;
+      return maxB - maxA;
     })
     .map((cropSlug) => {
-      const list = byCrop[cropSlug];
+      const list = byCrop[cropSlug].filter(u.isFreshPrice);
+      if (!list.length) return "";
       const med = u.median(list.map((x) => x.modal));
       const best = list.slice().sort((a, b) => b.modal - a.modal)[0];
       const crop = u.cropBySlug(cropSlug);
@@ -54,6 +59,7 @@ MB.page = function statePage() {
         "</a></td></tr>"
       );
     })
+    .filter(Boolean)
     .join("");
 
   const mandis = MB.mandis.filter((m) => m.state === slug);
@@ -71,7 +77,7 @@ MB.page = function statePage() {
       }
       if (item.type === "state-crop") {
         const crop = u.cropBySlug(item.crop);
-        const list = rows.filter((price) => price.crop === item.crop);
+        const list = rows.filter((price) => price.crop === item.crop && u.isFreshPrice(price));
         if (!crop || !list.length) return "";
         const med = u.median(list.map((price) => price.modal));
         const best = list.slice().sort((a, b) => b.modal - a.modal)[0];

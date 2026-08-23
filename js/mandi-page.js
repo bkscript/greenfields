@@ -65,7 +65,7 @@ MB.page = function mandiPage() {
     .map((m) => '<a class="chip" href="' + u.mandiHref(m.slug) + '">' + m.hi + "</a>")
     .join("");
 
-  const top = rows[0];
+  const top = sortedRows.find(u.isFreshPrice);
   const shareTop = top ? u.sharePrice(top.crop, slug, top) : "#";
   const dynamicFaqs = ((MB.dynamicMandiFaqs || {})[slug] || [])
     .map((item) => {

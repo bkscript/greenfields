@@ -31,7 +31,7 @@ MB.page = function homePage() {
       })
       .map((slug) => {
       const c = u.cropBySlug(slug);
-      const rows = u.pricesFor({ crop: slug });
+      const rows = u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
       const med = u.median(rows.map((r) => r.modal));
       if (!c || med == null) return "";
       let price = u.rupee(med) + "/qtl";
@@ -63,8 +63,9 @@ MB.page = function homePage() {
     .map((slug) => {
       const m = u.mandiBySlug(slug);
       const st = u.stateBySlug(m.state);
-      const rows = u.pricesFor({ mandi: slug });
+      const rows = u.pricesFor({ mandi: slug }).filter(u.isFreshPrice);
       const top = rows.slice().sort((a, b) => b.modal - a.modal)[0];
+      if (!top) return "";
       const crop = top ? u.cropBySlug(top.crop) : null;
       return (
         "<tr><td><a href=\"" +
@@ -78,6 +79,7 @@ MB.page = function homePage() {
         "</td></tr>"
       );
     })
+    .filter(Boolean)
     .join("");
 
   const tapeBits = (MB.TAPE || [])
@@ -88,7 +90,7 @@ MB.page = function homePage() {
       const row = MB.prices.find(function (price) {
         return price.crop === t.crop && price.mandi === t.mandi;
       });
-      if (!crop || !mandi || !row) return "";
+      if (!crop || !mandi || !row || !u.isFreshPrice(row)) return "";
       return (
         '<span class="tape-item">' +
         crop.hi +

@@ -30,10 +30,11 @@ MB.page = function cropPage() {
     return;
   }
 
-  const med = u.median(rows.map((r) => r.modal));
-  const vsMed = u.median(rows.map((r) => r.vs));
-  const mins = rows.map((r) => r.min);
-  const maxs = rows.map((r) => r.max);
+  const currentRows = rows.filter(u.isFreshPrice);
+  const med = u.median(currentRows.map((r) => r.modal));
+  const vsMed = u.median(currentRows.map((r) => r.vs));
+  const mins = currentRows.map((r) => r.min);
+  const maxs = currentRows.map((r) => r.max);
 
   const chips =
     '<a class="chip' +
@@ -56,7 +57,7 @@ MB.page = function cropPage() {
       })
       .join("");
 
-  const stats = [
+  const stats = currentRows.length ? [
     { v: u.rupee(med), l: "मॉडल भाव" },
     crop.veg
       ? { v: u.rupee(u.kgFromQtl(med)), l: "प्रति किलो" }
@@ -68,9 +69,9 @@ MB.page = function cropPage() {
       l: "न्यूनतम–अधिकतम",
     },
     { v: u.vsText(vsMed || 0), l: "कल से" },
-  ];
+  ] : [];
 
-  const shareAll = u.sharePrice(slug, rows[0].mandi, rows[0]);
+  const shareAll = currentRows.length ? u.sharePrice(slug, currentRows[0].mandi, currentRows[0]) : "";
   const showStateCol = !state;
 
   const sortedRows = rows
@@ -158,7 +159,7 @@ MB.page = function cropPage() {
     .filter(Boolean)
     .join("");
 
-  const cropRows = u.pricesFor({ crop: slug });
+  const cropRows = u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
   const cropDynamicFaqs = ((MB.dynamicCropFaqs || {})[slug] || [])
     .map((item) => {
       const median = cropRows.length
@@ -211,15 +212,17 @@ MB.page = function cropPage() {
     '<div class="chips">' +
     chips +
     "</div>" +
-    '<div class="stats four">' +
-    stats
-      .map((s) => '<div class="stat"><b>' + s.v + "</b><span>" + s.l + "</span></div>")
-      .join("") +
-    "</div>" +
+    (stats.length
+      ? '<div class="stats four">' +
+        stats
+          .map((s) => '<div class="stat"><b>' + s.v + "</b><span>" + s.l + "</span></div>")
+          .join("") +
+        "</div>"
+      : "") +
     '<p class="share-bar"><span class="price-date">आखिरी अपडेट · ' +
     u.formatUpdatedHi(MB.LAST_UPDATED_DATE) +
     "</span>" +
-    u.shareBtn(shareAll) +
+    (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
     '<section class="card"><h2>मंडियां<span class="en">Mandis</span></h2><table><thead><tr><th>मंडी</th>' +
     (showStateCol ? "<th>राज्य</th>" : "") +
