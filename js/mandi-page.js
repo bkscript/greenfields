@@ -21,17 +21,24 @@ MB.page = function mandiPage() {
   document.title = mandi.hi + " मंडी भाव | " + mandi.en + " Mandi Bhav";
 
   const rows = u.pricesFor({ mandi: slug });
-  const body = rows
+  const sortedRows = rows
     .slice()
     .sort((a, b) => {
+      const freshness = u.freshFirst(a, b);
+      if (freshness) return freshness;
       if (highlight && a.crop === highlight) return -1;
       if (highlight && b.crop === highlight) return 1;
-      return u.freshFirst(a, b) || b.modal - a.modal;
-    })
+      return b.modal - a.modal;
+    });
+  let staleDividerAdded = false;
+  const body = sortedRows
     .map((r) => {
       const c = u.cropBySlug(r.crop);
+      const divider = !staleDividerAdded && u.isStalePrice(r)
+        ? ((staleDividerAdded = true), '<tr class="stale-divider" aria-label="पुराने भाव"><td colspan="5"><span></span></td></tr>')
+        : "";
       return (
-        "<tr><td><a href=\"" +
+        divider + "<tr><td><a href=\"" +
         u.cropHref(r.crop, mandi.state) +
         '">' +
         u.nameHi(c) +

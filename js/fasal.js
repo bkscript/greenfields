@@ -73,14 +73,19 @@ MB.page = function cropPage() {
   const shareAll = u.sharePrice(slug, rows[0].mandi, rows[0]);
   const showStateCol = !state;
 
-  const body = rows
+  const sortedRows = rows
     .slice()
-    .sort((a, b) => u.freshFirst(a, b) || b.modal - a.modal)
+    .sort((a, b) => u.freshFirst(a, b) || b.modal - a.modal);
+  let staleDividerAdded = false;
+  const body = sortedRows
     .map((r) => {
       const m = u.mandiBySlug(r.mandi);
       const st = u.stateBySlug(m.state);
+      const divider = !staleDividerAdded && u.isStalePrice(r)
+        ? ((staleDividerAdded = true), '<tr class="stale-divider" aria-label="पुराने भाव"><td colspan="' + (showStateCol ? 5 : 4) + '"><span></span></td></tr>')
+        : "";
       return (
-        "<tr><td><a href=\"" +
+        divider + "<tr><td><a href=\"" +
         u.mandiHref(r.mandi, slug) +
         '">' +
         u.nameHi(m) +

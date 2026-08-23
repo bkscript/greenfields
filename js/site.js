@@ -101,8 +101,26 @@
     });
   }
 
+  function priceAgeDays(row) {
+    const value = (row && row.date) || MB.PRICE_DATE;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return 0;
+
+    const sourceDay = Date.UTC(
+      Number(value.slice(0, 4)),
+      Number(value.slice(5, 7)) - 1,
+      Number(value.slice(8, 10))
+    );
+    const now = new Date();
+    const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.max(0, Math.floor((today - sourceDay) / 86400000));
+  }
+
+  function isStalePrice(row) {
+    return priceAgeDays(row) > 3;
+  }
+
   function isFreshPrice(row) {
-    return !!(row && row.fresh);
+    return !!row && !isStalePrice(row);
   }
 
   function freshFirst(a, b) {
@@ -420,6 +438,8 @@
     mandiBySlug,
     median,
     isFreshPrice,
+    isStalePrice,
+    priceAgeDays,
     freshFirst,
     formatDateHi,
     formatUpdatedHi,

@@ -352,6 +352,14 @@ th {
   border-top: 0;
 }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.stale-divider td {
+  border: 0;
+  padding: 8px 12px 1px;
+}
+.stale-divider span {
+  display: block;
+  border-top: 1px solid rgba(180, 35, 24, 0.42);
+}
 .vs-up { color: var(--up); font-weight: 600; }
 .vs-down { color: var(--down); font-weight: 600; }
 .vs-flat { color: var(--muted); }
