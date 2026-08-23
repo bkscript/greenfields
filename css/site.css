@@ -498,6 +498,24 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   color: var(--text);
 }
 .article-section p:last-child { margin-bottom: 0; }
+.editorial-note {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border-left: 3px solid var(--mustard);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: #fbf7eb;
+}
+.editorial-note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+.editorial-note p + p { margin-top: 6px; }
+.editorial-note .editorial-label {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
 .faq-item {
   padding: 12px 0;
   border-top: 1px solid var(--line);
