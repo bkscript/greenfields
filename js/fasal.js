@@ -1,6 +1,6 @@
 /*
   फाइल: js/fasal.js — फसल वाला पेज
-  होम या खोज से खोलें तो तीनों राज्य की मंडियां (सभी)।
+  होम या खोज से खोलें तो चारों राज्य की मंडियां (सभी)।
   एक राज्य चुनें तो सिर्फ उसी की मंडियां।
   वाक्य और टेबल यहाँ। भाव data.js से आते हैं।
   सब्जी हो तो किलो का भाव अपने आप दिखता है।
@@ -111,10 +111,10 @@ MB.page = function cropPage() {
 
   const subHi = state
     ? state.hi + " — इस राज्य की मंडियां।"
-    : "राजस्थान, गुजरात, मध्य प्रदेश की मंडियां।";
+    : "राजस्थान, गुजरात, मध्य प्रदेश और हरियाणा की मंडियां।";
   const subEn = state
     ? "Mandis in this state."
-    : "Mandis across Rajasthan, Gujarat and Madhya Pradesh.";
+    : "Mandis across Rajasthan, Gujarat, Madhya Pradesh and Haryana.";
 
   const mandiDynamicFaqs = Object.keys(MB.dynamicMandiFaqs || {})
     .reduce((all, mandiSlug) => {
@@ -232,7 +232,7 @@ MB.page = function cropPage() {
     '<p class="note">' +
     "अलग अलग राज्यों के मॉडल भाव से क्रम। सब्जी पर प्रति किलो भी लिखा है।</p>";
 
-  const pageContent = tables + dynamicFaqSection;
+  const pageContent = tables;
 
   if (seoReady) {
     box.innerHTML = pageContent;
@@ -254,5 +254,13 @@ MB.page = function cropPage() {
       (seo.en || subEn) +
       "</p>" +
       pageContent;
+  }
+
+  if (dynamicFaqSection) {
+    const article = document.querySelector("main .article-section");
+    const staticFaq = document.querySelector("main .faq-section:not(.dynamic-faq)");
+    if (article) article.insertAdjacentHTML("afterend", dynamicFaqSection);
+    else if (staticFaq) staticFaq.insertAdjacentHTML("beforebegin", dynamicFaqSection);
+    else box.insertAdjacentHTML("beforeend", dynamicFaqSection);
   }
 };
