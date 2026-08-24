@@ -307,6 +307,7 @@ a.chip { text-decoration: none; }
   font-size: 0.95rem;
   border-bottom: 1px solid var(--line);
 }
+.crop-mandi-list > h2 { text-align: center; }
 .grid-crops {
   display: grid;
   grid-template-columns: 1fr 1fr;

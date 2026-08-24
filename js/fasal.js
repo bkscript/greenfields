@@ -230,7 +230,7 @@ MB.page = function cropPage() {
     "</span>" +
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
-    '<section class="card"><h2>मंडियां <span class="en">Mandis</span></h2><table><thead><tr><th>मंडी</th>' +
+    '<section class="card crop-mandi-list"><h2>मंडियां</h2><table><thead><tr><th>मंडी</th>' +
     (showStateCol ? "<th>राज्य</th>" : "") +
     '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th><th class="num">कल से</th></tr></thead><tbody>' +
     body +
