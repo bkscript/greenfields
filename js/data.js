@@ -83,7 +83,7 @@ MB.crops = [
   { slug: "hara-dhaniya", hi: "हरा धनिया", en: "Coriander Leaves", veg: true, msp: null },
   { slug: "saunf", hi: "सौंफ", en: "Fennel", veg: false, msp: null },
   { slug: "methi", hi: "मेथी दाना", en: "Fenugreek Seed", veg: false, msp: null },
-  { slug: "hari-methi", hi: "पान मेथी", en: "Fenugreek Leaves", veg: true, msp: null },
+  { slug: "hari-methi", hi: "पान मेथी", en: "Fenugreek Leaves", veg: false, msp: null },
   { slug: "arandi", hi: "अरंडी", en: "Castor Seed", veg: false, msp: null },
   { slug: "matar", hi: "मटर", en: "Field Pea", veg: false, msp: null },
   { slug: "hara-matar", hi: "हरी मटर", en: "Green Peas", veg: true, msp: null },
