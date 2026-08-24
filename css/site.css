@@ -327,8 +327,8 @@ a.chip { text-decoration: none; }
   height: 100%;
   object-fit: contain;
 }
-.crop-image img[src$="lahsun.png"],
-.crop-page-image img[src$="lahsun.png"] {
+.crop-image img[src$="lahsun.webp"],
+.crop-page-image img[src$="lahsun.webp"] {
   filter: drop-shadow(0 2px 2px rgba(41, 35, 25, 0.22));
 }
 .crop-page-image {
