@@ -1275,16 +1275,43 @@ MB.dynamicMandiFaqs = {
 
 Object.assign(MB.dynamicMandiFaqs, {
   "nimbahera": [
-    { "crop": "makka", "q": "निंबाहेड़ा मंडी में आज मक्के का क्या भाव है?" }, { "crop": "gehun", "q": "निंबाहेड़ा मंडी में गेहूं के क्या भाव चल रहे हैं?" }, { "crop": "moongphali", "q": "निंबाहेड़ा मंडी में मूंगफली का आज का भाव क्या है?" }, { "crop": "chana", "q": "Nimbahera Mandi chana bhav Today" }, { "crop": "makka", "q": "निम्बाहेड़ा मंडी भाव आज का मक्का" }, { "crop": "soyabean", "q": "निम्बाहेड़ा मंडी भाव आज का सोयाबीन" }, { "crop": "gehun", "q": "निम्बाहेड़ा मंडी भाव आज का गेहूं" }, { "crop": "sarson", "q": "निम्बाहेड़ा मंडी भाव आज का सरसों" }, { "crop": "lahsun", "q": "निंबाहेड़ा मंडी लहसुन भाव" }
+    { "crop": "makka", "q": "निंबाहेड़ा मंडी में आज मक्के का क्या भाव है?" }, 
+    { "crop": "gehun", "q": "निंबाहेड़ा मंडी में गेहूं के क्या भाव चल रहे हैं?" }, 
+    { "crop": "moongphali", "q": "निंबाहेड़ा मंडी में मूंगफली का आज का भाव क्या है?" }, 
+    { "crop": "chana", "q": "Nimbahera Mandi chana bhav Today" }, 
+    { "crop": "makka", "q": "निम्बाहेड़ा मंडी भाव आज का मक्का" }, 
+    { "crop": "soyabean", "q": "निम्बाहेड़ा मंडी भाव आज का सोयाबीन" }, 
+    { "crop": "gehun", "q": "निम्बाहेड़ा मंडी भाव आज का गेहूं" }, 
+    { "crop": "sarson", "q": "निम्बाहेड़ा मंडी भाव आज का सरसों" }, 
+    { "crop": "lahsun", "q": "निंबाहेड़ा मंडी लहसुन भाव" }
   ],
   "patan": [
-    { "crop": "gehun", "q": "आज पाटन मंडी में गेहूं का क्या रेट है?" }, { "crop": "urad", "q": "पाटन मंडी में उर्द का क्या रेट है?" }, { "crop": "moong", "q": "आज पाटन मंडी में मूंग का भाव क्या है?" }, { "crop": "urad", "q": "पाटन मंडी भाव उड़द" }, { "crop": "moong", "q": "पाटन मंडी मूंग भाव" }, { "crop": "makka", "q": "Patan mandi bhav today makka" }, { "crop": "moong", "q": "Patan mandi bhav Today moong" }, { "crop": "gehun", "q": "पाटन मंडी गेहूं का भाव" }, { "crop": "gehun", "q": "Patan mandi bhav today gehu" }, { "crop": "sarson", "q": "पाटन मंडी सरसों का भाव" }
+    { "crop": "gehun", "q": "आज पाटन मंडी में गेहूं का क्या रेट है?" }, 
+    { "crop": "urad", "q": "पाटन मंडी में उर्द का क्या रेट है?" }, 
+    { "crop": "moong", "q": "आज पाटन मंडी में मूंग का भाव क्या है?" }, 
+    { "crop": "urad", "q": "पाटन मंडी भाव उड़द" }, 
+    { "crop": "moong", "q": "पाटन मंडी मूंग भाव" }, 
+    { "crop": "makka", "q": "Patan mandi bhav today makka" }, 
+    { "crop": "moong", "q": "Patan mandi bhav Today moong" }, 
+    { "crop": "gehun", "q": "पाटन मंडी गेहूं का भाव" }, 
+    { "crop": "gehun", "q": "Patan mandi bhav today gehu" }, 
+    { "crop": "sarson", "q": "पाटन मंडी सरसों का भाव" }
   ],
   "jodhpur": [
-    { "crop": "jeera", "q": "जोधपुर मंडी जीरे का क्या भाव है आज का?" }, { "crop": "gehun", "q": "जोधपुर मंडी में गेहूं का आज का भाव क्या है?" }, { "crop": "sarson", "q": "जोधपुर मंडी रायड़ा का भाव" }, { "crop": "jeera", "q": "जोधपुर मंडी जीरा भाव आज का" }, { "crop": "chana", "q": "Jodhpur Mandi chana Bhav today" }, { "crop": "sarson", "q": "जोधपुर मंडी सरसों का भाव" }, { "crop": "gwar", "q": "जोधपुर मंडी आज का भाव ग्वार" }, { "crop": "moth", "q": "जोधपुर मंडी आज का भाव मोठ" }
+    { "crop": "jeera", "q": "जोधपुर मंडी जीरे का क्या भाव है आज का?" }, 
+    { "crop": "gehun", "q": "जोधपुर मंडी में गेहूं का आज का भाव क्या है?" }, 
+    { "crop": "sarson", "q": "जोधपुर मंडी रायड़ा का भाव" }, 
+    { "crop": "jeera", "q": "जोधपुर मंडी जीरा भाव आज का" }, 
+    { "crop": "chana", "q": "Jodhpur Mandi chana Bhav today" }, 
+    { "crop": "sarson", "q": "जोधपुर मंडी सरसों का भाव" }, 
+    { "crop": "gwar", "q": "जोधपुर मंडी आज का भाव ग्वार" }, 
+    { "crop": "moth", "q": "जोधपुर मंडी आज का भाव मोठ" }
   ],
   "jaipur": [
-    { "crop": "gehun", "q": "Bassi mandi gehun ka bhav" }, { "crop": "bajra", "q": "Bassi mandi bajra bhav today" }, { "crop": "chana", "q": "Bassi mandi chana ka bhav" }, { "crop": "sarson", "q": "Bassi mandi sarso ka bhav" }
+    { "crop": "gehun", "q": "Bassi mandi gehun ka bhav" }, 
+    { "crop": "bajra", "q": "Bassi mandi bajra bhav today" }, 
+    { "crop": "chana", "q": "Bassi mandi chana ka bhav" }, 
+    { "crop": "sarson", "q": "Bassi mandi sarso ka bhav" }
   ],
   "nagaur": [
     { "crop": "moong", "q": "नागौर में मूंग का क्या भाव है?" },
