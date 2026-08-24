@@ -1,11 +1,3 @@
-/*
-  फाइल: css/site.css — साइट का रंग और रूप
-  यहाँ बदलें: रंग, अक्षर का आकार, बटन, टेबल, शेयर बटन।
-  सबसे ऊपर --primary हरा (#2E7D32 Kisandeals), --gold सोना, --pale हल्का हरा।
-  होम पेज के सेक्शन: .hero .big-stats .ticker .movers
-  वाक्य यहाँ नहीं लिखे — सिर्फ डिजाइन।
-*/
-
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Special+Elite&display=swap");
 
 :root {
@@ -588,7 +580,6 @@ body[data-page="crop"] .card table td:first-child a { font-weight: 700; }
 .kg { display: block; color: #8a6515; font-size: 0.75rem; font-weight: 700; }
 .kg-inline { color: #8a6515; font-weight: 700; }
 
-/* Landing — UgaAI-style sections, our colours */
 .hero {
   background: var(--primary);
   color: var(--on-dark);

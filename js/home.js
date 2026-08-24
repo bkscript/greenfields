@@ -1,15 +1,5 @@
-/*
-  फाइल: js/home.js — होम पेज की सारी लिखावट
-  यहाँ बदलें: बड़ी हेडिंग, नीचे की लाइन, बड़े बदलाव, आज के भाव।
-  cropGroups = होम पर सभी फसलें किस क्रम में और किन समूहों में दिखें (छोटे नाम data.js से लें)।
-  समूहों के नाम या अलग line स्क्रीन पर नहीं दिखती; सभी cards एक ही लगातार grid में रहते हैं।
-  famous = नीचे कौन सी मंडियां दिखें।
-  चलती पट्टी की फसल/भाव/मंडी js/data.js में MB.TAPE।
-  रंग css/site.css में। भाव के आंकड़े data.js में — यहाँ मत लिखें।
-*/
 MB.page = function homePage() {
   const u = MB.ui;
-  // असली फसल thumbnail केवल उन cards पर दिखेगा जिनकी local image मौजूद है।
   const cropImages = {
     gehun: "img/crops/gehun.png",
   sarson: "img/crops/sarson.png",
@@ -51,7 +41,6 @@ MB.page = function homePage() {
     ["jeera", "dhaniya", "saunf", "methi", "hari-methi", "isabgol", "haldi", "mirch"],
     ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "hara-matar", "amrood", "kela", "seb", "anar"],
   ];
-  // सूची राज्य के क्रम में नहीं, देश/क्षेत्र में मंडी की पहचान के क्रम में है।
   const famous = ["unjha", "indore", "mandsaur", "sri-ganganagar", "nagaur", "gondal", "sirsa", "shahabad"];
 
   const fieldCrops = cropGroups.slice(0, -1).reduce((all, group) => all.concat(group), []);

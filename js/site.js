@@ -1,10 +1,3 @@
-/*
-  फाइल: js/site.js — हर पेज का साझा काम
-  यहाँ: ऊपर का हैडर, खोज बॉक्स, रुपया लिखना, शेयर करें बटन।
-  होम के वाक्य यहाँ नहीं (वे home.js में हैं)।
-  फसल की टेबल यहाँ नहीं (वह fasal.js में है)।
-  खोज बॉक्स का वाक्य renderChrome के अंदर बदलें।
-*/
 (function () {
   const $ = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));

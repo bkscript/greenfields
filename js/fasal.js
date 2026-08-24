@@ -1,10 +1,3 @@
-/*
-  फाइल: js/fasal.js — फसल वाला पेज
-  होम या खोज से खोलें तो चारों राज्य की मंडियां (सभी)।
-  एक राज्य चुनें तो सिर्फ उसी की मंडियां।
-  वाक्य और टेबल यहाँ। भाव data.js से आते हैं।
-  सब्जी हो तो किलो का भाव अपने आप दिखता है।
-*/
 MB.page = function cropPage() {
   const u = MB.ui;
   const slug = u.pageCrop() || "pyaz";
@@ -230,7 +223,7 @@ MB.page = function cropPage() {
     "</span>" +
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
-    '<section class="card crop-mandi-list"><h2>मंडियां</h2><table><thead><tr><th>मंडी</th>' +
+    '<section class="card crop-mandi-list"><h2>' + crop.hi + ' का आज का भाव</h2><table><thead><tr><th>मंडी</th>' +
     (showStateCol ? "<th>राज्य</th>" : "") +
     '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th><th class="num">कल से</th></tr></thead><tbody>' +
     body +

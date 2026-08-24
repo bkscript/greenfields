@@ -1,9 +1,3 @@
-/*
-  फाइल: js/mandi-page.js — मंडी वाला पेज
-  उस मंडी की आज की सारी फसलें।
-  नीचे पास की दूसरी मंडियां (उसी राज्य की)।
-  नई मंडी सिर्फ data.js में जोड़ें।
-*/
 MB.page = function mandiPage() {
   const u = MB.ui;
   const slug = u.pageMandi() || "unjha";
@@ -151,8 +145,6 @@ MB.page = function mandiPage() {
       tables;
   }
 
-  // Keep the article directly below the table, then place live price FAQs
-  // before the normal static FAQ section, matching the crop-page order.
   if (dynamicFaqSection) {
     const article = document.querySelector("main .article-section");
     const staticFaq = document.querySelector("main .faq-section:not(.dynamic-faq)");

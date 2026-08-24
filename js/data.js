@@ -1,36 +1,14 @@
-/*
-  फाइल: js/data.js — सारी जानकारी और मंडी भाव
-  यहाँ बदलें:
-    PRICE_DATE — तारीख (नीचे और शेयर में)
-    TAPE — होम की चलती पट्टी (फसल, भाव, मंडी)
-    states — राज्य की सूची
-    crops — फसल। veg: true हो तो किलो में भी भाव। msp = सरकारी भाव
-    mandis — मंडी। state में ऊपर वाले राज्य का slug लिखें
-    prices — एक पंक्ति = एक मंडी + एक फसल का भाव
-              mandi और crop वही छोटा नाम (slug) जो ऊपर लिखा है
-              min छोटा, modal बीच का, max बड़ा, vs कल से फर्क
-              arrivals: high ज्यादा, med मध्यम, low कम
-    aliases — खोज। ["onion","pyaz"] का मतलब onion लिखो तो प्याज खुले
-  नई फसल: crops में नाम, prices में भाव, चाहें तो aliases। फिर `python tools/build-pages.py` चलाएँ।
-  नई मंडी: mandis में नाम (सही राज्य), prices में भाव। फिर वही स्क्रिप्ट चलाएँ।
-  बाद में सरकारी भाव यहीं भरेंगे। पेज की फाइलें बदलने की जरूरत नहीं।
-*/
-
 window.MB = window.MB || {};
 
 MB.PRICE_DATE = "2026-08-23";
-/* Automation की आखिरी सफल update तारीख. हर बार data मिलने पर अपने-आप बदलेगी। */
 MB.LAST_UPDATED_DATE = "2026-08-24";
 MB.BRAND_HI = "फसल भाव";
 MB.BRAND_EN = "FasalBhav";
-/* Google Analytics Measurement ID — यह public website ID है, secret नहीं। */
 MB.GA_MEASUREMENT_ID = "G-WFENY16HN7";
-/* WhatsApp ग्रुप: लिंक और बटन का नाम */
 MB.WA_GROUP = "https://chat.whatsapp.com/J6Q5UqZ86Q66sy0nRN3bt0";
 MB.WA_JOIN_SHORT = "मुफ्त मंडी भाव";
 MB.WA_JOIN = "मुफ्त मंडी भाव — WhatsApp ग्रुप जॉइन करें";
 
-/* होम की चलती पट्टी — केवल फसल और मंडी चुनें; भाव MB.prices के modal से अपने-आप आता है। */
 MB.TAPE = [
   { crop: "sarson", mandi: "sri-ganganagar" },
   { crop: "moong", mandi: "nagaur" },
@@ -48,7 +26,6 @@ MB.states = [
 ];
 
 MB.crops = [
-  /* MSP: भारत सरकार CCEA/PIB, विपणन सत्र 2026-27 (रबी और खरीफ की अलग घोषणाएँ)। */
   { slug: "gehun", hi: "गेहूं", en: "Wheat", veg: false, msp: 2585 },
   { slug: "sarson", hi: "सरसों", en: "Mustard", veg: false, msp: 6200 },
   { slug: "chana", hi: "चना", en: "Gram", veg: false, msp: 5875 },
@@ -142,13 +119,6 @@ MB.mandis = [
   { slug: "ganaur", hi: "गन्नौर", en: "Ganaur", state: "haryana", district: { hi: "सोनीपत", en: "Sonepat" } },
 ];
 
-/*
-  सरकारी Agmarknet / data.gov.in में नाम अलग लिखा हो तो केवल यहाँ उसका नाम जोड़ें।
-  खाली रहने पर updater crop/mandi के ऊपर वाले English नाम से अपने-आप मिलान करता है।
-  उदाहरण:
-  mandis: { "jaipur": ["Jaipur (Bassi)"] },
-  crops: { "sarson": ["Mustard", "Mustard Seed"] }
-*/
 MB.AGMARKNET_ALIASES = {
   "mandis": {},
   "crops": {
@@ -184,9 +154,6 @@ MB.AGMARKNET_ALIASES = {
   }
 };
 
-/* मंडी भाव की rows — automatic updater इन्हें source के data से बदलता/जोड़ता है।
-   date: source में दर्ज भाव की तारीख। 3 दिन से पुराने भाव table में हल्की लाल line के नीचे आते हैं।
-   fresh: true = इस update में source से नया record मिला; false = पिछला verified भाव। */
 MB.prices = [
   { mandi: "sri-ganganagar", crop: "gehun", min: 2531, modal: 2554, max: 2558, vs: 0, arrivals: "high", date: "2026-08-22", fresh: false },
   { mandi: "jaipur", crop: "gehun", min: 2520, modal: 2561, max: 2602, vs: 0, arrivals: "med", date: "2026-08-22", fresh: false },
@@ -674,7 +641,6 @@ MB.aliases = [
   ["gj", "gujarat"], ["गुजरात", "gujarat"],
 ];
 
-/* हर पन्ने का छोटा परिचय — HTML में भी जाता है (tools/build-pages.py) */
 MB.seo = {
   gehun: { hi: "गेहूं का भाव आज जानना हर किसान और व्यापारी के लिए ज़रूरी है। सही समय पर सही जानकारी मिलने से फसल बेचने का फ़ैसला बेहतर तरीके से लिया जा सकता है। राजस्थान, गुजरात, मध्य प्रदेश और हरियाणा की मंडियों के उपलब्ध भाव इसी पेज पर देखें।", en: "Check available wheat mandi prices from Rajasthan, Gujarat, Madhya Pradesh and Haryana before you sell." },
   sarson: { hi: "सरसों का भाव कोटा, बारां और श्रीगंगानगर जैसी पट्टी की मंडियों से आता है। तेलहन है इसलिए क्विंटल का मॉडल देखें, किलो नहीं।", en: "Mustard rates come from Kota, Baran and Sri Ganganagar. Oilseed — read the quintal modal, not kg." },
@@ -753,11 +719,6 @@ MB.seo = {
   ganaur: { hi: "गन्नौर मंडी भाव आज: टमाटर, लहसुन, आलू, प्याज, हरा धनिया, अदरक, हरी मटर और फलों के उपलब्ध भाव देखें। फसल के अनुसार सही इकाई और quality मिलाकर तुलना करें।", en: "Ganaur Mandi Bhav Today: see available tomato, garlic, potato, onion, herb and fruit prices." },
 };
 
-/*
-  पक्के article और FAQ — यह HTML page में generator से बनते हैं, इसलिए page file में हाथ से न लिखें।
-  हर key वही crop/state/mandi slug है। जिस slug की entry नहीं होगी, उस page पर article/FAQ नहीं दिखेगा।
-  नया या बदला text save करने के बाद `python tools/build-pages.py` चलाएँ।
-*/
 MB.articles = {
   "aalu": {
     "title": "आलू का भाव कैसे देखें और रेट किन बातों से बदलता है",
@@ -815,7 +776,6 @@ MB.articles = {
   }
 };
 
-/* फसल-विशेष लेख profile — generator इन्हें हर फसल page पर अलग, उपयोगी article में बदलता है। */
 MB.articleProfiles = {
   "sarson": {
     "intro": "सरसों का भाव तेलहन बाजार, मंडी की आवक और माल की गुणवत्ता के साथ बदलता है। एक ही दिन अलग मंडियों में दर अलग हो सकती है, इसलिए उपलब्ध भावों की तुलना उपयोगी रहती है।",
@@ -1299,7 +1259,6 @@ MB.faqs = {
   ]
 };
 
-/* जिन प्रश्नों में मंडी और फसल दोनों हैं, उनके उत्तर current price data से बनते हैं। */
 MB.dynamicMandiFaqs = {
   "unjha": [
     { "crop": "jeera", "q": "आज उंझा मंडी जीरा का क्या भाव है?" },
@@ -1314,7 +1273,6 @@ MB.dynamicMandiFaqs = {
   ]
 };
 
-/* नीचे के crop+mandi query sets FAQ source से runtime पर अलग किए जाते हैं। */
 Object.assign(MB.dynamicMandiFaqs, {
   "nimbahera": [
     { "crop": "makka", "q": "निंबाहेड़ा मंडी में आज मक्के का क्या भाव है?" }, { "crop": "gehun", "q": "निंबाहेड़ा मंडी में गेहूं के क्या भाव चल रहे हैं?" }, { "crop": "moongphali", "q": "निंबाहेड़ा मंडी में मूंगफली का आज का भाव क्या है?" }, { "crop": "chana", "q": "Nimbahera Mandi chana bhav Today" }, { "crop": "makka", "q": "निम्बाहेड़ा मंडी भाव आज का मक्का" }, { "crop": "soyabean", "q": "निम्बाहेड़ा मंडी भाव आज का सोयाबीन" }, { "crop": "gehun", "q": "निम्बाहेड़ा मंडी भाव आज का गेहूं" }, { "crop": "sarson", "q": "निम्बाहेड़ा मंडी भाव आज का सरसों" }, { "crop": "lahsun", "q": "निंबाहेड़ा मंडी लहसुन भाव" }
@@ -1484,7 +1442,6 @@ Object.assign(MB.dynamicMandiFaqs, {
   ]
 });
 
-/* सिर्फ फसल वाले live सवाल: उपलब्ध मंडियों के भाव से उत्तर बनता है। */
 MB.dynamicCropFaqs = {
   "gehun": [
     { "type": "variety", "q": "1482 गेहूं का भाव" },
@@ -1511,7 +1468,6 @@ Object.assign(MB.dynamicCropFaqs, {
   ]
 });
 
-/* राज्य page पर मंडी+फसल या राज्य+फसल वाले current price FAQs। */
 MB.dynamicStateFaqs = {
   "rajasthan": [
     { "type": "state-crop", "crop": "gehun", "q": "गेहूं का भाव राजस्थान" }
@@ -1529,7 +1485,6 @@ MB.dynamicStateFaqs = {
   ]
 };
 
-/* Edit answers here. Each question is placed on its relevant mandi, state, or crop page. */
 MB.pendingFaqs = {
   "sri-ganganagar": [
     { "q": "आज श्रीगंगानगर मंडी में क्या भाव चल रहे हैं?", "a": "श्रीगंगानगर मंडी में आज ग्वार, नरमा, कपास, गेंहू, जौ, सरसों और मूंग जैसी प्रमुख फसलों के हाजिर भाव क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई मंडी भाव सारणी में उपलब्ध है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई मूल्य तालिका को देखें। हमसे जुड़े रहने के लिए WhatsApp ग्रुप जॉइन करें।" }
