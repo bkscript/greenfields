@@ -338,6 +338,17 @@ a.chip { text-decoration: none; }
   height: 100%;
   object-fit: contain;
 }
+.crop-page-image {
+  width: 104px;
+  height: 104px;
+  margin: 8px auto 10px;
+}
+.crop-page-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .crop-tile strong {
   display: flex;
   align-items: baseline;

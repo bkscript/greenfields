@@ -17,6 +17,12 @@ MB.page = function cropPage() {
     return;
   }
 
+  const imageSlug = slug === "narma" ? "kapas" : slug;
+  const crumbs = document.querySelector("main .crumbs");
+  if (crumbs && !document.querySelector(".crop-page-image")) {
+    crumbs.insertAdjacentHTML("afterend", '<div class="crop-page-image"><img src="' + u.siteHref("img/crops/" + imageSlug + ".png") + '" alt="' + crop.hi + ' की फसल" onerror="this.parentElement.remove()" /></div>');
+  }
+
   document.title = crop.hi + " का भाव आज | " + crop.en + " Mandi Price Today";
 
   const stateSlug = u.param("state");
