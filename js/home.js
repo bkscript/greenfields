@@ -33,6 +33,17 @@ MB.page = function homePage() {
   moongphali: "img/crops/moongphali.png",
   soyabean: "img/crops/soyabean.png",
   "hara-matar": "img/crops/hara-matar.png",
+  pyaz: "img/crops/pyaz.png",
+  aalu: "img/crops/aalu.png",
+  tamatar: "img/crops/tamatar.png",
+  lahsun: "img/crops/lahsun.png",
+  adrak: "img/crops/adrak.png",
+  "hari-mirch": "img/crops/hari-mirch.png",
+  "hara-dhaniya": "img/crops/hara-dhaniya.png",
+  amrood: "img/crops/amrood.png",
+  kela: "img/crops/kela.png",
+  seb: "img/crops/seb.png",
+  anar: "img/crops/anar.png",
 };
   const cropGroups = [
     ["gehun", "bajra", "makka", "dhan", "rice", "jau", "jowar"],
@@ -62,7 +73,7 @@ MB.page = function homePage() {
       if (kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
       else if (c.veg) price += ' · <span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
       const image = cropImages[slug]
-        ? '<span class="crop-image"><img src="' + cropImages[slug] + '" alt="' + c.hi + ' की फसल" loading="lazy" /></span>'
+        ? '<span class="crop-image"><img src="' + cropImages[slug] + '" alt="' + c.hi + ' की फसल" width="42" height="42" loading="lazy" decoding="async" /></span>'
         : "";
       return (
         '<a class="crop-tile" href="' +
@@ -231,7 +242,7 @@ MB.page = function homePage() {
     tapeHtml +
     moversHtml +
     '<section class="land-block pad" id="aaj-ke-bhav">' +
-    "<h2>एक फसल, सारी मंडियों का भाव<span class='en'>Today's prices</span></h2>" +
+    "<h2 class='all-crops-heading'>सभी फसलों के भाव</h2>" +
     '<div class="grid-crops landing-crops">' +
     fieldTiles +
     "</div>" +

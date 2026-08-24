@@ -335,6 +335,10 @@ a.chip { text-decoration: none; }
   height: 100%;
   object-fit: contain;
 }
+.crop-image img[src$="lahsun.png"],
+.crop-page-image img[src$="lahsun.png"] {
+  filter: drop-shadow(0 2px 2px rgba(41, 35, 25, 0.22));
+}
 .crop-page-image {
   width: 104px;
   height: 104px;
@@ -812,6 +816,7 @@ body[data-page="crop"] .card table td:first-child a { font-weight: 700; }
   font-size: 1.45rem;
   margin: 0 0 8px;
 }
+.land-block h2.all-crops-heading { margin-bottom: 1rem; }
 .land-block h2 .en {
   display: block;
   font-size: 0.82em;
