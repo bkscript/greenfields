@@ -98,10 +98,10 @@ MB.page = function cropPage() {
         u.nameHi(m) +
         "</a></td>" +
         (showStateCol ? '<td class="state-code">' + st.short + "</td>" : "") +
-        '<td class="num">' +
+        '<td class="num modal-price">' +
         u.priceCell(slug, r) +
         "</td>" +
-        '<td class="num">' +
+        '<td class="num range-col">' +
         u.rupee(r.min) +
         "–" +
         u.rupee(r.max).replace("₹", "") +
@@ -230,9 +230,9 @@ MB.page = function cropPage() {
     "</span>" +
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
-    '<section class="card"><h2>मंडियां<span class="en">Mandis</span></h2><table><thead><tr><th>मंडी</th>' +
+    '<section class="card"><h2>मंडियां <span class="en">Mandis</span></h2><table><thead><tr><th>मंडी</th>' +
     (showStateCol ? "<th>राज्य</th>" : "") +
-    '<th class="num">मॉडल</th><th class="num">न्यून.–अधि.</th><th class="num">कल से</th></tr></thead><tbody>' +
+    '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th><th class="num">कल से</th></tr></thead><tbody>' +
     body +
     "</tbody></table></section>" +
     '<p class="note">' +
