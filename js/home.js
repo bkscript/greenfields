@@ -9,6 +9,14 @@
 */
 MB.page = function homePage() {
   const u = MB.ui;
+  // असली फसल thumbnail केवल उन cards पर दिखेगा जिनकी local image मौजूद है।
+  const cropImages = {
+    gehun: "img/crops/gehun.png",
+    sarson: "img/crops/sarson.png",
+    chana: "img/crops/chana.png",
+    bajra: "img/crops/bajra.png",
+    makka: "img/crops/makka.png",
+  };
   const cropGroups = [
     ["gehun", "bajra", "makka", "dhan", "rice", "jau", "jowar"],
     ["chana", "moong", "moth", "arhar", "urad", "masoor", "matar", "gwar"],
@@ -37,16 +45,19 @@ MB.page = function homePage() {
       let price = u.rupee(med) + "/qtl";
       if (kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
       else if (c.veg) price += ' · <span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
+      const image = cropImages[slug]
+        ? '<span class="crop-image"><img src="' + cropImages[slug] + '" alt="' + c.hi + ' की फसल" loading="lazy" /></span>'
+        : "";
       return (
         '<a class="crop-tile" href="' +
         u.cropHref(slug) +
-        '"><strong>' +
+        '">' + image + '<span class="crop-copy"><strong>' +
         c.hi +
         '<span class="crop-en">' +
         c.en +
         "</span></strong><em>" +
         price +
-        "</em></a>"
+        "</em></span></a>"
       );
       })
       .filter(Boolean)
