@@ -300,36 +300,6 @@ a.chip { text-decoration: none; }
   border-bottom: 1px solid var(--line);
 }
 .crop-mandi-list > h2 { text-align: center; }
-.crop-mandi-list table {
-  font-size: 0.92rem;
-}
-.crop-mandi-list thead th {
-  background: linear-gradient(90deg, #287e31, #1d6d27);
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 700;
-  border: 0;
-  padding-top: 13px;
-  padding-bottom: 13px;
-}
-.crop-mandi-list tbody tr,
-.crop-mandi-list tbody td {
-  background: #fff;
-  padding-top: 14px;
-  padding-bottom: 14px;
-}
-.crop-mandi-list table th:nth-child(odd),
-.crop-mandi-list table td:nth-child(odd) { background: #fff; }
-.card.crop-mandi-list table tbody td:nth-child(odd) { background: #fff; }
-.crop-mandi-list table thead th,
-.crop-mandi-list table thead th:nth-child(odd) {
-  background: linear-gradient(90deg, #287e31, #1d6d27);
-}
-@media (max-width: 560px) {
-  .crop-mandi-list table { font-size: 0.84rem; }
-  .crop-mandi-list thead th { font-size: 0.7rem; padding-top: 11px; padding-bottom: 11px; }
-  .crop-mandi-list tbody td { padding-top: 12px; padding-bottom: 12px; }
-}
 .grid-crops {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -418,11 +388,31 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 }
 .card table th:nth-child(odd),
 .card table td:nth-child(odd) { background: #eef7f0; }
+.crop-mandi-list table { font-size: 0.92rem; }
+.crop-mandi-list thead th,
+.card.crop-mandi-list table thead th:nth-child(odd) {
+  background: linear-gradient(90deg, #287e31, #1d6d27);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 0;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+.crop-mandi-list tbody td,
+.card.crop-mandi-list table tbody td:nth-child(odd) {
+  background: #fff;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
 body[data-page="crop"] .card table td:first-child a { font-weight: 700; }
 .state-code { white-space: nowrap; color: var(--muted); font-weight: 500; }
 @media (max-width: 560px) {
   th, td { padding: 9px 7px; }
   .range-col { padding-left: 3px; padding-right: 3px; }
+  .crop-mandi-list table { font-size: 0.84rem; }
+  .crop-mandi-list thead th { font-size: 0.7rem; padding-top: 11px; padding-bottom: 11px; }
+  .crop-mandi-list tbody td { padding-top: 12px; padding-bottom: 12px; }
 }
 .stale-divider td {
   border: 0;
