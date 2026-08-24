@@ -80,9 +80,7 @@ MB.page = function homePage() {
         u.cropHref(slug) +
         '">' + image + '<span class="crop-copy"><strong>' +
         c.hi +
-        '<span class="crop-en">' +
-        c.en +
-        "</span></strong><em>" +
+        "</strong><em>" +
         price +
         "</em></span></a>"
       );
@@ -177,7 +175,6 @@ MB.page = function homePage() {
       '"><span class="mover-txt"><strong>' +
       x.crop.hi +
       "</strong><em>" +
-      x.crop.en +
       (mandiName ? " · " + mandiName : "") +
       '</em></span><span class="' +
       u.vsClass(x.row.vs) +
