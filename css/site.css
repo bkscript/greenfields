@@ -288,7 +288,11 @@ a.chip { text-decoration: none; }
   padding: 10px 12px;
 }
 .stat b { display: block; font-size: 1.25rem; }
-.stat span { font-size: 0.78rem; color: var(--muted); }
+.stat span {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
 
 .card {
   background: var(--card);
