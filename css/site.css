@@ -312,6 +312,7 @@ a.chip { text-decoration: none; }
   padding-top: 13px;
   padding-bottom: 13px;
 }
+.crop-mandi-list tbody tr,
 .crop-mandi-list tbody td {
   background: #fff;
   padding-top: 14px;
@@ -319,6 +320,7 @@ a.chip { text-decoration: none; }
 }
 .crop-mandi-list table th:nth-child(odd),
 .crop-mandi-list table td:nth-child(odd) { background: #fff; }
+.card.crop-mandi-list table tbody td:nth-child(odd) { background: #fff; }
 .crop-mandi-list table thead th,
 .crop-mandi-list table thead th:nth-child(odd) {
   background: linear-gradient(90deg, #287e31, #1d6d27);
