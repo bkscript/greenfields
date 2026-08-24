@@ -97,7 +97,7 @@ MB.page = function cropPage() {
         '">' +
         u.nameHi(m) +
         "</a></td>" +
-        (showStateCol ? "<td>" + u.nameHi(st) + "</td>" : "") +
+        (showStateCol ? '<td class="state-code">' + st.short + "</td>" : "") +
         '<td class="num">' +
         u.priceCell(slug, r) +
         "</td>" +
