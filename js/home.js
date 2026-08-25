@@ -7,6 +7,8 @@ MB.page = function homePage() {
   jeera: "img/crops/jeera.webp",
   dhaniya: "img/crops/dhaniya.webp",
   saunf: "img/crops/saunf.webp",
+  sua: "img/crops/sua.webp",
+  "sua-patti": "img/crops/sua-patti.webp",
   methi: "img/crops/methi.webp",
   "hari-methi": "img/crops/hari-methi.webp",
   isabgol: "img/crops/isabgol.webp",
@@ -49,8 +51,8 @@ MB.page = function homePage() {
     ["gehun", "bajra", "makka", "dhan", "rice", "jau", "jowar"],
     ["chana", "moong", "moth", "arhar", "urad", "masoor", "matar", "gwar"],
     ["sarson", "narma", "kapas", "moongphali", "soyabean", "til", "arandi", "alsi"],
-    ["jeera", "dhaniya", "saunf", "methi", "hari-methi", "isabgol", "haldi", "mirch"],
-    ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "hara-matar", "amrood", "kela", "seb", "anar"],
+    ["jeera", "dhaniya", "saunf", "sua", "methi", "hari-methi", "isabgol", "haldi", "mirch"],
+    ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "sua-patti", "hara-matar", "amrood", "kela", "seb", "anar"],
   ];
   const famous = ["unjha", "indore", "mandsaur", "sri-ganganagar", "nagaur", "gondal", "sirsa", "shahabad"];
 
