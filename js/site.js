@@ -224,6 +224,7 @@
       states +
       "</nav>" +
       '<nav class="foot-links" aria-label="ज़रूरी जानकारी">' +
+      '<a href="' + siteHref("jaankari/sona-chandi-ka-bhav/") + '">सोना-चांदी भाव</a>' +
       '<a href="' + siteHref("jaankari/source-method/") + '">स्रोत और तरीका</a>' +
       '<a href="' + siteHref("jaankari/about/") + '">हमारे बारे में</a>' +
       '<a href="' + siteHref("jaankari/suggestions/") + '">सुझाव और सुधार</a>' +

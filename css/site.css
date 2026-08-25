@@ -241,6 +241,162 @@ h1 {
   line-height: 1.5;
 }
 
+/* Gold and silver reference page */
+body[data-page="bullion"] {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(216, 176, 74, 0.16), transparent 28rem),
+    linear-gradient(180deg, #f8f6ef 0%, #f4f6f0 100%);
+}
+.bullion-page {
+  max-width: 1080px;
+  padding-top: 20px;
+  padding-bottom: 34px;
+}
+.bullion-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 244px;
+  padding: 29px 30px;
+  border: 1px solid rgba(211, 170, 62, 0.52);
+  border-radius: 20px;
+  color: #fffdf4;
+  background: linear-gradient(126deg, #174f31 0%, #23783a 52%, #806315 138%);
+  box-shadow: 0 16px 34px rgba(29, 70, 38, 0.18);
+}
+.bullion-hero::before,
+.bullion-hero::after {
+  position: absolute;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+.bullion-hero::before {
+  width: 330px;
+  height: 330px;
+  right: -112px;
+  top: -186px;
+  border: 1px solid rgba(255, 229, 146, 0.38);
+  box-shadow: 0 0 0 38px rgba(255, 221, 126, 0.08), 0 0 0 78px rgba(255, 221, 126, 0.04);
+}
+.bullion-hero::after {
+  width: 196px;
+  height: 196px;
+  right: 56px;
+  bottom: -150px;
+  background: rgba(246, 200, 73, 0.12);
+}
+.bullion-hero-copy { position: relative; z-index: 1; max-width: 640px; }
+.bullion-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 9px;
+  color: #ffe7a0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.bullion-kicker span { color: #f6c849; font-size: 0.65rem; }
+.bullion-hero h1 { margin: 0; color: #fffdf4; font-size: clamp(1.72rem, 4vw, 2.45rem); line-height: 1.15; }
+.bullion-hero p:not(.bullion-kicker) { max-width: 550px; margin: 11px 0 18px; color: rgba(255, 253, 244, 0.88); font-size: 1rem; }
+.bullion-hero-meta { display: flex; align-items: center; gap: 9px; color: #fff0bd; font-size: 0.85rem; }
+.bullion-hero-meta strong { color: #fffdf4; }
+.bullion-meta-dot { color: #efca63; }
+.bullion-hero-mark {
+  position: absolute;
+  z-index: 1;
+  right: 30px;
+  bottom: 24px;
+  width: 94px;
+  height: 94px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 233, 157, 0.7);
+  border-radius: 50%;
+  color: #fff4c9;
+  background: linear-gradient(145deg, rgba(244, 199, 74, 0.34), rgba(255, 255, 255, 0.05));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.34), 0 8px 20px rgba(0,0,0,.17);
+}
+.bullion-hero-mark span { font-family: Georgia, serif; font-size: 2.2rem; line-height: 1; }
+.bullion-hero-mark small { position: absolute; right: 14px; bottom: 13px; color: #dce5db; font-size: 0.72rem; font-weight: 700; }
+.bullion-rates-section { margin-top: 22px; }
+.bullion-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 0 3px 12px; }
+.section-eyebrow { margin: 0 0 3px; color: #98751c; font-size: .76rem; font-weight: 800; letter-spacing: .06em; }
+.bullion-section-heading h2 { margin: 0; font-size: 1.15rem; }
+.bullion-source-link {
+  flex-shrink: 0;
+  padding: 8px 11px;
+  border: 1px solid #d9c27c;
+  border-radius: 999px;
+  color: #665110;
+  background: #fffdf4;
+  font-size: .82rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+.bullion-source-link:hover { color: #3c6f35; text-decoration: none; border-color: #43804d; }
+.metal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.metal-card {
+  min-height: 178px;
+  padding: 15px;
+  border: 1px solid #dbc986;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fffef9, #f7efd0);
+  box-shadow: 0 8px 18px rgba(107, 80, 16, 0.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.metal-card.is-silver { border-color: #c8d2d0; background: linear-gradient(145deg, #ffffff, #e9f0ee); }
+.metal-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(73, 82, 47, .14); }
+.metal-card-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.metal-symbol {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #67520e;
+  background: #f5d979;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+}
+.is-silver .metal-symbol { color: #45605e; background: #dce8e5; }
+.metal-purity { color: #7a672b; font-size: .7rem; font-weight: 750; }
+.is-silver .metal-purity { color: #56716e; }
+.metal-card h2 { margin: 18px 0 8px; font-size: 1rem; }
+.metal-rate { margin: 0; color: #1c512e; font-size: 1.36rem; font-weight: 850; letter-spacing: -.025em; }
+.metal-unit { margin: 3px 0 0; color: var(--muted); font-size: .76rem; }
+.bullion-guides { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.bullion-guide-card { min-height: 154px; padding: 17px; border: 1px solid #dce3d8; border-radius: 14px; background: rgba(255,255,252,.72); }
+.guide-icon { display: inline-grid; width: 28px; height: 28px; place-items: center; border-radius: 8px; color: #98751c; background: #fff1bd; font-size: .95rem; font-weight: 800; }
+.bullion-guide-card h2 { margin: 12px 0 6px; font-size: .96rem; }
+.bullion-guide-card p { margin: 0; color: var(--muted); font-size: .83rem; line-height: 1.55; }
+.bullion-source-note { display: flex; align-items: center; gap: 15px; margin-top: 18px; padding: 17px; border: 1px solid #b7d4b9; border-radius: 14px; background: linear-gradient(100deg, #edf8eb, #fff9e7); }
+.source-note-icon { flex: 0 0 36px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: #fff7d7; background: #28733a; }
+.bullion-source-note h2 { margin: 0 0 4px; font-size: .98rem; }
+.bullion-source-note p { margin: 0; color: #536052; font-size: .82rem; line-height: 1.5; }
+.bullion-source-note a { flex: 0 0 auto; color: #236f37; font-size: .82rem; font-weight: 800; white-space: nowrap; }
+@media (max-width: 760px) {
+  .bullion-page { padding: 14px 12px 28px; }
+  .bullion-hero { min-height: 222px; padding: 23px 21px; border-radius: 16px; }
+  .bullion-hero::before { right: -190px; }
+  .bullion-hero-mark { right: 18px; bottom: 17px; width: 72px; height: 72px; opacity: .85; }
+  .bullion-hero-mark span { font-size: 1.7rem; }
+  .bullion-hero-mark small { right: 10px; bottom: 8px; font-size: .62rem; }
+  .bullion-hero p:not(.bullion-kicker) { max-width: calc(100% - 68px); font-size: .9rem; }
+  .bullion-section-heading { align-items: start; }
+  .bullion-source-link { padding: 7px 9px; font-size: .74rem; }
+  .metal-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+  .metal-card { min-height: 156px; padding: 13px; border-radius: 12px; }
+  .metal-card h2 { margin-top: 14px; font-size: .92rem; }
+  .metal-rate { font-size: 1.14rem; }
+  .bullion-guides { grid-template-columns: 1fr; gap: 9px; }
+  .bullion-guide-card { min-height: 0; padding: 14px; }
+  .bullion-source-note { align-items: flex-start; gap: 11px; padding: 14px; }
+  .bullion-source-note a { display: none; }
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -267,7 +423,7 @@ a.chip { text-decoration: none; }
 .stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 16px;
 }
 @media (min-width: 560px) {
@@ -284,6 +440,66 @@ a.chip { text-decoration: none; }
   font-size: 0.78rem;
   color: var(--muted);
   white-space: nowrap;
+}
+.stats.four .stat {
+  position: relative;
+  min-height: 126px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 1px solid #c7dfc9;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fffefa, #edf7ee);
+  box-shadow: 0 8px 18px rgba(27, 94, 32, 0.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.stats.four .stat::before {
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border-radius: 50%;
+  content: "";
+  background: #65a86a;
+  box-shadow: 0 0 0 4px rgba(101, 168, 106, 0.16);
+}
+.stats.four .stat .stat-icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 7px;
+  border: 1px solid rgba(46, 125, 50, 0.16);
+  border-radius: 9px;
+  color: #1b5e20;
+  background: #e4f3e5;
+}
+.stats.four .stat .stat-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
+.stats.four .stat:nth-child(2) .stat-icon { color: #247130; background: #e7f5e7; border-color: rgba(36, 113, 48, 0.16); }
+.stats.four .stat:nth-child(3) .stat-icon { color: #3c7340; background: #ecf6eb; }
+.stats.four .stat:nth-child(4) .stat-icon { color: #35644a; background: #e5f1e8; border-color: rgba(53, 100, 74, 0.16); }
+.stats.four .stat:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(73, 82, 47, 0.14); }
+.stats.four .stat b { color: #1c512e; font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.32; letter-spacing: -0.02em; }
+.stats.four .stat span { display: block; margin-top: 7px; color: #536255; font-size: .78rem; }
+@media (max-width: 560px) {
+  .stats { gap: 9px; }
+  .stats.four .stat { min-height: 112px; padding: 13px; border-radius: 12px; }
+  .stats.four .stat::before { top: 12px; right: 12px; }
+  .stats.four .stat .stat-icon { top: 12px; left: 12px; width: 28px; height: 28px; padding: 6px; border-radius: 8px; }
+  .stats.four .stat b { font-size: 1.12rem; }
+  .stats.four .stat span { margin-top: 5px; font-size: .72rem; }
+}
+.stats.four .stat:nth-child(3) b {
+  font-size: .9rem;
+  line-height: 1.4;
+  letter-spacing: 0;
 }
 
 .card {
@@ -804,58 +1020,107 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 }
 .ticker:hover { background: #e8dfc8; }
 
-#mandiyan .card {
-  background: linear-gradient(135deg, #f8fff8 0%, #eef9ef 100%);
-  border: 1px solid #c7e5c9;
-  border-left: 5px solid var(--primary);
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(32, 103, 45, 0.1);
+#mandiyan { padding-top: 30px; }
+#mandiyan h2 { margin-bottom: 18px; }
+.mandi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
 }
-#mandiyan .card table th {
-  background: var(--primary);
-  color: var(--on-dark);
-  border-color: rgba(255, 255, 255, 0.2);
-  font-weight: 700;
-}
-#mandiyan .card table th:first-child { border-top-left-radius: 12px; }
-#mandiyan .card table th:last-child { border-top-right-radius: 12px; }
-#mandiyan .card table td,
-#mandiyan .card table td:nth-child(odd) {
-  background: transparent;
-  border-color: #cfe4d1;
-}
-#mandiyan .card tbody tr:hover td {
-  background: rgba(255, 255, 255, 0.55);
-}
-#mandiyan .mandi-name-link {
-  color: var(--primary-2);
-  font-weight: 750;
-  text-decoration: underline;
-  text-decoration-color: rgba(27, 94, 32, 0.42);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-#mandiyan .mandi-name-link::after {
-  content: " →";
-  display: inline-block;
-  text-decoration: none;
-}
-#mandiyan .mandi-name-link:hover {
-  color: var(--primary);
-  text-decoration-thickness: 2px;
-}
-#mandiyan .mandi-today-crop {
-  display: block;
+.mandi-tile {
+  position: relative;
+  display: flex;
+  min-height: 144px;
+  flex-direction: column;
+  padding: 13px;
+  overflow: hidden;
+  border: 1px solid #d6e4d7;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fffefa, #f2f9f2);
+  box-shadow: 0 5px 13px rgba(27, 94, 32, 0.055);
   color: var(--text);
-  font-size: 0.78rem;
-  font-weight: 600;
+  text-decoration: none !important;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.mandi-tile::after {
+  position: absolute;
+  right: -24px;
+  bottom: -30px;
+  width: 90px;
+  height: 90px;
+  border: 16px solid rgba(46, 125, 50, 0.055);
+  border-radius: 50%;
+  content: "";
+}
+.mandi-tile:hover {
+  transform: translateY(-3px);
+  border-color: #8ebd92;
+  box-shadow: 0 10px 20px rgba(27, 94, 32, 0.12);
+}
+.mandi-tile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 22px;
+  color: #53715a;
+  font-size: .73rem;
+  font-weight: 650;
+}
+.mandi-state { display: inline-flex; align-items: center; gap: 4px; }
+.mandi-state svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+.mandi-arrow {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--primary-2);
+  background: #e5f4e6;
+  font-size: .95rem;
+  transition: transform .18s ease, background .18s ease;
+}
+.mandi-tile:hover .mandi-arrow { transform: translateX(2px); background: #d7eed9; }
+.mandi-tile > strong {
+  position: relative;
+  z-index: 1;
+  margin: 13px 0 auto;
+  color: #194e24;
+  font-size: 1.08rem;
   line-height: 1.2;
 }
-#mandiyan .mandi-today-rate {
+.mandi-tile-price {
+  position: relative;
+  z-index: 1;
   display: block;
-  margin-top: 3px;
+  margin-top: 10px;
+}
+.mandi-tile-price small {
+  display: block;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: .73rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mandi-tile-price b {
+  display: block;
+  margin-top: 2px;
   color: var(--primary-2);
+  font-size: 1.04rem;
   font-variant-numeric: tabular-nums;
+}
+@media (min-width: 850px) {
+  .mandi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .mandi-tile { min-height: 154px; padding: 15px; }
+}
+@media (max-width: 380px) {
+  .mandi-grid { grid-template-columns: 1fr; }
 }
 
 .price-tape {
@@ -936,66 +1201,123 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .land-lead { white-space: nowrap; }
 }
 
+#bade-badlav {
+  margin: 24px auto 12px;
+  padding: 24px 20px 20px;
+  border: 1px solid #d4e4d5;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #fffefa 0%, #f0f8f0 100%);
+  box-shadow: 0 12px 28px rgba(27, 94, 32, 0.07);
+}
+#bade-badlav h2 { margin-bottom: 18px; }
 .movers {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  align-items: start;
+  gap: 14px;
+  align-items: stretch;
 }
-.movers h3 {
-  margin: 0 0 10px;
-  font-size: 1.02rem;
+.mover-group {
+  padding: 12px;
+  border: 1px solid #dbe8dc;
+  border-radius: 14px;
+  background: rgba(255, 255, 250, 0.74);
 }
-.movers h3 .en {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--muted);
-  margin-top: 2px;
-}
-a.mover {
+.mover-group-up { border-top: 3px solid #4b9a52; }
+.mover-group-down { border-top: 3px solid #cf625a; }
+.mover-group-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  margin-bottom: 8px;
-  text-decoration: none !important;
+  gap: 7px;
+  margin: 0 0 10px;
+  font-size: .84rem;
+  font-weight: 750;
+  color: #315b36;
+}
+.mover-group-title span {
+  display: grid;
+  width: 23px;
+  height: 23px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #398641;
+  font-size: .95rem;
+}
+.mover-group-down .mover-group-title { color: #8c3932; }
+.mover-group-down .mover-group-title span { background: #bd534b; }
+a.mover {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 66px;
+  padding: 10px;
+  margin-bottom: 7px;
+  border: 1px solid #dfe8df;
+  border-radius: 11px;
+  background: #fffefa;
+  box-shadow: 0 2px 5px rgba(27, 94, 32, 0.035);
   color: inherit;
+  text-decoration: none !important;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
-@media (max-width: 700px) {
-  .movers { gap: 8px; }
-  .movers h3 { font-size: 0.92rem; margin-bottom: 8px; }
-  a.mover {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 9px 8px;
-    margin-bottom: 6px;
-  }
-  a.mover em { display: none; }
-  a.mover strong { font-size: 0.92rem; }
-  a.mover span:last-child { font-size: 0.88rem; }
+a.mover:last-child { margin-bottom: 0; }
+a.mover:hover {
+  transform: translateY(-2px);
+  border-color: #91bf95;
+  box-shadow: 0 7px 16px rgba(27, 94, 32, 0.11);
 }
-a.mover:hover { border-color: var(--mustard); }
+.mover-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 10px;
+}
+.mover-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+.mover-up .mover-icon { color: #1f8030; background: #e3f4e5; }
+.mover-down .mover-icon { color: #b63f38; background: #fbe7e5; }
 a.mover .mover-txt { min-width: 0; }
 a.mover strong {
   display: block;
-  font-size: 1.02rem;
+  font-size: .98rem;
+  line-height: 1.2;
 }
 a.mover em {
   display: block;
-  font-style: normal;
-  font-size: 0.8rem;
+  overflow: hidden;
+  margin-top: 3px;
   color: var(--muted);
-  margin-top: 2px;
-}
-a.mover span:last-child {
-  font-size: 1.05rem;
+  font-size: .76rem;
+  font-style: normal;
+  text-overflow: ellipsis;
   white-space: nowrap;
+}
+a.mover > .vs-up,
+a.mover > .vs-down,
+a.mover > .vs-flat {
+  font-size: .98rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  #bade-badlav { margin: 18px 12px 8px; padding: 20px 12px 12px; border-radius: 16px; }
+  #bade-badlav h2 { margin-bottom: 14px; }
+  .movers { grid-template-columns: 1fr; gap: 10px; }
+  .mover-group { padding: 10px; }
+  a.mover { min-height: 60px; padding: 9px; }
+  a.mover strong { font-size: .93rem; }
+  a.mover > .vs-up,
+  a.mover > .vs-down,
+  a.mover > .vs-flat { font-size: .9rem; }
 }
 
 .landing-crops { padding: 0; }

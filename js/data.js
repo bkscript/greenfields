@@ -9,6 +9,20 @@ MB.WA_GROUP = "https://chat.whatsapp.com/J6Q5UqZ86Q66sy0nRN3bt0";
 MB.WA_JOIN_SHORT = "मुफ्त मंडी भाव";
 MB.WA_JOIN = "मुफ्त मंडी भाव — WhatsApp ग्रुप जॉइन करें";
 
+// IBJA PM physical-market reference rates. Gold values are ₹/10 g and silver is ₹/kg.
+// Keep this separate from mandi prices; GST and jewellery making charges are not included.
+MB.BULLION = {
+  source: "IBJA",
+  sourceUrl: "https://ibja.co/",
+  date: "2026-08-25",
+  rates: [
+    { slug: "gold-999", name: "24 कैरेट सोना", purity: "Gold 999", value: 162154, unit: "₹ / 10 ग्राम", metal: "gold" },
+    { slug: "gold-916", name: "22 कैरेट सोना", purity: "Gold 916", value: 148533, unit: "₹ / 10 ग्राम", metal: "gold" },
+    { slug: "gold-750", name: "18 कैरेट सोना", purity: "Gold 750", value: 121616, unit: "₹ / 10 ग्राम", metal: "gold" },
+    { slug: "silver-999", name: "चांदी", purity: "Silver 999", value: 245391, unit: "₹ / किलो", metal: "silver" },
+  ],
+};
+
 MB.TAPE = [
   { crop: "sarson", mandi: "sri-ganganagar" },
   { crop: "moong", mandi: "nagaur" },

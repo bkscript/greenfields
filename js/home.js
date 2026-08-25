@@ -54,7 +54,7 @@ MB.page = function homePage() {
     ["jeera", "dhaniya", "saunf", "sua", "methi", "hari-methi", "isabgol", "haldi", "mirch"],
     ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "sua-patti", "hara-matar", "amrood", "kela", "seb", "anar"],
   ];
-  const famous = ["unjha", "indore", "mandsaur", "sri-ganganagar", "nagaur", "gondal", "sirsa", "shahabad"];
+  const famous = ["unjha", "indore", "mandsaur", "sri-ganganagar", "kota", "gondal", "sirsa", "shahabad"];
 
   const fieldCrops = cropGroups.slice(0, -1).reduce((all, group) => all.concat(group), []);
   const produceCrops = cropGroups[cropGroups.length - 1];
@@ -97,7 +97,7 @@ MB.page = function homePage() {
     : '<div class="produce-break"><span>सब्जियां और फल</span><small>Vegetables &amp; fruits</small></div>' +
       '<div class="grid-crops landing-crops produce-crops">' + produceTiles + "</div>";
 
-  const mandiRows = famous
+  const mandiCards = famous
     .map((slug) => {
       const m = u.mandiBySlug(slug);
       const st = u.stateBySlug(m.state);
@@ -106,17 +106,17 @@ MB.page = function homePage() {
       if (!top) return "";
       const crop = top ? u.cropBySlug(top.crop) : null;
       return (
-        "<tr><td><a class=\"mandi-name-link\" href=\"" +
+        '<a class="mandi-tile" href="' +
         u.mandiHref(slug) +
-        '">' +
-        u.nameHi(m) +
-        "</a></td><td>" +
+        '"><span class="mandi-tile-top"><span class="mandi-state"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>' +
         u.nameHi(st) +
-        "</td><td>" +
+        '</span><span class="mandi-arrow" aria-hidden="true">→</span></span><strong>' +
+        u.nameHi(m) +
+        '</strong><span class="mandi-tile-price">' +
         (crop
-          ? '<span class="mandi-today-crop">' + crop.hi + '</span><strong class="mandi-today-rate">' + u.rupee(top.modal) + "</strong>"
+          ? '<small>' + crop.hi + ' · मॉडल भाव</small><b>' + u.rupee(top.modal) + "/qtl</b>"
           : "—") +
-        "</td></tr>"
+        "</span></a>"
       );
     })
     .filter(Boolean)
@@ -173,10 +173,14 @@ MB.page = function homePage() {
     .slice(0, 4);
   function moverCard(x) {
     const mandiName = x.mandi ? u.nameHi(x.mandi) : "";
+    const isUp = x.row.vs > 0;
+    const trendIcon = isUp
+      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 15 5-5 3 3 6-7"/><path d="M15 6h4v4"/></svg>'
+      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 5 5 3-3 6 7"/><path d="M15 18h4v-4"/></svg>';
     return (
-      '<a class="mover" href="' +
+      '<a class="mover mover-' + (isUp ? "up" : "down") + '" href="' +
       u.cropHref(x.crop.slug) +
-      '"><span class="mover-txt"><strong>' +
+      '"><span class="mover-icon">' + trendIcon + '</span><span class="mover-txt"><strong>' +
       x.crop.hi +
       "</strong><em>" +
       (mandiName ? " · " + mandiName : "") +
@@ -194,11 +198,11 @@ MB.page = function homePage() {
         "<h2>आज के बड़े बदलाव<span class='en'>Biggest moves today</span></h2>" +
         '<div class="movers">' +
         (moversUp.length
-          ? '<div>' + moversUp.map(moverCard).join("") +
+          ? '<div class="mover-group mover-group-up"><p class="mover-group-title"><span>↗</span> तेजी वाली फसलें</p>' + moversUp.map(moverCard).join("") +
             "</div>"
           : "") +
         (moversDown.length
-          ? '<div>' + moversDown.map(moverCard).join("") +
+          ? '<div class="mover-group mover-group-down"><p class="mover-group-title"><span>↘</span> गिरावट वाली फसलें</p>' + moversDown.map(moverCard).join("") +
             "</div>"
           : "") +
         "</div></section>";
@@ -254,9 +258,7 @@ MB.page = function homePage() {
     "</section>" +
     '<section class="land-block pad" id="mandiyan">' +
     "<h2>प्रसिद्ध मंडियाँ</h2>" +
-    '<div class="card" style="margin:0"><table><thead><tr><th>मंडी</th><th>राज्य</th><th>आज</th></tr></thead><tbody>' +
-    mandiRows +
-    "</tbody></table></div></section>";
+    '<div class="mandi-grid">' + mandiCards + "</div></section>";
 
   const hs = document.getElementById("hero-search");
   if (hs) u.bindSearch(hs.querySelector("#q"), hs.querySelector("#suggest"), hs);

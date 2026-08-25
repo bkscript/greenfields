@@ -50,18 +50,34 @@ MB.page = function cropPage() {
       })
       .join("");
 
+  const statIcon = (type) => {
+    const icons = {
+      modal: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V11M10 19V5M16 19v-8M22 19V8"/><path d="M3 19h20"/></svg>',
+      kilo: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l2 11H3L5 8Z"/><path d="M8 8a4 4 0 0 1 8 0M9 14h6"/></svg>',
+      msp: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 7 3v5c0 4.4-3 7.7-7 10-4-2.3-7-5.6-7-10V6l7-3Z"/><path d="M9 12h6M12 9v6"/></svg>',
+      mandis: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10h18M5 10v9h14v-9M3 10l3-5h12l3 5"/><path d="M9 19v-5h6v5"/></svg>',
+      min: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v14M7 13l5 5 5-5"/><path d="M5 21h14"/></svg>',
+      range: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 12l-4-4M20 12l-4 4"/></svg>',
+      up: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16 10 11l3 3 6-7"/><path d="M15 7h4v4"/></svg>',
+      down: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 8 5 5 3-3 6 7"/><path d="M15 17h4v-4"/></svg>',
+      flat: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16"/><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></svg>',
+    };
+    return icons[type] || icons.modal;
+  };
+
   const stats = currentRows.length ? [
-    { v: u.rupee(med), l: "मॉडल भाव" },
+    { v: u.rupee(med), l: "मॉडल भाव", i: "modal" },
     crop.veg
-      ? { v: u.rupee(u.kgFromQtl(med)), l: "प्रति किलो" }
+      ? { v: u.rupee(u.kgFromQtl(med)), l: "प्रति किलो", i: "kilo" }
       : crop.msp
-        ? { v: u.rupee(crop.msp), l: "MSP" }
-        : { v: u.rupee(Math.min.apply(null, mins)), l: "न्यूनतम भाव" },
+        ? { v: u.rupee(crop.msp), l: "MSP", i: "msp" }
+        : { v: String(currentRows.length), l: "उपलब्ध मंडियां", i: "mandis" },
     {
       v: u.rupee(Math.min.apply(null, mins)) + "–" + u.rupee(Math.max.apply(null, maxs)).replace("₹", ""),
       l: "न्यूनतम–अधिकतम",
+      i: "range",
     },
-    { v: u.vsText(vsMed || 0), l: "कल से" },
+    { v: u.vsText(vsMed || 0), l: "कल से", i: vsMed > 0 ? "up" : vsMed < 0 ? "down" : "flat" },
   ] : [];
 
   const shareAll = currentRows.length
@@ -210,7 +226,7 @@ MB.page = function cropPage() {
     (stats.length
       ? '<div class="stats four">' +
         stats
-          .map((s) => '<div class="stat"><b>' + s.v + "</b><span>" + s.l + "</span></div>")
+          .map((s) => '<div class="stat"><span class="stat-icon">' + statIcon(s.i) + "</span><b>" + s.v + "</b><span>" + s.l + "</span></div>")
           .join("") +
         "</div>"
       : "") +
