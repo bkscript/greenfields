@@ -144,12 +144,15 @@ MB.page = function homePage() {
     })
     .filter(Boolean)
     .join('<span class="tape-dot">•</span>');
-  const tapeHtml = !tapeBits
+  const tapeRun = tapeBits
+    ? [tapeBits, tapeBits, tapeBits].join('<span class="tape-dot">•</span>')
+    : "";
+  const tapeHtml = !tapeRun
     ? ""
     : '<a class="price-tape" href="#aaj-ke-bhav"><div class="price-tape-track"><div class="price-tape-run">' +
-      tapeBits +
+      tapeRun +
       '</div><div class="price-tape-run" aria-hidden="true">' +
-      tapeBits +
+      tapeRun +
       "</div></div></a>";
 
   const byCropMove = {};
@@ -246,7 +249,6 @@ MB.page = function homePage() {
     u.formatUpdatedHi(MB.LAST_UPDATED_DATE).replace(/\s+\d{4}$/, "") +
     "</b><small class=\"stat-update\">Last update</small></div>" +
     "</div>" +
-    '<a class="ticker" href="#aaj-ke-bhav">फसल के आधार पर भाव →</a>' +
     tapeHtml +
     moversHtml +
     '<section class="land-block pad" id="aaj-ke-bhav">' +
