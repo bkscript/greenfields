@@ -64,7 +64,9 @@ MB.page = function cropPage() {
     { v: u.vsText(vsMed || 0), l: "कल से" },
   ] : [];
 
-  const shareAll = currentRows.length ? u.sharePrice(slug, currentRows[0].mandi, currentRows[0]) : "";
+  const shareAll = currentRows.length
+    ? u.sharePage("आज " + crop.hi + " के ताजा मंडी भाव देखें")
+    : "";
   const showStateCol = !state;
 
   const sortedRows = rows
@@ -79,7 +81,7 @@ MB.page = function cropPage() {
         ? ((staleDividerAdded = true), '<tr class="stale-divider" aria-label="पुराने भाव"><td colspan="' + (showStateCol ? 5 : 4) + '"><span></span></td></tr>')
         : "";
       return (
-        divider + "<tr><td><a href=\"" +
+        divider + "<tr><td><a class=\"detail-table-link\" href=\"" +
         u.mandiHref(r.mandi, slug) +
         '">' +
         u.nameHi(m) +

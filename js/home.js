@@ -104,14 +104,16 @@ MB.page = function homePage() {
       if (!top) return "";
       const crop = top ? u.cropBySlug(top.crop) : null;
       return (
-        "<tr><td><a href=\"" +
+        "<tr><td><a class=\"mandi-name-link\" href=\"" +
         u.mandiHref(slug) +
         '">' +
         u.nameHi(m) +
         "</a></td><td>" +
         u.nameHi(st) +
         "</td><td>" +
-        (crop ? crop.hi + " " + u.rupee(top.modal) : "—") +
+        (crop
+          ? '<span class="mandi-today-crop">' + crop.hi + '</span><strong class="mandi-today-rate">' + u.rupee(top.modal) + "</strong>"
+          : "—") +
         "</td></tr>"
       );
     })
@@ -249,7 +251,7 @@ MB.page = function homePage() {
     produceSection +
     "</section>" +
     '<section class="land-block pad" id="mandiyan">' +
-    "<h2>आपकी जानी-पहचानी मंडियां<span class='en'>Popular mandis</span></h2>" +
+    "<h2>प्रसिद्ध मंडियाँ</h2>" +
     '<div class="card" style="margin:0"><table><thead><tr><th>मंडी</th><th>राज्य</th><th>आज</th></tr></thead><tbody>' +
     mandiRows +
     "</tbody></table></div></section>";

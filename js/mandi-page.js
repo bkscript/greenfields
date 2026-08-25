@@ -32,7 +32,7 @@ MB.page = function mandiPage() {
         ? ((staleDividerAdded = true), '<tr class="stale-divider" aria-label="पुराने भाव"><td colspan="5"><span></span></td></tr>')
         : "";
       return (
-        divider + "<tr><td><a href=\"" +
+        divider + "<tr><td><a class=\"detail-table-link\" href=\"" +
         u.cropHref(r.crop, mandi.state) +
         '">' +
         u.nameHi(c) +
@@ -60,7 +60,9 @@ MB.page = function mandiPage() {
     .join("");
 
   const top = sortedRows.find(u.isFreshPrice);
-  const shareTop = top ? u.sharePrice(top.crop, slug, top) : "#";
+  const shareTop = top
+    ? u.sharePage("आज " + mandi.hi + " मंडी के ताजा भाव देखें")
+    : "#";
   const dynamicFaqs = ((MB.dynamicMandiFaqs || {})[slug] || [])
     .map((item) => {
       const row = rows.find((price) => price.crop === item.crop);
@@ -106,7 +108,7 @@ MB.page = function mandiPage() {
         u.shareBtn(shareTop)
       : "") +
     "</p>" +
-    '<section class="card"><h2>आज इस मंडी की फसलें<span class="en">Crops in this mandi today</span></h2>' +
+    '<section class="card mandi-crop-list"><h2>आज इस मंडी की फसलें</h2>' +
     (rows.length
       ? "<table><thead><tr><th>फसल</th>" +
         '<th class="num">न्यून.</th><th class="num">मॉडल</th><th class="num">अधि.</th>' +

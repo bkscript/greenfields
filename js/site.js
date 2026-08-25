@@ -172,6 +172,11 @@
     return shareUrl(line);
   }
 
+  function sharePage(text) {
+    const pageUrl = window.location.href.split("#")[0];
+    return shareUrl(text + "\n" + pageUrl);
+  }
+
   const BRAND_LOGO =
     '<img class="brand-mark" src="' + siteHref("img/logo.png") + '" width="42" height="42" alt="" />';
   const BRAND_NAME =
@@ -440,6 +445,7 @@
     formatUpdatedHi,
     pricesFor,
     sharePrice,
+    sharePage,
     shareBtn,
     joinGroupBtn,
     siteHref,
