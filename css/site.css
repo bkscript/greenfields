@@ -1373,9 +1373,9 @@ body[data-page="home"] .hero-search-panel .hero-search {
   top: 0;
   left: 22px;
   right: 22px;
-  height: 3px;
+  height: 8px;
   border-radius: 0 0 999px 999px;
-  background: #f2d33f;
+  background: #ffdf37;
   content: "";
 }
 .big-stats b {

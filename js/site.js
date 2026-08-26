@@ -224,11 +224,10 @@
       states +
       "</nav>" +
       '<nav class="foot-links" aria-label="ज़रूरी जानकारी">' +
-      '<a href="' + siteHref("sona-chandi-ka-bhav/") + '">सोना-चांदी भाव</a>' +
-      '<a href="' + siteHref("jaankari/source-method/") + '">स्रोत और तरीका</a>' +
-      '<a href="' + siteHref("jaankari/about/") + '">हमारे बारे में</a>' +
-      '<a href="' + siteHref("jaankari/suggestions/") + '">सुझाव और सुधार</a>' +
-      '<a href="' + siteHref("jaankari/disclaimer/") + '">जरूरी सूचना</a>' +
+      '<a href="' + siteHref("jaankari/source-method/") + '">Sources</a>' +
+      '<a href="' + siteHref("jaankari/about/") + '">About</a>' +
+      '<a href="' + siteHref("jaankari/suggestions/") + '">Feedback</a>' +
+      '<a href="' + siteHref("jaankari/disclaimer/") + '">Notice</a>' +
       '<a href="' + siteHref("jaankari/privacy-policy/") + '">Privacy Policy</a>' +
       "</nav>" +
       '<p class="foot-note">' +
