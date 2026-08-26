@@ -1300,6 +1300,8 @@ body[data-page="home"] .hero-search-panel .hero-search {
   .big-stats { grid-template-columns: repeat(3, 1fr); }
 }
 .big-stats > div {
+  position: relative;
+  overflow: hidden;
   min-height: 82px;
   padding: 13px 8px;
   border: 1px solid #d6e4d7;
@@ -1307,6 +1309,16 @@ body[data-page="home"] .hero-search-panel .hero-search {
   background: linear-gradient(145deg, #fffefa, #eef7ee);
   box-shadow: 0 7px 16px rgba(27, 94, 32, 0.09);
   text-align: center;
+}
+.big-stats > div::before {
+  position: absolute;
+  top: 0;
+  left: 22px;
+  right: 22px;
+  height: 3px;
+  border-radius: 0 0 999px 999px;
+  background: #f2d33f;
+  content: "";
 }
 .big-stats b {
   display: block;
