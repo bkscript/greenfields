@@ -909,13 +909,13 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--wa);
+  background: #1fbd59;
   color: #fff !important;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.28);
   text-decoration: none !important;
 }
-.wa-float:hover { background: var(--wa-hover); }
-.wa-float .wa-icon { width: 29px; height: 29px; }
+.wa-float:hover { background: #18a94d; }
+.wa-float .wa-icon { width: 44px; height: 44px; }
 .foot-note {
   margin: 0;
   color: var(--on-dark);
