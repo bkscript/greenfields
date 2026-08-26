@@ -86,7 +86,7 @@ MB.page = function mandiPage() {
           cropHi +
           " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
       return (
-        '<details class="faq-item" open><summary>' +
+        '<details class="faq-item"><summary>' +
         item.q +
         "</summary><p>" +
         answer +
@@ -96,7 +96,7 @@ MB.page = function mandiPage() {
     .filter(Boolean)
     .join("");
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' + dynamicFaqs + "</section>"
+    ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
 
   const tables =

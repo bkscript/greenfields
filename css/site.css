@@ -325,6 +325,65 @@ body[data-page="bullion"] {
 }
 .bullion-hero-mark span { font-family: Georgia, serif; font-size: 2.2rem; line-height: 1; }
 .bullion-hero-mark small { position: absolute; right: 14px; bottom: 13px; color: #dce5db; font-size: 0.72rem; font-weight: 700; }
+.tola-section { margin-top: 22px; }
+.tola-section-heading { margin: 0 3px 11px; }
+.tola-section-heading p { margin: 0 0 3px; color: #98751c; font-size: .76rem; font-weight: 800; letter-spacing: .06em; }
+.tola-section-heading h2 { margin: 0; font-size: 1.2rem; }
+.tola-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tola-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 126px;
+  padding: 16px;
+  overflow: hidden;
+  border: 1px solid #dbc986;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fffef9, #f7efd0);
+  box-shadow: 0 9px 20px rgba(107, 80, 16, .09);
+}
+.tola-card::after {
+  position: absolute;
+  right: -25px;
+  bottom: -40px;
+  width: 108px;
+  height: 108px;
+  border: 17px solid rgba(207, 167, 56, .12);
+  border-radius: 50%;
+  content: "";
+}
+.tola-card.is-silver { border-color: #c8d2d0; background: linear-gradient(145deg, #ffffff, #e9f0ee); box-shadow: 0 9px 20px rgba(56, 79, 77, .08); }
+.tola-card.is-silver::after { border-color: rgba(133, 167, 160, .15); }
+.tola-symbol {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(177, 139, 25, .22);
+  border-radius: 50%;
+  color: #665110;
+  background: #f6d66d;
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+.is-silver .tola-symbol { border-color: rgba(69, 96, 94, .18); color: #385d57; background: #dce8e5; }
+.tola-card > div { position: relative; z-index: 1; min-width: 0; }
+.tola-card p { margin: 0 0 5px; color: #51491f; font-size: .86rem; font-weight: 750; }
+.is-silver.tola-card p { color: #40534f; }
+.tola-card b { display: block; color: #59470e; font-size: clamp(1.35rem, 3.3vw, 1.7rem); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.is-silver.tola-card b { color: #315d57; }
+.tola-card small { display: block; margin-top: 5px; color: #736b52; font-size: .72rem; }
+.tola-note { margin: 9px 3px 0; color: var(--muted); font-size: .75rem; line-height: 1.45; }
+.bullion-seo-intro { margin-top: 18px; padding: 17px; border: 1px solid #ded4b7; border-radius: 14px; background: linear-gradient(135deg, #fffdf6, #f4f8ee); }
+.bullion-seo-intro h2 { margin: 0 0 8px; color: #2c5334; font-size: 1.08rem; }
+.bullion-seo-intro p { margin: 0 0 9px; color: #536052; font-size: .85rem; line-height: 1.62; }
+.bullion-seo-intro p:last-child { margin-bottom: 0; }
+.bullion-seo-intro strong { color: #4c5e26; }
 .bullion-rates-section { margin-top: 22px; }
 .bullion-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 0 3px 12px; }
 .section-eyebrow { margin: 0 0 3px; color: #98751c; font-size: .76rem; font-weight: 800; letter-spacing: .06em; }
@@ -382,6 +441,14 @@ body[data-page="bullion"] {
 .bullion-source-note h2 { margin: 0 0 4px; font-size: .98rem; }
 .bullion-source-note p { margin: 0; color: #536052; font-size: .82rem; line-height: 1.5; }
 .bullion-source-note a { flex: 0 0 auto; color: #236f37; font-size: .82rem; font-weight: 800; white-space: nowrap; }
+.bullion-faq { margin-top: 18px; padding: 17px; border: 1px solid #ded4b7; border-radius: 14px; background: #fffdf7; }
+.bullion-faq > h2 { margin: 0 0 10px; font-size: 1.04rem; }
+.bullion-faq details { border-top: 1px solid #e7dfca; }
+.bullion-faq details:last-child { border-bottom: 1px solid #e7dfca; }
+.bullion-faq summary { padding: 12px 2px; color: #2e4f35; font-size: .9rem; font-weight: 800; cursor: pointer; }
+.bullion-faq p { margin: 0; padding: 0 2px 12px; color: #59655a; font-size: .84rem; line-height: 1.58; }
+.bullion-editorial { display: flex; justify-content: space-between; gap: 12px; margin: 12px 3px 0; color: #687269; font-size: .75rem; }
+.bullion-editorial strong { color: #485c4a; }
 @media (max-width: 760px) {
   .bullion-page { padding: 14px 12px 28px; }
   .bullion-hero { min-height: 222px; padding: 23px 21px; border-radius: 16px; }
@@ -396,10 +463,112 @@ body[data-page="bullion"] {
   .metal-card { min-height: 156px; padding: 13px; border-radius: 12px; }
   .metal-card h2 { margin-top: 14px; font-size: .92rem; }
   .metal-rate { font-size: 1.14rem; }
+  .tola-section { margin-top: 17px; }
+  .tola-grid { gap: 9px; }
+  .tola-card { min-height: 116px; gap: 9px; padding: 12px; border-radius: 13px; }
+  .tola-symbol { flex-basis: 38px; width: 38px; height: 38px; font-size: .9rem; }
+  .tola-card p { font-size: .76rem; }
+  .tola-card b { font-size: 1.13rem; }
+  .tola-card small { font-size: .64rem; }
+  .bullion-seo-intro { margin-top: 14px; padding: 14px; }
+  .bullion-seo-intro h2 { font-size: 1rem; }
+  .bullion-seo-intro p { font-size: .82rem; }
   .bullion-guides { grid-template-columns: 1fr; gap: 9px; }
   .bullion-guide-card { min-height: 0; padding: 14px; }
   .bullion-source-note { align-items: flex-start; gap: 11px; padding: 14px; }
   .bullion-source-note a { display: none; }
+  .bullion-faq { margin-top: 14px; padding: 14px; }
+  .bullion-editorial { display: block; margin-top: 11px; line-height: 1.65; }
+  .bullion-editorial span { display: block; }
+}
+@media (max-width: 400px) {
+  .tola-grid { grid-template-columns: 1fr; }
+}
+
+/* Gold and silver featured card on the home page */
+.bullion-home-block { padding-top: 0; padding-bottom: 14px; }
+.bullion-home-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto auto;
+  align-items: center;
+  gap: 19px;
+  min-height: 142px;
+  padding: 20px 24px;
+  overflow: hidden;
+  border: 1px solid rgba(217, 184, 77, .65);
+  border-radius: 19px;
+  color: #fffdf4;
+  background: linear-gradient(116deg, #143c28 0%, #1c6a35 61%, #6d5819 150%);
+  box-shadow: 0 13px 28px rgba(29, 70, 38, .16);
+  text-decoration: none !important;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.bullion-home-card::before,
+.bullion-home-card::after {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+.bullion-home-card::before {
+  top: -123px;
+  right: -47px;
+  width: 230px;
+  height: 230px;
+  border: 1px solid rgba(255, 229, 146, .36);
+  box-shadow: 0 0 0 31px rgba(255, 221, 126, .07), 0 0 0 65px rgba(255, 221, 126, .035);
+}
+.bullion-home-card::after {
+  bottom: -94px;
+  left: 34%;
+  width: 145px;
+  height: 145px;
+  background: rgba(246, 200, 73, .08);
+}
+.bullion-home-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px rgba(29, 70, 38, .22);
+}
+.bullion-home-copy,
+.bullion-home-mark,
+.bullion-home-link { position: relative; z-index: 1; }
+.bullion-home-copy h2 {
+  margin: 0;
+  color: #fffdf4;
+  font-size: clamp(1.18rem, 2vw, 1.48rem);
+  line-height: 1.18;
+}
+.bullion-home-copy > small { display: block; margin-top: 7px; color: #ffe7a0; font-size: .78rem; font-weight: 750; }
+.bullion-home-mark { position: relative; width: 74px; height: 54px; }
+.bullion-home-mark span { position: absolute; display: grid; width: 44px; height: 44px; place-items: center; border-radius: 50%; font-family: Georgia, serif; font-size: .84rem; font-weight: 800; box-shadow: 0 7px 14px rgba(0, 0, 0, .22); }
+.bullion-gold-mark { top: 0; left: 0; color: #5a4304; border: 1px solid #ffe99a; background: linear-gradient(145deg, #ffe99a, #d8a92b); }
+.bullion-silver-mark { right: 0; bottom: 0; color: #355c58; border: 1px solid #f5fbfa; background: linear-gradient(145deg, #f6fbfb, #a7c2bf); }
+.bullion-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  justify-self: end;
+  padding: 9px 12px;
+  border: 1px solid #ecc45a;
+  border-radius: 999px;
+  color: #193f28;
+  background: #e9bd4d;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .14);
+  font-size: .8rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+.bullion-home-link b { font-size: 1rem; transition: transform .2s ease; }
+.bullion-home-card:hover .bullion-home-link b { transform: translateX(3px); }
+@media (max-width: 760px) {
+  .bullion-home-block { padding: 0 12px 10px; }
+  .bullion-home-card { grid-template-columns: 1fr auto; gap: 13px; min-height: 0; padding: 19px 16px; border-radius: 16px; }
+  .bullion-home-card::before { right: -118px; }
+  .bullion-home-mark { grid-row: 1 / span 2; grid-column: 2; align-self: center; transform: scale(.9); transform-origin: right center; }
+  .bullion-home-copy > small { margin-top: 5px; }
+  .bullion-home-link { grid-column: 1 / -1; justify-self: start; padding: 8px 11px; }
 }
 
 .chips {

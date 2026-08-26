@@ -160,7 +160,7 @@ MB.page = function cropPage() {
           " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया रिकॉर्ड उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
 
       return (
-        '<details class="faq-item" open><summary>' +
+        '<details class="faq-item"><summary>' +
         item.q +
         "</summary><p>" +
         answer +
@@ -207,7 +207,7 @@ MB.page = function cropPage() {
           " का है।";
       }
 
-      return '<details class="faq-item" open><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
+      return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
     })
     .join("");
 
@@ -215,7 +215,7 @@ MB.page = function cropPage() {
 
   const dynamicFaqSection = dynamicFaqs
     ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' +
-      dynamicFaqs +
+      dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') +
       "</section>"
     : "";
 

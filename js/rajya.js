@@ -66,7 +66,7 @@ MB.page = function statePage() {
         const answer = row
           ? market.hi + " में " + crop.hi + " का उपलब्ध मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है। यह उपलब्ध भाव रिकॉर्ड " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " का है।"
           : market.hi + " में " + crop.hi + " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
-        return '<details class="faq-item" open><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
+        return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
       }
       if (item.type === "state-crop") {
         const crop = u.cropBySlug(item.crop);
@@ -75,14 +75,14 @@ MB.page = function statePage() {
         const med = u.median(list.map((price) => price.modal));
         const best = list.slice().sort((a, b) => b.modal - a.modal)[0];
         const market = u.mandiBySlug(best.mandi);
-        return '<details class="faq-item" open><summary>' + item.q + "</summary><p>" + state.hi + " में " + crop.hi + " का उपलब्ध राज्य median मॉडल भाव " + u.rupee(med) + " प्रति क्विंटल है। इस समय सबसे ऊंचा उपलब्ध मॉडल भाव " + market.hi + " में " + u.rupee(best.modal) + " प्रति क्विंटल है। यह उपलब्ध भाव रिकॉर्ड " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " का है।</p></details>";
+        return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + state.hi + " में " + crop.hi + " का उपलब्ध राज्य median मॉडल भाव " + u.rupee(med) + " प्रति क्विंटल है। इस समय सबसे ऊंचा उपलब्ध मॉडल भाव " + market.hi + " में " + u.rupee(best.modal) + " प्रति क्विंटल है। यह उपलब्ध भाव रिकॉर्ड " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " का है।</p></details>";
       }
       return "";
     })
     .filter(Boolean)
     .join("");
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' + dynamicFaqs + "</section>"
+    ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
   const chips = mandis
     .map((m) => '<a class="chip" href="' + u.mandiHref(m.slug) + '">' + m.hi + "</a>")

@@ -97,6 +97,16 @@ MB.page = function homePage() {
     : '<div class="produce-break"><span>सब्जियां और फल</span><small>Vegetables &amp; fruits</small></div>' +
       '<div class="grid-crops landing-crops produce-crops">' + produceTiles + "</div>";
 
+  const bullionData = MB.BULLION || {};
+  const bullionRates = bullionData.rates || [];
+  const goldRate = bullionRates.find((rate) => rate.slug === "gold-999");
+  const silverRate = bullionRates.find((rate) => rate.slug === "silver-999");
+  const bullionPromo = goldRate && silverRate
+    ? '<section class="land-block bullion-home-block"><a class="bullion-home-card" href="' +
+      u.siteHref("sona-chandi-ka-bhav/") +
+      '"><div class="bullion-home-copy"><h2>1 तोला सोना-चांदी का भाव</h2><small>Gold 999 · Silver 999</small></div><div class="bullion-home-mark" aria-hidden="true"><span class="bullion-gold-mark">Au</span><span class="bullion-silver-mark">Ag</span></div><strong class="bullion-home-link">आज का भाव देखें <b>→</b></strong></a></section>'
+    : "";
+
   const mandiCards = famous
     .map((slug) => {
       const m = u.mandiBySlug(slug);
@@ -234,7 +244,7 @@ MB.page = function homePage() {
     "</div>" +
     '<div class="suggest" id="suggest"></div></div>' +
     '<div class="hero-ctas">' +
-    '<button type="button" class="btn-primary" id="hero-go">मंडी भाव देखें</button>' +
+    '<button type="button" class="btn-primary" id="hero-go">आज के भाव देखें</button>' +
     u.joinGroupBtn("wa-join-hero") +
     "</div>" +
     "</section>" +
@@ -258,6 +268,7 @@ MB.page = function homePage() {
     "</div>" +
     produceSection +
     "</section>" +
+    bullionPromo +
     '<section class="land-block pad" id="mandiyan">' +
     "<h2>प्रसिद्ध मंडियाँ</h2>" +
     '<div class="mandi-grid">' + mandiCards + "</div></section>";
