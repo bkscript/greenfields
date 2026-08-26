@@ -220,19 +220,14 @@ MB.page = function homePage() {
           : "") +
         "</div></section>";
 
-  const stateEyebrow = MB.states
-    .map(function (s) {
-      return '<a href="' + u.stateHref(s.slug) + '">' + s.hi + "</a>";
-    })
-    .join(" · ");
-
   document.getElementById("main").innerHTML =
     '<section class="hero">' +
-    '<p class="eyebrow">' +
-    stateEyebrow +
-    "</p>" +
+    '<div class="hero-layout">' +
+    '<div class="hero-intro"><span class="hero-accent" aria-hidden="true"></span>' +
     "<h1>ताज़ा भाव, सीधे मंडी से</h1>" +
-    '<p class="hero-source"><a href="' + u.siteHref("jaankari/source-method/") + '">Powered by Agmarknet</a></p>' +
+    "</div>" +
+    '<div class="hero-tools">' +
+    '<div class="hero-search-panel">' +
     '<div class="hero-search search-wrap" id="hero-search">' +
     '<div class="search-field">' +
     '<span class="search-icon-wrap" aria-hidden="true">' +
@@ -246,6 +241,9 @@ MB.page = function homePage() {
     '<div class="hero-ctas">' +
     '<button type="button" class="btn-primary" id="hero-go">आज के भाव देखें</button>' +
     u.joinGroupBtn("wa-join-hero") +
+    "</div>" +
+    "</div>" +
+    "</div>" +
     "</div>" +
     "</section>" +
     '<div class="big-stats">' +

@@ -178,7 +178,7 @@
   }
 
   const BRAND_LOGO =
-    '<img class="brand-mark" src="' + siteHref("img/logo.png") + '" width="42" height="42" alt="" />';
+    '<img class="brand-mark" src="' + siteHref("img/logo-field-sprout.svg") + '" width="48" height="48" alt="" />';
   const BRAND_NAME =
     '<img class="brand-name" src="' + siteHref("img/brand-name.svg") + '" width="140" height="30" alt="FasalBhav" />';
 
@@ -340,7 +340,7 @@
       '<div class="header-row">' +
       '<a class="brand" href="' + siteHref("") + '">' +
       BRAND_LOGO +
-      '<span class="brand-text">' + BRAND_NAME + '<span class="brand-tag">आज का मंडी भाव</span></span></a>' +
+      '<span class="brand-text">' + BRAND_NAME + '</span></a>' +
       nav +
       "</div>" +
       (isHome

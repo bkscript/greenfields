@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">FasalBhav field sprout logo</title>
+  <desc id="desc">A green crop sprout, a golden sun, and two soil furrows on a transparent background.</desc>
+  <g fill="none" stroke="#d2a144" stroke-linecap="round" stroke-width="23">
+    <path d="M63 378Q256 298 449 378"/>
+    <path d="M78 438Q256 367 434 438"/>
+  </g>
+  <circle cx="267" cy="104" r="45" fill="#ffd05c"/>
+  <path d="M258 351V153" fill="none" stroke="#b7de72" stroke-linecap="round" stroke-width="23"/>
+  <path d="M258 261c13-55 59-88 135-91-25 59-68 94-135 105Z" fill="#b7de72"/>
+  <path d="M258 318c-12-53-56-86-126-91 22 58 62 91 126 104Z" fill="#7fb942"/>
+</svg>
