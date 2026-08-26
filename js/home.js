@@ -208,7 +208,7 @@ MB.page = function homePage() {
     !moversUp.length && !moversDown.length
       ? ""
       : '<section class="land-block" id="bade-badlav">' +
-        "<h2>आज के बड़े बदलाव<span class='en'>Biggest moves today</span></h2>" +
+        "<h2>आज के बड़े बदलाव</h2>" +
         '<div class="movers">' +
         (moversUp.length
           ? '<div class="mover-group mover-group-up"><p class="mover-group-title"><span>↗</span> तेजी वाली फसलें</p>' + moversUp.map(moverCard).join("") +

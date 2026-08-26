@@ -329,13 +329,16 @@
     const isHome = document.body.getAttribute("data-page") === "home";
     const chatHref = MB.WA_GROUP || "https://chat.whatsapp.com/";
     const nav =
-      '<nav class="header-nav">' +
+      '<nav class="header-nav" aria-label="Primary navigation">' +
+      '<button class="header-menu-toggle" type="button" aria-expanded="false" aria-controls="header-menu">' +
+      '<span class="header-menu-icon" aria-hidden="true"></span><span>Menu</span></button>' +
+      '<div class="header-menu" id="header-menu">' +
       '<a href="' + siteHref("blog/") + '">Blogs</a>' +
       '<a href="' + siteHref("#aaj-ke-bhav") + '">Crops</a>' +
       '<a href="' +
       chatHref +
       '" target="_blank" rel="noopener">Chat</a>' +
-      "</nav>";
+      "</div></nav>";
     header.innerHTML =
       '<div class="header-row">' +
       '<a class="brand" href="' + siteHref("") + '">' +
@@ -355,6 +358,21 @@
           '" />' +
           "</div>" +
           '<div class="suggest" id="suggest"></div></div>');
+
+    const menuToggle = header.querySelector(".header-menu-toggle");
+    const headerNav = header.querySelector(".header-nav");
+    if (menuToggle && headerNav) {
+      menuToggle.addEventListener("click", function () {
+        const isOpen = headerNav.classList.toggle("is-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+      headerNav.querySelectorAll(".header-menu a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          headerNav.classList.remove("is-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
 
     if (MB.WA_GROUP && !document.querySelector(".wa-float")) {
       document.body.insertAdjacentHTML(
