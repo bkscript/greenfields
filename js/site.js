@@ -152,10 +152,6 @@
     });
   }
 
-  function shareUrl(text) {
-    return "https://wa.me/?text=" + encodeURIComponent(text);
-  }
-
   function sharePrice(crop, mandi, row) {
     const c = cropBySlug(crop);
     const m = mandiBySlug(mandi);
@@ -169,12 +165,11 @@
       "/qtl";
     if (veg) line += " (" + rupee(kgFromQtl(row.modal)) + "/kg)";
     line += " · " + MB.PRICE_DATE + " · " + MB.BRAND_EN;
-    return shareUrl(line);
+    return { text: line, url: window.location.href.split("#")[0] };
   }
 
   function sharePage(text) {
-    const pageUrl = window.location.href.split("#")[0];
-    return shareUrl(text + "\n" + pageUrl);
+    return { text: text, url: window.location.href.split("#")[0] };
   }
 
   const BRAND_LOGO =
@@ -185,15 +180,46 @@
   const WA_ICON =
     '<svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-1 1.1-.4.2-.7.1a7.6 7.6 0 0 1-2.2-1.4 8.3 8.3 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3 .9 1.6 3.1 2.7a13 13 0 0 0 3 1.3 4.4 4.4 0 0 0 2.7.1c.8-.2 1.7-1 2-1.9s.3-1.7.2-1.8-.2-.2-.5-.3zM12.1 21.2h-.1A9.2 9.2 0 0 1 7.3 20L3 21.2 4.2 17a9.2 9.2 0 1 1 7.9 4.2zm0-16.7A7.5 7.5 0 0 0 5.5 16l.2.4-1.2 4 4.1-1.1.4.2a7.5 7.5 0 1 0 3.1-14.2z"/></svg>';
 
-  function shareBtn(href) {
+  const SHARE_ICON =
+    '<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0-11-4 4m4-4 4 4M5 12v7h14v-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function shareBtn(payload) {
+    if (!payload) return "";
     return (
-      '<a class="share" target="_blank" rel="noopener" href="' +
-      href +
-      '">' +
-      WA_ICON +
-      "शेयर करें</a>"
+      '<button class="share" type="button" data-share="' +
+      encodeURIComponent(JSON.stringify(payload)) +
+      '" aria-label="पेज शेयर करें" title="शेयर करें">' +
+      SHARE_ICON +
+      "</button>"
     );
   }
+
+  document.addEventListener("click", function (event) {
+    const button = event.target.closest(".share[data-share]");
+    if (!button) return;
+    event.preventDefault();
+    let payload;
+    try {
+      payload = JSON.parse(decodeURIComponent(button.getAttribute("data-share")));
+    } catch (error) {
+      return;
+    }
+    const shareData = { title: document.title, text: payload.text, url: payload.url };
+    if (navigator.share) {
+      navigator.share(shareData).catch(function (error) {
+        if (error && error.name === "AbortError") return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText([payload.text, payload.url].filter(Boolean).join("\n"));
+        }
+      });
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText([payload.text, payload.url].filter(Boolean).join("\n"));
+      return;
+    }
+    window.prompt("लिंक कॉपी करें", payload.url);
+  });
 
   function joinGroupBtn(extraClass) {
     if (!MB.WA_GROUP) return "";

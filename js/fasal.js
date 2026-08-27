@@ -29,27 +29,6 @@ MB.page = function cropPage() {
   const mins = currentRows.map((r) => r.min);
   const maxs = currentRows.map((r) => r.max);
 
-  const chips =
-    '<a class="chip' +
-    (!state ? " on" : "") +
-    '" href="' +
-    u.cropHref(slug) +
-    '">सभी</a>' +
-    MB.states
-      .map((s) => {
-        const on = state && s.slug === state.slug ? " on" : "";
-        return (
-          '<a class="chip' +
-          on +
-          '" href="' +
-          u.cropHref(slug, s.slug) +
-          '">' +
-          u.nameHi(s) +
-          "</a>"
-        );
-      })
-      .join("");
-
   const statIcon = (type) => {
     const icons = {
       modal: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V11M10 19V5M16 19v-8M22 19V8"/><path d="M3 19h20"/></svg>',
@@ -220,9 +199,6 @@ MB.page = function cropPage() {
     : "";
 
   const tables =
-    '<div class="chips">' +
-    chips +
-    "</div>" +
     (stats.length
       ? '<div class="stats four">' +
         stats
