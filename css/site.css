@@ -105,7 +105,7 @@ a:hover { text-decoration: underline; }
     gap: 12px;
   }
   .brand-name { width: 104px; height: auto; }
-  .brand-mark { width: 40px; height: 40px; }
+  .brand-mark { width: 36px; height: 36px; }
   .header-nav { position: static; }
   .header-menu-toggle { display: inline-flex; }
   .header-menu {
@@ -151,8 +151,8 @@ a:hover { text-decoration: underline; }
 }
 .brand:hover { text-decoration: none; opacity: 1; }
 .brand-mark {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   display: block;
   padding: 0;
@@ -160,12 +160,14 @@ a:hover { text-decoration: underline; }
   border-radius: 0;
   background: transparent;
   object-fit: contain;
+  transform: translateY(-15%);
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.22));
 }
 .brand-name {
   display: block;
   width: 114px;
   height: auto;
+  transform: translateY(3px);
 }
 .brand-text {
   display: flex;
