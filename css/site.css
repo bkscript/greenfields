@@ -33,7 +33,7 @@ a:hover { text-decoration: underline; }
 .site-header {
   background: linear-gradient(110deg, #1d6829 0%, #287632 72%, #327f3c 100%);
   color: var(--on-dark);
-  padding: 12px 16px;
+  padding: 17px 16px 7px;
   position: sticky;
   top: 0;
   z-index: 20;
