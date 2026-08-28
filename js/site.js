@@ -173,7 +173,7 @@
   }
 
   const BRAND_LOGO =
-    '<img class="brand-mark" src="' + siteHref("img/logo-field-sprout-transparent.png?v=20260827-2") + '" width="48" height="48" alt="" />';
+    '<img class="brand-mark" src="' + siteHref("img/logo-field-sprout-badge.png?v=20260827-2") + '" width="48" height="48" alt="" />';
   const BRAND_NAME =
     '<img class="brand-name" src="' + siteHref("img/brand-name.svg") + '" width="140" height="30" alt="FasalBhav" />';
 
