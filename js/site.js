@@ -350,8 +350,6 @@
   function renderChrome() {
     const header = $("#site-header");
     if (!header) return;
-    const ph = "फसल, मंडी या राज्य खोजें — जैसे: प्याज, उंझा, राजस्थान";
-    const isHome = document.body.getAttribute("data-page") === "home";
     const chatHref = MB.WA_GROUP || "https://chat.whatsapp.com/";
     const nav =
       '<nav class="header-nav" aria-label="Primary navigation">' +
@@ -370,19 +368,7 @@
       BRAND_LOGO +
       '<span class="brand-text">' + BRAND_NAME + '</span></a>' +
       nav +
-      "</div>" +
-      (isHome
-        ? ""
-        : '<div class="search-wrap">' +
-          '<div class="search-field">' +
-          '<span class="search-icon-wrap" aria-hidden="true">' +
-          '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
-          "</span>" +
-          '<input id="q" type="search" autocomplete="off" placeholder="' +
-          ph +
-          '" />' +
-          "</div>" +
-          '<div class="suggest" id="suggest"></div></div>');
+      "</div>";
 
     const menuToggle = header.querySelector(".header-menu-toggle");
     const headerNav = header.querySelector(".header-nav");
