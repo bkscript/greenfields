@@ -169,6 +169,9 @@ a:hover { text-decoration: underline; }
   height: auto;
   transform: translateY(3px);
 }
+@media (max-width: 700px) {
+  .brand-mark { transform: translateY(6px); }
+}
 .brand-text {
   display: flex;
   flex-direction: column;
