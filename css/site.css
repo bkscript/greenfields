@@ -157,7 +157,7 @@ a:hover { text-decoration: underline; }
   display: block;
   padding: 0;
   border: 0;
-  border-radius: 0;
+  border-radius: 50%;
   background: transparent;
   object-fit: contain;
   transform: translateY(-15%);
