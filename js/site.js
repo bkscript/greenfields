@@ -173,9 +173,7 @@
   }
 
   const BRAND_LOGO =
-    '<img class="brand-mark" src="' + siteHref("img/logo-field-sprout-badge.png?v=20260903-2") + '" width="48" height="48" alt="" />';
-  const BRAND_NAME =
-    '<img class="brand-name" src="' + siteHref("img/brand-name.svg") + '" width="140" height="30" alt="FasalBhav" />';
+    '<img class="brand-mark" src="' + siteHref("img/logo-field-sprout-header.png?v=20260903-1") + '" width="96" height="96" loading="eager" decoding="async" alt="FasalBhav लोगो" />';
 
   const WA_ICON =
     '<svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-1 1.1-.4.2-.7.1a7.6 7.6 0 0 1-2.2-1.4 8.3 8.3 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3 .9 1.6 3.1 2.7a13 13 0 0 0 3 1.3 4.4 4.4 0 0 0 2.7.1c.8-.2 1.7-1 2-1.9s.3-1.7.2-1.8-.2-.2-.5-.3zM12.1 21.2h-.1A9.2 9.2 0 0 1 7.3 20L3 21.2 4.2 17a9.2 9.2 0 1 1 7.9 4.2zm0-16.7A7.5 7.5 0 0 0 5.5 16l.2.4-1.2 4 4.1-1.1.4.2a7.5 7.5 0 1 0 3.1-14.2z"/></svg>';
@@ -366,7 +364,7 @@
       '<div class="header-row">' +
       '<a class="brand" href="' + siteHref("") + '">' +
       BRAND_LOGO +
-      '<span class="brand-text">' + BRAND_NAME + '</span></a>' +
+      '</a>' +
       nav +
       "</div>";
 
