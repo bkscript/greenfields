@@ -156,7 +156,9 @@ MB.AGMARKNET_ALIASES = {
     "kalonji": ["Kalonji", "Nigella Seeds", "Nigella"],
     "arhar": ["Red gram/Arhar/Tur(whole)"],
     "adrak": ["Ginger(Green)", "Ginger(Dry)"],
-    "mirch": ["Chilli", "Chillies", "Chili"],
+    "soyabean": ["Soyabean"],
+    "haldi": ["Turmeric(raw)"],
+    "mirch": ["Chilli", "Chillies", "Chili", "Chili Red", "Dry Chillies"],
     "hari-mirch": ["Green Chilli", "Green Chillies"],
     "dhaniya": ["Corriander seed", "Coriander(Seed)"],
     "hara-dhaniya": ["Coriander(Leaves)"],
@@ -681,6 +683,2051 @@ MB.prices = [
   { mandi: "fatehabad", crop: "sarson", min: 6500, modal: 6500, max: 6500, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
   { mandi: "sirsa", crop: "adrak", min: 3500, modal: 3500, max: 3500, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
 ];
+
+MB.cropModalHistory = {
+  "aalu": [
+    {
+      "date": "2026-08-25",
+      "mandis": 4,
+      "modal": 807
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 3,
+      "modal": 700
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 5,
+      "modal": 950
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 5,
+      "modal": 950
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 975
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 975
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 20,
+      "modal": 800
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 20,
+      "modal": 800
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 20,
+      "modal": 800
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 21,
+      "modal": 800
+    }
+  ],
+  "adrak": [
+    {
+      "date": "2026-08-24",
+      "mandis": 1,
+      "modal": 8000
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 8000
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 9650
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 9650
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 9650
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 9650
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 13,
+      "modal": 7000
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 13,
+      "modal": 7000
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 13,
+      "modal": 7000
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 13,
+      "modal": 7000
+    }
+  ],
+  "alsi": [
+    {
+      "date": "2026-08-22",
+      "mandis": 1,
+      "modal": 9000
+    },
+    {
+      "date": "2026-08-23",
+      "mandis": 1,
+      "modal": 9000
+    },
+    {
+      "date": "2026-08-24",
+      "mandis": 1,
+      "modal": 9000
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 9000
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 4,
+      "modal": 9144
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 4,
+      "modal": 9144
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 4,
+      "modal": 9144
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 4,
+      "modal": 9144
+    }
+  ],
+  "amrood": [
+    {
+      "date": "2026-08-24",
+      "mandis": 3,
+      "modal": 2500
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 3,
+      "modal": 2500
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 2650
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 2650
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 2650
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 2650
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 9,
+      "modal": 2800
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 9,
+      "modal": 2800
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 9,
+      "modal": 2800
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 10,
+      "modal": 2800
+    }
+  ],
+  "anar": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 11790
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 14000
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 4,
+      "modal": 11000
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 4,
+      "modal": 11000
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 3,
+      "modal": 10000
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 3,
+      "modal": 10000
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 13,
+      "modal": 7500
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 13,
+      "modal": 7500
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 13,
+      "modal": 7500
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 13,
+      "modal": 7500
+    }
+  ],
+  "arandi": [
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 7075
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 7075
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 4,
+      "modal": 7065
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 4,
+      "modal": 7065
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 3,
+      "modal": 7055
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 3,
+      "modal": 7055
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 4,
+      "modal": 7202
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 4,
+      "modal": 7202
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 4,
+      "modal": 7202
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 4,
+      "modal": 7202
+    }
+  ],
+  "arhar": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 6240
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 2,
+      "modal": 6240
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 3,
+      "modal": 6980
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 7118
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 7255
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 7255
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 3,
+      "modal": 7000
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 3,
+      "modal": 7000
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 3,
+      "modal": 7000
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 3,
+      "modal": 7000
+    }
+  ],
+  "asaliya": [
+    {
+      "date": "2026-08-31",
+      "mandis": 1,
+      "modal": 5152
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 1,
+      "modal": 5152
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 1,
+      "modal": 5152
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 1,
+      "modal": 5152
+    }
+  ],
+  "bajra": [
+    {
+      "date": "2026-08-25",
+      "mandis": 6,
+      "modal": 2142
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 2550
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 4,
+      "modal": 2258
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 4,
+      "modal": 2258
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 3,
+      "modal": 2055
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 3,
+      "modal": 2055
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 6,
+      "modal": 2066
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 6,
+      "modal": 2066
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 6,
+      "modal": 2066
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 6,
+      "modal": 2066
+    }
+  ],
+  "chana": [
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 5738
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 5738
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 5738
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 5738
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 14,
+      "modal": 5845
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 14,
+      "modal": 5845
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 14,
+      "modal": 5845
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 14,
+      "modal": 5845
+    }
+  ],
+  "dhan": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 2175
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 2000
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 1,
+      "modal": 2000
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 1802
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 1605
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 1605
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 3,
+      "modal": 2062
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 2,
+      "modal": 2931
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 2,
+      "modal": 2931
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 2,
+      "modal": 2931
+    }
+  ],
+  "dhaniya": [
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 15178
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 15178
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 15178
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 15178
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 4,
+      "modal": 13766
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 4,
+      "modal": 13766
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 4,
+      "modal": 13766
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 4,
+      "modal": 13766
+    }
+  ],
+  "gehun": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 2550
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 2531
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 4,
+      "modal": 2650
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 4,
+      "modal": 2650
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 3,
+      "modal": 2700
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 3,
+      "modal": 2700
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 19,
+      "modal": 2650
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 19,
+      "modal": 2650
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 19,
+      "modal": 2650
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 19,
+      "modal": 2650
+    }
+  ],
+  "gwar": [
+    {
+      "date": "2026-08-25",
+      "mandis": 5,
+      "modal": 5616
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 5616
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 3,
+      "modal": 5650
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 3,
+      "modal": 5650
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 5825
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 5825
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 4,
+      "modal": 5625
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 4,
+      "modal": 5625
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 4,
+      "modal": 5625
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 4,
+      "modal": 5625
+    }
+  ],
+  "haldi": [
+    {
+      "date": "2026-08-22",
+      "mandis": 1,
+      "modal": 11800
+    },
+    {
+      "date": "2026-08-23",
+      "mandis": 1,
+      "modal": 11800
+    },
+    {
+      "date": "2026-08-24",
+      "mandis": 1,
+      "modal": 11800
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 11800
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 1,
+      "modal": 14285
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 1,
+      "modal": 14285
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 14285
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 14285
+    }
+  ],
+  "hara-dhaniya": [
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 2800
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 2800
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 3100
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 3100
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 3400
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 3400
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 11,
+      "modal": 2750
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 11,
+      "modal": 2750
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 11,
+      "modal": 2750
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 11,
+      "modal": 2750
+    }
+  ],
+  "hara-matar": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 6650
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 2,
+      "modal": 6650
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 6650
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 6650
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 9,
+      "modal": 6700
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 9,
+      "modal": 6700
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 9,
+      "modal": 6700
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 9,
+      "modal": 6700
+    }
+  ],
+  "hari-methi": [
+    {
+      "date": "2026-08-27",
+      "mandis": 1,
+      "modal": 1800
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 1,
+      "modal": 1800
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 1800
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 1800
+    }
+  ],
+  "hari-mirch": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 2525
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 2,
+      "modal": 2525
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 3,
+      "modal": 2100
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 2050
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 2100
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 2100
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 17,
+      "modal": 2500
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 17,
+      "modal": 2500
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 17,
+      "modal": 2500
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 18,
+      "modal": 2625
+    }
+  ],
+  "isabgol": [
+    {
+      "date": "2026-08-24",
+      "mandis": 2,
+      "modal": 12725
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 12725
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 1,
+      "modal": 11900
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 1,
+      "modal": 11900
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 11900
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 11900
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 2,
+      "modal": 9700
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 2,
+      "modal": 9700
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 2,
+      "modal": 9700
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 2,
+      "modal": 9700
+    }
+  ],
+  "jau": [
+    {
+      "date": "2026-08-24",
+      "mandis": 3,
+      "modal": 1995
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 3,
+      "modal": 1995
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 1,
+      "modal": 2553
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 1,
+      "modal": 2553
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 2553
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 2553
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 6,
+      "modal": 2536
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 6,
+      "modal": 2536
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 6,
+      "modal": 2536
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 6,
+      "modal": 2536
+    }
+  ],
+  "jeera": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 17700
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 18750
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 3,
+      "modal": 18750
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 3,
+      "modal": 18750
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 18652
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 18652
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 4,
+      "modal": 19162
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 4,
+      "modal": 19162
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 4,
+      "modal": 19162
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 4,
+      "modal": 19162
+    }
+  ],
+  "jowar": [
+    {
+      "date": "2026-08-24",
+      "mandis": 6,
+      "modal": 4350
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 6,
+      "modal": 4350
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 5228
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 5228
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 5228
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 5228
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 3,
+      "modal": 4062
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 3,
+      "modal": 4062
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 3,
+      "modal": 4062
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 3,
+      "modal": 4062
+    }
+  ],
+  "kalonji": [
+    {
+      "date": "2026-08-31",
+      "mandis": 2,
+      "modal": 17774
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 2,
+      "modal": 17774
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 2,
+      "modal": 17774
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 2,
+      "modal": 17774
+    }
+  ],
+  "kapas": [
+    {
+      "date": "2026-08-24",
+      "mandis": 2,
+      "modal": 7148
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 7148
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 3,
+      "modal": 9100
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 3,
+      "modal": 9100
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 3,
+      "modal": 9100
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 3,
+      "modal": 9100
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 2,
+      "modal": 9200
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 2,
+      "modal": 9200
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 2,
+      "modal": 9200
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 2,
+      "modal": 9200
+    }
+  ],
+  "kela": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 3419
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 2250
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 5,
+      "modal": 2250
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 5,
+      "modal": 2250
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 4,
+      "modal": 2250
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 4,
+      "modal": 2250
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 13,
+      "modal": 2250
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 13,
+      "modal": 2250
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 13,
+      "modal": 2250
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 14,
+      "modal": 2375
+    }
+  ],
+  "lahsun": [
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 13500
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 13500
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 16250
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 16250
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 19000
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 19000
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 16,
+      "modal": 9650
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 16,
+      "modal": 9650
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 16,
+      "modal": 9650
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 16,
+      "modal": 9650
+    }
+  ],
+  "makka": [
+    {
+      "date": "2026-08-22",
+      "mandis": 3,
+      "modal": 2454
+    },
+    {
+      "date": "2026-08-23",
+      "mandis": 3,
+      "modal": 2454
+    },
+    {
+      "date": "2026-08-24",
+      "mandis": 3,
+      "modal": 2454
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 3,
+      "modal": 2454
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 11,
+      "modal": 2250
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 11,
+      "modal": 2250
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 11,
+      "modal": 2250
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 11,
+      "modal": 2250
+    }
+  ],
+  "masoor": [
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 5290
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 5290
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 1,
+      "modal": 5290
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 1,
+      "modal": 5290
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 4,
+      "modal": 6999
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 4,
+      "modal": 6999
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 4,
+      "modal": 6999
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 4,
+      "modal": 6999
+    }
+  ],
+  "matar": [
+    {
+      "date": "2026-08-31",
+      "mandis": 1,
+      "modal": 8300
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 1,
+      "modal": 8300
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 1,
+      "modal": 8300
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 1,
+      "modal": 8300
+    }
+  ],
+  "methi": [
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 6150
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 6150
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 6528
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 1,
+      "modal": 6905
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 1,
+      "modal": 6905
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 1,
+      "modal": 6905
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 8,
+      "modal": 6050
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 8,
+      "modal": 6050
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 8,
+      "modal": 6050
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 8,
+      "modal": 6050
+    }
+  ],
+  "mirch": [
+    {
+      "date": "2026-08-22",
+      "mandis": 1,
+      "modal": 15800
+    },
+    {
+      "date": "2026-08-23",
+      "mandis": 1,
+      "modal": 15800
+    },
+    {
+      "date": "2026-08-24",
+      "mandis": 1,
+      "modal": 15800
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 15800
+    }
+  ],
+  "moong": [
+    {
+      "date": "2026-08-25",
+      "mandis": 7,
+      "modal": 6701
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 3,
+      "modal": 6235
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 6,
+      "modal": 6703
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 6,
+      "modal": 6703
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 3,
+      "modal": 7000
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 3,
+      "modal": 7000
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 10,
+      "modal": 6950
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 10,
+      "modal": 6950
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 10,
+      "modal": 6950
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 10,
+      "modal": 6950
+    }
+  ],
+  "moongphali": [
+    {
+      "date": "2026-08-24",
+      "mandis": 2,
+      "modal": 7275
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 7275
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 3,
+      "modal": 6250
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 3,
+      "modal": 6250
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 3,
+      "modal": 6250
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 3,
+      "modal": 6250
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 6,
+      "modal": 7106
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 6,
+      "modal": 7106
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 6,
+      "modal": 7106
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 6,
+      "modal": 7106
+    }
+  ],
+  "moth": [
+    {
+      "date": "2026-08-22",
+      "mandis": 5,
+      "modal": 4400
+    },
+    {
+      "date": "2026-08-23",
+      "mandis": 5,
+      "modal": 4400
+    },
+    {
+      "date": "2026-08-24",
+      "mandis": 5,
+      "modal": 4400
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 5,
+      "modal": 4400
+    }
+  ],
+  "pyaz": [
+    {
+      "date": "2026-08-25",
+      "mandis": 4,
+      "modal": 2800
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 3,
+      "modal": 3300
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 7,
+      "modal": 2955
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 7,
+      "modal": 2955
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 4,
+      "modal": 2728
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 4,
+      "modal": 2728
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 22,
+      "modal": 3508
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 22,
+      "modal": 3508
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 22,
+      "modal": 3508
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 23,
+      "modal": 3500
+    }
+  ],
+  "rice": [
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 1950
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 1950
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 1950
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 1950
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 1,
+      "modal": 2607
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 1,
+      "modal": 2607
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 1,
+      "modal": 2607
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 1,
+      "modal": 2607
+    }
+  ],
+  "sarson": [
+    {
+      "date": "2026-08-25",
+      "mandis": 5,
+      "modal": 7500
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 8200
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 6,
+      "modal": 7800
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 6,
+      "modal": 7800
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 5,
+      "modal": 7600
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 5,
+      "modal": 7600
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 14,
+      "modal": 7462
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 14,
+      "modal": 7462
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 14,
+      "modal": 7462
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 14,
+      "modal": 7462
+    }
+  ],
+  "saunf": [
+    {
+      "date": "2026-08-24",
+      "mandis": 1,
+      "modal": 8505
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 8505
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 2,
+      "modal": 9000
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 2,
+      "modal": 9000
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 9000
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 9000
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 2,
+      "modal": 10438
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 2,
+      "modal": 10438
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 2,
+      "modal": 10438
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 2,
+      "modal": 10438
+    }
+  ],
+  "seb": [
+    {
+      "date": "2026-08-24",
+      "mandis": 1,
+      "modal": 10254
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 10254
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 4,
+      "modal": 8517
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 4,
+      "modal": 8517
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 4,
+      "modal": 8517
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 4,
+      "modal": 8517
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 14,
+      "modal": 9500
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 14,
+      "modal": 9500
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 14,
+      "modal": 9500
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 15,
+      "modal": 9000
+    }
+  ],
+  "soyabean": [
+    {
+      "date": "2026-08-22",
+      "mandis": 4,
+      "modal": 4165
+    },
+    {
+      "date": "2026-08-23",
+      "mandis": 4,
+      "modal": 4165
+    },
+    {
+      "date": "2026-08-24",
+      "mandis": 4,
+      "modal": 4165
+    },
+    {
+      "date": "2026-08-25",
+      "mandis": 4,
+      "modal": 4165
+    }
+  ],
+  "sua": [
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 8840
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 8840
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 1,
+      "modal": 8840
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 1,
+      "modal": 8840
+    }
+  ],
+  "sua-patti": [
+    {
+      "date": "2026-08-25",
+      "mandis": 1,
+      "modal": 5600
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 1,
+      "modal": 5600
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 1,
+      "modal": 5600
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 1,
+      "modal": 5600
+    }
+  ],
+  "tamatar": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 2350
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 2,
+      "modal": 2350
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 4,
+      "modal": 2225
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 4,
+      "modal": 2225
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 2225
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 2225
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 23,
+      "modal": 2000
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 23,
+      "modal": 2000
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 23,
+      "modal": 2000
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 24,
+      "modal": 2000
+    }
+  ],
+  "til": [
+    {
+      "date": "2026-08-25",
+      "mandis": 2,
+      "modal": 9612
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 2,
+      "modal": 9612
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 4,
+      "modal": 9612
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 4,
+      "modal": 9612
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 2,
+      "modal": 10312
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 2,
+      "modal": 10312
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 5,
+      "modal": 10800
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 5,
+      "modal": 10800
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 5,
+      "modal": 10800
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 5,
+      "modal": 10800
+    }
+  ],
+  "urad": [
+    {
+      "date": "2026-08-25",
+      "mandis": 4,
+      "modal": 7326
+    },
+    {
+      "date": "2026-08-26",
+      "mandis": 2,
+      "modal": 7950
+    },
+    {
+      "date": "2026-08-27",
+      "mandis": 5,
+      "modal": 7401
+    },
+    {
+      "date": "2026-08-28",
+      "mandis": 5,
+      "modal": 7401
+    },
+    {
+      "date": "2026-08-29",
+      "mandis": 3,
+      "modal": 7000
+    },
+    {
+      "date": "2026-08-30",
+      "mandis": 3,
+      "modal": 7000
+    },
+    {
+      "date": "2026-08-31",
+      "mandis": 5,
+      "modal": 6200
+    },
+    {
+      "date": "2026-09-01",
+      "mandis": 5,
+      "modal": 6200
+    },
+    {
+      "date": "2026-09-02",
+      "mandis": 5,
+      "modal": 6200
+    },
+    {
+      "date": "2026-09-03",
+      "mandis": 5,
+      "modal": 6200
+    }
+  ]
+};
 
 MB.aliases = [
   ["rice", "rice"], ["chawal", "rice"], ["चावल", "rice"],

@@ -99,6 +99,31 @@ MB.page = function cropPage() {
     })
     .join("");
 
+  const cropModelHistory = !state
+    ? ((MB.cropModalHistory || {})[slug] || [])
+        .filter((entry) => entry && entry.date && Number.isFinite(Number(entry.modal)))
+        .slice()
+        .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+        .slice(0, 10)
+    : [];
+  const historyTable = cropModelHistory.length
+    ? '<section class="card crop-model-history"><h2>पिछले 10 उपलब्ध दिनों का ' +
+      crop.hi +
+      ' मॉडल भाव</h2><table><thead><tr><th>दिनांक</th><th class="num">मॉडल भाव</th><th class="num">उपलब्ध मंडियां</th></tr></thead><tbody>' +
+      cropModelHistory
+        .map((entry) =>
+          '<tr><td>' +
+          u.formatDateHi(entry.date) +
+          '</td><td class="num modal-price">' +
+          u.rupee(Number(entry.modal)) +
+          '</td><td class="num">' +
+          Number(entry.mandis || 0) +
+          '</td></tr>'
+        )
+        .join("") +
+      '</tbody></table><p class="history-note">हर दिन का वही फसल मॉडल भाव, जो उस दिन उपलब्ध मंडियों के मॉडल भावों से दिखाया गया था।</p></section>'
+    : "";
+
   const subHi = state
     ? state.hi + " — इस राज्य की मंडियां।"
     : "राजस्थान, गुजरात, मध्य प्रदेश और हरियाणा की मंडियां।";
@@ -219,6 +244,7 @@ MB.page = function cropPage() {
     '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th><th class="num">कल से</th></tr></thead><tbody>' +
     body +
     "</tbody></table></section>" +
+    historyTable +
     '<p class="note">' +
     "अलग अलग राज्यों के मॉडल भाव से क्रम। सब्जी पर प्रति किलो भी लिखा है।</p>";
 

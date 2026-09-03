@@ -738,7 +738,8 @@ a.chip { text-decoration: none; }
   border-bottom: 1px solid var(--line);
 }
 .crop-mandi-list > h2,
-.mandi-crop-list > h2 { text-align: center; }
+.mandi-crop-list > h2,
+.crop-model-history > h2 { text-align: center; }
 .grid-crops {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -835,11 +836,14 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .card table th:nth-child(odd),
 .card table td:nth-child(odd) { background: #eef7f0; }
 .crop-mandi-list table,
-.mandi-crop-list table { font-size: 0.92rem; }
+.mandi-crop-list table,
+.crop-model-history table { font-size: 0.92rem; }
 .crop-mandi-list thead th,
 .mandi-crop-list thead th,
+.crop-model-history thead th,
 .card.crop-mandi-list table thead th:nth-child(odd),
-.card.mandi-crop-list table thead th:nth-child(odd) {
+.card.mandi-crop-list table thead th:nth-child(odd),
+.card.crop-model-history table thead th:nth-child(odd) {
   background: linear-gradient(90deg, #287e31, #1d6d27);
   color: #fff;
   font-size: 0.78rem;
@@ -850,11 +854,21 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 }
 .crop-mandi-list tbody td,
 .mandi-crop-list tbody td,
+.crop-model-history tbody td,
 .card.crop-mandi-list table tbody td:nth-child(odd),
-.card.mandi-crop-list table tbody td:nth-child(odd) {
+.card.mandi-crop-list table tbody td:nth-child(odd),
+.card.crop-model-history table tbody td:nth-child(odd) {
   background: transparent;
   padding-top: 14px;
   padding-bottom: 14px;
+}
+.history-note {
+  margin: 0;
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.79rem;
+  line-height: 1.55;
 }
 .detail-table-link {
   color: var(--primary-2);
@@ -878,11 +892,14 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   th, td { padding: 9px 7px; }
   .range-col { padding-left: 3px; padding-right: 3px; }
   .crop-mandi-list table,
-  .mandi-crop-list table { font-size: 0.84rem; }
+  .mandi-crop-list table,
+  .crop-model-history table { font-size: 0.84rem; }
   .crop-mandi-list thead th,
-  .mandi-crop-list thead th { font-size: 0.7rem; padding-top: 11px; padding-bottom: 11px; }
+  .mandi-crop-list thead th,
+  .crop-model-history thead th { font-size: 0.7rem; padding-top: 11px; padding-bottom: 11px; }
   .crop-mandi-list tbody td,
-  .mandi-crop-list tbody td { padding-top: 12px; padding-bottom: 12px; }
+  .mandi-crop-list tbody td,
+  .crop-model-history tbody td { padding-top: 12px; padding-bottom: 12px; }
 }
 .stale-divider td {
   border: 0;

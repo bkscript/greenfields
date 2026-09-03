@@ -166,8 +166,10 @@ MB.page = function homePage() {
       "</div></div></a>";
 
   const byCropMove = {};
+  const moveDate = MB.LAST_UPDATED_DATE || MB.PRICE_DATE;
   MB.prices.forEach((r) => {
-    if (!r.vs) return;
+    // "आज के बड़े बदलाव" only means the current published update, never an older record.
+    if (!r.vs || r.date !== moveDate) return;
     const prev = byCropMove[r.crop];
     if (!prev || Math.abs(r.vs) > Math.abs(prev.vs)) byCropMove[r.crop] = r;
   });
