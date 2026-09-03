@@ -96,8 +96,11 @@ MB.page = function statePage() {
     .join("");
 
   const tables =
-    '<p class="share-bar"><span class="price-date">आखिरी अपडेट · ' +
+    '<p class="share-bar"><span class="price-date">आज ' +
     u.formatUpdatedHi(MB.LAST_UPDATED_DATE) +
+    ': ' +
+    state.hi +
+    ' के ताज़ा मंडी भाव' +
     '</span></p>' +
     '<div class="chips">' +
     other +

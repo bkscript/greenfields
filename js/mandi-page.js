@@ -102,8 +102,11 @@ MB.page = function mandiPage() {
   const tables =
     '<p class="share-bar">' +
     (top
-      ? '<span class="price-date">आखिरी अपडेट · ' +
+      ? '<span class="price-date">आज ' +
         u.formatUpdatedHi(MB.LAST_UPDATED_DATE) +
+        ': ' +
+        mandi.hi +
+        ' मंडी के ताज़ा फसल भाव' +
         "</span>" +
         u.shareBtn(shareTop)
       : "") +

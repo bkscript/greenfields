@@ -206,8 +206,11 @@ MB.page = function cropPage() {
           .join("") +
         "</div>"
       : "") +
-    '<p class="share-bar"><span class="price-date">आखिरी अपडेट · ' +
+    '<p class="share-bar"><span class="price-date">आज ' +
     u.formatUpdatedHi(MB.LAST_UPDATED_DATE) +
+    ': ' +
+    crop.hi +
+    ' के ताज़ा मंडी भाव' +
     "</span>" +
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
