@@ -244,9 +244,8 @@ MB.page = function cropPage() {
     '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th><th class="num">कल से</th></tr></thead><tbody>' +
     body +
     "</tbody></table></section>" +
-    historyTable +
-    '<p class="note">' +
-    "अलग अलग राज्यों के मॉडल भाव से क्रम। सब्जी पर प्रति किलो भी लिखा है।</p>";
+    '<p class="note">नीचे की तालिका में पिछले 10 उपलब्ध दिनों के मॉडल भाव दिए गए हैं, जिनसे भाव के उतार-चढ़ाव का पता चलता है।</p>' +
+    historyTable;
 
   const pageContent = tables;
 
