@@ -244,7 +244,7 @@ MB.page = function cropPage() {
     '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th><th class="num">कल से</th></tr></thead><tbody>' +
     body +
     "</tbody></table></section>" +
-    '<p class="note">नीचे की तालिका में पिछले 10 उपलब्ध दिनों के मॉडल भाव दिए गए हैं, जिनसे भाव के उतार-चढ़ाव का पता चलता है।</p>' +
+    '<p class="history-intro">नीचे की तालिका में पिछले 10 उपलब्ध दिनों के मॉडल भाव दिए गए हैं, जिनसे भाव के उतार-चढ़ाव का पता चलता है।</p>' +
     historyTable;
 
   const pageContent = tables;

@@ -290,8 +290,8 @@ h1 {
 .page-guide {
   margin: -3px 0 16px;
   color: var(--muted);
-  font-size: 0.84rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 /* Gold and silver reference page */
@@ -1025,6 +1025,12 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   font-size: 0.82rem;
   color: var(--muted);
   margin: 8px 0 0;
+}
+.history-intro {
+  margin: 26px 4px 16px;
+  color: var(--text);
+  font-size: 0.96rem;
+  line-height: 1.65;
 }
 .article-section,
 .faq-section {
