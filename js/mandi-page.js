@@ -29,7 +29,7 @@ MB.page = function mandiPage() {
     .map((r) => {
       const c = u.cropBySlug(r.crop);
       const divider = !staleDividerAdded && u.isStalePrice(r)
-        ? ((staleDividerAdded = true), '<tr class="stale-divider" aria-label="पुराने भाव"><td colspan="5"><span></span></td></tr>')
+        ? ((staleDividerAdded = true), '<tr class="stale-divider" aria-label="पुराने भाव"><td colspan="4"><span></span></td></tr>')
         : "";
       return (
         divider + "<tr><td><a class=\"detail-table-link\" href=\"" +
@@ -37,13 +37,12 @@ MB.page = function mandiPage() {
         '">' +
         u.nameHi(c) +
         "</a></td>" +
-        '<td class="num">' +
-        u.rupee(r.min) +
-        "</td>" +
-        '<td class="num">' +
+        '<td class="num modal-price">' +
         u.priceCell(r.crop, r) +
         "</td>" +
-        '<td class="num">' +
+        '<td class="num range-col">' +
+        u.rupee(r.min) +
+        "–" +
         u.rupee(r.max) +
         "</td>" +
         '<td class="num">' +
@@ -111,10 +110,10 @@ MB.page = function mandiPage() {
         u.shareBtn(shareTop)
       : "") +
     "</p>" +
-    '<section class="card mandi-crop-list"><h2>आज इस मंडी की फसलें</h2>' +
+    '<section class="card mandi-crop-list"><h2>आज ' + mandi.hi + ' मंडी में फसलों के भाव</h2>' +
     (rows.length
       ? "<table><thead><tr><th>फसल</th>" +
-        '<th class="num">न्यून.</th><th class="num">मॉडल</th><th class="num">अधि.</th>' +
+        '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th>' +
         '<th class="num">आवक</th></tr></thead><tbody>' +
         body +
         "</tbody></table>"

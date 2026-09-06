@@ -13,48 +13,6 @@ MB.page = function statePage() {
   document.title = state.hi + " मंडी भाव आज | " + state.en + " Mandi Bhav Today";
 
   const rows = u.pricesFor({ state: slug });
-  const byCrop = {};
-  rows.forEach((r) => {
-    if (!byCrop[r.crop]) byCrop[r.crop] = [];
-    byCrop[r.crop].push(r);
-  });
-
-  const cropRows = Object.keys(byCrop)
-    .sort((a, b) => {
-      const freshOrder = Number(byCrop[b].some(u.isFreshPrice)) - Number(byCrop[a].some(u.isFreshPrice));
-      if (freshOrder) return freshOrder;
-      const freshB = byCrop[b].filter(u.isFreshPrice);
-      const freshA = byCrop[a].filter(u.isFreshPrice);
-      const maxB = freshB.length ? Math.max(...freshB.map((row) => row.modal)) : 0;
-      const maxA = freshA.length ? Math.max(...freshA.map((row) => row.modal)) : 0;
-      return maxB - maxA;
-    })
-    .map((cropSlug) => {
-      const list = byCrop[cropSlug].filter(u.isFreshPrice);
-      if (!list.length) return "";
-      const med = u.median(list.map((x) => x.modal));
-      const best = list.slice().sort((a, b) => b.modal - a.modal)[0];
-      const crop = u.cropBySlug(cropSlug);
-      const mandi = u.mandiBySlug(best.mandi);
-      let price = u.rupee(med) + "/qtl";
-      if (crop.veg) price += " · " + u.rupee(u.kgFromQtl(med)) + "/kg";
-      return (
-        "<tr><td><a href=\"" +
-        u.cropHref(cropSlug, slug) +
-        '">' +
-        u.nameHi(crop) +
-        "</a></td><td>" +
-        price +
-        '</td><td><a href="' +
-        u.mandiHref(mandi.slug, cropSlug) +
-        '">' +
-        u.nameHi(mandi) +
-        "</a></td></tr>"
-      );
-    })
-    .filter(Boolean)
-    .join("");
-
   const mandis = MB.mandis.filter((m) => m.state === slug);
   const dynamicFaqs = ((MB.dynamicStateFaqs || {})[slug] || [])
     .map((item) => {
@@ -84,14 +42,29 @@ MB.page = function statePage() {
   const dynamicFaqSection = dynamicFaqs
     ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
-  const chips = mandis
-    .map((m) => '<a class="chip" href="' + u.mandiHref(m.slug) + '">' + m.hi + "</a>")
-    .join("");
-
-  const other = MB.states
-    .map((s) => {
-      const on = s.slug === slug ? " on" : "";
-      return '<a class="chip' + on + '" href="' + u.stateHref(s.slug) + '">' + s.hi + "</a>";
+  const mandiCards = mandis
+    .map((m) => {
+      const freshRows = u.pricesFor({ mandi: m.slug }).filter(u.isFreshPrice);
+      const top = freshRows.slice().sort((a, b) => b.modal - a.modal)[0];
+      const crop = top ? u.cropBySlug(top.crop) : null;
+      let price = "";
+      if (crop && top) {
+        const value = crop.veg ? u.rupee(u.kgFromQtl(top.modal)) + "/kg" : u.rupee(top.modal) + "/qtl";
+        price = '<small>' + crop.hi + ' · मॉडल भाव</small><b>' + value + "</b>";
+      } else {
+        price = "<small>मंडी के उपलब्ध भाव</small><b>भाव देखें</b>";
+      }
+      return (
+        '<a class="mandi-tile" href="' +
+        u.mandiHref(m.slug) +
+        '"><span class="mandi-tile-top"><span class="mandi-state"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>' +
+        m.district.hi +
+        '</span><span class="mandi-arrow" aria-hidden="true">→</span></span><strong>' +
+        m.hi +
+        '</strong><span class="mandi-tile-price">' +
+        price +
+        "</span></a>"
+      );
     })
     .join("");
 
@@ -102,14 +75,10 @@ MB.page = function statePage() {
     state.hi +
     ' के ताज़ा मंडी भाव' +
     '</span></p>' +
-    '<div class="chips">' +
-    other +
-    "</div>" +
-    '<section class="card"><h2>फसलें<span class="en">Crops</span></h2><table><thead><tr><th>फसल</th><th>राज्य मीडियन</th><th>मंडी</th></tr></thead><tbody>' +
-    cropRows +
-    "</tbody></table></section>" +
-    '<section class="card"><h2>मंडियां <span class="en">Mandis</span></h2><div style="padding:12px" class="chips">' +
-    chips +
+    '<section class="state-mandi-directory"><h2>' +
+    state.hi +
+    ' की सभी मंडियां</h2><div class="mandi-grid">' +
+    mandiCards +
     "</div></section>" +
     dynamicFaqSection;
 

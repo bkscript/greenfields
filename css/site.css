@@ -1444,6 +1444,12 @@ body[data-page="home"] .hero-search-panel .hero-search {
 
 #mandiyan { padding-top: 30px; }
 #mandiyan h2 { margin-bottom: 18px; }
+.state-mandi-directory { margin: 24px 0 0; }
+.state-mandi-directory > h2 {
+  margin: 0 0 16px;
+  text-align: center;
+  font-size: 1.1rem;
+}
 .mandi-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
