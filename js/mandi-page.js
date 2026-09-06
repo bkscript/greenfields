@@ -14,39 +14,50 @@ MB.page = function mandiPage() {
   const state = u.stateBySlug(mandi.state);
   document.title = mandi.hi + " मंडी भाव | " + mandi.en + " Mandi Bhav";
 
-  const rows = u.pricesFor({ mandi: slug });
+  const baseRows = u.pricesFor({ mandi: slug });
+  const sourceVarietyRows = u.varietyPricesFor({ mandi: slug });
+  const cropsWithVarieties = new Set(sourceVarietyRows.map((row) => row.crop));
+  const rows = baseRows
+    .filter((row) => !cropsWithVarieties.has(row.crop))
+    .concat(sourceVarietyRows);
   const sortedRows = rows
     .slice()
     .sort((a, b) => {
       const freshness = u.freshFirst(a, b);
       if (freshness) return freshness;
+      if (u.isStalePrice(a) && u.isStalePrice(b) && a.date !== b.date) {
+        return String(b.date).localeCompare(String(a.date));
+      }
       if (highlight && a.crop === highlight) return -1;
       if (highlight && b.crop === highlight) return 1;
       return b.modal - a.modal;
     });
-  let staleDividerAdded = false;
+  let lastStaleDate = "";
   const body = sortedRows
     .map((r) => {
       const c = u.cropBySlug(r.crop);
-      const divider = !staleDividerAdded && u.isStalePrice(r)
-        ? ((staleDividerAdded = true), '<tr class="stale-divider" aria-label="पुराने भाव"><td colspan="4"><span></span></td></tr>')
+      const dateGroup = u.isStalePrice(r) && r.date !== lastStaleDate
+        ? ((lastStaleDate = r.date), '<tr class="stale-date"><td colspan="4"><span>' + u.formatDateHi(r.date) + " के भाव</span></td></tr>")
+        : "";
+      const grade = r.grade
+        ? '<span class="variety-grade">' + u.escapeHtml(r.grade) + "</span>"
         : "";
       return (
-        divider + "<tr><td><a class=\"detail-table-link\" href=\"" +
+        dateGroup + "<tr><td><a class=\"detail-table-link\" href=\"" +
         u.cropHref(r.crop, mandi.state) +
         '">' +
-        u.nameHi(c) +
+        u.escapeHtml(u.nameHi(c)) +
         "</a></td>" +
+        '<td class="variety-name">' +
+        (r.variety ? u.escapeHtml(r.variety) + grade : "—") +
+        "</td>" +
         '<td class="num modal-price">' +
         u.priceCell(r.crop, r) +
         "</td>" +
         '<td class="num range-col">' +
         u.rupee(r.min) +
         "–" +
-        u.rupee(r.max) +
-        "</td>" +
-        '<td class="num">' +
-        u.arrivalsText(r.arrivals) +
+        u.rupee(r.max).replace("₹", "") +
         "</td></tr>"
       );
     })
@@ -64,13 +75,63 @@ MB.page = function mandiPage() {
     : "#";
   const dynamicFaqs = ((MB.dynamicMandiFaqs || {})[slug] || [])
     .map((item) => {
-      const row = rows.find((price) => price.crop === item.crop);
+      const row = item.variety
+        ? sourceVarietyRows.find(
+            (price) => price.crop === item.crop && price.variety === item.variety
+          )
+        : baseRows.find((price) => price.crop === item.crop);
+      const varietyRows = Array.isArray(item.varieties)
+        ? item.varieties
+            .map((variety) =>
+              sourceVarietyRows.find(
+                (price) => price.crop === item.crop && price.variety === variety
+              )
+            )
+            .filter(Boolean)
+        : [];
       const crop = u.cropBySlug(item.crop);
       const cropHi = crop ? crop.hi : item.cropHi || item.crop;
-      const answer = row
-        ? mandi.hi +
+      const cropLabel = cropHi + (item.variety ? " की " + item.variety + " किस्म" : "");
+      let answer;
+      if (item.varieties && varietyRows.length) {
+        answer =
+          mandi.hi +
           " में " +
           cropHi +
+          " के उपलब्ध किस्म-वार प्रकाशित मॉडल भाव: " +
+          varietyRows
+            .map((price) => price.variety + " " + u.rupee(price.modal) + " प्रति क्विंटल")
+            .join(", ") +
+          "। ये रिकॉर्ड " +
+          varietyRows.map((price) => u.formatUpdatedHi(price.date)).filter((date, index, dates) => dates.indexOf(date) === index).join(" और ") +
+          " के हैं। किस्म अलग होने से इन्हें एक ही भाव न मानें।";
+      } else if (!row) {
+        answer =
+          mandi.hi +
+          " में " +
+          cropLabel +
+          " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+      } else if (item.unit === "kg") {
+        answer =
+          mandi.hi +
+          " में " +
+          cropLabel +
+          " का उपलब्ध प्रकाशित मॉडल भाव " +
+          u.rupee(row.modal / 100) +
+          " प्रति किलो के बराबर है। स्रोत दर " +
+          u.rupee(row.modal) +
+          " प्रति क्विंटल है; न्यूनतम " +
+          u.rupee(row.min / 100) +
+          " और अधिकतम " +
+          u.rupee(row.max / 100) +
+          " प्रति किलो के बराबर हैं। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं। यह रिकॉर्ड " +
+          u.formatUpdatedHi(row.date) +
+          " का है।";
+      } else {
+        answer =
+          mandi.hi +
+          " में " +
+          cropLabel +
           " का उपलब्ध मॉडल भाव " +
           u.rupee(row.modal) +
           " प्रति क्विंटल है। न्यूनतम भाव " +
@@ -78,12 +139,9 @@ MB.page = function mandiPage() {
           " और अधिकतम भाव " +
           u.rupee(row.max) +
           " है। यह उपलब्ध भाव रिकॉर्ड " +
-          u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) +
-          " का है।"
-        : mandi.hi +
-          " में " +
-          cropHi +
-          " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+          u.formatUpdatedHi(row.date) +
+          " का है।";
+      }
       return (
         '<details class="faq-item"><summary>' +
         item.q +
@@ -112,9 +170,8 @@ MB.page = function mandiPage() {
     "</p>" +
     '<section class="card mandi-crop-list"><h2>आज ' + mandi.hi + ' मंडी में फसलों के भाव</h2>' +
     (rows.length
-      ? "<table><thead><tr><th>फसल</th>" +
-        '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th>' +
-        '<th class="num">आवक</th></tr></thead><tbody>' +
+      ? "<table><thead><tr><th>फसल</th><th>किस्म</th>" +
+        '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
         body +
         "</tbody></table>"
       : '<p class="empty">इस मंडी के भाव अभी उपलब्ध नहीं हैं।</p>') +

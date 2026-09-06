@@ -94,6 +94,27 @@
     });
   }
 
+  function varietyPricesFor(filter) {
+    return (MB.varietyPrices || []).filter((p) => {
+      if (filter.crop && p.crop !== filter.crop) return false;
+      if (filter.mandi && p.mandi !== filter.mandi) return false;
+      if (filter.state) {
+        const m = mandiBySlug(p.mandi);
+        if (!m || m.state !== filter.state) return false;
+      }
+      return true;
+    });
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   function priceAgeDays(row) {
     const value = (row && row.date) || MB.PRICE_DATE;
     if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return 0;
@@ -472,6 +493,8 @@
     formatDateHi,
     formatUpdatedHi,
     pricesFor,
+    varietyPricesFor,
+    escapeHtml,
     sharePrice,
     sharePage,
     shareBtn,

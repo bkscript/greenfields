@@ -14,16 +14,25 @@ MB.page = function cropPage() {
 
   const stateSlug = u.param("state");
   const state = stateSlug ? u.stateBySlug(stateSlug) : null;
-  const rows = state
+  const baseRows = state
     ? u.pricesFor({ crop: slug, state: state.slug })
     : u.pricesFor({ crop: slug });
+  const sourceVarietyRows = u.varietyPricesFor(
+    state ? { crop: slug, state: state.slug } : { crop: slug }
+  );
+  const mandiCropsWithVarieties = new Set(
+    sourceVarietyRows.map((row) => row.mandi + "|" + row.crop)
+  );
+  const rows = baseRows
+    .filter((row) => !mandiCropsWithVarieties.has(row.mandi + "|" + row.crop))
+    .concat(sourceVarietyRows);
 
   if (!rows.length) {
     box.innerHTML = '<p class="empty">इस फसल के भाव अभी उपलब्ध नहीं हैं।</p>';
     return;
   }
 
-  const currentRows = rows.filter(u.isFreshPrice);
+  const currentRows = baseRows.filter(u.isFreshPrice);
   const med = u.median(currentRows.map((r) => r.modal));
   const vsMed = u.median(currentRows.map((r) => r.vs));
   const mins = currentRows.map((r) => r.min);
@@ -62,26 +71,37 @@ MB.page = function cropPage() {
   const shareAll = currentRows.length
     ? u.sharePage("आज " + crop.hi + " के ताजा मंडी भाव देखें")
     : "";
-  const showStateCol = !state;
-
   const sortedRows = rows
     .slice()
-    .sort((a, b) => u.freshFirst(a, b) || b.modal - a.modal);
-  let staleDividerAdded = false;
+    .sort((a, b) => {
+      const freshness = u.freshFirst(a, b);
+      if (freshness) return freshness;
+      if (u.isStalePrice(a) && u.isStalePrice(b) && a.date !== b.date) {
+        return String(b.date).localeCompare(String(a.date));
+      }
+      return b.modal - a.modal;
+    });
+  let lastStaleDate = "";
   const body = sortedRows
     .map((r) => {
       const m = u.mandiBySlug(r.mandi);
       const st = u.stateBySlug(m.state);
-      const divider = !staleDividerAdded && u.isStalePrice(r)
-        ? ((staleDividerAdded = true), '<tr class="stale-divider" aria-label="पुराने भाव"><td colspan="' + (showStateCol ? 5 : 4) + '"><span></span></td></tr>')
+      const dateGroup = u.isStalePrice(r) && r.date !== lastStaleDate
+        ? ((lastStaleDate = r.date), '<tr class="stale-date"><td colspan="4"><span>' + u.formatDateHi(r.date) + " के भाव</span></td></tr>")
+        : "";
+      const grade = r.grade
+        ? '<span class="variety-grade">' + u.escapeHtml(r.grade) + "</span>"
         : "";
       return (
-        divider + "<tr><td><a class=\"detail-table-link\" href=\"" +
+        dateGroup + "<tr><td><a class=\"detail-table-link\" href=\"" +
         u.mandiHref(r.mandi, slug) +
         '">' +
-        u.nameHi(m) +
+        u.escapeHtml(u.nameHi(m)) +
+        (state || !st ? "" : ' <span class="table-state-code">(' + u.escapeHtml(st.short) + ")</span>") +
         "</a></td>" +
-        (showStateCol ? '<td class="state-code">' + st.short + "</td>" : "") +
+        '<td class="variety-name">' +
+        (r.variety ? u.escapeHtml(r.variety) + grade : "—") +
+        "</td>" +
         '<td class="num modal-price">' +
         u.priceCell(slug, r) +
         "</td>" +
@@ -89,11 +109,6 @@ MB.page = function cropPage() {
         u.rupee(r.min) +
         "–" +
         u.rupee(r.max).replace("₹", "") +
-        "</td>" +
-        '<td class="num ' +
-        u.vsClass(r.vs) +
-        '">' +
-        u.vsText(r.vs) +
         "</td></tr>"
       );
     })
@@ -239,9 +254,7 @@ MB.page = function cropPage() {
     "</span>" +
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
-    '<section class="card crop-mandi-list"><h2>आज ' + crop.hi + ' के उपलब्ध मंडी भाव</h2><table><thead><tr><th>मंडी</th>' +
-    (showStateCol ? "<th>राज्य</th>" : "") +
-    '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th><th class="num">कल से</th></tr></thead><tbody>' +
+    '<section class="card crop-mandi-list"><h2>आज ' + crop.hi + ' के उपलब्ध मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
     body +
     "</tbody></table></section>" +
     '<p class="history-intro">नीचे की तालिका में पिछले 10 उपलब्ध दिनों के मॉडल भाव दिए गए हैं, जिनसे भाव के उतार-चढ़ाव का पता चलता है।</p>' +

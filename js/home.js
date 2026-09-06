@@ -54,7 +54,7 @@ MB.page = function homePage() {
     ["jeera", "dhaniya", "saunf", "sua", "methi", "hari-methi", "isabgol", "haldi", "mirch"],
     ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "sua-patti", "hara-matar", "amrood", "kela", "seb", "anar"],
   ];
-  const famous = ["unjha", "indore", "mandsaur", "sri-ganganagar", "kota", "gondal", "sirsa", "shahabad"];
+  const famous = ["unjha", "indore", "mandsaur", "sri-ganganagar", "kota", "gondal", "guntur", "byadgi", "mathania", "sirsa", "shahabad"];
 
   const fieldCrops = cropGroups.slice(0, -1).reduce((all, group) => all.concat(group), []);
   const produceCrops = cropGroups[cropGroups.length - 1];

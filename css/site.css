@@ -740,6 +740,8 @@ a.chip { text-decoration: none; }
 .crop-mandi-list > h2,
 .mandi-crop-list > h2,
 .crop-model-history > h2 { text-align: center; }
+.crop-mandi-list > h2,
+.mandi-crop-list > h2 { color: #b42318; }
 .grid-crops {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -888,6 +890,16 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   text-decoration-thickness: 2px;
 }
 .state-code { white-space: nowrap; color: var(--muted); font-weight: 500; }
+.table-state-code { white-space: nowrap; color: var(--muted); font-size: 0.78em; font-weight: 600; }
+.variety-name { font-weight: 650; line-height: 1.25; }
+.variety-grade {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
 @media (max-width: 560px) {
   th, td { padding: 9px 7px; }
   .range-col { padding-left: 3px; padding-right: 3px; }
@@ -901,13 +913,16 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .mandi-crop-list tbody td,
   .crop-model-history tbody td { padding-top: 12px; padding-bottom: 12px; }
 }
-.stale-divider td {
+.stale-date td {
   border: 0;
-  padding: 8px 12px 1px;
+  padding: 16px 12px 6px;
+  text-align: center;
 }
-.stale-divider span {
-  display: block;
-  border-top: 1px solid rgba(180, 35, 24, 0.42);
+.stale-date span {
+  color: #756a5b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 .vs-up { color: var(--up); font-weight: 600; }
 .vs-down { color: var(--down); font-weight: 600; }
