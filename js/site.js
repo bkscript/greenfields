@@ -285,10 +285,8 @@
   function param(name) {
     return new URLSearchParams(location.search).get(name);
   }
-  function cropHref(slug, state) {
-    let href = siteHref("fasal/" + slug + "-ka-bhav/");
-    if (state) href += "?state=" + encodeURIComponent(state);
-    return href;
+  function cropHref(slug) {
+    return siteHref("fasal/" + slug + "-ka-bhav/");
   }
   function stateHref(slug) {
     return siteHref("rajya/" + slug + "-mandi-bhav/");

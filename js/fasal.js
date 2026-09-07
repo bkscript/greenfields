@@ -12,14 +12,8 @@ MB.page = function cropPage() {
 
   document.title = crop.hi + " का भाव आज | " + crop.en + " Mandi Price Today";
 
-  const stateSlug = u.param("state");
-  const state = stateSlug ? u.stateBySlug(stateSlug) : null;
-  const baseRows = state
-    ? u.pricesFor({ crop: slug, state: state.slug })
-    : u.pricesFor({ crop: slug });
-  const sourceVarietyRows = u.varietyPricesFor(
-    state ? { crop: slug, state: state.slug } : { crop: slug }
-  );
+  const baseRows = u.pricesFor({ crop: slug });
+  const sourceVarietyRows = u.varietyPricesFor({ crop: slug });
   const mandiCropsWithVarieties = new Set(
     sourceVarietyRows.map((row) => row.mandi + "|" + row.crop)
   );
@@ -97,7 +91,7 @@ MB.page = function cropPage() {
         u.mandiHref(r.mandi, slug) +
         '">' +
         u.escapeHtml(u.nameHi(m)) +
-        (state || !st ? "" : ' <span class="table-state-code">(' + u.escapeHtml(st.short) + ")</span>") +
+        (!st ? "" : ' <span class="table-state-code">(' + u.escapeHtml(st.short) + ")</span>") +
         "</a></td>" +
         '<td class="variety-name">' +
         (r.variety ? u.escapeHtml(r.variety) + grade : "—") +
@@ -114,13 +108,11 @@ MB.page = function cropPage() {
     })
     .join("");
 
-  const cropModelHistory = !state
-    ? ((MB.cropModalHistory || {})[slug] || [])
-        .filter((entry) => entry && entry.date && Number.isFinite(Number(entry.modal)))
-        .slice()
-        .sort((a, b) => String(b.date).localeCompare(String(a.date)))
-        .slice(0, 10)
-    : [];
+  const cropModelHistory = ((MB.cropModalHistory || {})[slug] || [])
+    .filter((entry) => entry && entry.date && Number.isFinite(Number(entry.modal)))
+    .slice()
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+    .slice(0, 10);
   const historyTable = cropModelHistory.length
     ? '<section class="card crop-model-history"><h2>पिछले 10 उपलब्ध दिनों का ' +
       crop.hi +
@@ -139,12 +131,8 @@ MB.page = function cropPage() {
       '</tbody></table><p class="history-note">हर दिन का वही फसल मॉडल भाव, जो उस दिन उपलब्ध मंडियों के मॉडल भावों से दिखाया गया था।</p></section>'
     : "";
 
-  const subHi = state
-    ? state.hi + " — इस राज्य की मंडियां।"
-    : "राजस्थान, गुजरात, मध्य प्रदेश और हरियाणा की मंडियां।";
-  const subEn = state
-    ? "Mandis in this state."
-    : "Mandis across Rajasthan, Gujarat, Madhya Pradesh and Haryana.";
+  const subHi = "सभी उपलब्ध राज्यों की मंडियां।";
+  const subEn = "Mandis across all available states.";
 
   const mandiDynamicFaqs = Object.keys(MB.dynamicMandiFaqs || {})
     .reduce((all, mandiSlug) => {

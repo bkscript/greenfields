@@ -17,7 +17,6 @@ MB.page = function homePage() {
   arandi: "img/crops/arandi.webp",
   alsi: "img/crops/alsi.webp",
   kapas: "img/crops/kapas.webp",
-  narma: "img/crops/kapas.webp",
   chana: "img/crops/chana.webp",
     bajra: "img/crops/bajra.webp",
     makka: "img/crops/makka.webp",
@@ -35,6 +34,7 @@ MB.page = function homePage() {
   moongphali: "img/crops/moongphali.webp",
   soyabean: "img/crops/soyabean.webp",
   "hara-matar": "img/crops/hara-matar.webp",
+  gwarphali: "img/crops/gwarphali.webp",
   pyaz: "img/crops/pyaz.webp",
   aalu: "img/crops/aalu.webp",
   tamatar: "img/crops/tamatar.webp",
@@ -50,9 +50,9 @@ MB.page = function homePage() {
   const cropGroups = [
     ["gehun", "bajra", "makka", "dhan", "rice", "jau", "jowar"],
     ["chana", "moong", "moth", "arhar", "urad", "masoor", "matar", "gwar"],
-    ["sarson", "narma", "kapas", "moongphali", "soyabean", "til", "arandi", "alsi"],
+    ["sarson", "kapas", "moongphali", "soyabean", "til", "arandi", "alsi"],
     ["jeera", "dhaniya", "saunf", "sua", "methi", "hari-methi", "isabgol", "haldi", "mirch"],
-    ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "sua-patti", "hara-matar", "amrood", "kela", "seb", "anar"],
+    ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "sua-patti", "hara-matar", "gwarphali", "amrood", "kela", "seb", "anar"],
   ];
   const famous = ["unjha", "indore", "mandsaur", "sri-ganganagar", "kota", "gondal", "guntur", "byadgi", "mathania", "sirsa", "shahabad"];
 
