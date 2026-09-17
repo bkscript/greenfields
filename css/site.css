@@ -1348,12 +1348,15 @@ body[data-page="home"] .hero-search-panel .hero-search {
 }
 .hero-ctas .btn-primary {
   border: 0;
+  background: #b8522a;
+  color: #fff !important;
   cursor: pointer;
   font-family: inherit;
   padding: 10px 20px;
   font-size: .96rem;
-  box-shadow: 0 5px 12px rgba(151, 109, 20, 0.14);
+  box-shadow: 0 5px 12px rgba(136, 59, 25, 0.18);
 }
+.hero-ctas .btn-primary:hover { background: #963f1f; }
 .btn-primary {
   background: var(--mustard);
   color: var(--text) !important;
