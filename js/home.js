@@ -227,7 +227,7 @@ MB.page = function homePage() {
     '<div class="hero-layout">' +
     '<div class="hero-intro"><span class="hero-accent" aria-hidden="true"></span>' +
     "<h1>आज के भाव</h1>" +
-    '<p class="hero-summary">आज के उपलब्ध फसल के मंडी भाव देखें।</p>' +
+    '<p class="hero-summary">आज के उपलब्ध फसलों के मंडी भाव देखें।</p>' +
     "</div>" +
     '<div class="hero-tools">' +
     '<div class="hero-search-panel">' +
