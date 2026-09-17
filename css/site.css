@@ -1126,11 +1126,6 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   margin: 0 auto;
 }
 .hero-intro { min-width: 0; }
-.hero-tools {
-  align-self: center;
-  /* Center CTAs against the heading and summary, not the small decorative line. */
-  transform: translateY(6px);
-}
 .hero-accent {
   display: block;
   width: 44px;
@@ -1340,7 +1335,6 @@ body[data-page="home"] .hero-search-panel .hero-search {
   .hero { padding: 38px 18px 74px; }
   .hero-layout { grid-template-columns: 1fr; gap: 24px; max-width: 680px; }
   .hero-intro { text-align: center; }
-  .hero-tools { transform: none; }
   .hero-accent { margin-left: auto; margin-right: auto; margin-bottom: 16px; }
   .hero h1 { max-width: 18ch; margin-left: auto; margin-right: auto; text-align: center; }
   .hero-summary { max-width: 35rem; margin: 12px auto 0; text-align: center; font-size: .91rem; }
