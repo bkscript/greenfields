@@ -226,7 +226,7 @@ MB.page = function homePage() {
     '<section class="hero">' +
     '<div class="hero-layout">' +
     '<div class="hero-intro"><span class="hero-accent" aria-hidden="true"></span>' +
-    "<h1>फसलों के आज के भाव</h1>" +
+    "<h1>आज के भाव</h1>" +
     '<p class="hero-summary">आज के फसल और मंडी के ताज़ा भाव देखें। फसल, मंडी या राज्य चुनकर उपलब्ध प्रकाशित रिकॉर्ड में भाव और उसकी तारीख जानें।</p>' +
     "</div>" +
     '<div class="hero-tools">' +
