@@ -1256,7 +1256,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;
-  max-width: 41rem;
+  width: 100%;
   gap: 10px;
   justify-content: center;
   margin: 22px 0 0;
