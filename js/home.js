@@ -230,20 +230,9 @@ MB.page = function homePage() {
     '<p class="hero-summary">आज के उपलब्ध फसलों के मंडी भाव देखें।</p>' +
     "</div>" +
     '<div class="hero-tools">' +
-    '<div class="hero-search-panel">' +
-    '<div class="hero-search search-wrap" id="hero-search">' +
-    '<div class="search-field">' +
-    '<span class="search-icon-wrap" aria-hidden="true">' +
-    '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
-    "</span>" +
-    '<input id="q" type="search" autocomplete="off" placeholder="' +
-    u.searchPlaceholder() +
-    '" />' +
-    "</div>" +
-    '<div class="suggest" id="suggest"></div></div>' +
-    '<div class="hero-ctas hero-ctas-single">' +
+    '<div class="hero-ctas">' +
+    '<button type="button" class="btn-primary" id="hero-go">आज के भाव देखें</button>' +
     u.joinGroupBtn("wa-join-hero") +
-    "</div>" +
     "</div>" +
     "</div>" +
     "</div>" +
@@ -273,6 +262,6 @@ MB.page = function homePage() {
     "<h2>प्रसिद्ध मंडियाँ</h2>" +
     '<div class="mandi-grid">' + mandiCards + "</div></section>";
 
-  const hs = document.getElementById("hero-search");
-  if (hs) u.bindSearch(hs.querySelector("#q"), hs.querySelector("#suggest"), hs);
+  const go = document.getElementById("hero-go");
+  if (go) go.addEventListener("click", () => u.goSearch());
 };

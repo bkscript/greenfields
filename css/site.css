@@ -1309,7 +1309,6 @@ body[data-page="home"] .hero-search-panel .hero-search {
   gap: 10px;
   margin: 10px 0 0;
 }
-.hero-search-panel .hero-ctas-single { grid-template-columns: minmax(0, 1fr); }
 .hero-search-panel .btn-primary,
 .hero-search-panel .wa-join-hero {
   display: inline-flex;
