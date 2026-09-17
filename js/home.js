@@ -241,8 +241,7 @@ MB.page = function homePage() {
     '" />' +
     "</div>" +
     '<div class="suggest" id="suggest"></div></div>' +
-    '<div class="hero-ctas">' +
-    '<button type="button" class="btn-primary" id="hero-go">आज के भाव देखें</button>' +
+    '<div class="hero-ctas hero-ctas-single">' +
     u.joinGroupBtn("wa-join-hero") +
     "</div>" +
     "</div>" +
@@ -276,8 +275,4 @@ MB.page = function homePage() {
 
   const hs = document.getElementById("hero-search");
   if (hs) u.bindSearch(hs.querySelector("#q"), hs.querySelector("#suggest"), hs);
-  const go = document.getElementById("hero-go");
-  if (go) {
-    go.addEventListener("click", () => u.goSearch(document.getElementById("q")));
-  }
 };
