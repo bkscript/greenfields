@@ -228,8 +228,6 @@ MB.page = function homePage() {
     '<div class="hero-intro"><span class="hero-accent" aria-hidden="true"></span>' +
     "<h1>आज के भाव</h1>" +
     '<p class="hero-summary">आज के उपलब्ध फसलों के मंडी भाव देखें। गेहूं, सरसों, चना, सोयाबीन, कपास, धान, प्याज, आलू व अन्य फसलों के मंडी-वार लाइव रेट और मॉडल भाव जानें।</p>' +
-    "</div>" +
-    '<div class="hero-tools">' +
     '<div class="hero-ctas">' +
     '<button type="button" class="btn-primary" id="hero-go">आज के भाव देखें</button>' +
     u.joinGroupBtn("wa-join-hero") +

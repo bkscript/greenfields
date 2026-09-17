@@ -1118,10 +1118,6 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   padding: 48px 28px 76px;
 }
 .hero-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: center;
-  gap: clamp(34px, 6vw, 78px);
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -1181,7 +1177,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   text-align: left;
 }
 .hero-summary {
-  max-width: 31rem;
+  max-width: 41rem;
   margin: 14px 0 0;
   color: #46614a;
   font-size: .98rem;
@@ -1260,9 +1256,10 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;
+  max-width: 41rem;
   gap: 10px;
   justify-content: center;
-  margin-top: 16px;
+  margin: 22px 0 0;
 }
 .hero-search-panel {
   display: block;
@@ -1333,7 +1330,7 @@ body[data-page="home"] .hero-search-panel .hero-search {
 .hero .hero-search-panel .wa-join-hero:hover { background: #eaf5eb; }
 @media (max-width: 760px) {
   .hero { padding: 38px 18px 74px; }
-  .hero-layout { grid-template-columns: 1fr; gap: 24px; max-width: 680px; }
+  .hero-layout { max-width: 680px; }
   .hero-intro { text-align: center; }
   .hero-accent { margin-left: auto; margin-right: auto; margin-bottom: 16px; }
   .hero h1 { max-width: 18ch; margin-left: auto; margin-right: auto; text-align: center; }
