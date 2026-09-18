@@ -1065,6 +1065,102 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   color: var(--text);
 }
 .article-section p:last-child { margin-bottom: 0; }
+.marwarmade-card {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(18px, 4vw, 38px);
+  align-items: center;
+  overflow: hidden;
+  margin: 28px 0 0;
+  padding: clamp(18px, 3vw, 30px);
+  color: #fff8ee;
+  background: #5b3327;
+  border: 1px solid #744638;
+  border-radius: 20px;
+  box-shadow: 0 14px 28px rgba(67, 38, 29, 0.14);
+}
+.marwarmade-art {
+  display: grid;
+  min-height: 185px;
+  place-items: center;
+  align-self: stretch;
+  padding: 12px;
+  background:
+    radial-gradient(circle at 25% 22%, rgba(245, 202, 116, 0.55), transparent 36%),
+    linear-gradient(145deg, #cb7c36, #8c452d);
+  border-radius: 14px;
+}
+.marwarmade-art img {
+  display: block;
+  width: min(100%, 270px);
+  height: auto;
+  max-height: 230px;
+  object-fit: contain;
+  filter: drop-shadow(0 13px 14px rgba(53, 25, 17, 0.32));
+}
+.marwarmade-copy {
+  min-width: 0;
+}
+.marwarmade-logo {
+  display: block;
+  width: min(180px, 100%);
+  height: auto;
+  max-height: 36px;
+  margin: 0 0 14px;
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0) invert(1);
+}
+.marwarmade-brand {
+  margin: 0 0 6px;
+  color: #f6c478;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.marwarmade-card h2 {
+  margin: 0 0 9px;
+  color: #fff8ee;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  line-height: 1.26;
+}
+.marwarmade-copy > p:not(.marwarmade-brand) {
+  margin: 0;
+  color: #f3ded0;
+}
+.marwarmade-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 42px;
+  margin-top: 17px;
+  padding: 9px 16px;
+  border: 1px solid #fff8ee;
+  border-radius: 999px;
+  color: #5b3327;
+  background: #fff8ee;
+  font-weight: 700;
+  text-decoration: none;
+}
+.marwarmade-link:hover,
+.marwarmade-link:focus-visible {
+  color: #fff8ee;
+  background: transparent;
+}
+@media (max-width: 560px) {
+  .marwarmade-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .marwarmade-art {
+    min-height: 150px;
+  }
+  .marwarmade-art img {
+    width: min(100%, 220px);
+    max-height: 180px;
+  }
+}
 .editorial-note {
   margin-top: 18px;
   padding: 13px 15px;

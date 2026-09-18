@@ -91,6 +91,59 @@ MB.crops = [
   { slug: "anar", hi: "अनार", en: "Pomegranate", veg: true, msp: null },
 ];
 
+// Contextual link to the owner's separate food brand. These appear only on
+// the relevant crop pages, after the price content and before FAQs.
+MB.marwarMadePromos = {
+  "jeera": {
+    "title": "रोज़ की रसोई के लिए चुनिंदा मसाले",
+    "text": "धनिया, हल्दी और लाल मिर्च जैसे रोज़मर्रा के मसाले MarwarMade पर देखें।",
+    "cta": "मसाले देखें",
+    "image": "https://marwarmade.in/assets/images/products/everyday-spices-three-pouches-v4.png",
+    "imageAlt": "MarwarMade के लाल मिर्च, हल्दी और धनिया पाउच",
+    "url": "https://marwarmade.in/products/?utm_source=fasalbhav&utm_medium=referral&utm_campaign=spice-crops&utm_content=jeera"
+  },
+  "mirch": {
+    "title": "रोज़ की रसोई के लिए चुनिंदा मसाले",
+    "text": "धनिया, हल्दी और लाल मिर्च जैसे रोज़मर्रा के मसाले MarwarMade पर देखें।",
+    "cta": "मसाले देखें",
+    "image": "https://marwarmade.in/assets/images/products/everyday-spices-three-pouches-v4.png",
+    "imageAlt": "MarwarMade के लाल मिर्च, हल्दी और धनिया पाउच",
+    "url": "https://marwarmade.in/products/?utm_source=fasalbhav&utm_medium=referral&utm_campaign=spice-crops&utm_content=mirch"
+  },
+  "dhaniya": {
+    "title": "रोज़ की रसोई के लिए चुनिंदा मसाले",
+    "text": "धनिया, हल्दी और लाल मिर्च जैसे रोज़मर्रा के मसाले MarwarMade पर देखें।",
+    "cta": "मसाले देखें",
+    "image": "https://marwarmade.in/assets/images/products/everyday-spices-three-pouches-v4.png",
+    "imageAlt": "MarwarMade के लाल मिर्च, हल्दी और धनिया पाउच",
+    "url": "https://marwarmade.in/products/?utm_source=fasalbhav&utm_medium=referral&utm_campaign=spice-crops&utm_content=dhaniya"
+  },
+  "haldi": {
+    "title": "रोज़ की रसोई के लिए चुनिंदा मसाले",
+    "text": "धनिया, हल्दी और लाल मिर्च जैसे रोज़मर्रा के मसाले MarwarMade पर देखें।",
+    "cta": "मसाले देखें",
+    "image": "https://marwarmade.in/assets/images/products/everyday-spices-three-pouches-v4.png",
+    "imageAlt": "MarwarMade के लाल मिर्च, हल्दी और धनिया पाउच",
+    "url": "https://marwarmade.in/products/?utm_source=fasalbhav&utm_medium=referral&utm_campaign=spice-crops&utm_content=haldi"
+  },
+  "methi": {
+    "title": "रोज़ की रसोई के लिए चुनिंदा मसाले",
+    "text": "धनिया, हल्दी और लाल मिर्च जैसे रोज़मर्रा के मसाले MarwarMade पर देखें।",
+    "cta": "मसाले देखें",
+    "image": "https://marwarmade.in/assets/images/products/everyday-spices-three-pouches-v4.png",
+    "imageAlt": "MarwarMade के लाल मिर्च, हल्दी और धनिया पाउच",
+    "url": "https://marwarmade.in/products/?utm_source=fasalbhav&utm_medium=referral&utm_campaign=spice-crops&utm_content=methi"
+  },
+  "sarson": {
+    "title": "रोज़ की रसोई के लिए चुनिंदा मसाले",
+    "text": "धनिया, हल्दी और लाल मिर्च जैसे रोज़मर्रा के मसाले MarwarMade पर देखें।",
+    "cta": "मसाले देखें",
+    "image": "https://marwarmade.in/assets/images/products/everyday-spices-three-pouches-v4.png",
+    "imageAlt": "MarwarMade के लाल मिर्च, हल्दी और धनिया पाउच",
+    "url": "https://marwarmade.in/products/?utm_source=fasalbhav&utm_medium=referral&utm_campaign=spice-crops&utm_content=sarson"
+  }
+};
+
 MB.mandis = [
   { slug: "sri-ganganagar", hi: "श्रीगंगानगर", en: "Sri Ganganagar", state: "rajasthan", district: { hi: "श्रीगंगानगर", en: "Sri Ganganagar" } },
   { slug: "anupgarh", hi: "अनूपगढ़", en: "Anupgarh", state: "rajasthan", district: { hi: "अनूपगढ़", en: "Anupgarh" } },
