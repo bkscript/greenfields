@@ -73,6 +73,7 @@ MB.page = function mandiPage() {
   const shareTop = top
     ? u.sharePage("आज " + mandi.hi + " मंडी के ताजा भाव देखें")
     : "#";
+  const mandiFaqEntities = [];
   const dynamicFaqs = ((MB.dynamicMandiFaqs || {})[slug] || [])
     .map((item) => {
       const row = item.variety
@@ -93,7 +94,15 @@ MB.page = function mandiPage() {
       const cropHi = crop ? crop.hi : item.cropHi || item.crop;
       const cropLabel = cropHi + (item.variety ? " की " + item.variety + " किस्म" : "");
       let answer;
-      if (item.varieties && varietyRows.length) {
+      if (item.type === "overview") {
+        answer = baseRows.length ? baseRows.map((price) => {
+          const name = (u.cropBySlug(price.crop) || {}).hi || price.crop;
+          return name + ": मॉडल " + u.rupee(price.modal) + ", न्यूनतम " + u.rupee(price.min) +
+            " और अधिकतम " + u.rupee(price.max) + " प्रति क्विंटल";
+        }).join("; ") + "।" : "ऊपर इस मंडी के उपलब्ध रिकॉर्ड देखें।";
+      } else if (item.type === "container") {
+        answer = "इंदौर के डॉलर चने का अलग सत्यापित कंटेनर रेट अभी इस साइट के डेटा में नहीं है। ऊपर दिए मंडी के प्रति क्विंटल भाव को कंटेनर रेट न मानें।";
+      } else if (item.varieties && varietyRows.length) {
         answer =
           mandi.hi +
           " में " +
@@ -142,6 +151,7 @@ MB.page = function mandiPage() {
           u.formatUpdatedHi(row.date) +
           " का है।";
       }
+      mandiFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
       return (
         '<details class="faq-item"><summary>' +
         item.q +
@@ -152,6 +162,16 @@ MB.page = function mandiPage() {
     })
     .filter(Boolean)
     .join("");
+  if (mandiFaqEntities.length) {
+    let schema = document.getElementById("mandi-dynamic-faq-schema");
+    if (!schema) {
+      schema = document.createElement("script");
+      schema.id = "mandi-dynamic-faq-schema";
+      schema.type = "application/ld+json";
+      document.head.appendChild(schema);
+    }
+    schema.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: mandiFaqEntities });
+  }
   const dynamicFaqSection = dynamicFaqs
     ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";

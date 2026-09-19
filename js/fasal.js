@@ -145,13 +145,15 @@ MB.page = function cropPage() {
     }, [])
     .map((item) => {
       const mandi = u.mandiBySlug(item.mandi);
-      const row = u.pricesFor({ mandi: item.mandi, crop: slug })[0];
+      const row = item.variety
+        ? u.varietyPricesFor({ mandi: item.mandi, crop: slug }).find((price) => price.variety === item.variety)
+        : u.pricesFor({ mandi: item.mandi, crop: slug })[0];
       if (!mandi) return "";
 
       const answer = row
         ? mandi.hi +
           " में " +
-          crop.hi +
+          crop.hi + (item.variety ? " (" + item.variety + ")" : "") +
           " का उपलब्ध मॉडल भाव " +
           u.rupee(row.modal) +
           " प्रति क्विंटल है। न्यूनतम भाव " +
@@ -163,7 +165,7 @@ MB.page = function cropPage() {
           " का है।"
         : mandi.hi +
           " में " +
-          crop.hi +
+          crop.hi + (item.variety ? " (" + item.variety + ")" : "") +
           " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया रिकॉर्ड उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
 
       return (
@@ -178,6 +180,7 @@ MB.page = function cropPage() {
     .join("");
 
   const cropRows = u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
+  const cropFaqEntities = [];
   const cropDynamicFaqs = ((MB.dynamicCropFaqs || {})[slug] || [])
     .map((item) => {
       const median = cropRows.length
@@ -185,7 +188,28 @@ MB.page = function cropPage() {
         : null;
       let answer;
 
-      if (item.type === "msp") {
+      if (["mandi", "state", "nearby"].includes(item.type)) {
+        const matchingRows = baseRows.filter((row) => {
+          if (item.type === "mandi") return row.mandi === item.mandi;
+          if (item.type === "state") return (u.mandiBySlug(row.mandi) || {}).state === item.state;
+          return true;
+        });
+        const label = item.type === "mandi" ? item.mandiHi + " मंडी का " : "";
+        answer = matchingRows.length
+          ? matchingRows.map((row) => {
+              const name = (u.mandiBySlug(row.mandi) || {}).hi || item.mandiHi;
+              return name + ": मॉडल " + u.rupee(row.modal) + ", न्यूनतम " + u.rupee(row.min) +
+                " और अधिकतम " + u.rupee(row.max) + " प्रति क्विंटल";
+            }).join("; ") + "।"
+          : label + crop.hi + " का सत्यापित रिकॉर्ड अभी नहीं मिला है। ऊपर तालिका में अन्य उपलब्ध मंडियों के भाव देखें।";
+        if (item.type === "nearby") {
+          answer = "नीचे उपलब्ध मंडियों में से अपने नज़दीक की मंडी चुनें; आपकी लोकेशन अपने-आप नहीं ली गई है। " + answer;
+        }
+      } else if (item.type === "crop") {
+        answer = median
+          ? crop.hi + " का उपलब्ध मॉडल भाव " + u.rupee(median) + " प्रति क्विंटल है। मंडी-वार भाव ऊपर तालिका में देखें।"
+          : "ऊपर तालिका में " + crop.hi + " के उपलब्ध मंडी रिकॉर्ड देखें।";
+      } else if (item.type === "msp") {
         answer = crop.msp
           ? crop.hi +
             " का सरकारी MSP " +
@@ -214,11 +238,23 @@ MB.page = function cropPage() {
           " का है।";
       }
 
+      cropFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
       return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
     })
     .join("");
 
   const dynamicFaqs = mandiDynamicFaqs + cropDynamicFaqs;
+  if (cropFaqEntities.length) {
+    const schemaId = "crop-dynamic-faq-schema";
+    let schema = document.getElementById(schemaId);
+    if (!schema) {
+      schema = document.createElement("script");
+      schema.id = schemaId;
+      schema.type = "application/ld+json";
+      document.head.appendChild(schema);
+    }
+    schema.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: cropFaqEntities });
+  }
 
   const dynamicFaqSection = dynamicFaqs
     ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' +

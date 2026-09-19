@@ -10231,7 +10231,7 @@ MB.faqs = {
     { "crop": "lahsun", "q": "इंदौर मंडी लहसुन भाव" },
     { "crop": "pyaz", "q": "Indore Mandi bhav pyaj" },
     { "crop": "gehun", "q": "इंदौर मंडी गेहूं का भाव" },
-    { "crop": "chana", "q": "Indore Mandi Dollar Chana Bhav Today" },
+    { "crop": "chana", "variety": "Dollar", "q": "Indore Mandi Dollar Chana Bhav Today" },
     { "crop": "soyabean", "q": "इंदौर मंडी सोयाबीन भाव" }
   ],
   "ujjain": [
@@ -10494,7 +10494,35 @@ Object.assign(MB.dynamicMandiFaqs, {
   ]
 });
 
+Object.assign(MB.dynamicMandiFaqs, {
+  "indore": (MB.dynamicMandiFaqs["indore"] || []).concat([
+    { "type": "overview", "q": "इंदौर मंडी में आज के भाव क्या हैं?" },
+    { "type": "overview", "q": "Indore Mandi Bhav Today live" },
+    { "type": "container", "q": "डालर चने का कंटेनर रेट क्या है?" },
+    { "type": "container", "q": "Indore Mandi Bhav container" },
+    { "crop": "gehun", "variety": "Lokwan", "q": "इंदौर मंडी लोकवन में गेहूं का आज का भाव क्या है?" },
+    { "crop": "pyaz", "q": "Indore Mandi Bhav Today pyaj" },
+    { "crop": "lahsun", "q": "Indore Mandi bhav today lahsun" },
+    { "crop": "aalu", "q": "Indore mandi bhav today aalu" }
+  ])
+});
+
 MB.dynamicCropFaqs = {
+  "moong": [
+    { "type": "per-kg", "q": "1 किलो मूंग का दाम क्या है?" },
+    { "type": "mandi", "mandi": "jhunjhunu", "mandiHi": "झुंझुनू", "q": "झुंझुनू मंडी में मूंग का आज का भाव क्या है?" },
+    { "type": "state", "state": "madhya-pradesh", "q": "आज मध्य प्रदेश में मूंग मंडी भाव क्या है?" },
+    { "type": "nearby", "q": "Moong ka bhav near me" },
+    { "type": "state", "state": "rajasthan", "q": "Moong ka Bhav today Rajasthan" },
+    { "type": "per-kg", "q": "1 kilo mung ka bhav" },
+    { "type": "state", "state": "rajasthan", "q": "Moong price today in Rajasthan mandi" },
+    { "type": "mandi", "mandi": "malpura", "mandiHi": "मालपुरा", "q": "Moong ka bhav malpura mandi" },
+    { "type": "mandi", "mandi": "jaipur", "mandiHi": "जयपुर", "q": "Moong Price in Jaipur Mandi today" },
+    { "type": "per-kg", "q": "Moong rate today per kg" }
+  ],
+  "gwar": [
+    { "type": "crop", "q": "Gwar ka bhav" }
+  ],
   "gehun": [
     { "type": "variety", "q": "1482 गेहूं का भाव" },
     { "type": "variety", "q": "देसी गेहूं का भाव" },
@@ -10542,6 +10570,12 @@ MB.dynamicStateFaqs = {
 };
 
 MB.pendingFaqs = {
+  "khargone": [
+    { "q": "Khargone Mandi bhav", "a": "खरगोन मंडी का सत्यापित भाव रिकॉर्ड अभी इस साइट पर नहीं जुड़ा है।" }
+  ],
+  "dhamnod": [
+    { "q": "Dhamnod Mandi Bhav", "a": "धामनोद मंडी में आज कपास, सोयाबीन, गेहूं, मक्का और चना जैसी प्रमुख फसलों के हाजिर भाव क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें।" }
+  ],
   "sri-ganganagar": [
     { "q": "आज श्रीगंगानगर मंडी में क्या भाव चल रहे हैं?", "a": "श्रीगंगानगर मंडी में आज ग्वार, नरमा, कपास, गेंहू, जौ, सरसों और मूंग जैसी प्रमुख फसलों के हाजिर भाव क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई मंडी भाव सारणी में उपलब्ध है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई मूल्य तालिका को देखें। हमसे जुड़े रहने के लिए WhatsApp ग्रुप जॉइन करें।" }
   ],
@@ -10574,7 +10608,6 @@ MB.pendingFaqs = {
   ],
   "indore": [
     { "q": "Indore Mandi Bhav", "a": "इंदौर मंडी में आज सोयाबीन, गेहूं, चना, मक्का, मसूर, प्याज और लहसुन जैसी प्रमुख फसलों के हाजिर भाव क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें।" },
-    { "q": "Dhamnod Mandi Bhav", "a": "धामनोद मंडी में आज कपास, सोयाबीन, गेहूं, मक्का और चना जैसी प्रमुख फसलों के हाजिर भाव क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें।" },
     { "q": "इंदौर मंडी कंटेनर भाव", "a": "इंदौर मंडी में काबुली चना और अन्य प्रमुख जिंसों के कंटेनर भाव (जैसे क्वालिटी और काउंट के अनुसार) क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें। हमसे जुड़े रहने के लिए WhatsApp ग्रुप जॉइन करें।" }
   ],
   "ujjain": [
