@@ -1,7 +1,7 @@
 window.MB = window.MB || {};
 
 MB.PRICE_DATE = "2026-09-19";
-MB.LAST_UPDATED_DATE = "2026-09-19";
+MB.LAST_UPDATED_DATE = "2026-09-20";
 MB.BRAND_HI = "फसल भाव";
 MB.BRAND_EN = "FasalBhav";
 MB.GA_MEASUREMENT_ID = "G-WFENY16HN7";
@@ -280,7 +280,7 @@ MB.prices = [
   { mandi: "bikaner", crop: "moongphali", min: 6766, modal: 6766, max: 6766, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "deesa", crop: "moongphali", min: 5755, modal: 8000, max: 8875, vs: 0, arrivals: "low", date: "2026-09-19", fresh: true },
   { mandi: "unjha", crop: "jeera", min: 17150, modal: 20300, max: 24005, vs: 0, arrivals: "high", date: "2026-09-19", fresh: true },
-  { mandi: "jodhpur", crop: "jeera", min: 17000, modal: 19400, max: 21800, vs: 0, arrivals: "med", date: "2026-09-16", fresh: true },
+  { mandi: "jodhpur", crop: "jeera", min: 17500, modal: 19800, max: 21725, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "nagaur", crop: "jeera", min: 17500, modal: 19500, max: 22000, vs: 0, arrivals: "med", date: "2026-09-17", fresh: true },
   { mandi: "merta", crop: "jeera", min: 16000, modal: 19000, max: 21800, vs: 0, arrivals: "high", date: "2026-09-17", fresh: true },
   { mandi: "unjha", crop: "isabgol", min: 14200, modal: 14800, max: 15100, vs: -100, arrivals: "med", date: "2026-08-22", fresh: false },
@@ -298,7 +298,7 @@ MB.prices = [
   { mandi: "jodhpur", crop: "moth", min: 4050, modal: 4320, max: 4480, vs: 20, arrivals: "med", date: "2026-08-22", fresh: false },
   { mandi: "jaipur", crop: "moth", min: 4180, modal: 4400, max: 4550, vs: 15, arrivals: "low", date: "2026-08-22", fresh: false },
   { mandi: "indore", crop: "soyabean", min: 570, modal: 5700, max: 6055, vs: 0, arrivals: "high", date: "2026-09-19", fresh: true },
-  { mandi: "ujjain", crop: "soyabean", min: 2200, modal: 4500, max: 6067, vs: 0, arrivals: "high", date: "2026-09-19", fresh: true },
+  { mandi: "ujjain", crop: "soyabean", min: 2100, modal: 4500, max: 6067, vs: 0, arrivals: "high", date: "2026-09-19", fresh: true },
   { mandi: "harda", crop: "soyabean", min: 4601, modal: 5030, max: 5590, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "kota", crop: "soyabean", min: 5800, modal: 5800, max: 5800, vs: 0, arrivals: "low", date: "2026-09-15", fresh: true },
   { mandi: "indore", crop: "dhan", min: 2280, modal: 2350, max: 2420, vs: 10, arrivals: "low", date: "2026-08-22", fresh: false },
@@ -323,7 +323,7 @@ MB.prices = [
   { mandi: "merta", crop: "jau", min: 1860, modal: 1995, max: 2065, vs: 12, arrivals: "low", date: "2026-08-22", fresh: false },
   { mandi: "sri-ganganagar", crop: "jau", min: 2559, modal: 2559, max: 2559, vs: 0, arrivals: "low", date: "2026-09-17", fresh: true },
   { mandi: "jaipur", crop: "moong", min: 7200, modal: 7550, max: 7800, vs: 60, arrivals: "med", date: "2026-08-22", fresh: false },
-  { mandi: "jodhpur", crop: "moong", min: 7100, modal: 7500, max: 8000, vs: 0, arrivals: "low", date: "2026-09-16", fresh: true },
+  { mandi: "jodhpur", crop: "moong", min: 7500, modal: 7900, max: 8200, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
   { mandi: "nagaur", crop: "moong", min: 7600, modal: 8250, max: 8671, vs: 0, arrivals: "high", date: "2026-09-17", fresh: true },
   { mandi: "merta", crop: "moong", min: 7100, modal: 7700, max: 8551, vs: 0, arrivals: "med", date: "2026-09-17", fresh: true },
   { mandi: "bikaner", crop: "moong", min: 7281, modal: 7281, max: 7281, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
@@ -364,7 +364,7 @@ MB.prices = [
   { mandi: "deesa", crop: "tamatar", min: 1800, modal: 2000, max: 2200, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
   { mandi: "deesa", crop: "gehun", min: 2655, modal: 2750, max: 2830, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "deesa", crop: "sarson", min: 7555, modal: 7675, max: 7700, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
-  { mandi: "indore", crop: "lahsun", min: 1000, modal: 3500, max: 15800, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
+  { mandi: "indore", crop: "lahsun", min: 2860, modal: 7000, max: 14000, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "ujjain", crop: "lahsun", min: 750, modal: 5000, max: 15000, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "ujjain", crop: "aalu", min: 400, modal: 400, max: 400, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "ujjain", crop: "pyaz", min: 1377, modal: 3550, max: 3550, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
@@ -376,7 +376,7 @@ MB.prices = [
   { mandi: "harda", crop: "pyaz", min: 1800, modal: 2500, max: 3000, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
   { mandi: "harda", crop: "aalu", min: 1200, modal: 1300, max: 1400, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
   { mandi: "harda", crop: "tamatar", min: 2000, modal: 2200, max: 2500, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
-  { mandi: "mandsaur", crop: "gehun", min: 2660, modal: 2697, max: 2801, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
+  { mandi: "mandsaur", crop: "gehun", min: 2705, modal: 2705, max: 2705, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "mandsaur", crop: "moongphali", min: 4001, modal: 7454, max: 7454, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "mandsaur", crop: "makka", min: 2280, modal: 2501, max: 2501, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "mandsaur", crop: "sarson", min: 5256, modal: 7503, max: 7686, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
@@ -526,7 +526,7 @@ MB.prices = [
   { mandi: "neemuch", crop: "masoor", min: 2351, modal: 7451, max: 7451, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "neemuch", crop: "moong", min: 4100, modal: 7300, max: 7300, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "neemuch", crop: "jau", min: 2381, modal: 3040, max: 3040, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
-  { mandi: "neemuch", crop: "til", min: 4600, modal: 10900, max: 12200, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
+  { mandi: "neemuch", crop: "til", min: 3500, modal: 10900, max: 12200, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "neemuch", crop: "alsi", min: 5000, modal: 9682, max: 9682, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "neemuch", crop: "urad", min: 2000, modal: 7000, max: 8701, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "ratlam", crop: "chana", min: 6151, modal: 6600, max: 6600, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
@@ -612,8 +612,8 @@ MB.prices = [
   { mandi: "neemuch", crop: "methi", min: 3500, modal: 6200, max: 8700, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "mandsaur", crop: "methi", min: 3737, modal: 6090, max: 8300, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "unjha", crop: "methi", min: 6455, modal: 6455, max: 6455, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
-  { mandi: "jodhpur", crop: "isabgol", min: 9000, modal: 11800, max: 14425, vs: 0, arrivals: "med", date: "2026-09-16", fresh: true },
-  { mandi: "jodhpur", crop: "sarson", min: 6500, modal: 6900, max: 7380, vs: 0, arrivals: "med", date: "2026-09-16", fresh: true },
+  { mandi: "jodhpur", crop: "isabgol", min: 9000, modal: 11500, max: 13900, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
+  { mandi: "jodhpur", crop: "sarson", min: 6500, modal: 6950, max: 7380, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "kota", crop: "seb", min: 11000, modal: 11000, max: 11000, vs: 0, arrivals: "med", date: "2026-08-27", fresh: false },
   { mandi: "kota", crop: "anar", min: 10000, modal: 10000, max: 10000, vs: 0, arrivals: "med", date: "2026-08-27", fresh: false },
   { mandi: "kota", crop: "kela", min: 2000, modal: 2000, max: 2000, vs: 0, arrivals: "med", date: "2026-08-27", fresh: false },
@@ -745,7 +745,7 @@ MB.prices = [
   { mandi: "jodhpur", crop: "saunf", min: 9000, modal: 11800, max: 14425, vs: 0, arrivals: "med", date: "2026-09-16", fresh: true },
   { mandi: "jodhpur", crop: "methi", min: 4400, modal: 5400, max: 6300, vs: 0, arrivals: "med", date: "2026-09-16", fresh: true },
   { mandi: "ujjain", crop: "hara-matar", min: 3201, modal: 4000, max: 4000, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
-  { mandi: "neemuch", crop: "anar", min: 1300, modal: 1610, max: 1610, vs: 0, arrivals: "med", date: "2026-09-11", fresh: false },
+  { mandi: "neemuch", crop: "anar", min: 1680, modal: 1680, max: 1680, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "fatehabad", crop: "adrak", min: 4000, modal: 4000, max: 4000, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
   { mandi: "fatehabad", crop: "rice", min: 2600, modal: 2607, max: 2650, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
   { mandi: "fatehabad", crop: "lahsun", min: 3000, modal: 3000, max: 3000, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
@@ -754,7 +754,7 @@ MB.prices = [
   { mandi: "sirsa", crop: "adrak", min: 3500, modal: 3500, max: 3500, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
   { mandi: "rajkot", crop: "soyabean", min: 4800, modal: 5880, max: 6200, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "amreli", crop: "soyabean", min: 5500, modal: 5625, max: 5625, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
-  { mandi: "adampur", crop: "gwar", min: 5100, modal: 5785, max: 6470, vs: 0, arrivals: "med", date: "2026-09-16", fresh: true },
+  { mandi: "adampur", crop: "gwar", min: 5541, modal: 6070, max: 6600, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "indore", crop: "mirch", min: 12520, modal: 14000, max: 14000, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "mandsaur", crop: "soyabean", min: 500, modal: 5700, max: 5905, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "neemuch", crop: "soyabean", min: 2501, modal: 5700, max: 5988, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
@@ -782,8 +782,8 @@ MB.prices = [
   { mandi: "ramganj", crop: "soyabean", min: 4701, modal: 5621, max: 5911, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "sri-ganganagar", crop: "kapas", min: 8236, modal: 8440, max: 8585, vs: 0, arrivals: "med", date: "2026-09-17", fresh: true },
   { mandi: "patan", crop: "jeera", min: 19500, modal: 19800, max: 20000, vs: 0, arrivals: "med", date: "2026-09-17", fresh: true },
-  { mandi: "adampur", crop: "kapas", min: 8800, modal: 8930, max: 9060, vs: 0, arrivals: "med", date: "2026-09-16", fresh: true },
-  { mandi: "adampur", crop: "sarson", min: 7800, modal: 7950, max: 8100, vs: 0, arrivals: "med", date: "2026-09-16", fresh: true },
+  { mandi: "adampur", crop: "kapas", min: 8700, modal: 8742, max: 8785, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
+  { mandi: "adampur", crop: "sarson", min: 7120, modal: 7455, max: 7708, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "sirsa", crop: "kapas", min: 8500, modal: 8770, max: 8923, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "sirsa", crop: "sarson", min: 7500, modal: 7600, max: 7776, vs: 0, arrivals: "med", date: "2026-09-12", fresh: false },
   { mandi: "indore", crop: "methi", min: 4005, modal: 4005, max: 4005, vs: 0, arrivals: "med", date: "2026-09-01", fresh: false },
@@ -796,7 +796,7 @@ MB.prices = [
   { mandi: "kekri", crop: "jau", min: 2121, modal: 2424, max: 2650, vs: 0, arrivals: "med", date: "2026-09-10", fresh: false },
   { mandi: "kekri", crop: "saunf", min: 6000, modal: 7500, max: 9800, vs: 0, arrivals: "med", date: "2026-09-01", fresh: false },
   { mandi: "ramganj", crop: "lahsun", min: 14750, modal: 14750, max: 14750, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
-  { mandi: "neemuch", crop: "asaliya", min: 5891, modal: 6515, max: 6515, vs: 0, arrivals: "med", date: "2026-09-05", fresh: false },
+  { mandi: "neemuch", crop: "asaliya", min: 5500, modal: 5500, max: 5500, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "baran", crop: "til", min: 9201, modal: 9201, max: 9201, vs: 0, arrivals: "med", date: "2026-09-02", fresh: false },
   { mandi: "bikaner", crop: "jeera", min: 19475, modal: 19475, max: 19475, vs: 0, arrivals: "med", date: "2026-09-14", fresh: true },
   { mandi: "ratlam", crop: "arhar", min: 4876, modal: 4876, max: 4876, vs: 0, arrivals: "med", date: "2026-09-03", fresh: false },
@@ -827,7 +827,7 @@ MB.prices = [
   { mandi: "gondal", crop: "sarson", min: 6655, modal: 6655, max: 6655, vs: 0, arrivals: "med", date: "2026-09-08", fresh: false },
   { mandi: "gondal", crop: "til", min: 8630, modal: 11755, max: 12255, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "gondal", crop: "soyabean", min: 4505, modal: 5655, max: 5830, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
-  { mandi: "adampur", crop: "moong", min: 6900, modal: 7649, max: 7649, vs: 0, arrivals: "med", date: "2026-09-14", fresh: true },
+  { mandi: "adampur", crop: "moong", min: 6870, modal: 7075, max: 7281, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
   { mandi: "indore", crop: "til", min: 5625, modal: 5625, max: 5625, vs: 0, arrivals: "med", date: "2026-09-10", fresh: false },
   { mandi: "mandsaur", crop: "mirch", min: 16000, modal: 16000, max: 16000, vs: 0, arrivals: "med", date: "2026-09-08", fresh: false },
   { mandi: "beawar", crop: "moong", min: 7750, modal: 7750, max: 7750, vs: 0, arrivals: "med", date: "2026-09-17", fresh: true },
@@ -867,46 +867,46 @@ MB.prices = [
 MB.varietyPrices = [
   {
     "crop": "gwar",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Local",
     "mandi": "adampur",
-    "max": 6470,
-    "min": 5100,
-    "modal": 5785,
+    "max": 6600,
+    "min": 5541,
+    "modal": 6070,
     "variety": "Other"
   },
   {
     "crop": "kapas",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "adampur",
-    "max": 9060,
-    "min": 8800,
-    "modal": 8930,
+    "max": 8785,
+    "min": 8700,
+    "modal": 8742,
     "variety": "American"
   },
   {
     "crop": "moong",
-    "date": "2026-09-14",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "adampur",
-    "max": 7649,
-    "min": 6900,
-    "modal": 7649,
+    "max": 7281,
+    "min": 6870,
+    "modal": 7075,
     "variety": "Other"
   },
   {
     "crop": "sarson",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "adampur",
-    "max": 8100,
-    "min": 7800,
-    "modal": 7950,
+    "max": 7708,
+    "min": 7120,
+    "modal": 7455,
     "variety": "Other"
   },
   {
@@ -2605,13 +2605,13 @@ MB.varietyPrices = [
   },
   {
     "crop": "aalu",
-    "date": "2026-09-10",
-    "fresh": false,
+    "date": "2026-09-18",
+    "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "indore",
-    "max": 750,
-    "min": 750,
-    "modal": 750,
+    "max": 810,
+    "min": 810,
+    "modal": 810,
     "variety": "Local"
   },
   {
@@ -2770,13 +2770,13 @@ MB.varietyPrices = [
   },
   {
     "crop": "lahsun",
-    "date": "2026-09-12",
-    "fresh": false,
+    "date": "2026-09-18",
+    "fresh": true,
     "grade": "FAQ",
     "mandi": "indore",
-    "max": 5500,
-    "min": 4000,
-    "modal": 5500,
+    "max": 9577,
+    "min": 9577,
+    "modal": 9577,
     "variety": "Average"
   },
   {
@@ -2796,9 +2796,9 @@ MB.varietyPrices = [
     "fresh": true,
     "grade": "FAQ",
     "mandi": "indore",
-    "max": 15800,
+    "max": 17200,
     "min": 1000,
-    "modal": 3500,
+    "modal": 5500,
     "variety": "Garlic"
   },
   {
@@ -2808,7 +2808,7 @@ MB.varietyPrices = [
     "grade": "Non-FAQ",
     "mandi": "indore",
     "max": 14000,
-    "min": 6000,
+    "min": 2860,
     "modal": 7000,
     "variety": "Garlic"
   },
@@ -2896,8 +2896,8 @@ MB.varietyPrices = [
     "grade": "FAQ",
     "mandi": "indore",
     "max": 17960,
-    "min": 17960,
-    "modal": 17960,
+    "min": 6000,
+    "modal": 14010,
     "variety": "Dry"
   },
   {
@@ -2939,9 +2939,9 @@ MB.varietyPrices = [
     "fresh": true,
     "grade": "FAQ",
     "mandi": "indore",
-    "max": 4000,
+    "max": 4002,
     "min": 1200,
-    "modal": 4000,
+    "modal": 3110,
     "variety": "Onion"
   },
   {
@@ -2962,19 +2962,19 @@ MB.varietyPrices = [
     "grade": "FAQ",
     "mandi": "indore",
     "max": 4032,
-    "min": 1559,
-    "modal": 3741,
+    "min": 443,
+    "modal": 3715,
     "variety": "Other"
   },
   {
     "crop": "pyaz",
-    "date": "2026-09-17",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "indore",
-    "max": 3740,
-    "min": 404,
-    "modal": 3740,
+    "max": 3087,
+    "min": 3087,
+    "modal": 3087,
     "variety": "Other"
   },
   {
@@ -3276,24 +3276,24 @@ MB.varietyPrices = [
   },
   {
     "crop": "isabgol",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Local",
     "mandi": "jodhpur",
-    "max": 14425,
+    "max": 13900,
     "min": 9000,
-    "modal": 11800,
+    "modal": 11500,
     "variety": "Other"
   },
   {
     "crop": "jeera",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Local",
     "mandi": "jodhpur",
-    "max": 21800,
-    "min": 17000,
-    "modal": 19400,
+    "max": 21725,
+    "min": 17500,
+    "modal": 19800,
     "variety": "Other"
   },
   {
@@ -3309,24 +3309,24 @@ MB.varietyPrices = [
   },
   {
     "crop": "moong",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Local",
     "mandi": "jodhpur",
-    "max": 8000,
-    "min": 7100,
-    "modal": 7500,
+    "max": 8200,
+    "min": 7500,
+    "modal": 7900,
     "variety": "Other"
   },
   {
     "crop": "sarson",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Local",
     "mandi": "jodhpur",
     "max": 7380,
     "min": 6500,
-    "modal": 6900,
+    "modal": 6950,
     "variety": "Other"
   },
   {
@@ -3764,9 +3764,9 @@ MB.varietyPrices = [
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "mandsaur",
-    "max": 2801,
+    "max": 2895,
     "min": 2660,
-    "modal": 2697,
+    "modal": 2799,
     "variety": "Lokwan"
   },
   {
@@ -3947,24 +3947,24 @@ MB.varietyPrices = [
   },
   {
     "crop": "lahsun",
-    "date": "2026-09-15",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "FAQ",
     "mandi": "mandsaur",
-    "max": 5300,
-    "min": 5300,
-    "modal": 5300,
+    "max": 6500,
+    "min": 2000,
+    "modal": 5000,
     "variety": "Average"
   },
   {
     "crop": "lahsun",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "mandsaur",
-    "max": 6700,
-    "min": 6700,
-    "modal": 6700,
+    "max": 3511,
+    "min": 3511,
+    "modal": 3511,
     "variety": "Average"
   },
   {
@@ -3980,13 +3980,13 @@ MB.varietyPrices = [
   },
   {
     "crop": "lahsun",
-    "date": "2026-09-18",
+    "date": "2026-09-19",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "mandsaur",
-    "max": 22000,
-    "min": 1000,
-    "modal": 8000,
+    "max": 26001,
+    "min": 500,
+    "modal": 6000,
     "variety": "Garlic"
   },
   {
@@ -4149,9 +4149,9 @@ MB.varietyPrices = [
     "fresh": true,
     "grade": "FAQ",
     "mandi": "mandsaur",
-    "max": 5555,
+    "max": 6452,
     "min": 5555,
-    "modal": 5555,
+    "modal": 6452,
     "variety": "Groundnut seed"
   },
   {
@@ -4193,9 +4193,9 @@ MB.varietyPrices = [
     "fresh": true,
     "grade": "FAQ",
     "mandi": "mandsaur",
-    "max": 3475,
-    "min": 3400,
-    "modal": 3475,
+    "max": 3560,
+    "min": 2411,
+    "modal": 3560,
     "variety": "Onion"
   },
   {
@@ -4233,13 +4233,13 @@ MB.varietyPrices = [
   },
   {
     "crop": "soyabean",
-    "date": "2026-09-17",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "FAQ",
     "mandi": "mandsaur",
-    "max": 5643,
-    "min": 3200,
-    "modal": 5643,
+    "max": 3000,
+    "min": 800,
+    "modal": 3000,
     "variety": "Soyabeen"
   },
   {
@@ -4640,24 +4640,24 @@ MB.varietyPrices = [
   },
   {
     "crop": "anar",
-    "date": "2026-09-11",
-    "fresh": false,
+    "date": "2026-09-18",
+    "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "neemuch",
-    "max": 1610,
-    "min": 1300,
-    "modal": 1610,
+    "max": 1680,
+    "min": 1680,
+    "modal": 1680,
     "variety": "Pomegranate-Organic"
   },
   {
     "crop": "asaliya",
-    "date": "2026-09-05",
-    "fresh": false,
+    "date": "2026-09-18",
+    "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "neemuch",
-    "max": 6515,
-    "min": 5891,
-    "modal": 6515,
+    "max": 5500,
+    "min": 5500,
+    "modal": 5500,
     "variety": "Asalia"
   },
   {
@@ -4750,13 +4750,13 @@ MB.varietyPrices = [
   },
   {
     "crop": "isabgol",
-    "date": "2026-09-17",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "neemuch",
-    "max": 12800,
-    "min": 12000,
-    "modal": 12800,
+    "max": 12791,
+    "min": 9500,
+    "modal": 12791,
     "variety": "Isabgol"
   },
   {
@@ -4860,13 +4860,13 @@ MB.varietyPrices = [
   },
   {
     "crop": "lahsun",
-    "date": "2026-09-17",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "neemuch",
-    "max": 11400,
-    "min": 5000,
-    "modal": 11400,
+    "max": 22000,
+    "min": 2500,
+    "modal": 6000,
     "variety": "Garlic"
   },
   {
@@ -4915,13 +4915,13 @@ MB.varietyPrices = [
   },
   {
     "crop": "methi",
-    "date": "2026-09-17",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "neemuch",
-    "max": 6655,
-    "min": 6655,
-    "modal": 6655,
+    "max": 6571,
+    "min": 6202,
+    "modal": 6571,
     "variety": "Methiseeds"
   },
   {
@@ -4981,24 +4981,24 @@ MB.varietyPrices = [
   },
   {
     "crop": "pyaz",
-    "date": "2026-09-11",
-    "fresh": false,
+    "date": "2026-09-18",
+    "fresh": true,
     "grade": "FAQ",
     "mandi": "neemuch",
-    "max": 3412,
-    "min": 3412,
-    "modal": 3412,
+    "max": 2701,
+    "min": 2701,
+    "modal": 2701,
     "variety": "Medium"
   },
   {
     "crop": "pyaz",
-    "date": "2026-09-11",
-    "fresh": false,
+    "date": "2026-09-18",
+    "fresh": true,
     "grade": "FAQ",
     "mandi": "neemuch",
-    "max": 3990,
-    "min": 1100,
-    "modal": 2200,
+    "max": 1900,
+    "min": 1900,
+    "modal": 1900,
     "variety": "Onion"
   },
   {
@@ -5085,7 +5085,7 @@ MB.varietyPrices = [
     "grade": "FAQ",
     "mandi": "neemuch",
     "max": 12200,
-    "min": 4600,
+    "min": 3500,
     "modal": 10900,
     "variety": "Sesame"
   },
@@ -6928,13 +6928,13 @@ MB.varietyPrices = [
   },
   {
     "crop": "aalu",
-    "date": "2026-09-16",
+    "date": "2026-09-18",
     "fresh": true,
     "grade": "Non-FAQ",
     "mandi": "ujjain",
-    "max": 950,
-    "min": 382,
-    "modal": 950,
+    "max": 918,
+    "min": 775,
+    "modal": 918,
     "variety": "Potato"
   },
   {
@@ -7000,7 +7000,7 @@ MB.varietyPrices = [
     "mandi": "ujjain",
     "max": 3203,
     "min": 2311,
-    "modal": 2676,
+    "modal": 2625,
     "variety": "Wheat"
   },
   {
@@ -7077,7 +7077,7 @@ MB.varietyPrices = [
     "mandi": "ujjain",
     "max": 3910,
     "min": 150,
-    "modal": 3200,
+    "modal": 2600,
     "variety": "Onion"
   },
   {
@@ -7142,7 +7142,7 @@ MB.varietyPrices = [
     "grade": "FAQ",
     "mandi": "ujjain",
     "max": 6067,
-    "min": 2200,
+    "min": 2100,
     "modal": 4500,
     "variety": "Soyabeen"
   },
@@ -7526,7 +7526,7 @@ MB.cropModalHistory = {
     },
     {
       "date": "2026-09-19",
-      "mandis": 6,
+      "mandis": 7,
       "modal": 8000
     }
   ],
@@ -7682,8 +7682,8 @@ MB.cropModalHistory = {
     },
     {
       "date": "2026-09-19",
-      "mandis": 1,
-      "modal": 5991
+      "mandis": 2,
+      "modal": 5746
     }
   ],
   "bajra": [
@@ -8309,7 +8309,7 @@ MB.cropModalHistory = {
     {
       "date": "2026-09-19",
       "mandis": 9,
-      "modal": 11600
+      "modal": 11500
     }
   ],
   "jau": [
@@ -8413,7 +8413,7 @@ MB.cropModalHistory = {
     {
       "date": "2026-09-19",
       "mandis": 11,
-      "modal": 19400
+      "modal": 19500
     }
   ],
   "jowar": [
@@ -8569,7 +8569,7 @@ MB.cropModalHistory = {
     {
       "date": "2026-09-19",
       "mandis": 9,
-      "modal": 8875
+      "modal": 8770
     }
   ],
   "kela": [
@@ -8954,8 +8954,8 @@ MB.cropModalHistory = {
     },
     {
       "date": "2026-09-19",
-      "mandis": 23,
-      "modal": 7400
+      "mandis": 24,
+      "modal": 7350
     }
   ],
   "moongphali": [
@@ -9175,7 +9175,7 @@ MB.cropModalHistory = {
     {
       "date": "2026-09-19",
       "mandis": 23,
-      "modal": 7500
+      "modal": 7455
     }
   ],
   "saunf": [
