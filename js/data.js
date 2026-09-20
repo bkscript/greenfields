@@ -39,6 +39,7 @@ MB.states = [
   { slug: "haryana", hi: "हरियाणा", en: "Haryana", short: "HR" },
   { slug: "andhra-pradesh", hi: "आंध्र प्रदेश", en: "Andhra Pradesh", short: "AP" },
   { slug: "karnataka", hi: "कर्नाटक", en: "Karnataka", short: "KA" },
+  { slug: "uttar-pradesh", hi: "उत्तर प्रदेश", en: "Uttar Pradesh", short: "UP" },
 ];
 
 MB.crops = [
@@ -191,6 +192,7 @@ MB.mandis = [
   { slug: "guntur", hi: "गुंटूर", en: "Guntur", state: "andhra-pradesh", district: { hi: "गुंटूर", en: "Guntur" } },
   { slug: "byadgi", hi: "ब्याडगी", en: "Byadgi", state: "karnataka", district: { hi: "हावेरी", en: "Haveri" } },
   { slug: "mathania", hi: "मथानिया", en: "Mathania", state: "rajasthan", district: { hi: "जोधपुर", en: "Jodhpur" } },
+  { slug: "agra", hi: "आगरा", en: "Agra", state: "uttar-pradesh", district: { hi: "आगरा", en: "Agra" } },
 ];
 
 MB.AGMARKNET_ALIASES = {
@@ -204,7 +206,8 @@ MB.AGMARKNET_ALIASES = {
     "sirsa": ["New Grain Market , Sirsa APMC"],
     "guntur": ["Guntur APMC"],
     "byadgi": ["Byadagi APMC"],
-    "mathania": ["Osiyan Mathania APMC"]
+    "mathania": ["Osiyan Mathania APMC"],
+    "agra": ["Agra APMC"]
   },
   "crops": {
     "kapas": ["Cotton", "Desi Cotton", "Kapas", "Narma", "American Cotton", "Bt Cotton", "BT Cotton"],
@@ -245,6 +248,25 @@ MB.AGMARKNET_ALIASES = {
 };
 
 MB.prices = [
+  { mandi: "agra", crop: "hari-mirch", min: 1500, modal: 1500, max: 1500, vs: 0, arrivals: "med", date: "2026-09-20", fresh: true },
+  { mandi: "agra", crop: "aalu", min: 500, modal: 555, max: 1100, vs: 0, arrivals: "high", date: "2026-09-19", fresh: true },
+  { mandi: "agra", crop: "rice", min: 3400, modal: 4611, max: 8240, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
+  { mandi: "agra", crop: "moong", min: 8768, modal: 8793, max: 9515, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "pyaz", min: 4000, modal: 4000, max: 4000, vs: 0, arrivals: "med", date: "2026-09-17", fresh: true },
+  { mandi: "agra", crop: "alsi", min: 12712, modal: 12712, max: 12712, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "tamatar", min: 1400, modal: 4451, max: 7400, vs: 0, arrivals: "med", date: "2026-09-20", fresh: true },
+  { mandi: "agra", crop: "gehun", min: 2700, modal: 2765, max: 2830, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "hara-dhaniya", min: 14608, modal: 14639, max: 15604, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "adrak", min: 5000, modal: 7694, max: 13000, vs: 0, arrivals: "low", date: "2026-09-17", fresh: true },
+  { mandi: "agra", crop: "moongphali", min: 10858, modal: 14436, max: 14587, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "methi", min: 15000, modal: 15000, max: 15000, vs: 0, arrivals: "low", date: "2026-09-17", fresh: true },
+  { mandi: "agra", crop: "mirch", min: 41138, modal: 41138, max: 41138, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "lahsun", min: 26460, modal: 26460, max: 26460, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "makka", min: 4370, modal: 4370, max: 4370, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "sarson", min: 9841, modal: 10968, max: 11391, vs: 0, arrivals: "med", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "til", min: 16892, modal: 16892, max: 16892, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "saunf", min: 30248, modal: 30248, max: 30248, vs: 0, arrivals: "low", date: "2026-09-18", fresh: true },
+  { mandi: "agra", crop: "bajra", min: 2000, modal: 2000, max: 2000, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "sri-ganganagar", crop: "gehun", min: 2722, modal: 2730, max: 2730, vs: 0, arrivals: "high", date: "2026-09-17", fresh: true },
   { mandi: "jaipur", crop: "gehun", min: 2563, modal: 2647, max: 2731, vs: 0, arrivals: "med", date: "2026-09-19", fresh: true },
   { mandi: "kota", crop: "gehun", min: 2650, modal: 2650, max: 2650, vs: 0, arrivals: "med", date: "2026-09-15", fresh: true },
@@ -9706,6 +9728,8 @@ MB.seo = {
   guntur: { hi: "गुंटूर मंडी भाव आज: सूखी मिर्च के उपलब्ध मंडी भाव और किस्म-वार रेट इस पेज पर देखें। तुलना करते समय किस्म और grade एक ही रखें।", en: "Guntur Mandi Bhav Today: check available dry-chilli market prices and variety-wise rates. Compare the same variety and grade." },
   byadgi: { hi: "ब्याडगी मंडी भाव आज: सूखी मिर्च की Guntur, Kaddi और Dabbi जैसी उपलब्ध किस्मों के भाव इस पेज पर देखें। तुलना करते समय किस्म और grade एक ही रखें।", en: "Byadgi Mandi Bhav Today: check available dry-chilli rates for varieties such as Guntur, Kaddi and Dabbi. Compare the same variety and grade." },
   mathania: { hi: "मथानिया मंडी भाव आज: बाजरा, जीरा, इसबगोल, सरसों, सौंफ और गेहूं के उपलब्ध मंडी भाव इस पेज पर देखें। तुलना करते समय फसल और किस्म एक ही रखें।", en: "Mathania Mandi Bhav Today: check available bajra, cumin, isabgol, mustard, fennel and wheat market prices. Compare the same crop and variety." },
+  agra: { hi: "आगरा मंडी भाव आज: Agra APMC में आलू, बाजरा, सरसों, तिल, गेहूं और अन्य उपलब्ध उपज के न्यूनतम, मॉडल व अधिकतम रेट देखें।", en: "Agra Mandi Bhav Today: check available live rates for potato, bajra, mustard, sesame, wheat and other commodities reported by Agra APMC." },
+  "uttar-pradesh": { hi: "उत्तर प्रदेश की उपलब्ध मंडियों के आज के न्यूनतम, मॉडल और अधिकतम कृषि उपज भाव देखें।", en: "Check today's available minimum, modal and maximum agricultural market prices from Uttar Pradesh mandis." },
 };
 
 MB.articles = {
@@ -10036,6 +10060,15 @@ MB.articleProfiles = {
     "quality": "ताजगी, हरा रंग, कोमल पत्तियां, साफ छंटाई और बिना मुरझाए बंडल सुआ पत्ती की गुणवत्ता में फर्क लाते हैं। पीली, दबाई हुई या ज्यादा डंठल वाली पत्तियों का भाव अलग हो सकता है।",
     "market": "सर्दियों की स्थानीय आवक, जल्दी खराब होने की प्रकृति और आसपास की मांग के कारण सुआ पत्ती का बाजार भाव तेजी से बदल सकता है। उपलब्ध रिकॉर्ड में प्रति किलो भाव देखकर ही तुलना करें।",
     "advice": ["सुआ पत्ती का भाव सूखे सुआ बीज से अलग देखें।", "ताजे और मुरझाए बंडल अलग रखकर गुणवत्ता समझें।", "खरीद या बिक्री से पहले प्रति किलो दर और बंडल की ताजगी दोनों देखें।"]
+  },
+  "agra": {
+    "title": "आगरा मंडी भाव आज: स्थानीय फसलों और रेट की उपयोगी जानकारी",
+    "howTitle": "आज का Agra Mandi Bhav कैसे पढ़ें",
+    "adviceTitle": "आगरा मंडी में खरीद या बिक्री से पहले ध्यान रखें",
+    "intro": "आगरा कृषि उपज मंडी (Agra APMC) में अनाज, तिलहन, दालों के साथ आलू और दूसरी सब्जियों के भी प्रकाशित रिकॉर्ड मिलते हैं। इस पेज पर केवल आगरा मंडी से मेल खाने वाले उपलब्ध न्यूनतम, मॉडल और अधिकतम भाव दिखाए जाते हैं; खुदरा बाजार का रेट इससे अलग हो सकता है।",
+    "quality": "आगरा मंडी में आलू की छंटाई और आकार, गेहूं व बाजरा की नमी-सफाई तथा सरसों और तिल की गुणवत्ता के अनुसार अलग lot की बोली बदल सकती है। इसलिए केवल सबसे ऊँचे भाव को सामान्य रेट मानने के बजाय मॉडल भाव और पूरी range साथ देखें।",
+    "market": "आलू की स्थानीय आवक, अनाज और तिलहन की मौसमी उपलब्धता, व्यापारी मांग तथा परिवहन की स्थिति आगरा मंडी के भाव पर असर डाल सकती है। अलग फसल का नवीनतम प्रकाशित दिन भी अलग हो सकता है, इसलिए तालिका में freshness संकेत देखकर तुलना करें।",
+    "advice": ["Agra APMC और आसपास की दूसरी मंडियों के नाम आपस में न मिलाएँ।", "सरसों, तिल, बाजरा और गेहूं की तुलना एक ही फसल और समान गुणवत्ता में करें।", "सब्जियों के प्रति किलो भाव को मंडी के प्रति क्विंटल रिकॉर्ड से सही रूपांतरण के बाद ही समझें।"]
   }
 };
 
@@ -10274,6 +10307,8 @@ MB.faqs = {
     { "crop": "sarson", "q": "कोटा मंडी सरसों का भाव आज का" }
   ],
   "indore": [
+    { "q": "इंदौर मंडी में आज के भाव क्या हैं?", "a": "इंदौर मंडी में आज उपलब्ध सभी फसलों के न्यूनतम, मॉडल और अधिकतम भाव ऊपर दी गई मंडी भाव तालिका में देखें।" },
+    { "q": "Indore Mandi Bhav Today live", "a": "इंदौर मंडी के उपलब्ध live rates और सभी फसलों की पूरी price range ऊपर दी गई मंडी भाव तालिका में देखें।" },
     { "crop": "pyaz", "q": "इंदौर मंडी में प्याज का आज का भाव क्या है?" },
     { "crop": "soyabean", "q": "आज इंदौर मंडी में सोयाबीन का क्या भाव है?" },
     { "crop": "gehun", "q": "इंदौर मंडी में गेहूं का आज का रेट क्या है?" },
@@ -10302,6 +10337,7 @@ MB.faqs = {
     { "crop": "chana", "q": "72 gold chana harda mandi bhav" }
   ],
   "mandsaur": [
+    { "q": "आज मंदसौर मंडी में कौन-कौन से भाव चल रहे हैं?", "a": "मंदसौर मंडी में आज उपलब्ध सभी फसलों के न्यूनतम, मॉडल और अधिकतम भाव ऊपर दी गई मंडी भाव तालिका में देखें।" },
     { "crop": "soyabean", "q": "मंदसौर मंडी में आज सोयाबीन का क्या भाव बिका?" },
     { "crop": "lahsun", "q": "मंदसौर में आज लहसुन का क्या भाव है?" },
     { "crop": "soyabean", "q": "मंदसौर मंडी भाव सोयाबीन" },
@@ -10312,6 +10348,13 @@ MB.faqs = {
     { "q": "ग्वार फली का दूसरा नाम क्या है?", "a": "ग्वार फली को ग्वार की कोमल फली, Cluster Beans और Guar Bean भी कहा जाता है। यह ग्वार के सूखे दाने से अलग सब्जी है, इसलिए दोनों के भाव और उपयोग को एक जैसा नहीं मानना चाहिए।" },
     { "q": "ग्वार की फली खाने के क्या फायदे हैं?", "a": "ग्वार की फली एक फलीदार सब्जी है। इसे संतुलित भोजन में शामिल करने से आहारीय रेशा और कुछ विटामिन-खनिज मिलते हैं। इसे किसी बीमारी का इलाज न मानें; व्यक्तिगत आहार संबंधी सलाह के लिए योग्य स्वास्थ्य विशेषज्ञ से बात करें।" },
     { "q": "ग्वार की फली कौन से महीने में बोई जाती है?", "a": "बुआई का समय क्षेत्र, किस्म और सिंचाई पर निर्भर है। राजस्थान जैसे वर्षा-आधारित क्षेत्रों में प्रभावी मानसून के बाद जुलाई का पहला-दूसरा सप्ताह सामान्य समय माना जाता है; कुछ सिंचित या गर्म क्षेत्रों में दूसरी ऋतु भी संभव होती है। अपने जिले के कृषि विभाग या कृषि विज्ञान केंद्र की सलाह के अनुसार समय चुनें।" }
+  ],
+  "agra": [
+    { "q": "Agra mandi live", "a": "आगरा मंडी के उपलब्ध live rates और सभी फसलों की पूरी price range ऊपर दी गई मंडी भाव तालिका में देखें।" },
+    { "q": "Agra mandi today", "a": "आगरा मंडी में आज उपलब्ध सभी फसलों के भाव ऊपर दी गई मंडी भाव तालिका में देखें।" },
+    { "q": "Agra Mandi bhav Today", "a": "आगरा मंडी के आज उपलब्ध न्यूनतम, मॉडल और अधिकतम भाव ऊपर दी गई मंडी भाव तालिका में देखें।" },
+    { "q": "Agra anaj mandi bhav today", "a": "आगरा अनाज मंडी के आज उपलब्ध फसल भाव ऊपर दी गई मंडी भाव तालिका में देखें।" },
+    { "q": "Agra Mandi Rate Today", "a": "Agra Mandi के आज उपलब्ध सभी crop rates ऊपर दी गई मंडी भाव तालिका में देखें।" }
   ],
   "ratlam": [
     { "crop": "gehun", "q": "रतलाम मंडी में गेहूं का आज का भाव क्या है?" },
@@ -10545,8 +10588,6 @@ Object.assign(MB.dynamicMandiFaqs, {
 
 Object.assign(MB.dynamicMandiFaqs, {
   "indore": (MB.dynamicMandiFaqs["indore"] || []).concat([
-    { "type": "overview", "q": "इंदौर मंडी में आज के भाव क्या हैं?" },
-    { "type": "overview", "q": "Indore Mandi Bhav Today live" },
     { "type": "container", "q": "डालर चने का कंटेनर रेट क्या है?" },
     { "type": "container", "q": "Indore Mandi Bhav container" },
     { "crop": "gehun", "variety": "Lokwan", "q": "इंदौर मंडी लोकवन में गेहूं का आज का भाव क्या है?" },
@@ -10559,7 +10600,6 @@ Object.assign(MB.dynamicMandiFaqs, {
 Object.assign(MB.dynamicMandiFaqs, {
   "mandsaur": (MB.dynamicMandiFaqs["mandsaur"] || []).concat([
     { "crop": "lahsun", "q": "मंदसौर में आज लहसुन का मंडी भाव क्या है?" },
-    { "type": "overview", "q": "आज मंदसौर मंडी में कौन-कौन से भाव चल रहे हैं?" },
     { "crop": "soyabean", "q": "Mandsaur Mandi Bhav today soyabean" },
     { "crop": "alsi", "q": "Mandsaur Mandi Bhav today alsi" },
     { "crop": "lahsun", "q": "Mandsaur Mandi Bhav today lahsun" },
@@ -10567,6 +10607,16 @@ Object.assign(MB.dynamicMandiFaqs, {
     { "type": "previous", "q": "Mandsaur mandi bhav yesterday" },
     { "crop": "gehun", "q": "Mandsaur mandi bhav gehu" }
   ])
+});
+
+Object.assign(MB.dynamicMandiFaqs, {
+  "agra": [
+    { "crop": "sarson", "q": "Agra mandi bhav today sarso" },
+    { "crop": "sarson", "q": "Agra mandi bhav sarso" },
+    { "crop": "sarson", "q": "Agra mandi sarso rate today" },
+    { "crop": "til", "q": "Agra mandi til ka bhav" },
+    { "crop": "bajra", "q": "agra mandi bajra bhav today" }
+  ]
 });
 
 MB.dynamicCropFaqs = {

@@ -97,13 +97,7 @@ MB.page = function mandiPage() {
       const cropHi = crop ? crop.hi : item.cropHi || item.crop;
       const cropLabel = cropHi + (item.variety ? " की " + item.variety + " किस्म" : "");
       let answer;
-      if (item.type === "overview") {
-        answer = baseRows.length ? baseRows.map((price) => {
-          const name = (u.cropBySlug(price.crop) || {}).hi || price.crop;
-          return name + ": मॉडल " + u.rupee(price.modal) + ", न्यूनतम " + u.rupee(price.min) +
-            " और अधिकतम " + u.rupee(price.max) + " प्रति क्विंटल";
-        }).join("; ") + "।" : "ऊपर इस मंडी के उपलब्ध रिकॉर्ड देखें।";
-      } else if (item.type === "previous") {
+      if (item.type === "previous") {
         answer = mandi.hi + " मंडी के कल के भाव का अलग सत्यापित snapshot अभी उपलब्ध नहीं है। ऊपर तालिका में प्रत्येक फसल का उपलब्ध नवीनतम प्रकाशित रिकॉर्ड और उसकी तारीख देखें।";
       } else if (item.type === "container") {
         answer = "इंदौर के डॉलर चने का अलग सत्यापित कंटेनर रेट अभी इस साइट के डेटा में नहीं है। ऊपर दिए मंडी के प्रति क्विंटल भाव को कंटेनर रेट न मानें।";
