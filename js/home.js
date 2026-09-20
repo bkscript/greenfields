@@ -97,6 +97,35 @@ MB.page = function homePage() {
     : '<div class="produce-break"><span>सब्जियां और फल</span><small>Vegetables &amp; fruits</small></div>' +
       '<div class="grid-crops landing-crops produce-crops">' + produceTiles + "</div>";
 
+  const stateCards = MB.states
+    .map((state) => {
+      const mandis = MB.mandis.filter((mandi) => mandi.state === state.slug);
+      const mandiSlugs = new Set(mandis.map((mandi) => mandi.slug));
+      const rows = MB.prices.filter((price) => mandiSlugs.has(price.mandi) && u.isFreshPrice(price));
+      const cropCount = new Set(rows.map((price) => price.crop)).size;
+      if (!mandis.length || !rows.length) return "";
+      return (
+        '<a class="state-tile" href="' +
+        u.stateHref(state.slug) +
+        '"><span class="state-code">' +
+        state.short +
+        '</span><span class="state-copy"><strong>' +
+        state.hi +
+        '</strong><small>' +
+        mandis.length +
+        " मंडियाँ · " +
+        cropCount +
+        ' फसलें</small></span><span class="state-arrow" aria-hidden="true">→</span></a>'
+      );
+    })
+    .filter(Boolean)
+    .join("");
+  const stateSection = !stateCards
+    ? ""
+    : '<section class="land-block pad state-home-block" id="rajya"><h2>राज्य के अनुसार मंडी भाव</h2><p class="section-intro">अपने राज्य की मंडियाँ और आज के उपलब्ध फसल भाव देखें।</p><div class="state-grid">' +
+      stateCards +
+      "</div></section>";
+
   const bullionData = MB.BULLION || {};
   const bullionRates = bullionData.rates || [];
   const goldRate = bullionRates.find((rate) => rate.slug === "gold-999");
@@ -255,6 +284,7 @@ MB.page = function homePage() {
     "</div>" +
     produceSection +
     "</section>" +
+    stateSection +
     bullionPromo +
     '<section class="land-block pad" id="mandiyan">' +
     "<h2>प्रसिद्ध मंडियाँ</h2>" +
