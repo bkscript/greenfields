@@ -12,7 +12,10 @@ MB.page = function mandiPage() {
   }
 
   const state = u.stateBySlug(mandi.state);
-  document.title = mandi.hi + " मंडी भाव | " + mandi.en + " Mandi Bhav";
+  const mandiHi = mandi.hi.endsWith("मंडी") ? mandi.hi : mandi.hi + " मंडी";
+  const mandiEn = / mandi$/i.test(mandi.en) ? mandi.en : mandi.en + " Mandi";
+  const pageTitle = mandiHi + " भाव आज | " + mandiEn + " Bhav Today";
+  document.title = pageTitle;
 
   const baseRows = u.pricesFor({ mandi: slug });
   const sourceVarietyRows = u.varietyPricesFor({ mandi: slug });
@@ -100,6 +103,8 @@ MB.page = function mandiPage() {
           return name + ": मॉडल " + u.rupee(price.modal) + ", न्यूनतम " + u.rupee(price.min) +
             " और अधिकतम " + u.rupee(price.max) + " प्रति क्विंटल";
         }).join("; ") + "।" : "ऊपर इस मंडी के उपलब्ध रिकॉर्ड देखें।";
+      } else if (item.type === "previous") {
+        answer = mandi.hi + " मंडी के कल के भाव का अलग सत्यापित snapshot अभी उपलब्ध नहीं है। ऊपर तालिका में प्रत्येक फसल का उपलब्ध नवीनतम प्रकाशित रिकॉर्ड और उसकी तारीख देखें।";
       } else if (item.type === "container") {
         answer = "इंदौर के डॉलर चने का अलग सत्यापित कंटेनर रेट अभी इस साइट के डेटा में नहीं है। ऊपर दिए मंडी के प्रति क्विंटल भाव को कंटेनर रेट न मानें।";
       } else if (item.varieties && varietyRows.length) {
@@ -213,10 +218,8 @@ MB.page = function mandiPage() {
       mandi.hi +
       "</p>" +
       "<h1>" +
-      mandi.hi +
-      " मंडी भाव | " +
-      mandi.en +
-      " Mandi Bhav</h1>" +
+      u.escapeHtml(pageTitle) +
+      "</h1>" +
       '<p class="sub">' +
       (seo.hi || state.hi + " · " + mandi.district.hi) +
       "</p>" +

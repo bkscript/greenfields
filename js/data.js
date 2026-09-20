@@ -10551,6 +10551,19 @@ Object.assign(MB.dynamicMandiFaqs, {
   ])
 });
 
+Object.assign(MB.dynamicMandiFaqs, {
+  "mandsaur": (MB.dynamicMandiFaqs["mandsaur"] || []).concat([
+    { "crop": "lahsun", "q": "मंदसौर में आज लहसुन का मंडी भाव क्या है?" },
+    { "type": "overview", "q": "आज मंदसौर मंडी में कौन-कौन से भाव चल रहे हैं?" },
+    { "crop": "soyabean", "q": "Mandsaur Mandi Bhav today soyabean" },
+    { "crop": "alsi", "q": "Mandsaur Mandi Bhav today alsi" },
+    { "crop": "lahsun", "q": "Mandsaur Mandi Bhav today lahsun" },
+    { "crop": "pyaz", "q": "Mandsaur Mandi Bhav today pyaj" },
+    { "type": "previous", "q": "Mandsaur mandi bhav yesterday" },
+    { "crop": "gehun", "q": "Mandsaur mandi bhav gehu" }
+  ])
+});
+
 MB.dynamicCropFaqs = {
   "moong": [
     { "type": "per-kg", "q": "1 किलो मूंग का दाम क्या है?" },
@@ -10614,6 +10627,9 @@ MB.dynamicStateFaqs = {
 };
 
 MB.pendingFaqs = {
+  "jaora": [
+    { "q": "Jaora Mandi bhav Today", "a": "जावरा मंडी का सत्यापित भाव रिकॉर्ड और public mandi page अभी इस साइट पर नहीं जुड़ा है।" }
+  ],
   "khargone": [
     { "q": "Khargone Mandi bhav", "a": "खरगोन मंडी का सत्यापित भाव रिकॉर्ड अभी इस साइट पर नहीं जुड़ा है।" }
   ],
