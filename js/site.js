@@ -258,16 +258,8 @@
   function renderFooter() {
     const foot = document.getElementById("foot");
     if (!foot) return;
-    const states = (MB.states || [])
-      .map(function (s) {
-        return '<a href="' + stateHref(s.slug) + '">' + s.hi + "</a>";
-      })
-      .join(" · ");
     foot.innerHTML =
       joinGroupBtn("wa-join-foot") +
-      '<nav class="foot-states">' +
-      states +
-      "</nav>" +
       '<nav class="foot-links" aria-label="ज़रूरी जानकारी">' +
       '<a href="' + siteHref("jaankari/source-method/") + '">Sources</a>' +
       '<a href="' + siteHref("jaankari/about/") + '">About</a>' +

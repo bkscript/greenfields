@@ -54,8 +54,6 @@ MB.page = function homePage() {
     ["jeera", "dhaniya", "saunf", "sua", "methi", "hari-methi", "isabgol", "haldi", "mirch"],
     ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "sua-patti", "hara-matar", "gwarphali", "amrood", "kela", "seb", "anar"],
   ];
-  const famous = ["unjha", "indore", "mandsaur", "sri-ganganagar", "kota", "gondal", "guntur", "byadgi", "mathania", "sirsa", "shahabad"];
-
   const fieldCrops = cropGroups.slice(0, -1).reduce((all, group) => all.concat(group), []);
   const produceCrops = cropGroups[cropGroups.length - 1];
   function tilesFor(slugs, kgOnly) {
@@ -135,31 +133,6 @@ MB.page = function homePage() {
       u.siteHref("sona-chandi-ka-bhav/") +
       '"><div class="bullion-home-copy"><h2>1 तोला सोना-चांदी का भाव</h2><small>Gold 999 · Silver 999</small></div><div class="bullion-home-mark" aria-hidden="true"><span class="bullion-gold-mark">Au</span><span class="bullion-silver-mark">Ag</span></div><strong class="bullion-home-link">आज का भाव देखें <b>→</b></strong></a></section>'
     : "";
-
-  const mandiCards = famous
-    .map((slug) => {
-      const m = u.mandiBySlug(slug);
-      const st = u.stateBySlug(m.state);
-      const rows = u.pricesFor({ mandi: slug }).filter(u.isFreshPrice);
-      const top = rows.slice().sort((a, b) => b.modal - a.modal)[0];
-      if (!top) return "";
-      const crop = top ? u.cropBySlug(top.crop) : null;
-      return (
-        '<a class="mandi-tile" href="' +
-        u.mandiHref(slug) +
-        '"><span class="mandi-tile-top"><span class="mandi-state"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>' +
-        u.nameHi(st) +
-        '</span><span class="mandi-arrow" aria-hidden="true">→</span></span><strong>' +
-        u.nameHi(m) +
-        '</strong><span class="mandi-tile-price">' +
-        (crop
-          ? '<small>' + crop.hi + ' · मॉडल भाव</small><b>' + u.rupee(top.modal) + "/qtl</b>"
-          : "—") +
-        "</span></a>"
-      );
-    })
-    .filter(Boolean)
-    .join("");
 
   const tapeBits = (MB.TAPE || [])
     .map(function (t) {
@@ -284,11 +257,8 @@ MB.page = function homePage() {
     "</div>" +
     produceSection +
     "</section>" +
-    stateSection +
     bullionPromo +
-    '<section class="land-block pad" id="mandiyan">' +
-    "<h2>प्रसिद्ध मंडियाँ</h2>" +
-    '<div class="mandi-grid">' + mandiCards + "</div></section>";
+    stateSection;
 
   const go = document.getElementById("hero-go");
   if (go) go.addEventListener("click", () => u.goSearch());
