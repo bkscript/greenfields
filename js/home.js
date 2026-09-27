@@ -124,6 +124,30 @@ MB.page = function homePage() {
       stateCards +
       "</div></section>";
 
+  const blogCards = (MB.blogs || [])
+    .map((blog) => {
+      const href = u.siteHref("blog/" + blog.slug + "/");
+      return (
+        '<article class="home-blog-card"><a href="' + href + '">' +
+        '<span class="home-blog-media"><img src="' + u.siteHref(blog.image) + '" alt="' +
+        u.escapeHtml(blog.alt) + '" width="1200" height="630" loading="lazy" decoding="async" /></span>' +
+        '<span class="home-blog-copy"><small>' + u.escapeHtml(blog.category) + '</small><strong>' +
+        u.escapeHtml(blog.title) + '</strong><span>' + u.escapeHtml(blog.excerpt) +
+        '</span><b>पूरी जानकारी पढ़ें <i aria-hidden="true">→</i></b></span></a></article>'
+      );
+    })
+    .join("");
+  const blogSection = !blogCards
+    ? ""
+    : '<section class="land-block home-blog-section" aria-labelledby="home-blog-title">' +
+      '<div class="home-blog-heading"><div><span>खेती की काम की जानकारी</span><h2 id="home-blog-title">किसान गाइड्स</h2></div>' +
+      '<div class="home-blog-actions"><div class="home-blog-arrows" id="home-blog-arrows">' +
+      '<button type="button" data-blog-direction="-1" aria-label="पिछले लेख देखें">←</button>' +
+      '<button type="button" data-blog-direction="1" aria-label="अगले लेख देखें">→</button></div>' +
+      '<a href="' + u.siteHref("blog/") + '">सभी लेख देखें</a></div></div>' +
+      '<div class="home-blog-rail" id="home-blog-rail" tabindex="0" aria-label="किसान गाइड्स; बाएँ से दाएँ स्क्रॉल करें">' +
+      blogCards + "</div></section>";
+
   const bullionData = MB.BULLION || {};
   const bullionRates = bullionData.rates || [];
   const goldRate = bullionRates.find((rate) => rate.slug === "gold-999");
@@ -258,8 +282,36 @@ MB.page = function homePage() {
     produceSection +
     "</section>" +
     bullionPromo +
-    stateSection;
+    stateSection +
+    blogSection;
 
   const go = document.getElementById("hero-go");
   if (go) go.addEventListener("click", () => u.goSearch());
+
+  const blogRail = document.getElementById("home-blog-rail");
+  const blogArrows = document.getElementById("home-blog-arrows");
+  if (blogRail && blogArrows) {
+    const arrowButtons = Array.from(blogArrows.querySelectorAll("button"));
+    const updateBlogArrows = () => {
+      const overflow = blogRail.scrollWidth > blogRail.clientWidth + 2;
+      blogArrows.hidden = !overflow;
+      if (!overflow) return;
+      arrowButtons[0].disabled = blogRail.scrollLeft <= 2;
+      arrowButtons[1].disabled = blogRail.scrollLeft + blogRail.clientWidth >= blogRail.scrollWidth - 2;
+    };
+    arrowButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const card = blogRail.querySelector(".home-blog-card");
+        const gap = 16;
+        const step = card ? card.getBoundingClientRect().width + gap : blogRail.clientWidth * 0.85;
+        blogRail.scrollBy({
+          left: Number(button.dataset.blogDirection) * step,
+          behavior: "smooth",
+        });
+      });
+    });
+    blogRail.addEventListener("scroll", updateBlogArrows, { passive: true });
+    window.addEventListener("resize", updateBlogArrows);
+    requestAnimationFrame(updateBlogArrows);
+  }
 };

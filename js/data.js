@@ -16253,6 +16253,17 @@ MB.dynamicStateFaqs = {
   ]
 };
 
+MB.blogs = [
+  {
+    slug: "khet-ki-mitti-ki-janch",
+    category: "किसान गाइड",
+    title: "खेत की मिट्टी की जांच: बंपर पैदावार और मुनाफे का सबसे बड़ा राज़",
+    excerpt: "मिट्टी का सही नमूना लेने, जांच कराने और खाद का बेहतर इस्तेमाल करने का पूरा तरीका जानें।",
+    image: "img/blog/khet-ki-mitti-ki-janch.webp",
+    alt: "मिट्टी का नमूना दिखाते किसान और प्रयोगशाला में मिट्टी की जांच करती कृषि विशेषज्ञ"
+  }
+];
+
 MB.pendingFaqs = {
   "jaora": [
     { "q": "Jaora Mandi bhav Today", "a": "जावरा मंडी का सत्यापित भाव रिकॉर्ड और public mandi page अभी इस साइट पर नहीं जुड़ा है।" }
