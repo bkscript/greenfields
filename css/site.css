@@ -924,6 +924,28 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   font-weight: 700;
   letter-spacing: 0.01em;
 }
+.old-price-details {
+  border-top: 1px solid var(--line);
+  background: #fffaf2;
+}
+.old-price-details summary {
+  min-height: 44px;
+  padding: 13px 14px;
+  color: var(--stale);
+  font-size: 0.86rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+.old-price-details[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+.old-price-table {
+  overflow-x: auto;
+  background: var(--card);
+}
+.old-price-table table {
+  margin: 0;
+}
 .vs-up { color: var(--up); font-weight: 600; }
 .vs-down { color: var(--down); font-weight: 600; }
 .vs-flat { color: var(--muted); }

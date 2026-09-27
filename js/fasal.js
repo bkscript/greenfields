@@ -75,38 +75,49 @@ MB.page = function cropPage() {
       }
       return b.modal - a.modal;
     });
+  const currentTableRows = sortedRows.filter(u.isFreshPrice);
+  const staleTableRows = sortedRows.filter(u.isStalePrice);
+  const renderPriceRow = (r) => {
+    const m = u.mandiBySlug(r.mandi);
+    const st = u.stateBySlug(m.state);
+    const grade = r.grade
+      ? '<span class="variety-grade">' + u.escapeHtml(r.grade) + "</span>"
+      : "";
+    return (
+      "<tr><td><a class=\"detail-table-link\" href=\"" +
+      u.mandiHref(r.mandi, slug) +
+      '">' +
+      u.escapeHtml(u.nameHi(m)) +
+      (!st ? "" : ' <span class="table-state-code">(' + u.escapeHtml(st.short) + ")</span>") +
+      "</a></td>" +
+      '<td class="variety-name">' +
+      (r.variety ? u.escapeHtml(r.variety) + grade : "—") +
+      "</td>" +
+      '<td class="num modal-price">' +
+      u.priceCell(slug, r) +
+      "</td>" +
+      '<td class="num range-col">' +
+      u.rupee(r.min) +
+      "–" +
+      u.rupee(r.max).replace("₹", "") +
+      "</td></tr>"
+    );
+  };
+  const currentBody = currentTableRows.map(renderPriceRow).join("");
   let lastStaleDate = "";
-  const body = sortedRows
+  const staleBody = staleTableRows
     .map((r) => {
-      const m = u.mandiBySlug(r.mandi);
-      const st = u.stateBySlug(m.state);
-      const dateGroup = u.isStalePrice(r) && r.date !== lastStaleDate
+      const dateGroup = r.date !== lastStaleDate
         ? ((lastStaleDate = r.date), '<tr class="stale-date"><td colspan="4"><span>' + u.formatDateHi(r.date) + " के भाव</span></td></tr>")
         : "";
-      const grade = r.grade
-        ? '<span class="variety-grade">' + u.escapeHtml(r.grade) + "</span>"
-        : "";
-      return (
-        dateGroup + "<tr><td><a class=\"detail-table-link\" href=\"" +
-        u.mandiHref(r.mandi, slug) +
-        '">' +
-        u.escapeHtml(u.nameHi(m)) +
-        (!st ? "" : ' <span class="table-state-code">(' + u.escapeHtml(st.short) + ")</span>") +
-        "</a></td>" +
-        '<td class="variety-name">' +
-        (r.variety ? u.escapeHtml(r.variety) + grade : "—") +
-        "</td>" +
-        '<td class="num modal-price">' +
-        u.priceCell(slug, r) +
-        "</td>" +
-        '<td class="num range-col">' +
-        u.rupee(r.min) +
-        "–" +
-        u.rupee(r.max).replace("₹", "") +
-        "</td></tr>"
-      );
+      return dateGroup + renderPriceRow(r);
     })
     .join("");
+  const staleDetails = staleBody
+    ? '<details class="old-price-details"><summary>पुराने उपलब्ध भाव देखें</summary><div class="old-price-table"><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+      staleBody +
+      "</tbody></table></div></details>"
+    : "";
 
   const cropModelHistory = ((MB.cropModalHistory || {})[slug] || [])
     .filter((entry) => entry && entry.date && Number.isFinite(Number(entry.modal)))
@@ -258,8 +269,8 @@ MB.page = function cropPage() {
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
     '<section class="card crop-mandi-list"><h2>आज ' + crop.hi + ' के उपलब्ध मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
-    body +
-    "</tbody></table></section>" +
+    (currentBody || '<tr><td class="empty" colspan="4">आज के ताज़ा भाव उपलब्ध नहीं हैं।</td></tr>') +
+    "</tbody></table>" + staleDetails + "</section>" +
     '<p class="history-intro">नीचे की तालिका में पिछले 10 उपलब्ध दिनों के मॉडल भाव दिए गए हैं, जिनसे भाव के उतार-चढ़ाव का पता चलता है।</p>' +
     historyTable;
 

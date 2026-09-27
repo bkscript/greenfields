@@ -35,36 +35,47 @@ MB.page = function mandiPage() {
       if (highlight && b.crop === highlight) return 1;
       return b.modal - a.modal;
     });
+  const currentTableRows = sortedRows.filter(u.isFreshPrice);
+  const staleTableRows = sortedRows.filter(u.isStalePrice);
+  const renderPriceRow = (r) => {
+    const c = u.cropBySlug(r.crop);
+    const grade = r.grade
+      ? '<span class="variety-grade">' + u.escapeHtml(r.grade) + "</span>"
+      : "";
+    return (
+      "<tr><td><a class=\"detail-table-link\" href=\"" +
+      u.cropHref(r.crop, mandi.state) +
+      '">' +
+      u.escapeHtml(u.nameHi(c)) +
+      "</a></td>" +
+      '<td class="variety-name">' +
+      (r.variety ? u.escapeHtml(r.variety) + grade : "—") +
+      "</td>" +
+      '<td class="num modal-price">' +
+      u.priceCell(r.crop, r) +
+      "</td>" +
+      '<td class="num range-col">' +
+      u.rupee(r.min) +
+      "–" +
+      u.rupee(r.max).replace("₹", "") +
+      "</td></tr>"
+    );
+  };
+  const currentBody = currentTableRows.map(renderPriceRow).join("");
   let lastStaleDate = "";
-  const body = sortedRows
+  const staleBody = staleTableRows
     .map((r) => {
-      const c = u.cropBySlug(r.crop);
-      const dateGroup = u.isStalePrice(r) && r.date !== lastStaleDate
+      const dateGroup = r.date !== lastStaleDate
         ? ((lastStaleDate = r.date), '<tr class="stale-date"><td colspan="4"><span>' + u.formatDateHi(r.date) + " के भाव</span></td></tr>")
         : "";
-      const grade = r.grade
-        ? '<span class="variety-grade">' + u.escapeHtml(r.grade) + "</span>"
-        : "";
-      return (
-        dateGroup + "<tr><td><a class=\"detail-table-link\" href=\"" +
-        u.cropHref(r.crop, mandi.state) +
-        '">' +
-        u.escapeHtml(u.nameHi(c)) +
-        "</a></td>" +
-        '<td class="variety-name">' +
-        (r.variety ? u.escapeHtml(r.variety) + grade : "—") +
-        "</td>" +
-        '<td class="num modal-price">' +
-        u.priceCell(r.crop, r) +
-        "</td>" +
-        '<td class="num range-col">' +
-        u.rupee(r.min) +
-        "–" +
-        u.rupee(r.max).replace("₹", "") +
-        "</td></tr>"
-      );
+      return dateGroup + renderPriceRow(r);
     })
     .join("");
+  const staleDetails = staleBody
+    ? '<details class="old-price-details"><summary>पुराने उपलब्ध भाव देखें</summary><div class="old-price-table"><table><thead><tr><th>फसल</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+      staleBody +
+      "</tbody></table></div></details>"
+    : "";
 
   const nearby = MB.mandis
     .filter((m) => m.state === mandi.state && m.slug !== slug)
@@ -178,12 +189,13 @@ MB.page = function mandiPage() {
       : "") +
     "</p>" +
     '<section class="card mandi-crop-list"><h2>आज ' + mandi.hi + ' मंडी में फसलों के भाव</h2>' +
-    (rows.length
+    (currentBody
       ? "<table><thead><tr><th>फसल</th><th>किस्म</th>" +
         '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
-        body +
+        currentBody +
         "</tbody></table>"
-      : '<p class="empty">इस मंडी के भाव अभी उपलब्ध नहीं हैं।</p>') +
+      : '<p class="empty">आज के ताज़ा भाव उपलब्ध नहीं हैं।</p>') +
+    staleDetails +
     "</section>" +
     '<div class="chips">' +
     nearby +
