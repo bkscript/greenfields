@@ -1087,6 +1087,17 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   color: var(--text);
 }
 .article-section p:last-child { margin-bottom: 0; }
+.article-featured-image {
+  display: block;
+  margin: 18px 0 24px;
+}
+.article-featured-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
 .marwarmade-card {
   display: grid;
   grid-template-columns: minmax(170px, 0.8fr) minmax(0, 1.2fr);
