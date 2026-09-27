@@ -150,23 +150,21 @@ MB.page = function cropPage() {
         : u.pricesFor({ mandi: item.mandi, crop: slug })[0];
       if (!mandi) return "";
 
-      const answer = row
-        ? mandi.hi +
-          " में " +
-          crop.hi + (item.variety ? " (" + item.variety + ")" : "") +
-          " का उपलब्ध मॉडल भाव " +
-          u.rupee(row.modal) +
-          " प्रति क्विंटल है। न्यूनतम भाव " +
-          u.rupee(row.min) +
-          " और अधिकतम भाव " +
-          u.rupee(row.max) +
-          " है। यह उपलब्ध भाव रिकॉर्ड " +
-          u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) +
-          " का है।"
-        : mandi.hi +
-          " में " +
-          crop.hi + (item.variety ? " (" + item.variety + ")" : "") +
+      const cropLabel = crop.hi + (item.variety ? " (" + item.variety + ")" : "");
+      let answer;
+      if (row) {
+        const isCurrent = u.isFreshPrice(row);
+        answer = isCurrent
+          ? "आज " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+            u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
+            " और अधिकतम भाव " + u.rupee(row.max) + " है।"
+          : mandi.hi + " में " + cropLabel + " का आखिरी उपलब्ध मॉडल भाव " + u.formatUpdatedHi(row.date) +
+            " को " + u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
+            " और अधिकतम भाव " + u.rupee(row.max) + " था।";
+      } else {
+        answer = mandi.hi + " में " + cropLabel +
           " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया रिकॉर्ड उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+      }
 
       return (
         '<details class="faq-item"><summary>' +
@@ -179,36 +177,35 @@ MB.page = function cropPage() {
     .filter(Boolean)
     .join("");
 
-  const cropRows = u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
   const cropFaqEntities = [];
   const cropDynamicFaqs = ((MB.dynamicCropFaqs || {})[slug] || [])
     .map((item) => {
-      const median = cropRows.length
-        ? u.median(cropRows.map((row) => row.modal))
-        : null;
       let answer;
 
-      if (["mandi", "state", "nearby"].includes(item.type)) {
-        const matchingRows = baseRows.filter((row) => {
-          if (item.type === "mandi") return row.mandi === item.mandi;
-          if (item.type === "state") return (u.mandiBySlug(row.mandi) || {}).state === item.state;
-          return true;
-        });
-        const label = item.type === "mandi" ? item.mandiHi + " मंडी का " : "";
-        answer = matchingRows.length
-          ? matchingRows.map((row) => {
-              const name = (u.mandiBySlug(row.mandi) || {}).hi || item.mandiHi;
-              return name + ": मॉडल " + u.rupee(row.modal) + ", न्यूनतम " + u.rupee(row.min) +
-                " और अधिकतम " + u.rupee(row.max) + " प्रति क्विंटल";
-            }).join("; ") + "।"
-          : label + crop.hi + " का सत्यापित रिकॉर्ड अभी नहीं मिला है। ऊपर तालिका में अन्य उपलब्ध मंडियों के भाव देखें।";
-        if (item.type === "nearby") {
-          answer = "नीचे उपलब्ध मंडियों में से अपने नज़दीक की मंडी चुनें; आपकी लोकेशन अपने-आप नहीं ली गई है। " + answer;
+      if (item.type === "mandi") {
+        const row = baseRows.find((price) => price.mandi === item.mandi);
+        const mandi = u.mandiBySlug(item.mandi);
+        const mandiName = mandi ? mandi.hi : item.mandiHi;
+        if (!row) {
+          answer = mandiName + " मंडी में " + crop.hi +
+            " का सत्यापित रिकॉर्ड अभी नहीं मिला है। ऊपर तालिका में अन्य उपलब्ध मंडियों के भाव देखें।";
+        } else {
+          const isCurrent = u.isFreshPrice(row);
+          answer = isCurrent
+            ? "आज " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " को " + mandiName + " मंडी में " + crop.hi +
+              " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " +
+              u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
+            : mandiName + " मंडी में " + crop.hi + " का आखिरी उपलब्ध मॉडल भाव " +
+              u.formatUpdatedHi(row.date) + " को " + u.rupee(row.modal) +
+              " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
+              " और अधिकतम भाव " + u.rupee(row.max) + " था।";
         }
-      } else if (item.type === "crop") {
-        answer = median
-          ? crop.hi + " का उपलब्ध मॉडल भाव " + u.rupee(median) + " प्रति क्विंटल है। मंडी-वार भाव ऊपर तालिका में देखें।"
-          : "ऊपर तालिका में " + crop.hi + " के उपलब्ध मंडी रिकॉर्ड देखें।";
+      } else if (item.type === "per-kg") {
+        answer = Number.isFinite(med)
+          ? "आज " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " को " + crop.hi +
+            " का 1 किलो मॉडल भाव लगभग ₹" + (med / 100).toFixed(2) +
+            " है। अलग-अलग मंडियों और खुदरा बाजार में भाव अलग हो सकता है; मंडीवार भाव ऊपर तालिका में देखें।"
+          : crop.hi + " का मॉडल भाव अभी उपलब्ध नहीं है। उपलब्ध मंडीवार रिकॉर्ड ऊपर तालिका में देखें।";
       } else if (item.type === "msp") {
         answer = crop.msp
           ? crop.hi +
@@ -216,26 +213,8 @@ MB.page = function cropPage() {
             u.rupee(crop.msp) +
             " प्रति क्विंटल है। यह मंडी का भाव नहीं है; उपलब्ध मंडी भाव ऊपर तालिका में देखें।"
           : crop.hi + " के लिए सरकारी MSP रिकॉर्ड उपलब्ध नहीं है।";
-      } else if (!median) {
-        answer = crop.hi +
-          " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया रिकॉर्ड उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
-      } else if (item.type === "per-kg") {
-        answer = crop.hi +
-          " का उपलब्ध median मॉडल भाव " +
-          u.rupee(median) +
-          " प्रति क्विंटल है, यानी लगभग ₹" +
-          (median / 100).toFixed(2) +
-          " प्रति किलो। यह उपलब्ध भाव रिकॉर्ड " +
-          u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) +
-          " का है।";
       } else {
-        answer = "इस किस्म का अलग भाव रिकॉर्ड उपलब्ध नहीं है। " +
-          crop.hi +
-          " का उपलब्ध median मॉडल भाव " +
-          u.rupee(median) +
-          " प्रति क्विंटल है। यह उपलब्ध भाव रिकॉर्ड " +
-          u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) +
-          " का है।";
+        return "";
       }
 
       cropFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });

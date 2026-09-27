@@ -21,19 +21,16 @@ MB.page = function statePage() {
         const crop = u.cropBySlug(item.crop);
         const row = rows.find((price) => price.mandi === item.mandi && price.crop === item.crop);
         if (!market || !crop) return "";
-        const answer = row
-          ? market.hi + " में " + crop.hi + " का उपलब्ध मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है। यह उपलब्ध भाव रिकॉर्ड " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " का है।"
-          : market.hi + " में " + crop.hi + " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+        let answer;
+        if (row) {
+          const isCurrent = u.isFreshPrice(row);
+          answer = isCurrent
+            ? "आज " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " को " + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
+            : market.hi + " में " + crop.hi + " का आखिरी उपलब्ध मॉडल भाव " + u.formatUpdatedHi(row.date) + " को " + u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " था।";
+        } else {
+          answer = market.hi + " में " + crop.hi + " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+        }
         return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
-      }
-      if (item.type === "state-crop") {
-        const crop = u.cropBySlug(item.crop);
-        const list = rows.filter((price) => price.crop === item.crop && u.isFreshPrice(price));
-        if (!crop || !list.length) return "";
-        const med = u.median(list.map((price) => price.modal));
-        const best = list.slice().sort((a, b) => b.modal - a.modal)[0];
-        const market = u.mandiBySlug(best.mandi);
-        return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + state.hi + " में " + crop.hi + " का उपलब्ध राज्य median मॉडल भाव " + u.rupee(med) + " प्रति क्विंटल है। इस समय सबसे ऊंचा उपलब्ध मॉडल भाव " + market.hi + " में " + u.rupee(best.modal) + " प्रति क्विंटल है। यह उपलब्ध भाव रिकॉर्ड " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " का है।</p></details>";
       }
       return "";
     })
