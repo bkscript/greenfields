@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FasalBhav किसान गाइड्स</title>
+    <link>https://www.fasalbhav.in/blog/</link>
+    <description>खेती, फसल और किसान उपयोगी जानकारी के नवीनतम लेख।</description>
+    <language>hi-IN</language>
+    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.fasalbhav.in/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>गेहूं की बंपर पैदावार का फॉर्मूला: बुवाई का सही समय, टॉप 5 नई किस्में और खाद का गणित</title>
+      <link>https://www.fasalbhav.in/blog/gehun-ki-kheti/</link>
+      <guid isPermaLink="true">https://www.fasalbhav.in/blog/gehun-ki-kheti/</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+      <category>फसल गाइड</category>
+      <description>गेहूं की खेती में बुवाई का सही समय, DBW 327 सहित टॉप किस्में, बीज उपचार, खाद-जिंक और पहली सिंचाई की पूरी जानकारी।</description>
+      <enclosure url="https://www.fasalbhav.in/img/blog/gehun-ki-kheti-a-to-z.webp" length="174352" type="image/webp" />
+    </item>
+    <item>
+      <title>सरसों की बंपर पैदावार का सीक्रेट: बुवाई से कटाई तक ए टू जेड (A to Z) गाइड</title>
+      <link>https://www.fasalbhav.in/blog/sarson-ki-kheti/</link>
+      <guid isPermaLink="true">https://www.fasalbhav.in/blog/sarson-ki-kheti/</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+      <category>फसल गाइड</category>
+      <description>सरसों की खेती में खेत की तैयारी, बुवाई का सही समय, उन्नत किस्में, बीज उपचार, खाद, सिंचाई और रोग नियंत्रण की A to Z जानकारी।</description>
+      <enclosure url="https://www.fasalbhav.in/img/blog/sarson-ki-kheti-a-to-z.webp" length="186822" type="image/webp" />
+    </item>
+    <item>
+      <title>खेत की मिट्टी की जांच: बंपर पैदावार और मुनाफे का सबसे बड़ा राज़</title>
+      <link>https://www.fasalbhav.in/blog/khet-ki-mitti-ki-janch/</link>
+      <guid isPermaLink="true">https://www.fasalbhav.in/blog/khet-ki-mitti-ki-janch/</guid>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
+      <category>किसान गाइड</category>
+      <description>मिट्टी की जांच क्यों जरूरी है, सही समय पर खेत से नमूना कैसे लें और Soil Health Card के अनुसार खाद का इस्तेमाल कैसे करें।</description>
+      <enclosure url="https://www.fasalbhav.in/img/blog/khet-ki-mitti-ki-janch.webp" length="179096" type="image/webp" />
+    </item>
+  </channel>
+</rss>

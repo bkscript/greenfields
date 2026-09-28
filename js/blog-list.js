@@ -3,7 +3,20 @@
   if (!hosts.length || !window.MB || !MB.ui || !Array.isArray(MB.blogs)) return;
 
   const u = MB.ui;
-  const cards = MB.blogs
+  const pathMatch = window.location.pathname.match(/\/blog\/([^/]+)\/?$/);
+  const currentSlug = pathMatch ? pathMatch[1] : "";
+  const currentBlog = MB.blogs.find(function (blog) { return blog.slug === currentSlug; });
+  const orderedBlogs = MB.blogs
+    .filter(function (blog) { return blog.slug !== currentSlug; })
+    .map(function (blog, index) { return { blog: blog, index: index }; })
+    .sort(function (left, right) {
+      const leftRelated = currentBlog && left.blog.category === currentBlog.category ? 1 : 0;
+      const rightRelated = currentBlog && right.blog.category === currentBlog.category ? 1 : 0;
+      return rightRelated - leftRelated || left.index - right.index;
+    })
+    .map(function (item) { return item.blog; });
+
+  const cards = orderedBlogs
     .map(function (blog) {
       const href = u.siteHref("blog/" + blog.slug + "/");
       return (
