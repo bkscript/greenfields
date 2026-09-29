@@ -130,11 +130,12 @@
   }
 
   function isStalePrice(row) {
-    return priceAgeDays(row) > 3;
+    return !!row && !isFreshPrice(row);
   }
 
   function isFreshPrice(row) {
-    return !!row && !isStalePrice(row);
+    const displayDate = MB.PRICE_DATE;
+    return !!row && !!displayDate && row.date === displayDate;
   }
 
   function freshFirst(a, b) {

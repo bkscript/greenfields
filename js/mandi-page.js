@@ -19,23 +19,37 @@ MB.page = function mandiPage() {
 
   const baseRows = u.pricesFor({ mandi: slug });
   const sourceVarietyRows = u.varietyPricesFor({ mandi: slug });
-  const cropsWithVarieties = new Set(sourceVarietyRows.map((row) => row.crop));
+  const allSavedRows = baseRows.concat(sourceVarietyRows);
+  const availableDates = Array.from(
+    new Set(
+      allSavedRows
+        .map((row) => row.date)
+        .filter((date) => /^\d{4}-\d{2}-\d{2}$/.test(date || "") && date <= MB.PRICE_DATE)
+    )
+  ).sort((a, b) => String(b).localeCompare(String(a)));
+  const mandiPriceDate = availableDates.find((date) => {
+    const crops = new Set(
+      allSavedRows.filter((row) => row.date === date).map((row) => row.crop)
+    );
+    return crops.size >= 5;
+  }) || "";
+  const isMandiDisplayPrice = (row) => !!row && row.date === mandiPriceDate;
+  const isCurrentMandiDate = mandiPriceDate === MB.PRICE_DATE;
+  const cropsWithVarieties = new Set(
+    sourceVarietyRows.filter(isMandiDisplayPrice).map((row) => row.crop)
+  );
   const rows = baseRows
     .filter((row) => !cropsWithVarieties.has(row.crop))
     .concat(sourceVarietyRows);
   const sortedRows = rows
+    .filter(isMandiDisplayPrice)
     .slice()
     .sort((a, b) => {
-      const freshness = u.freshFirst(a, b);
-      if (freshness) return freshness;
-      if (u.isStalePrice(a) && u.isStalePrice(b) && a.date !== b.date) {
-        return String(b.date).localeCompare(String(a.date));
-      }
       if (highlight && a.crop === highlight) return -1;
       if (highlight && b.crop === highlight) return 1;
       return b.modal - a.modal;
     });
-  const currentTableRows = sortedRows.filter(u.isFreshPrice);
+  const currentTableRows = sortedRows;
   const renderPriceRow = (r) => {
     const c = u.cropBySlug(r.crop);
     const grade = r.grade
@@ -68,23 +82,23 @@ MB.page = function mandiPage() {
     .map((m) => '<a class="chip" href="' + u.mandiHref(m.slug) + '">' + m.hi + "</a>")
     .join("");
 
-  const top = sortedRows.find(u.isFreshPrice);
+  const top = currentTableRows[0];
   const shareTop = top
-    ? u.sharePage("आज " + mandi.hi + " मंडी के ताजा भाव देखें")
+    ? u.sharePage(u.formatUpdatedHi(mandiPriceDate) + " के " + mandi.hi + " मंडी भाव देखें")
     : "#";
   const mandiFaqEntities = [];
   const dynamicFaqs = ((MB.dynamicMandiFaqs || {})[slug] || [])
     .map((item) => {
       const row = item.variety
         ? sourceVarietyRows.find(
-            (price) => price.crop === item.crop && price.variety === item.variety
+            (price) => price.crop === item.crop && price.variety === item.variety && isMandiDisplayPrice(price)
           )
-        : baseRows.find((price) => price.crop === item.crop);
+        : baseRows.find((price) => price.crop === item.crop && isMandiDisplayPrice(price));
       const varietyRows = Array.isArray(item.varieties)
         ? item.varieties
             .map((variety) =>
               sourceVarietyRows.find(
-                (price) => price.crop === item.crop && price.variety === variety
+                (price) => price.crop === item.crop && price.variety === variety && isMandiDisplayPrice(price)
               )
             )
             .filter(Boolean)
@@ -116,9 +130,9 @@ MB.page = function mandiPage() {
           cropLabel +
           " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
       } else if (item.unit === "kg") {
-        const isCurrent = u.isFreshPrice(row);
+        const isCurrent = isCurrentMandiDate;
         answer = isCurrent
-          ? "आज " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+          ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
             u.rupee(row.modal / 100) + " प्रति किलो के बराबर है। स्रोत दर " + u.rupee(row.modal) +
             " प्रति क्विंटल है; न्यूनतम " + u.rupee(row.min / 100) + " और अधिकतम " +
             u.rupee(row.max / 100) + " प्रति किलो के बराबर हैं। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं।"
@@ -127,9 +141,9 @@ MB.page = function mandiPage() {
             " प्रति क्विंटल थी; उस दिन न्यूनतम " + u.rupee(row.min / 100) + " और अधिकतम " +
             u.rupee(row.max / 100) + " प्रति किलो के बराबर थे। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं।";
       } else {
-        const isCurrent = u.isFreshPrice(row);
+        const isCurrent = isCurrentMandiDate;
         answer = isCurrent
-          ? "आज " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+          ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
             u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
             " और अधिकतम भाव " + u.rupee(row.max) + " है।"
           : mandi.hi + " में " + cropLabel + " का आखिरी उपलब्ध मॉडल भाव " + u.formatUpdatedHi(row.date) +
@@ -158,28 +172,31 @@ MB.page = function mandiPage() {
     schema.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: mandiFaqEntities });
   }
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
+    ? '<section class="faq-section dynamic-faq"><h2>उपलब्ध भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
 
   const tables =
     '<p class="share-bar">' +
     (top
-      ? '<span class="price-date">आज ' +
-        u.formatUpdatedHi(MB.LAST_UPDATED_DATE) +
+      ? '<span class="price-date">' +
+        (isCurrentMandiDate ? 'आज ' : 'पिछली उपलब्ध तारीख ') +
+        u.formatUpdatedHi(mandiPriceDate) +
         ': ' +
         mandi.hi +
-        ' मंडी के ताज़ा फसल भाव' +
+        ' मंडी के उपलब्ध फसल भाव' +
         "</span>" +
         u.shareBtn(shareTop)
       : "") +
     "</p>" +
-    '<section class="card mandi-crop-list"><h2>आज ' + mandi.hi + ' मंडी में फसलों के भाव</h2>' +
+    '<section class="card mandi-crop-list"><h2>' + mandi.hi + ' मंडी में ' +
+    (mandiPriceDate ? u.formatUpdatedHi(mandiPriceDate) + ' के फसल भाव' : 'भाव रिकॉर्ड') +
+    '</h2>' +
     (currentBody
       ? "<table><thead><tr><th>फसल</th><th>किस्म</th>" +
         '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
         currentBody +
         "</tbody></table>"
-      : '<p class="empty">आज के ताज़ा भाव उपलब्ध नहीं हैं।</p>') +
+      : '<p class="empty">किसी एक उपलब्ध तारीख पर कम-से-कम 5 फसल भाव नहीं मिले हैं।</p>') +
     "</section>" +
     '<div class="chips">' +
     nearby +

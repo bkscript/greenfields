@@ -192,7 +192,7 @@ MB.page = function homePage() {
       "</div></div></a>";
 
   const byCropMove = {};
-  const moveDate = MB.LAST_UPDATED_DATE || MB.PRICE_DATE;
+  const moveDate = MB.PRICE_DATE;
   MB.prices.forEach((r) => {
     // "आज के बड़े बदलाव" only means the current published update, never an older record.
     if (!r.vs || r.date !== moveDate) return;
@@ -269,7 +269,7 @@ MB.page = function homePage() {
     MB.crops.length +
     "+</b><span>Crops</span></div>" +
     "<div><b>" +
-    u.formatUpdatedHi(MB.LAST_UPDATED_DATE).replace(/\s+\d{4}$/, "") +
+    u.formatUpdatedHi(MB.PRICE_DATE).replace(/\s+\d{4}$/, "") +
     "</b><small class=\"stat-update\">Last update</small></div>" +
     "</div>" +
     tapeHtml +

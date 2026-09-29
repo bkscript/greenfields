@@ -19,13 +19,13 @@ MB.page = function statePage() {
       if (item.type === "mandi-crop") {
         const market = u.mandiBySlug(item.mandi);
         const crop = u.cropBySlug(item.crop);
-        const row = rows.find((price) => price.mandi === item.mandi && price.crop === item.crop);
+        const row = rows.find((price) => price.mandi === item.mandi && price.crop === item.crop && u.isFreshPrice(price));
         if (!market || !crop) return "";
         let answer;
         if (row) {
           const isCurrent = u.isFreshPrice(row);
           answer = isCurrent
-            ? "आज " + u.formatUpdatedHi(MB.LAST_UPDATED_DATE || MB.PRICE_DATE) + " को " + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
+            ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
             : market.hi + " में " + crop.hi + " का आखिरी उपलब्ध मॉडल भाव " + u.formatUpdatedHi(row.date) + " को " + u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " था।";
         } else {
           answer = market.hi + " में " + crop.hi + " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
@@ -37,7 +37,7 @@ MB.page = function statePage() {
     .filter(Boolean)
     .join("");
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
+    ? '<section class="faq-section dynamic-faq"><h2>उपलब्ध भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
   const mandiCards = mandis
     .map((m) => {
@@ -66,8 +66,8 @@ MB.page = function statePage() {
     .join("");
 
   const tables =
-    '<p class="share-bar"><span class="price-date">आज ' +
-    u.formatUpdatedHi(MB.LAST_UPDATED_DATE) +
+    '<p class="share-bar"><span class="price-date">' +
+    u.formatUpdatedHi(MB.PRICE_DATE) +
     ': ' +
     state.hi +
     ' के ताज़ा मंडी भाव' +
