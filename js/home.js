@@ -120,7 +120,7 @@ MB.page = function homePage() {
     .join("");
   const stateSection = !stateCards
     ? ""
-    : '<section class="land-block pad state-home-block" id="rajya"><h2>राज्य के अनुसार मंडी भाव</h2><p class="section-intro">अपने राज्य की मंडियाँ और आज के उपलब्ध फसल भाव देखें।</p><div class="state-grid">' +
+    : '<section class="land-block pad state-home-block" id="rajya"><h2>राज्य के अनुसार मंडी भाव</h2><p class="section-intro">अपने राज्य की मंडियाँ और आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के फसल भाव देखें।</p><div class="state-grid">' +
       stateCards +
       "</div></section>";
 
@@ -236,7 +236,7 @@ MB.page = function homePage() {
     !moversUp.length && !moversDown.length
       ? ""
       : '<section class="land-block" id="bade-badlav">' +
-        "<h2>आज के बड़े बदलाव</h2>" +
+        "<h2>आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " के बड़े बदलाव</h2>" +
         '<div class="movers">' +
         (moversUp.length
           ? '<div class="mover-group mover-group-up"><p class="mover-group-title"><span>↗</span> तेजी वाली फसलें</p>' + moversUp.map(moverCard).join("") +
@@ -252,11 +252,11 @@ MB.page = function homePage() {
     '<section class="hero">' +
     '<div class="hero-layout">' +
     '<div class="hero-intro"><span class="hero-accent" aria-hidden="true"></span>' +
-    "<h1>आज के भाव</h1>" +
-    '<p class="hero-summary">आज के उपलब्ध फसलों के मंडी भाव देखें। गेहूं, सरसों, चना, सोयाबीन, कपास, धान, प्याज, आलू व अन्य फसलों के मंडी-वार लाइव रेट और मॉडल भाव जानने के लिए नीचे फसल चुनें।</p>' +
+    "<h1>आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " के भाव</h1>" +
+    '<p class="hero-summary">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के फसल मंडी भाव देखें। गेहूं, सरसों, चना, सोयाबीन, कपास, धान, प्याज, आलू व अन्य फसलों के मंडी-वार लाइव रेट और मॉडल भाव जानने के लिए नीचे फसल चुनें।</p>' +
     "</div>" +
     '<div class="hero-ctas">' +
-    '<button type="button" class="btn-primary" id="hero-go">आज के भाव देखें</button>' +
+    '<button type="button" class="btn-primary" id="hero-go">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के भाव देखें</button>' +
     u.joinGroupBtn("wa-join-hero") +
     "</div>" +
     "</div>" +

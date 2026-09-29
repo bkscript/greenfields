@@ -22,7 +22,7 @@ MB.page = function cropPage() {
     .concat(sourceVarietyRows);
 
   if (!rows.length) {
-    box.innerHTML = '<p class="empty">इस फसल के भाव अभी उपलब्ध नहीं हैं।</p>';
+    box.innerHTML = '<p class="empty">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को इस फसल का भाव नहीं मिला।</p>';
     return;
   }
 
@@ -53,7 +53,7 @@ MB.page = function cropPage() {
       ? { v: u.rupee(u.kgFromQtl(med)), l: "प्रति किलो", i: "kilo" }
       : crop.msp
         ? { v: u.rupee(crop.msp), l: "MSP", i: "msp" }
-        : { v: String(currentRows.length), l: "उपलब्ध मंडियां", i: "mandis" },
+        : { v: String(currentRows.length), l: "मंडियां", i: "mandis" },
     {
       v: u.rupee(Math.min.apply(null, mins)) + "–" + u.rupee(Math.max.apply(null, maxs)).replace("₹", ""),
       l: "न्यूनतम–अधिकतम",
@@ -63,7 +63,7 @@ MB.page = function cropPage() {
   ] : [];
 
   const shareAll = currentRows.length
-    ? u.sharePage("आज " + crop.hi + " के ताजा मंडी भाव देखें")
+    ? u.sharePage("आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " के " + crop.hi + " मंडी भाव देखें")
     : "";
   const sortedRows = rows
     .slice()
@@ -197,7 +197,7 @@ MB.page = function cropPage() {
         const entry = point.entry;
         const mandiCount = Number(entry.mandis || 0);
         const label = u.formatDateHi(entry.date) + ", मॉडल भाव " +
-          u.rupee(Number(entry.modal)) + " प्रति क्विंटल, " + mandiCount + " उपलब्ध मंडियां";
+          u.rupee(Number(entry.modal)) + " प्रति क्विंटल, " + mandiCount + " मंडियां";
         return '<g class="history-point" tabindex="0" role="img" aria-label="' +
           u.escapeHtml(label) + '" data-tooltip="' + u.escapeHtml(label) + '">' +
           '<circle class="history-point-hit" cx="' + point.x.toFixed(2) + '" cy="' +
@@ -206,25 +206,23 @@ MB.page = function cropPage() {
           point.y.toFixed(2) + '" r="4.5"></circle></g>';
       })
       .join("");
-    const dayLabel = historyRows.length === 1 ? "दिन" : "दिनों";
-
-    return '<section class="card crop-model-history" id="price-history"><h2>पिछले ' + historyRows.length + " उपलब्ध " + dayLabel + " का " +
+    return '<section class="card crop-model-history" id="price-history"><h2>पिछली ' + historyRows.length + " तारीखों का " +
       crop.hi + ' मॉडल भाव</h2><div class="history-chart-wrap">' +
       '<svg class="history-chart" viewBox="0 0 ' + width + " " + height +
       '" role="img" aria-label="' + u.escapeHtml(crop.hi + " के मॉडल भाव का ग्राफ") +
       '" aria-describedby="history-chart-desc">' +
-      '<desc id="history-chart-desc">पिछले उपलब्ध दिनों में ' + crop.hi +
-      ' के मॉडल भाव का उतार-चढ़ाव। हर बिंदु पर तारीख, भाव और उपलब्ध मंडियों की संख्या देखी जा सकती है।</desc>' +
+      '<desc id="history-chart-desc">पिछली दर्ज तारीखों में ' + crop.hi +
+      ' के मॉडल भाव का उतार-चढ़ाव। हर बिंदु पर तारीख, भाव और मंडियों की संख्या देखी जा सकती है।</desc>' +
       yGrid + (areaPath ? '<path class="history-area" d="' + areaPath + '"></path>' : "") +
       '<polyline class="history-line" points="' + linePoints + '"></polyline>' + points + xLabels +
       '</svg><div class="history-tooltip" role="status" hidden></div></div></section>';
   })();
   const historyIntro = historyRows.length
-    ? '<p class="history-intro">नीचे के ग्राफ में पिछले ' + historyRows.length +
-      ' उपलब्ध दिनों के मॉडल भाव दिए गए हैं, जिनसे भाव का उतार-चढ़ाव समझ सकते हैं।</p>'
+    ? '<p class="history-intro">नीचे के ग्राफ में पिछली ' + historyRows.length +
+      ' दर्ज तारीखों के मॉडल भाव हैं, जिनसे भाव का उतार-चढ़ाव समझ सकते हैं।</p>'
     : "";
 
-  const subHi = "सभी उपलब्ध राज्यों की मंडियां।";
+  const subHi = "सभी राज्यों की मंडियां।";
   const subEn = "Mandis across all available states.";
 
   const mandiDynamicFaqs = Object.keys(MB.dynamicMandiFaqs || {})
@@ -248,15 +246,15 @@ MB.page = function cropPage() {
       if (row) {
         const isCurrent = u.isFreshPrice(row);
         answer = isCurrent
-          ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+          ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
             u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
             " और अधिकतम भाव " + u.rupee(row.max) + " है।"
-          : mandi.hi + " में " + cropLabel + " का आखिरी उपलब्ध मॉडल भाव " + u.formatUpdatedHi(row.date) +
-            " को " + u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
+          : u.formatUpdatedHi(row.date) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+            u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
             " और अधिकतम भाव " + u.rupee(row.max) + " था।";
       } else {
         answer = mandi.hi + " में " + cropLabel +
-          " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया रिकॉर्ड उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+          " का भाव अभी नहीं मिला है। नया रिकॉर्ड आने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
       }
 
       return (
@@ -281,31 +279,31 @@ MB.page = function cropPage() {
         const mandiName = mandi ? mandi.hi : item.mandiHi;
         if (!row) {
           answer = mandiName + " मंडी में " + crop.hi +
-            " का सत्यापित रिकॉर्ड अभी नहीं मिला है। ऊपर तालिका में अन्य उपलब्ध मंडियों के भाव देखें।";
+            " का सत्यापित रिकॉर्ड अभी नहीं मिला है। ऊपर तालिका में दूसरी मंडियों के भाव देखें।";
         } else {
           const isCurrent = u.isFreshPrice(row);
           answer = isCurrent
-            ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandiName + " मंडी में " + crop.hi +
+            ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandiName + " मंडी में " + crop.hi +
               " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " +
               u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
-            : mandiName + " मंडी में " + crop.hi + " का आखिरी उपलब्ध मॉडल भाव " +
-              u.formatUpdatedHi(row.date) + " को " + u.rupee(row.modal) +
+            : u.formatUpdatedHi(row.date) + " को " + mandiName + " मंडी में " + crop.hi + " का मॉडल भाव " +
+              u.rupee(row.modal) +
               " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
               " और अधिकतम भाव " + u.rupee(row.max) + " था।";
         }
       } else if (item.type === "per-kg") {
         answer = Number.isFinite(med)
-          ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + crop.hi +
+          ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + crop.hi +
             " का 1 किलो मॉडल भाव लगभग ₹" + (med / 100).toFixed(2) +
             " है। अलग-अलग मंडियों और खुदरा बाजार में भाव अलग हो सकता है; मंडीवार भाव ऊपर तालिका में देखें।"
-          : crop.hi + " का मॉडल भाव अभी उपलब्ध नहीं है। उपलब्ध मंडीवार रिकॉर्ड ऊपर तालिका में देखें।";
+          : "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + crop.hi + " का मॉडल भाव नहीं मिला। मंडीवार भाव ऊपर तालिका में देखें।";
       } else if (item.type === "msp") {
         answer = crop.msp
           ? crop.hi +
             " का सरकारी MSP " +
             u.rupee(crop.msp) +
-            " प्रति क्विंटल है। यह मंडी का भाव नहीं है; उपलब्ध मंडी भाव ऊपर तालिका में देखें।"
-          : crop.hi + " के लिए सरकारी MSP रिकॉर्ड उपलब्ध नहीं है।";
+            " प्रति क्विंटल है। यह मंडी का भाव नहीं है; मंडी भाव ऊपर तालिका में देखें।"
+          : crop.hi + " के लिए सरकारी MSP रिकॉर्ड नहीं मिला।";
       } else {
         return "";
       }
@@ -329,7 +327,7 @@ MB.page = function cropPage() {
   }
 
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>आज के भाव से जुड़े सवाल</h2>' +
+    ? '<section class="faq-section dynamic-faq"><h2>आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के भाव से जुड़े सवाल</h2>' +
       dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') +
       "</section>"
     : "";
@@ -342,16 +340,14 @@ MB.page = function cropPage() {
           .join("") +
         "</div>"
       : "") +
-    '<p class="share-bar"><span class="price-date">' +
-    u.formatUpdatedHi(MB.PRICE_DATE) +
-    ': ' +
+    '<p class="share-bar"><span class="price-date">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ': ' +
     crop.hi +
-    ' के ताज़ा मंडी भाव' +
+    ' के मंडी भाव' +
     "</span>" +
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
-    '<section class="card crop-mandi-list"><h2>' + crop.hi + ' के ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के उपलब्ध मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
-    (currentBody || '<tr><td class="empty" colspan="4">इस भाव तारीख के रिकॉर्ड उपलब्ध नहीं हैं।</td></tr>') +
+    '<section class="card crop-mandi-list"><h2>आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को ' + crop.hi + ' के मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+    (currentBody || '<tr><td class="empty" colspan="4">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को इस फसल का भाव नहीं मिला।</td></tr>') +
     "</tbody></table></section>" +
     historyIntro +
     historyGraph;

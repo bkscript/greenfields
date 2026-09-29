@@ -103,7 +103,7 @@ MB.page = function mandiPage() {
       const cropLabel = cropHi + (item.variety ? " की " + item.variety + " किस्म" : "");
       let answer;
       if (item.type === "previous") {
-        answer = mandi.hi + " मंडी के कल के भाव का अलग सत्यापित snapshot अभी उपलब्ध नहीं है। ऊपर तालिका में प्रत्येक फसल का उपलब्ध नवीनतम प्रकाशित रिकॉर्ड और उसकी तारीख देखें।";
+        answer = mandi.hi + " मंडी के कल के भाव का अलग सत्यापित रिकॉर्ड अभी नहीं मिला है। ऊपर तालिका में दी गई तारीख के भाव देखें।";
       } else if (item.type === "container") {
         answer = "इंदौर के डॉलर चने का अलग सत्यापित कंटेनर रेट अभी इस साइट के डेटा में नहीं है। ऊपर दिए मंडी के प्रति क्विंटल भाव को कंटेनर रेट न मानें।";
       } else if (item.varieties && varietyRows.length) {
@@ -111,7 +111,7 @@ MB.page = function mandiPage() {
           mandi.hi +
           " में " +
           cropHi +
-          " के उपलब्ध किस्म-वार प्रकाशित मॉडल भाव: " +
+          " के किस्म-वार प्रकाशित मॉडल भाव: " +
           varietyRows
             .map((price) => price.variety + " " + u.rupee(price.modal) + " प्रति क्विंटल")
             .join(", ") +
@@ -123,26 +123,26 @@ MB.page = function mandiPage() {
           mandi.hi +
           " में " +
           cropLabel +
-          " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+          " का भाव अभी नहीं मिला है। नया रिकॉर्ड आने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
       } else if (item.unit === "kg") {
         const isCurrent = isCurrentMandiDate;
         answer = isCurrent
-          ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+          ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
             u.rupee(row.modal / 100) + " प्रति किलो के बराबर है। स्रोत दर " + u.rupee(row.modal) +
             " प्रति क्विंटल है; न्यूनतम " + u.rupee(row.min / 100) + " और अधिकतम " +
             u.rupee(row.max / 100) + " प्रति किलो के बराबर हैं। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं।"
-          : mandi.hi + " में " + cropLabel + " का आखिरी उपलब्ध मॉडल भाव " + u.formatUpdatedHi(row.date) +
-            " को " + u.rupee(row.modal / 100) + " प्रति किलो के बराबर था। स्रोत दर " + u.rupee(row.modal) +
+          : u.formatUpdatedHi(row.date) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+            u.rupee(row.modal / 100) + " प्रति किलो के बराबर था। स्रोत दर " + u.rupee(row.modal) +
             " प्रति क्विंटल थी; उस दिन न्यूनतम " + u.rupee(row.min / 100) + " और अधिकतम " +
             u.rupee(row.max / 100) + " प्रति किलो के बराबर थे। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं।";
       } else {
         const isCurrent = isCurrentMandiDate;
         answer = isCurrent
-          ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+          ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
             u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
             " और अधिकतम भाव " + u.rupee(row.max) + " है।"
-          : mandi.hi + " में " + cropLabel + " का आखिरी उपलब्ध मॉडल भाव " + u.formatUpdatedHi(row.date) +
-            " को " + u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
+          : u.formatUpdatedHi(row.date) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+            u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
             " और अधिकतम भाव " + u.rupee(row.max) + " था।";
       }
       mandiFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
@@ -167,31 +167,32 @@ MB.page = function mandiPage() {
     schema.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: mandiFaqEntities });
   }
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>उपलब्ध भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
+    ? '<section class="faq-section dynamic-faq"><h2>भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
 
   const tables =
     '<p class="share-bar">' +
     (top
       ? '<span class="price-date">' +
-        (isCurrentMandiDate ? 'आज ' : 'पिछली उपलब्ध तारीख ') +
-        u.formatUpdatedHi(mandiPriceDate) +
+        (isCurrentMandiDate ? 'आज ' + u.formatUpdatedHi(MB.PRICE_DATE) : u.formatUpdatedHi(mandiPriceDate)) +
         ': ' +
         mandi.hi +
-        ' मंडी के उपलब्ध फसल भाव' +
+        ' मंडी के फसल भाव' +
         "</span>" +
         u.shareBtn(shareTop)
       : "") +
     "</p>" +
-    '<section class="card mandi-crop-list"><h2>' + mandi.hi + ' मंडी में ' +
-    (mandiPriceDate ? u.formatUpdatedHi(mandiPriceDate) + ' के फसल भाव' : 'भाव रिकॉर्ड') +
+    '<section class="card mandi-crop-list"><h2>' +
+    (isCurrentMandiDate
+      ? 'आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को ' + mandi.hi + ' मंडी में फसलों के भाव'
+      : mandi.hi + ' मंडी में ' + u.formatUpdatedHi(mandiPriceDate) + ' के फसल भाव') +
     '</h2>' +
     (currentBody
       ? "<table><thead><tr><th>फसल</th><th>किस्म</th>" +
         '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
         currentBody +
         "</tbody></table>"
-      : '<p class="empty">इस मंडी का कोई सुरक्षित भाव रिकॉर्ड उपलब्ध नहीं है।</p>') +
+      : '<p class="empty">इस मंडी का भाव रिकॉर्ड नहीं मिला।</p>') +
     "</section>" +
     '<div class="chips">' +
     nearby +

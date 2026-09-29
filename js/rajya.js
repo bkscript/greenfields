@@ -25,10 +25,10 @@ MB.page = function statePage() {
         if (row) {
           const isCurrent = u.isFreshPrice(row);
           answer = isCurrent
-            ? u.formatUpdatedHi(MB.PRICE_DATE) + " को " + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
-            : market.hi + " में " + crop.hi + " का आखिरी उपलब्ध मॉडल भाव " + u.formatUpdatedHi(row.date) + " को " + u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " था।";
+            ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
+            : u.formatUpdatedHi(row.date) + " को " + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " था।";
         } else {
-          answer = market.hi + " में " + crop.hi + " का उपलब्ध भाव रिकॉर्ड अभी नहीं है। नया record उपलब्ध होने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+          answer = market.hi + " में " + crop.hi + " का भाव अभी नहीं मिला है। नया रिकॉर्ड आने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
         }
         return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
       }
@@ -37,7 +37,7 @@ MB.page = function statePage() {
     .filter(Boolean)
     .join("");
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>उपलब्ध भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
+    ? '<section class="faq-section dynamic-faq"><h2>भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
   const mandiCards = mandis
     .map((m) => {
@@ -49,7 +49,7 @@ MB.page = function statePage() {
         const value = crop.veg ? u.rupee(u.kgFromQtl(top.modal)) + "/kg" : u.rupee(top.modal) + "/qtl";
         price = '<small>' + crop.hi + ' · मॉडल भाव</small><b>' + value + "</b>";
       } else {
-        price = "<small>मंडी के उपलब्ध भाव</small><b>भाव देखें</b>";
+        price = "<small>मंडी भाव</small><b>भाव देखें</b>";
       }
       return (
         '<a class="mandi-tile" href="' +
@@ -66,11 +66,9 @@ MB.page = function statePage() {
     .join("");
 
   const tables =
-    '<p class="share-bar"><span class="price-date">' +
-    u.formatUpdatedHi(MB.PRICE_DATE) +
-    ': ' +
+    '<p class="share-bar"><span class="price-date">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ': ' +
     state.hi +
-    ' के ताज़ा मंडी भाव' +
+    ' के मंडी भाव' +
     '</span></p>' +
     '<section class="state-mandi-directory"><h2>' +
     state.hi +
