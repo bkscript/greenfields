@@ -76,7 +76,6 @@ MB.page = function cropPage() {
       return b.modal - a.modal;
     });
   const currentTableRows = sortedRows.filter(u.isFreshPrice);
-  const staleTableRows = sortedRows.filter(u.isStalePrice);
   const renderPriceRow = (r) => {
     const m = u.mandiBySlug(r.mandi);
     const st = u.stateBySlug(m.state);
@@ -104,42 +103,122 @@ MB.page = function cropPage() {
     );
   };
   const currentBody = currentTableRows.map(renderPriceRow).join("");
-  let lastStaleDate = "";
-  const staleBody = staleTableRows
-    .map((r) => {
-      const dateGroup = r.date !== lastStaleDate
-        ? ((lastStaleDate = r.date), '<tr class="stale-date"><td colspan="4"><span>' + u.formatDateHi(r.date) + " के भाव</span></td></tr>")
-        : "";
-      return dateGroup + renderPriceRow(r);
-    })
-    .join("");
-  const staleDetails = staleBody
-    ? '<details class="old-price-details"><summary>पुराने उपलब्ध भाव देखें</summary><div class="old-price-table"><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
-      staleBody +
-      "</tbody></table></div></details>"
-    : "";
 
-  const cropModelHistory = ((MB.cropModalHistory || {})[slug] || [])
+  const indiaDateParts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const indiaDateValue = (type) => indiaDateParts.find((part) => part.type === type).value;
+  const currentHistoryDate = indiaDateValue("year") + "-" + indiaDateValue("month") + "-" + indiaDateValue("day");
+  const historyByDate = {};
+  ((MB.cropModalHistory || {})[slug] || [])
     .filter((entry) => entry && entry.date && Number.isFinite(Number(entry.modal)))
+    .forEach((entry) => { historyByDate[entry.date] = entry; });
+  if (currentRows.length && Number.isFinite(Number(med))) {
+    historyByDate[currentHistoryDate] = {
+      date: currentHistoryDate,
+      modal: Number(med),
+      mandis: currentRows.length,
+    };
+  }
+  const cropModelHistory = currentRows.length
+    ? Object.values(historyByDate)
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+      .slice(0, 10)
+    : [];
+  const historyRows = cropModelHistory
     .slice()
-    .sort((a, b) => String(b.date).localeCompare(String(a.date)))
-    .slice(0, 10);
-  const historyTable = cropModelHistory.length
-    ? '<section class="card crop-model-history"><h2>पिछले 10 उपलब्ध दिनों का ' +
-      crop.hi +
-      ' मॉडल भाव</h2><table><thead><tr><th>दिनांक</th><th class="num">मॉडल भाव</th><th class="num">उपलब्ध मंडियां</th></tr></thead><tbody>' +
-      cropModelHistory
-        .map((entry) =>
-          '<tr><td>' +
-          u.formatDateHi(entry.date) +
-          '</td><td class="num modal-price">' +
-          u.rupee(Number(entry.modal)) +
-          '</td><td class="num">' +
-          Number(entry.mandis || 0) +
-          '</td></tr>'
-        )
-        .join("") +
-      '</tbody></table><p class="history-note">हर दिन का वही फसल मॉडल भाव, जो उस दिन उपलब्ध मंडियों के मॉडल भावों से दिखाया गया था।</p></section>'
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+  const shortHistoryDate = (date) => {
+    const parts = String(date || "").split("-");
+    return parts.length === 3 ? parts[2] + "/" + parts[1] : String(date || "");
+  };
+  const historyGraph = (() => {
+    if (!historyRows.length) return "";
+
+    const width = 360;
+    const height = 220;
+    const left = 54;
+    const right = 12;
+    const top = 18;
+    const bottom = 40;
+    const plotWidth = width - left - right;
+    const plotHeight = height - top - bottom;
+    const values = historyRows.map((entry) => Number(entry.modal));
+    const rawMin = Math.min.apply(null, values);
+    const rawMax = Math.max.apply(null, values);
+    const basePadding = rawMin === rawMax
+      ? Math.max(rawMax * 0.05, 100)
+      : Math.max((rawMax - rawMin) * 0.12, 50);
+    const chartMin = Math.max(0, rawMin - basePadding);
+    const chartMax = rawMax + basePadding;
+    const chartRange = chartMax - chartMin || 1;
+    const xFor = (index) => historyRows.length === 1
+      ? left + (plotWidth / 2)
+      : left + ((plotWidth * index) / (historyRows.length - 1));
+    const yFor = (value) => top + (plotHeight * (chartMax - value) / chartRange);
+    const pointPairs = historyRows.map((entry, index) => ({
+      entry,
+      x: xFor(index),
+      y: yFor(Number(entry.modal)),
+    }));
+    const linePoints = pointPairs
+      .map((point) => point.x.toFixed(2) + "," + point.y.toFixed(2))
+      .join(" ");
+    const areaPath = pointPairs.length > 1
+      ? "M " + pointPairs[0].x.toFixed(2) + " " + (top + plotHeight) +
+        " L " + pointPairs.map((point) => point.x.toFixed(2) + " " + point.y.toFixed(2)).join(" L ") +
+        " L " + pointPairs[pointPairs.length - 1].x.toFixed(2) + " " + (top + plotHeight) + " Z"
+      : "";
+    const yGrid = [0, 1, 2, 3]
+      .map((index) => {
+        const ratio = index / 3;
+        const y = top + (plotHeight * ratio);
+        const value = chartMax - (chartRange * ratio);
+        return '<line class="history-grid-line" x1="' + left + '" y1="' + y.toFixed(2) + '" x2="' +
+          (width - right) + '" y2="' + y.toFixed(2) + '"></line>' +
+          '<text class="history-axis-label history-y-label" x="' + (left - 6) + '" y="' +
+          (y + 3).toFixed(2) + '" text-anchor="end">' + u.rupee(Math.round(value)) + "</text>";
+      })
+      .join("");
+    const xLabels = pointPairs
+      .map((point) =>
+        '<text class="history-axis-label" x="' + point.x.toFixed(2) + '" y="' +
+        (height - 15) + '" text-anchor="middle">' + shortHistoryDate(point.entry.date) + "</text>"
+      )
+      .join("");
+    const points = pointPairs
+      .map((point) => {
+        const entry = point.entry;
+        const mandiCount = Number(entry.mandis || 0);
+        const label = u.formatDateHi(entry.date) + ", मॉडल भाव " +
+          u.rupee(Number(entry.modal)) + " प्रति क्विंटल, " + mandiCount + " उपलब्ध मंडियां";
+        return '<g class="history-point" tabindex="0" role="img" aria-label="' +
+          u.escapeHtml(label) + '" data-tooltip="' + u.escapeHtml(label) + '">' +
+          '<circle class="history-point-hit" cx="' + point.x.toFixed(2) + '" cy="' +
+          point.y.toFixed(2) + '" r="12"></circle>' +
+          '<circle class="history-point-dot" cx="' + point.x.toFixed(2) + '" cy="' +
+          point.y.toFixed(2) + '" r="4.5"></circle></g>';
+      })
+      .join("");
+    const dayLabel = historyRows.length === 1 ? "दिन" : "दिनों";
+
+    return '<section class="card crop-model-history" id="price-history"><h2>पिछले ' + historyRows.length + " उपलब्ध " + dayLabel + " का " +
+      crop.hi + ' मॉडल भाव</h2><div class="history-chart-wrap">' +
+      '<svg class="history-chart" viewBox="0 0 ' + width + " " + height +
+      '" role="img" aria-label="' + u.escapeHtml(crop.hi + " के मॉडल भाव का ग्राफ") +
+      '" aria-describedby="history-chart-desc">' +
+      '<desc id="history-chart-desc">पिछले उपलब्ध दिनों में ' + crop.hi +
+      ' के मॉडल भाव का उतार-चढ़ाव। हर बिंदु पर तारीख, भाव और उपलब्ध मंडियों की संख्या देखी जा सकती है।</desc>' +
+      yGrid + (areaPath ? '<path class="history-area" d="' + areaPath + '"></path>' : "") +
+      '<polyline class="history-line" points="' + linePoints + '"></polyline>' + points + xLabels +
+      '</svg><div class="history-tooltip" role="status" hidden></div></div></section>';
+  })();
+  const historyIntro = historyRows.length
+    ? '<p class="history-intro">नीचे के ग्राफ में पिछले ' + historyRows.length +
+      ' उपलब्ध दिनों के मॉडल भाव दिए गए हैं, जिनसे भाव का उतार-चढ़ाव समझ सकते हैं।</p>'
     : "";
 
   const subHi = "सभी उपलब्ध राज्यों की मंडियां।";
@@ -270,9 +349,9 @@ MB.page = function cropPage() {
     "</p>" +
     '<section class="card crop-mandi-list"><h2>आज ' + crop.hi + ' के उपलब्ध मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
     (currentBody || '<tr><td class="empty" colspan="4">आज के ताज़ा भाव उपलब्ध नहीं हैं।</td></tr>') +
-    "</tbody></table>" + staleDetails + "</section>" +
-    '<p class="history-intro">नीचे की तालिका में पिछले 10 उपलब्ध दिनों के मॉडल भाव दिए गए हैं, जिनसे भाव के उतार-चढ़ाव का पता चलता है।</p>' +
-    historyTable;
+    "</tbody></table></section>" +
+    historyIntro +
+    historyGraph;
 
   const pageContent = tables;
 
@@ -297,6 +376,37 @@ MB.page = function cropPage() {
       "</p>" +
       pageContent;
   }
+
+  const historyTooltip = box.querySelector(".history-tooltip");
+  const historyPoints = Array.prototype.slice.call(box.querySelectorAll(".history-point"));
+  const hideHistoryTooltip = () => {
+    if (historyTooltip) historyTooltip.hidden = true;
+  };
+  const showHistoryTooltip = (point) => {
+    if (!historyTooltip || !point) return;
+    const wrap = historyTooltip.parentElement;
+    const dot = point.querySelector(".history-point-dot");
+    if (!wrap || !dot) return;
+    historyTooltip.textContent = String(point.getAttribute("data-tooltip") || "").replace(/, /g, " · ");
+    historyTooltip.hidden = false;
+    const wrapRect = wrap.getBoundingClientRect();
+    const dotRect = dot.getBoundingClientRect();
+    const tooltipRect = historyTooltip.getBoundingClientRect();
+    const pointCenter = dotRect.left - wrapRect.left + (dotRect.width / 2);
+    const maxLeft = Math.max(6, wrapRect.width - tooltipRect.width - 6);
+    const tooltipLeft = Math.max(6, Math.min(pointCenter - (tooltipRect.width / 2), maxLeft));
+    const arrowLeft = Math.max(14, Math.min(pointCenter - tooltipLeft, tooltipRect.width - 14));
+    historyTooltip.style.left = tooltipLeft + "px";
+    historyTooltip.style.top = (dotRect.bottom - wrapRect.top + 10) + "px";
+    historyTooltip.style.setProperty("--history-arrow-left", arrowLeft + "px");
+  };
+  historyPoints.forEach((point) => {
+    point.addEventListener("mouseenter", () => showHistoryTooltip(point));
+    point.addEventListener("mouseleave", hideHistoryTooltip);
+    point.addEventListener("focus", () => showHistoryTooltip(point));
+    point.addEventListener("blur", hideHistoryTooltip);
+    point.addEventListener("click", () => showHistoryTooltip(point));
+  });
 
   if (dynamicFaqSection) {
     const article = document.querySelector("main .article-section");

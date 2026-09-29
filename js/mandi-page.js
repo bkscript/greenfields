@@ -36,7 +36,6 @@ MB.page = function mandiPage() {
       return b.modal - a.modal;
     });
   const currentTableRows = sortedRows.filter(u.isFreshPrice);
-  const staleTableRows = sortedRows.filter(u.isStalePrice);
   const renderPriceRow = (r) => {
     const c = u.cropBySlug(r.crop);
     const grade = r.grade
@@ -62,20 +61,6 @@ MB.page = function mandiPage() {
     );
   };
   const currentBody = currentTableRows.map(renderPriceRow).join("");
-  let lastStaleDate = "";
-  const staleBody = staleTableRows
-    .map((r) => {
-      const dateGroup = r.date !== lastStaleDate
-        ? ((lastStaleDate = r.date), '<tr class="stale-date"><td colspan="4"><span>' + u.formatDateHi(r.date) + " के भाव</span></td></tr>")
-        : "";
-      return dateGroup + renderPriceRow(r);
-    })
-    .join("");
-  const staleDetails = staleBody
-    ? '<details class="old-price-details"><summary>पुराने उपलब्ध भाव देखें</summary><div class="old-price-table"><table><thead><tr><th>फसल</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
-      staleBody +
-      "</tbody></table></div></details>"
-    : "";
 
   const nearby = MB.mandis
     .filter((m) => m.state === mandi.state && m.slug !== slug)
@@ -195,7 +180,6 @@ MB.page = function mandiPage() {
         currentBody +
         "</tbody></table>"
       : '<p class="empty">आज के ताज़ा भाव उपलब्ध नहीं हैं।</p>') +
-    staleDetails +
     "</section>" +
     '<div class="chips">' +
     nearby +
