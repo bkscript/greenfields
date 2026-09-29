@@ -73,6 +73,16 @@ MB.page = function cropPage() {
       if (u.isStalePrice(a) && u.isStalePrice(b) && a.date !== b.date) {
         return String(b.date).localeCompare(String(a.date));
       }
+      const aVariety = String(a.variety || "");
+      const bVariety = String(b.variety || "");
+      if (aVariety !== bVariety) {
+        if (!aVariety) return 1;
+        if (!bVariety) return -1;
+        const varietyOrder = aVariety.localeCompare(bVariety, "hi");
+        if (varietyOrder) return varietyOrder;
+      }
+      const gradeOrder = String(a.grade || "").localeCompare(String(b.grade || ""), "hi");
+      if (gradeOrder) return gradeOrder;
       return b.modal - a.modal;
     });
   const currentTableRows = sortedRows.filter(u.isFreshPrice);
