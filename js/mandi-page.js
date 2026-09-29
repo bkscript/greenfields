@@ -27,12 +27,7 @@ MB.page = function mandiPage() {
         .filter((date) => /^\d{4}-\d{2}-\d{2}$/.test(date || "") && date <= MB.PRICE_DATE)
     )
   ).sort((a, b) => String(b).localeCompare(String(a)));
-  const mandiPriceDate = availableDates.find((date) => {
-    const crops = new Set(
-      allSavedRows.filter((row) => row.date === date).map((row) => row.crop)
-    );
-    return crops.size >= 5;
-  }) || "";
+  const mandiPriceDate = availableDates[0] || "";
   const isMandiDisplayPrice = (row) => !!row && row.date === mandiPriceDate;
   const isCurrentMandiDate = mandiPriceDate === MB.PRICE_DATE;
   const cropsWithVarieties = new Set(
@@ -196,7 +191,7 @@ MB.page = function mandiPage() {
         '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
         currentBody +
         "</tbody></table>"
-      : '<p class="empty">किसी एक उपलब्ध तारीख पर कम-से-कम 5 फसल भाव नहीं मिले हैं।</p>') +
+      : '<p class="empty">इस मंडी का कोई सुरक्षित भाव रिकॉर्ड उपलब्ध नहीं है।</p>') +
     "</section>" +
     '<div class="chips">' +
     nearby +
