@@ -86,6 +86,8 @@ MB.crops = [
   { slug: "alsi", hi: "अलसी", en: "Linseed", veg: false, msp: null },
   { slug: "asaliya", hi: "असालिया", en: "Garden Cress", veg: false, msp: null },
   { slug: "kalonji", hi: "कलौंजी", en: "Nigella Seeds", veg: false, msp: null },
+  { slug: "ker", hi: "केर", en: "Ker Berries", veg: false, msp: null },
+  { slug: "sangri", hi: "सांगरी", en: "Desert Bean Pods", veg: false, msp: null },
   { slug: "amrood", hi: "अमरूद", en: "Guava", veg: true, msp: null },
   { slug: "kela", hi: "केला", en: "Banana", veg: true, msp: null },
   { slug: "seb", hi: "सेब", en: "Apple", veg: true, msp: null },
@@ -15399,6 +15401,8 @@ MB.seo = {
   saharanpur: { hi: "सहारनपुर मंडी भाव आज: धान, गेहूं, आलू, प्याज, टमाटर और अन्य उपलब्ध उपज के प्रकाशित भाव देखें।", en: "Saharanpur Mandi Bhav Today: check available paddy, wheat, potato, onion, tomato and other commodity rates." },
   mainpuri: { hi: "मैनपुरी मंडी भाव आज: आलू, लहसुन, धान, गेहूं, मक्का और दूसरी उपलब्ध फसलों के रेट देखें।", en: "Mainpuri Mandi Bhav Today: check available potato, garlic, paddy, wheat, maize and other crop prices." },
   "uttar-pradesh": { hi: "उत्तर प्रदेश की उपलब्ध मंडियों के आज के न्यूनतम, मॉडल और अधिकतम कृषि उपज भाव देखें।", en: "Check today's available minimum, modal and maximum agricultural market prices from Uttar Pradesh mandis." },
+  ker: { hi: "केर का मंडी भाव आज देखें। राजस्थान की इस पारंपरिक शुष्क उपज के उपलब्ध रिकॉर्ड, क्विंटल इकाई और मंडीवार भाव यहां देखें।", en: "Check available Ker berry mandi prices from Rajasthan. Read verified records per quintal and compare by mandi." },
+  sangri: { hi: "सांगरी का मंडी भाव आज देखें। राजस्थान की इस पारंपरिक सूखी फलियों की उपलब्ध मंडी दर, तारीख और क्विंटल इकाई में तुलना करें।", en: "Check available Sangri mandi prices from Rajasthan. Compare verified dates and quintal rates for this traditional dry produce." },
 };
 
 MB.articles = {
@@ -17041,6 +17045,23 @@ MB.articles = {
         }
       ]
     }
+    ,
+  "ker": {
+    "title": "केर का मंडी भाव आज: राजस्थान की खास शुष्क उपज",
+    "paragraphs": ["केर राजस्थान की मरुधरा से जुड़ी पारंपरिक शुष्क उपज है। इस पेज पर उपलब्ध सत्यापित मंडी रिकॉर्ड, उनकी तारीख और क्विंटल की इकाई में भाव देखे जा सकते हैं।"],
+    "sections": [
+      { "title": "केर के भाव में क्या देखें?", "paragraphs": ["केर की सफाई, आकार, सूखापन और lot की एकरूपता के अनुसार खरीदारों की पसंद बदल सकती है। अलग मंडियों के रिकॉर्ड की तुलना करते समय तारीख और इकाई एक जैसी रखें।"] },
+      { "title": "बेचने से पहले ध्यान रखें", "items": ["उपज को साफ और अच्छी तरह सूखा रखें।", "गीली या मिली-जुली उपज को अलग lot में रखें।", "मंडी भाव के साथ उसी दिन की तारीख और गुणवत्ता भी देखें।"], "ordered": true }
+    ]
+  },
+  "sangri": {
+    "title": "सांगरी का मंडी भाव आज: मरुधरा की खास उपज",
+    "paragraphs": ["सांगरी राजस्थान की पारंपरिक सूखी फलियों वाली उपज है। इस पेज पर उपलब्ध सत्यापित मंडी रिकॉर्ड, तारीख और क्विंटल इकाई में भाव देखे जा सकते हैं।"],
+    "sections": [
+      { "title": "सांगरी के भाव में क्या देखें?", "paragraphs": ["सांगरी में सूखापन, सफाई, आकार और lot की एकरूपता खरीदारों के लिए महत्वपूर्ण हो सकती है। भाव की तुलना करते समय रिकॉर्ड की तारीख और मंडी अलग-अलग जरूर देखें।"] },
+      { "title": "बेचने से पहले ध्यान रखें", "items": ["सूखी और साफ उपज को अलग रखें।", "नमी या कचरा मिले lot को अच्छे lot में न मिलाएँ।", "मंडी भाव के साथ तारीख और गुणवत्ता की तुलना करें।"], "ordered": true }
+    ]
+  }
   },
   "mandis": {
     "sri-ganganagar": {

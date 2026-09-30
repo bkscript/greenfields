@@ -47,8 +47,13 @@ MB.page = function homePage() {
   seb: "img/crops/seb.webp",
   anar: "img/crops/anar.webp",
 };
-  const fieldCrops = MB.crops.filter((crop) => !crop.veg).map((crop) => crop.slug);
-  const produceCrops = MB.crops.filter((crop) => crop.veg).map((crop) => crop.slug);
+  const rajasthaniCrops = ["ker", "sangri", "sua-patti"];
+  const fieldCrops = MB.crops
+    .filter((crop) => !crop.veg && !rajasthaniCrops.includes(crop.slug))
+    .map((crop) => crop.slug);
+  const produceCrops = MB.crops
+    .filter((crop) => crop.veg && !rajasthaniCrops.includes(crop.slug))
+    .map((crop) => crop.slug);
   function tilesFor(slugs, kgOnly) {
     return slugs
       .slice()
@@ -82,7 +87,11 @@ MB.page = function homePage() {
       .join("");
   }
   const fieldTiles = tilesFor(fieldCrops, false);
+  const rajasthaniTiles = tilesFor(rajasthaniCrops, false);
   const produceTiles = tilesFor(produceCrops, true);
+  const rajasthaniSection =
+    '<div class="produce-break"><span>मरुधरा की खास उपज</span><small>Rajasthani special produce</small></div>' +
+    '<div class="grid-crops landing-crops rajasthani-crops">' + rajasthaniTiles + "</div>";
   const produceSection = !produceTiles
     ? ""
     : '<div class="produce-break"><span>सब्जियां और फल</span><small>Vegetables &amp; fruits</small></div>' +
@@ -273,6 +282,7 @@ MB.page = function homePage() {
     fieldTiles +
     "</div>" +
     produceSection +
+    rajasthaniSection +
     "</section>" +
     bullionPromo +
     stateSection +
