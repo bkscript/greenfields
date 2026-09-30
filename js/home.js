@@ -47,15 +47,8 @@ MB.page = function homePage() {
   seb: "img/crops/seb.webp",
   anar: "img/crops/anar.webp",
 };
-  const cropGroups = [
-    ["gehun", "bajra", "makka", "dhan", "rice", "jau", "jowar"],
-    ["chana", "moong", "moth", "arhar", "urad", "masoor", "matar", "gwar"],
-    ["sarson", "kapas", "moongphali", "soyabean", "til", "arandi", "alsi"],
-    ["jeera", "dhaniya", "saunf", "sua", "methi", "hari-methi", "isabgol", "haldi", "mirch"],
-    ["pyaz", "aalu", "tamatar", "lahsun", "adrak", "hari-mirch", "hara-dhaniya", "sua-patti", "hara-matar", "gwarphali", "amrood", "kela", "seb", "anar"],
-  ];
-  const fieldCrops = cropGroups.slice(0, -1).reduce((all, group) => all.concat(group), []);
-  const produceCrops = cropGroups[cropGroups.length - 1];
+  const fieldCrops = MB.crops.filter((crop) => !crop.veg).map((crop) => crop.slug);
+  const produceCrops = MB.crops.filter((crop) => crop.veg).map((crop) => crop.slug);
   function tilesFor(slugs, kgOnly) {
     return slugs
       .slice()
@@ -68,10 +61,10 @@ MB.page = function homePage() {
       const c = u.cropBySlug(slug);
       const rows = u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
       const med = u.median(rows.map((r) => r.modal));
-      if (!c || med == null) return "";
-      let price = u.rupee(med) + "/qtl";
-      if (kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
-      else if (c.veg) price += ' · <span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
+      if (!c) return "";
+      let price = med == null ? "भाव देखें" : u.rupee(med) + "/qtl";
+      if (med != null && kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
+      else if (med != null && c.veg) price += ' · <span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + '/kg</span>';
       const image = cropImages[slug]
         ? '<span class="crop-image"><img src="' + cropImages[slug] + '" alt="' + c.hi + ' की फसल" width="42" height="42" loading="lazy" decoding="async" /></span>'
         : "";
@@ -101,7 +94,7 @@ MB.page = function homePage() {
       const mandiSlugs = new Set(mandis.map((mandi) => mandi.slug));
       const rows = MB.prices.filter((price) => mandiSlugs.has(price.mandi) && u.isFreshPrice(price));
       const cropCount = new Set(rows.map((price) => price.crop)).size;
-      if (!mandis.length || !rows.length) return "";
+      if (!mandis.length) return "";
       return (
         '<a class="state-tile" href="' +
         u.stateHref(state.slug) +

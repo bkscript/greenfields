@@ -22,7 +22,7 @@ MB.page = function cropPage() {
     .concat(sourceVarietyRows);
 
   if (!rows.length) {
-    box.innerHTML = '<p class="empty">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को इस फसल का भाव नहीं मिला।</p>';
+    box.innerHTML = '<p class="empty">आज का भाव देर शाम तक अपडेट होता रहता है। अपडेट न होने पर समझें कि आज संभवतः मंडी में अवकाश है।</p>';
     return;
   }
 
@@ -65,9 +65,7 @@ MB.page = function cropPage() {
   const shareAll = currentRows.length
     ? u.sharePage("आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " के " + crop.hi + " मंडी भाव देखें")
     : "";
-  const sortedRows = rows
-    .slice()
-    .sort((a, b) => {
+  const sortPriceRows = (priceRows) => priceRows.slice().sort((a, b) => {
       const freshness = u.freshFirst(a, b);
       if (freshness) return freshness;
       if (u.isStalePrice(a) && u.isStalePrice(b) && a.date !== b.date) {
@@ -85,6 +83,7 @@ MB.page = function cropPage() {
       if (gradeOrder) return gradeOrder;
       return b.modal - a.modal;
     });
+  const sortedRows = sortPriceRows(rows);
   const currentTableRows = sortedRows.filter(u.isFreshPrice);
   const renderPriceRow = (r) => {
     const m = u.mandiBySlug(r.mandi);
@@ -113,6 +112,22 @@ MB.page = function cropPage() {
     );
   };
   const currentBody = currentTableRows.map(renderPriceRow).join("");
+  const yesterdayDate = (() => {
+    const date = new Date(MB.PRICE_DATE + "T00:00:00Z");
+    date.setUTCDate(date.getUTCDate() - 1);
+    return date.toISOString().slice(0, 10);
+  })();
+  const yesterdayVarieties = new Set(
+    sourceVarietyRows
+      .filter((row) => row.date === yesterdayDate)
+      .map((row) => row.mandi + "|" + row.crop)
+  );
+  const yesterdayRows = sortPriceRows(
+    baseRows
+      .filter((row) => row.date === yesterdayDate && !yesterdayVarieties.has(row.mandi + "|" + row.crop))
+      .concat(sourceVarietyRows.filter((row) => row.date === yesterdayDate))
+  );
+  const yesterdayBody = yesterdayRows.map(renderPriceRow).join("");
 
   const currentHistoryDate = MB.PRICE_DATE;
   const historyByDate = {};
@@ -347,7 +362,10 @@ MB.page = function cropPage() {
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
     '<section class="card crop-mandi-list"><h2>आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को ' + crop.hi + ' के मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
-    (currentBody || '<tr><td class="empty" colspan="4">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को इस फसल का भाव नहीं मिला।</td></tr>') +
+    (currentBody || '<tr><td class="empty" colspan="4">आज का भाव देर शाम तक अपडेट होता रहता है। अपडेट न होने पर समझें कि आज संभवतः मंडी में अवकाश है।</td></tr>') +
+    "</tbody></table></section>" +
+    '<section class="card crop-mandi-list crop-yesterday-list"><h2>कल ' + u.formatUpdatedHi(yesterdayDate) + ' को ' + crop.hi + ' के मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+    (yesterdayBody || '<tr><td class="empty" colspan="4">कल ' + u.formatUpdatedHi(yesterdayDate) + ' का इस फसल का सत्यापित मंडी भाव रिकॉर्ड उपलब्ध नहीं है।</td></tr>') +
     "</tbody></table></section>" +
     historyIntro +
     historyGraph;
