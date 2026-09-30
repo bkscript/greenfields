@@ -46,8 +46,11 @@ MB.page = function homePage() {
   kela: "img/crops/kela.webp",
   seb: "img/crops/seb.webp",
   anar: "img/crops/anar.webp",
+  ker: "img/crops/ker.webp",
+  sangri: "img/crops/sangri.webp",
 };
   const rajasthaniCrops = ["ker", "sangri", "sua-patti"];
+  const lastUpdateDate = MB.LAST_UPDATED_DATE || MB.PRICE_DATE;
   const fieldCrops = MB.crops
     .filter((crop) => !crop.veg && !rajasthaniCrops.includes(crop.slug))
     .map((crop) => crop.slug);
@@ -70,8 +73,9 @@ MB.page = function homePage() {
       let price = med == null ? "भाव देखें" : u.rupee(med) + "/qtl";
       if (med != null && kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
       else if (med != null && c.veg) price += ' · <span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + '/kg</span>';
+      const imageAlt = slug === "ker" || slug === "sangri" ? "सूखी " + c.hi + " की उपज" : c.hi + " की फसल";
       const image = cropImages[slug]
-        ? '<span class="crop-image"><img src="' + cropImages[slug] + '" alt="' + c.hi + ' की फसल" width="42" height="42" loading="lazy" decoding="async" /></span>'
+        ? '<span class="crop-image"><img src="' + cropImages[slug] + '" alt="' + imageAlt + '" width="42" height="42" loading="lazy" decoding="async" /></span>'
         : "";
       return (
         '<a class="crop-tile" href="' +
@@ -122,7 +126,7 @@ MB.page = function homePage() {
     .join("");
   const stateSection = !stateCards
     ? ""
-    : '<section class="land-block pad state-home-block" id="rajya"><h2>राज्य के अनुसार मंडी भाव</h2><p class="section-intro">अपने राज्य की मंडियाँ और आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के फसल भाव देखें।</p><div class="state-grid">' +
+    : '<section class="land-block pad state-home-block" id="rajya"><h2>राज्य के अनुसार मंडी भाव</h2><p class="section-intro">अपने राज्य की मंडियाँ और आज के फसल भाव देखें।</p><div class="state-grid">' +
       stateCards +
       "</div></section>";
 
@@ -238,7 +242,7 @@ MB.page = function homePage() {
     !moversUp.length && !moversDown.length
       ? ""
       : '<section class="land-block" id="bade-badlav">' +
-        "<h2>आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " के बड़े बदलाव</h2>" +
+        "<h2>आज के बड़े बदलाव</h2>" +
         '<div class="movers">' +
         (moversUp.length
           ? '<div class="mover-group mover-group-up"><p class="mover-group-title"><span>↗</span> तेजी वाली फसलें</p>' + moversUp.map(moverCard).join("") +
@@ -254,11 +258,11 @@ MB.page = function homePage() {
     '<section class="hero">' +
     '<div class="hero-layout">' +
     '<div class="hero-intro"><span class="hero-accent" aria-hidden="true"></span>' +
-    "<h1>आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " के भाव</h1>" +
-    '<p class="hero-summary">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के फसल मंडी भाव देखें। गेहूं, सरसों, चना, सोयाबीन, कपास, धान, प्याज, आलू व अन्य फसलों के मंडी-वार लाइव रेट और मॉडल भाव जानने के लिए नीचे फसल चुनें।</p>' +
+    "<h1>आज के मंडी भाव</h1>" +
+    '<p class="hero-summary">आज के फसल मंडी भाव देखें। गेहूं, सरसों, चना, सोयाबीन, कपास, धान, प्याज, आलू व अन्य फसलों के मंडी-वार लाइव रेट और मॉडल भाव जानने के लिए नीचे फसल चुनें।</p>' +
     "</div>" +
     '<div class="hero-ctas">' +
-    '<button type="button" class="btn-primary" id="hero-go">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के भाव देखें</button>' +
+    '<button type="button" class="btn-primary" id="hero-go">आज के मंडी भाव देखें</button>' +
     u.joinGroupBtn("wa-join-hero") +
     "</div>" +
     "</div>" +
@@ -271,7 +275,7 @@ MB.page = function homePage() {
     MB.crops.length +
     "+</b><span>Crops</span></div>" +
     "<div><b>" +
-    u.formatUpdatedHi(MB.PRICE_DATE).replace(/\s+\d{4}$/, "") +
+    u.formatUpdatedHi(lastUpdateDate).replace(/\s+\d{4}$/, "") +
     "</b><small class=\"stat-update\">Last update</small></div>" +
     "</div>" +
     tapeHtml +
