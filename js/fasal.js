@@ -10,6 +10,88 @@ MB.page = function cropPage() {
     return;
   }
 
+  // Ker and sangri are dry desert produce sold in city/wholesale markets. They
+  // have no mandi auction record, so the mandi price table, min/max range,
+  // mandi links and the date are all wrong for them. They publish their own
+  // single modal rate per kilo instead, and stay as recorded until the owner
+  // uploads a newer verified rate.
+  const cityRate = (crop.cityRate && (MB.CITY_RATES || {})[slug]) || null;
+
+  if (cityRate) {
+    const statIcon = (() => {
+      const icons = {
+        modal: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V11M10 19V5M16 19v-8M22 19V8"/><path d="M3 19h20"/></svg>',
+        kilo: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l2 11H3L5 8Z"/><path d="M8 8a4 4 0 0 1 8 0M9 14h6"/></svg>',
+        cities: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M10 21v-6h4v6"/></svg>',
+      };
+      return icons;
+    })();
+    const hasRate = Number.isFinite(Number(cityRate.modal)) && Number(cityRate.modal) > 0;
+    const cityRows = (cityRate.cities || [])
+      .filter((item) => Number.isFinite(Number(item.modal)) && Number(item.modal) > 0)
+      .map(
+        (item) =>
+          '<tr><td>' +
+          u.escapeHtml(item.hi) +
+          '</td><td class="num modal-price">' +
+          u.rupee(item.modal) +
+          " /किलो</td></tr>"
+      )
+      .join("");
+    const cityStats = hasRate
+      ? '<div class="stats four">' +
+        '<div class="stat"><span class="stat-icon">' + statIcon.modal + "</span><b>" +
+        u.rupee(cityRate.modal) +
+        "</b><span>मॉडल भाव</span></div>" +
+        '<div class="stat"><span class="stat-icon">' + statIcon.kilo + "</span><b>" +
+        u.rupee(cityRate.modal) +
+        "</b><span>प्रति किलो</span></div>" +
+        '<div class="stat"><span class="stat-icon">' + statIcon.cities + "</span><b>" +
+        (cityRate.cities || []).length +
+        "</b><span>शहर</span></div>" +
+        "</div>"
+      : "";
+    const citySection =
+      '<p class="share-bar"><span class="price-date">' +
+      (hasRate ? "आजकल " : "") +
+      u.escapeHtml(cityRate.hi) +
+      (hasRate ? " के भाव चल रहे हैं" : " का भाव") +
+      "</span>" +
+      (hasRate ? u.shareBtn("आजकल " + cityRate.hi + " के भाव देखें") : "") +
+      "</p>" +
+      cityStats +
+      '<section class="card crop-mandi-list"><h2>' +
+      u.escapeHtml(cityRate.hi) +
+      " के शहरवार भाव</h2><table><thead><tr><th>शहर</th>" +
+      '<th class="num">भाव</th></tr></thead><tbody>' +
+      (cityRows || '<tr><td class="empty" colspan="2">अभी ' + u.escapeHtml(cityRate.hi) + ' का सत्यापित शहरवार भाव दर्ज नहीं है। नया भाव मिलते ही यहां अपडेट हो जाएगा।</td></tr>') +
+      "</tbody></table></section>" +
+      '<p class="page-note">' +
+      u.escapeHtml(MB.CITY_RATE_NOTE || "") +
+      "</p>";
+    if (seoReady) {
+      box.innerHTML = citySection;
+    } else {
+      const seo = (MB.seo && MB.seo[slug]) || {};
+      box.innerHTML =
+        '<p class="crumbs"><a href="' +
+        u.siteHref("") +
+        '">होम</a> / ' +
+        u.escapeHtml(crop.hi) +
+        "</p>" +
+        "<h1>" +
+        u.escapeHtml(cityRate.hi) +
+        " का भाव आज | " +
+        u.escapeHtml(cityRate.en) +
+        " Price Today</h1>" +
+        '<p class="sub">' +
+        (seo.hi || "") +
+        "</p>" +
+        citySection;
+    }
+    return;
+  }
+
   document.title = crop.hi + " का भाव आज | " + crop.en + " Mandi Price Today";
 
   const baseRows = u.pricesFor({ crop: slug });

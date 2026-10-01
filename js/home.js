@@ -61,19 +61,26 @@ MB.page = function homePage() {
     return slugs
       .slice()
       .sort((a, b) => {
-        const aFresh = u.pricesFor({ crop: a }).some(u.isFreshPrice);
-        const bFresh = u.pricesFor({ crop: b }).some(u.isFreshPrice);
-        return Number(bFresh) - Number(aFresh);
+        const rateFor = (slug) => {
+          const c = u.cropBySlug(slug);
+          if (c && c.cityRate && (MB.CITY_RATES || {})[slug]) return true;
+          return u.pricesFor({ crop: slug }).some(u.isFreshPrice);
+        };
+        return Number(rateFor(b)) - Number(rateFor(a));
       })
       .map((slug) => {
       const c = u.cropBySlug(slug);
-      const rows = u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
-      const med = u.median(rows.map((r) => r.modal));
+      // Ker and sangri publish a city/wholesale rate per kilo instead of a
+      // mandi record, so they are read from MB.CITY_RATES.
+      const cityRate = c && c.cityRate ? (MB.CITY_RATES || {})[slug] : null;
+      const rows = cityRate ? [] : u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
+      const med = cityRate ? Number(cityRate.modal) : u.median(rows.map((r) => r.modal));
       if (!c) return "";
       let price = med == null ? "भाव देखें" : u.rupee(med) + "/qtl";
-      if (med != null && kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
+      if (med != null && cityRate) price = '<span class="kg-inline">' + u.rupee(med) + "/kg</span>";
+      else if (med != null && kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
       else if (med != null && c.veg) price += ' · <span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + '/kg</span>';
-      const imageAlt = slug === "ker" || slug === "sangri" ? "सूखी " + c.hi + " की उपज" : c.hi + " की फसल";
+      const imageAlt = c.cityRate ? "सूखी " + c.hi + " की उपज" : c.hi + " की फसल";
       const image = cropImages[slug]
         ? '<span class="crop-image"><img src="' + cropImages[slug] + '" alt="' + imageAlt + '" width="42" height="42" loading="lazy" decoding="async" /></span>'
         : "";

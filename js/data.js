@@ -23,6 +23,62 @@ MB.BULLION = {
   ],
 };
 
+// Rajasthani special produce (ker, sangri, sua-patti). These are dry desert
+// produce and fresh dill leaves sold in city and wholesale markets, NOT
+// recorded in any mandi auction. They never come from Agmarknet, so they are
+// stored separately from MB.prices and are never converted to a quintal rate,
+// never given a min/max range and never shown with a visible date. The
+// published rate stays as recorded until the owner uploads a newer verified
+// rate for that crop.
+MB.CITY_RATES = {
+  ker: {
+    hi: "केर",
+    en: "Ker Berries",
+    unit: "kg",
+    modal: 1200,
+    cities: [
+      { hi: "जोधपुर", modal: 1200 },
+      { hi: "नागौर", modal: 1225 },
+      { hi: "बाड़मेर", modal: 1100 },
+      { hi: "बीकानेर", modal: 1150 },
+      { hi: "चुरू", modal: 1025 },
+      { hi: "जालोर", modal: 1000 },
+      { hi: "पाली", modal: 1000 },
+      { hi: "बलोतरा", modal: 1125 },
+      { hi: "जैसलमेर", modal: 1150 }
+    ]
+  },
+  sangri: {
+    hi: "सांगरी",
+    en: "Desert Bean Pods",
+    unit: "kg",
+    modal: 1200,
+    cities: [
+      { hi: "जोधपुर", modal: 1200 },
+      { hi: "नागौर", modal: 1225 },
+      { hi: "बाड़मेर", modal: 1100 },
+      { hi: "बीकानेर", modal: 1150 },
+      { hi: "चुरू", modal: 1025 },
+      { hi: "जालोर", modal: 1000 },
+      { hi: "पाली", modal: 1000 },
+      { hi: "बलोतरा", modal: 1125 },
+      { hi: "जैसलमेर", modal: 1150 }
+    ]
+  },
+  "sua-patti": {
+    hi: "सुआ पत्ती",
+    en: "Dill Leaves",
+    unit: "kg",
+    modal: null,
+    cities: []
+  }
+};
+
+// Note shown wherever a city/wholesale rate is published. It must stay on the
+// page so no reader mistakes this for a mandi auction record.
+MB.CITY_RATE_NOTE =
+  "यह भाव किसी मंडी की नीलामी का रिकॉर्ड नहीं है। मरुधरा की ये शुष्क और हरी उपज शहर और थोक बाज़ार में बिकती है, इसलिए इनका भाव अलग रूप से दर्ज किया जाता है।";
+
 MB.TAPE = [
   { crop: "sarson", mandi: "sri-ganganagar" },
   { crop: "moong", mandi: "nagaur" },
@@ -76,7 +132,6 @@ MB.crops = [
   { slug: "hara-dhaniya", hi: "हरा धनिया", en: "Coriander Leaves", veg: true, msp: null },
   { slug: "saunf", hi: "सौंफ", en: "Fennel", veg: false, msp: null },
   { slug: "sua", hi: "सुआ", en: "Dill", veg: false, msp: null },
-  { slug: "sua-patti", hi: "सुआ पत्ती", en: "Dill Leaves", veg: true, msp: null },
   { slug: "methi", hi: "मेथी दाना", en: "Fenugreek Seed", veg: false, msp: null },
   { slug: "hari-methi", hi: "पान मेथी", en: "Fenugreek Leaves", veg: false, msp: null },
   { slug: "arandi", hi: "अरंडी", en: "Castor Seed", veg: false, msp: null },
@@ -86,8 +141,9 @@ MB.crops = [
   { slug: "alsi", hi: "अलसी", en: "Linseed", veg: false, msp: null },
   { slug: "asaliya", hi: "असालिया", en: "Garden Cress", veg: false, msp: null },
   { slug: "kalonji", hi: "कलौंजी", en: "Nigella Seeds", veg: false, msp: null },
-  { slug: "ker", hi: "केर", en: "Ker Berries", veg: false, msp: null },
-  { slug: "sangri", hi: "सांगरी", en: "Desert Bean Pods", veg: false, msp: null },
+  { slug: "ker", hi: "केर", en: "Ker Berries", veg: false, msp: null, cityRate: true },
+  { slug: "sangri", hi: "सांगरी", en: "Desert Bean Pods", veg: false, msp: null, cityRate: true },
+  { slug: "sua-patti", hi: "सुआ पत्ती", en: "Dill Leaves", veg: true, msp: null, cityRate: true },
   { slug: "amrood", hi: "अमरूद", en: "Guava", veg: true, msp: null },
   { slug: "kela", hi: "केला", en: "Banana", veg: true, msp: null },
   { slug: "seb", hi: "सेब", en: "Apple", veg: true, msp: null },
