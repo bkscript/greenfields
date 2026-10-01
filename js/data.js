@@ -269,7 +269,9 @@ MB.AGMARKNET_ALIASES = {
     "matar": ["Field Pea"],
     "hara-matar": ["Peas Wet", "Pea Pod/Pea Cod/हरी मटर"],
     "alsi": ["Linseed"],
-    "kela": ["Banana - Green"]
+    "kela": ["Banana - Green"],
+    "ker": ["Ker", "Kera", "Keri", "Ker Berries", "Keri Berries", "Kair", "Kenia", "Capparis decidua", "केर", "केरिया"],
+    "sangri": ["Sangri", "Sangri Bean", "Desert Bean", "Desert Bean Pods", "Khingora", "Moth Bean", "Sangri Pods", "सांगरी", "संगरी", "खिंगोरा"]
   }
 };
 
