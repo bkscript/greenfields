@@ -199,15 +199,9 @@ MB.page = function cropPage() {
     date.setUTCDate(date.getUTCDate() - 1);
     return date.toISOString().slice(0, 10);
   })();
-  const yesterdayVarieties = new Set(
-    sourceVarietyRows
-      .filter((row) => row.date === yesterdayDate)
-      .map((row) => row.mandi + "|" + row.crop)
-  );
+  const yesterdaySnapshot = ((MB.priceHistory || {})[yesterdayDate] || []);
   const yesterdayRows = sortPriceRows(
-    baseRows
-      .filter((row) => row.date === yesterdayDate && !yesterdayVarieties.has(row.mandi + "|" + row.crop))
-      .concat(sourceVarietyRows.filter((row) => row.date === yesterdayDate))
+    yesterdaySnapshot.filter((row) => row.crop === slug)
   );
   const yesterdayBody = yesterdayRows.map(renderPriceRow).join("");
 
