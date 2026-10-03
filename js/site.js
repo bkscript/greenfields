@@ -106,6 +106,31 @@
     });
   }
 
+  function isGenericVariety(row) {
+    const variety = String((row && row.variety) || "").trim().toLowerCase();
+    return !variety || variety === "other" || variety === "others" || variety === "अन्य";
+  }
+
+  function samePriceRecord(a, b) {
+    return Number(a.min) === Number(b.min) &&
+      Number(a.modal) === Number(b.modal) &&
+      Number(a.max) === Number(b.max);
+  }
+
+  function dedupeGenericVarietyRows(rows) {
+    return (rows || []).filter((row, index, allRows) => {
+      if (!isGenericVariety(row)) return true;
+      return !allRows.some((other, otherIndex) =>
+        otherIndex !== index &&
+        !isGenericVariety(other) &&
+        other.mandi === row.mandi &&
+        other.crop === row.crop &&
+        other.date === row.date &&
+        samePriceRecord(other, row)
+      );
+    });
+  }
+
   function escapeHtml(value) {
     return String(value == null ? "" : value)
       .replace(/&/g, "&amp;")
@@ -485,6 +510,7 @@
     formatUpdatedHi,
     pricesFor,
     varietyPricesFor,
+    dedupeGenericVarietyRows,
     escapeHtml,
     sharePrice,
     sharePage,

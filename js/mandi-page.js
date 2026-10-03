@@ -19,7 +19,8 @@ MB.page = function mandiPage() {
 
   const baseRows = u.pricesFor({ mandi: slug });
   const sourceVarietyRows = u.varietyPricesFor({ mandi: slug });
-  const allSavedRows = baseRows.concat(sourceVarietyRows);
+  const displayVarietyRows = u.dedupeGenericVarietyRows(sourceVarietyRows);
+  const allSavedRows = baseRows.concat(displayVarietyRows);
   const availableDates = Array.from(
     new Set(
       allSavedRows
@@ -31,11 +32,11 @@ MB.page = function mandiPage() {
   const isMandiDisplayPrice = (row) => !!row && row.date === mandiPriceDate;
   const isCurrentMandiDate = mandiPriceDate === MB.PRICE_DATE;
   const cropsWithVarieties = new Set(
-    sourceVarietyRows.filter(isMandiDisplayPrice).map((row) => row.crop)
+    displayVarietyRows.filter(isMandiDisplayPrice).map((row) => row.crop)
   );
   const rows = baseRows
     .filter((row) => !cropsWithVarieties.has(row.crop))
-    .concat(sourceVarietyRows);
+    .concat(displayVarietyRows);
   const sortedRows = rows
     .filter(isMandiDisplayPrice)
     .slice()

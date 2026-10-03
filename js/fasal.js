@@ -96,12 +96,13 @@ MB.page = function cropPage() {
 
   const baseRows = u.pricesFor({ crop: slug });
   const sourceVarietyRows = u.varietyPricesFor({ crop: slug });
+  const displayVarietyRows = u.dedupeGenericVarietyRows(sourceVarietyRows);
   const mandiCropsWithVarieties = new Set(
-    sourceVarietyRows.filter(u.isFreshPrice).map((row) => row.mandi + "|" + row.crop)
+    displayVarietyRows.filter(u.isFreshPrice).map((row) => row.mandi + "|" + row.crop)
   );
   const rows = baseRows
     .filter((row) => !mandiCropsWithVarieties.has(row.mandi + "|" + row.crop))
-    .concat(sourceVarietyRows);
+    .concat(displayVarietyRows);
 
   if (!rows.length) {
     box.innerHTML = '<p class="empty">आज का भाव देर शाम तक अपडेट होता रहता है। अपडेट न होने पर समझें कि आज संभवतः मंडी में अवकाश है।</p>';
@@ -201,7 +202,7 @@ MB.page = function cropPage() {
   })();
   const yesterdaySnapshot = ((MB.priceHistory || {})[yesterdayDate] || []);
   const yesterdayRows = sortPriceRows(
-    yesterdaySnapshot.filter((row) => row.crop === slug)
+    u.dedupeGenericVarietyRows(yesterdaySnapshot.filter((row) => row.crop === slug))
   );
   const yesterdayBody = yesterdayRows.map(renderPriceRow).join("");
 
