@@ -140,6 +140,13 @@
       .replace(/'/g, "&#39;");
   }
 
+  function fillFaqAnswer(template, values) {
+    const fields = values || {};
+    return String(template || "").replace(/\{([A-Za-z][A-Za-z0-9]*)\}/g, function (_match, key) {
+      return fields[key] == null ? "" : String(fields[key]);
+    }).trim();
+  }
+
   function priceAgeDays(row) {
     const value = (row && row.date) || MB.PRICE_DATE;
     if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return 0;
@@ -527,6 +534,7 @@
     varietyPricesFor,
     dedupeGenericVarietyRows,
     escapeHtml,
+    fillFaqAnswer,
     sharePrice,
     sharePage,
     shareBtn,

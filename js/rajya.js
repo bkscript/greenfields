@@ -15,7 +15,10 @@ MB.page = function statePage() {
   const rows = u.pricesFor({ state: slug });
   const currentRows = rows.filter(u.isFreshPrice);
   const stateTableModal = u.median(currentRows.map((row) => row.modal));
+  const stateTableMin = currentRows.length ? Math.min.apply(null, currentRows.map((row) => row.min)) : null;
+  const stateTableMax = currentRows.length ? Math.max.apply(null, currentRows.map((row) => row.max)) : null;
   const mandis = MB.mandis.filter((m) => m.state === slug);
+  const stateFaqEntities = [];
   const dynamicFaqs = ((MB.dynamicStateFaqs || {})[slug] || [])
     .map((item) => {
       if (item.type === "mandi-crop") {
@@ -23,23 +26,42 @@ MB.page = function statePage() {
         const crop = u.cropBySlug(item.crop);
         const row = rows.find((price) => price.mandi === item.mandi && price.crop === item.crop && u.isFreshPrice(price));
         if (!market || !crop) return "";
-        let answer;
-        if (row) {
-          answer = u.faqAnswerDateLead(item.q, row.date) + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।";
-        } else {
-          answer = Number.isFinite(stateTableModal)
-            ? u.faqAnswerDateLead(item.q, MB.PRICE_DATE) + state.hi +
-              " की सारणी में दर्ज फसलों का मध्य मॉडल भाव " + u.rupee(stateTableModal) +
-              " प्रति क्विंटल है। अलग-अलग मंडियों और फसलों के भाव अलग हैं।"
-            : "";
-        }
+        const modal = row ? Number(row.modal) : Number(stateTableModal);
+        const min = row ? Number(row.min) : Number(stateTableMin);
+        const max = row ? Number(row.max) : Number(stateTableMax);
+        if (![modal, min, max].every(Number.isFinite)) return "";
+        const answer = u.fillFaqAnswer(item.a, {
+          dateLead: u.faqAnswerDateLead(item.q, (row && row.date) || MB.PRICE_DATE),
+          label: row
+            ? market.hi + " में " + crop.hi
+            : state.hi + " की सारणी में दर्ज भावों का मध्य",
+          mandi: market.hi,
+          crop: crop.hi,
+          modal: u.rupee(modal),
+          min: u.rupee(min),
+          max: u.rupee(max),
+          kgModal: u.rupee(modal / 100),
+          kgMin: u.rupee(min / 100),
+          kgMax: u.rupee(max / 100),
+        });
         if (!answer) return "";
-        return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
+        stateFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
+        return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + u.escapeHtml(answer) + "</p></details>";
       }
       return "";
     })
     .filter(Boolean)
     .join("");
+  if (stateFaqEntities.length) {
+    let schema = document.getElementById("state-dynamic-faq-schema");
+    if (!schema) {
+      schema = document.createElement("script");
+      schema.id = "state-dynamic-faq-schema";
+      schema.type = "application/ld+json";
+      document.head.appendChild(schema);
+    }
+    schema.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: stateFaqEntities });
+  }
   const dynamicFaqSection = dynamicFaqs
     ? '<section class="faq-section dynamic-faq"><h2>भाव संबंधित सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";

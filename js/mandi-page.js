@@ -29,30 +29,25 @@ MB.page = function mandiPage() {
     )
   ).sort((a, b) => String(b).localeCompare(String(a)));
   const mandiPriceDate = availableDates[0] || "";
-  const isMandiDisplayPrice = (row) => !!row && row.date === mandiPriceDate;
   const isCurrentMandiDate = mandiPriceDate === MB.PRICE_DATE;
-  const cropsWithVarieties = new Set(
-    displayVarietyRows.filter(isMandiDisplayPrice).map((row) => row.crop)
-  );
-  const rows = baseRows
-    .filter((row) => !cropsWithVarieties.has(row.crop))
-    .concat(displayVarietyRows);
-  const sortedRows = rows
-    .filter(isMandiDisplayPrice)
-    .slice()
-    .sort((a, b) => {
+  const previousMandiDate = availableDates.find((date) => date < mandiPriceDate) || "";
+  const rowsForDate = (date) => {
+    if (!date) return [];
+    const cropsWithVarieties = new Set(
+      displayVarietyRows.filter((row) => row.date === date).map((row) => row.crop)
+    );
+    return baseRows
+      .filter((row) => row.date === date && !cropsWithVarieties.has(row.crop))
+      .concat(displayVarietyRows.filter((row) => row.date === date))
+      .slice()
+      .sort((a, b) => {
       if (highlight && a.crop === highlight) return -1;
       if (highlight && b.crop === highlight) return 1;
       return b.modal - a.modal;
-    });
-  const currentTableRows = sortedRows;
-  const mandiTableModal = u.median(currentTableRows.map((row) => row.modal));
-  const mandiTableModelAnswer = (question) => {
-    if (!Number.isFinite(mandiTableModal)) return "";
-    return u.faqAnswerDateLead(question, mandiPriceDate) + mandi.hi +
-      " मंडी की सारणी में दर्ज फसलों का मध्य मॉडल भाव " + u.rupee(mandiTableModal) +
-      " प्रति क्विंटल है। अलग-अलग फसलों के भाव अलग हैं।";
+      });
   };
+  const currentTableRows = rowsForDate(mandiPriceDate);
+  const previousTableRows = rowsForDate(previousMandiDate);
   const renderPriceRow = (r) => {
     const c = u.cropBySlug(r.crop);
     const grade = r.grade
@@ -78,6 +73,7 @@ MB.page = function mandiPage() {
     );
   };
   const currentBody = currentTableRows.map(renderPriceRow).join("");
+  const previousBody = previousTableRows.map(renderPriceRow).join("");
 
   const nearby = MB.mandis
     .filter((m) => m.state === mandi.state && m.slug !== slug)
@@ -92,61 +88,60 @@ MB.page = function mandiPage() {
   const mandiFaqEntities = [];
   const dynamicFaqs = ((MB.dynamicMandiFaqs || {})[slug] || [])
     .map((item) => {
+      const faqRows = item.type === "previous" && previousTableRows.length
+        ? previousTableRows
+        : currentTableRows;
+      const faqDate = item.type === "previous" && previousTableRows.length
+        ? previousMandiDate
+        : mandiPriceDate;
       const row = item.variety
-        ? currentTableRows.find(
+        ? faqRows.find(
             (price) => price.crop === item.crop && price.variety === item.variety
           )
-        : currentTableRows.find((price) => price.crop === item.crop);
+        : faqRows.find((price) => price.crop === item.crop);
       const varietyRows = Array.isArray(item.varieties)
         ? item.varieties
             .map((variety) =>
-              sourceVarietyRows.find(
-                (price) => price.crop === item.crop && price.variety === variety && isMandiDisplayPrice(price)
-              )
+              faqRows.find((price) => price.crop === item.crop && price.variety === variety)
             )
             .filter(Boolean)
         : [];
       const crop = u.cropBySlug(item.crop);
       const cropHi = crop ? crop.hi : item.cropHi || item.crop;
       const cropLabel = cropHi + (item.variety ? " की " + item.variety + " किस्म" : "");
-      let answer;
-      if (item.type === "previous") {
-        answer = mandiTableModelAnswer(item.q);
-      } else if (item.type === "container") {
-        answer = row
-          ? u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel +
-            " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है; इसे कंटेनर रेट न मानें।"
-          : mandiTableModelAnswer(item.q);
-      } else if (item.varieties && varietyRows.length) {
-        answer =
-          u.faqAnswerDateLead(item.q, mandiPriceDate) +
-          mandi.hi +
-          " में " +
-          cropHi +
-          " के किस्म-वार प्रकाशित मॉडल भाव: " +
-          varietyRows
-            .map((price) => price.variety + " " + u.rupee(price.modal) + " प्रति क्विंटल")
-            .join(", ") +
-          "। किस्म अलग होने से इन्हें एक ही भाव न मानें।";
-      } else if (!row) {
-        answer = mandiTableModelAnswer(item.q);
-      } else if (item.unit === "kg") {
-        answer = u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
-          u.rupee(row.modal / 100) + " प्रति किलो के बराबर है। स्रोत दर " + u.rupee(row.modal) +
-          " प्रति क्विंटल है; न्यूनतम " + u.rupee(row.min / 100) + " और अधिकतम " +
-          u.rupee(row.max / 100) + " प्रति किलो के बराबर हैं। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं।";
-      } else {
-        answer = u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
-          u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
-          " और अधिकतम भाव " + u.rupee(row.max) + " है।";
-      }
+      const summaryModal = u.median(faqRows.map((price) => price.modal));
+      const summaryMin = faqRows.length ? Math.min.apply(null, faqRows.map((price) => price.min)) : null;
+      const summaryMax = faqRows.length ? Math.max.apply(null, faqRows.map((price) => price.max)) : null;
+      const modal = row ? Number(row.modal) : Number(summaryModal);
+      const min = row ? Number(row.min) : Number(summaryMin);
+      const max = row ? Number(row.max) : Number(summaryMax);
+      if (![modal, min, max].every(Number.isFinite)) return "";
+      const values = {
+        dateLead: u.faqAnswerDateLead(item.q, (row && row.date) || faqDate),
+        label: row
+          ? mandi.hi + " में " + cropLabel
+          : mandi.hi + " मंडी की सारणी में दर्ज फसलों का मध्य",
+        mandi: mandi.hi,
+        crop: cropHi,
+        cropLabel,
+        modal: u.rupee(modal),
+        min: u.rupee(min),
+        max: u.rupee(max),
+        kgModal: u.rupee(modal / 100),
+        kgMin: u.rupee(min / 100),
+        kgMax: u.rupee(max / 100),
+        varietyPrices: varietyRows
+          .map((price) => price.variety + " " + u.rupee(price.modal) + " प्रति क्विंटल")
+          .join(", "),
+      };
+      const answer = u.fillFaqAnswer(item.a, values);
       if (!answer) return "";
       mandiFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
       return (
         '<details class="faq-item"><summary>' +
         item.q +
         "</summary><p>" +
-        answer +
+        u.escapeHtml(answer) +
         "</p></details>"
       );
     })
@@ -188,8 +183,15 @@ MB.page = function mandiPage() {
         '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
         currentBody +
         "</tbody></table>"
-      : '<p class="empty">इस मंडी का भाव रिकॉर्ड नहीं मिला।</p>') +
+      : '<p class="empty">इस मंडी का भाव जारी नहीं हुआ।</p>') +
     "</section>" +
+    (previousBody
+      ? '<section class="card mandi-crop-list crop-yesterday-list"><h2>' +
+        u.formatUpdatedHi(previousMandiDate) + ' को ' + mandi.hi +
+        ' मंडी में फसलों के भाव</h2><table><thead><tr><th>फसल</th><th>किस्म</th>' +
+        '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+        previousBody + "</tbody></table></section>"
+      : "") +
     '<div class="chips">' +
     nearby +
     "</div>";

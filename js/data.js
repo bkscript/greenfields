@@ -47809,158 +47809,158 @@ MB.faqs = {
 
 MB.dynamicMandiFaqs = {
   "unjha": [
-    { "crop": "jeera", "q": "आज उंझा मंडी जीरा का क्या भाव है?" },
-    { "crop": "isabgol", "q": "आज उंझा मंडी में इसबगोल का क्या भाव है?" },
-    { "crop": "saunf", "q": "ऊंझा मंडी में आज वरियाली का क्या भाव है?" },
-    { "crop": "jeera", "q": "ऊंझा मंडी में जीरा का लाइव भाव क्या है?" },
-    { "crop": "isabgol", "q": "Isabgol unjha mandi bhav today" },
-    { "crop": "jeera", "q": "Unjha mandi jeera bhav today" },
-    { "crop": "saunf", "q": "ऊंझा मंडी वरियाली का भाव" },
-    { "crop": "isabgol", "q": "ऊंझा मंडी ईसब भाव आज" },
-    { "crop": "jeera", "q": "ऊंझा मंडी जीरा भाव आज का 2026" }
+    { "crop": "jeera", "q": "आज उंझा मंडी जीरा का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "isabgol", "q": "आज उंझा मंडी में इसबगोल का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "saunf", "q": "ऊंझा मंडी में आज वरियाली का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "jeera", "q": "ऊंझा मंडी में जीरा का लाइव भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "isabgol", "q": "Isabgol unjha mandi bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "jeera", "q": "Unjha mandi jeera bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "saunf", "q": "ऊंझा मंडी वरियाली का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "isabgol", "q": "ऊंझा मंडी ईसब भाव आज", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "jeera", "q": "ऊंझा मंडी जीरा भाव आज का 2026", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]
 };
 
 Object.assign(MB.dynamicMandiFaqs, {
   "nimbahera": [
-    { "crop": "makka", "q": "निंबाहेड़ा मंडी में आज मक्के का क्या भाव है?" }, 
-    { "crop": "gehun", "q": "निंबाहेड़ा मंडी में गेहूं के क्या भाव चल रहे हैं?" }, 
-    { "crop": "moongphali", "q": "निंबाहेड़ा मंडी में मूंगफली का आज का भाव क्या है?" }, 
-    { "crop": "chana", "q": "Nimbahera Mandi chana bhav Today" }, 
-    { "crop": "makka", "q": "निम्बाहेड़ा मंडी भाव आज का मक्का" }, 
-    { "crop": "soyabean", "q": "निम्बाहेड़ा मंडी भाव आज का सोयाबीन" }, 
-    { "crop": "gehun", "q": "निम्बाहेड़ा मंडी भाव आज का गेहूं" }, 
-    { "crop": "sarson", "q": "निम्बाहेड़ा मंडी भाव आज का सरसों" }, 
-    { "crop": "lahsun", "q": "निंबाहेड़ा मंडी लहसुन भाव" }
+    { "crop": "makka", "q": "निंबाहेड़ा मंडी में आज मक्के का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "gehun", "q": "निंबाहेड़ा मंडी में गेहूं के क्या भाव चल रहे हैं?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "moongphali", "q": "निंबाहेड़ा मंडी में मूंगफली का आज का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "chana", "q": "Nimbahera Mandi chana bhav Today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "makka", "q": "निम्बाहेड़ा मंडी भाव आज का मक्का", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "soyabean", "q": "निम्बाहेड़ा मंडी भाव आज का सोयाबीन", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "gehun", "q": "निम्बाहेड़ा मंडी भाव आज का गेहूं", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "sarson", "q": "निम्बाहेड़ा मंडी भाव आज का सरसों", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "lahsun", "q": "निंबाहेड़ा मंडी लहसुन भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "patan": [
-    { "crop": "gehun", "q": "आज पाटन मंडी में गेहूं का क्या रेट है?" }, 
-    { "crop": "urad", "q": "पाटन मंडी में उर्द का क्या रेट है?" }, 
-    { "crop": "moong", "q": "आज पाटन मंडी में मूंग का भाव क्या है?" }, 
-    { "crop": "urad", "q": "पाटन मंडी भाव उड़द" }, 
-    { "crop": "moong", "q": "पाटन मंडी मूंग भाव" }, 
-    { "crop": "makka", "q": "Patan mandi bhav today makka" }, 
-    { "crop": "moong", "q": "Patan mandi bhav Today moong" }, 
-    { "crop": "gehun", "q": "पाटन मंडी गेहूं का भाव" }, 
-    { "crop": "gehun", "q": "Patan mandi bhav today gehu" }, 
-    { "crop": "sarson", "q": "पाटन मंडी सरसों का भाव" }
+    { "crop": "gehun", "q": "आज पाटन मंडी में गेहूं का क्या रेट है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "urad", "q": "पाटन मंडी में उर्द का क्या रेट है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "moong", "q": "आज पाटन मंडी में मूंग का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "urad", "q": "पाटन मंडी भाव उड़द", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "moong", "q": "पाटन मंडी मूंग भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "makka", "q": "Patan mandi bhav today makka", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "moong", "q": "Patan mandi bhav Today moong", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "gehun", "q": "पाटन मंडी गेहूं का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "gehun", "q": "Patan mandi bhav today gehu", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "sarson", "q": "पाटन मंडी सरसों का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "jodhpur": [
-    { "crop": "jeera", "q": "जोधपुर मंडी जीरे का क्या भाव है आज का?" }, 
-    { "crop": "gehun", "q": "जोधपुर मंडी में गेहूं का आज का भाव क्या है?" }, 
-    { "crop": "sarson", "q": "जोधपुर मंडी रायड़ा का भाव" }, 
-    { "crop": "jeera", "q": "जोधपुर मंडी जीरा भाव आज का" }, 
-    { "crop": "chana", "q": "Jodhpur Mandi chana Bhav today" }, 
-    { "crop": "sarson", "q": "जोधपुर मंडी सरसों का भाव" }, 
-    { "crop": "gwar", "q": "जोधपुर मंडी आज का भाव ग्वार" }, 
-    { "crop": "moth", "q": "जोधपुर मंडी आज का भाव मोठ" }
+    { "crop": "jeera", "q": "जोधपुर मंडी जीरे का क्या भाव है आज का?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "gehun", "q": "जोधपुर मंडी में गेहूं का आज का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "sarson", "q": "जोधपुर मंडी रायड़ा का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "jeera", "q": "जोधपुर मंडी जीरा भाव आज का", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "chana", "q": "Jodhpur Mandi chana Bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "sarson", "q": "जोधपुर मंडी सरसों का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "gwar", "q": "जोधपुर मंडी आज का भाव ग्वार", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "moth", "q": "जोधपुर मंडी आज का भाव मोठ", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "jaipur": [
-    { "crop": "gehun", "q": "Bassi mandi gehun ka bhav" }, 
-    { "crop": "bajra", "q": "Bassi mandi bajra bhav today" }, 
-    { "crop": "chana", "q": "Bassi mandi chana ka bhav" }, 
-    { "crop": "sarson", "q": "Bassi mandi sarso ka bhav" }
+    { "crop": "gehun", "q": "Bassi mandi gehun ka bhav", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "bajra", "q": "Bassi mandi bajra bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "chana", "q": "Bassi mandi chana ka bhav", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }, 
+    { "crop": "sarson", "q": "Bassi mandi sarso ka bhav", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "nagaur": [
-    { "crop": "moong", "q": "नागौर में मूंग का क्या भाव है?" },
-    { "crop": "gehun", "q": "नागौर मंडी में गेहूं का भाव क्या है?" },
-    { "crop": "isabgol", "q": "नागौर मंडी आज का भाव इसबगोल" },
-    { "crop": "sarson", "q": "नागौर मंडी आज का भाव रायड़ा" },
-    { "crop": "gehun", "q": "नागौर मंडी आज का भाव गेहूं" },
-    { "crop": "jeera", "q": "नागौर मंडी आज का भाव जीरा" },
-    { "crop": "moong", "q": "नागौर मंडी आज का भाव मूंग" }
+    { "crop": "moong", "q": "नागौर में मूंग का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "नागौर मंडी में गेहूं का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "isabgol", "q": "नागौर मंडी आज का भाव इसबगोल", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "नागौर मंडी आज का भाव रायड़ा", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "नागौर मंडी आज का भाव गेहूं", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "jeera", "q": "नागौर मंडी आज का भाव जीरा", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "moong", "q": "नागौर मंडी आज का भाव मूंग", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "merta": [
-    { "crop": "gwar", "q": "मेड़ता मंडी में आज ग्वार का क्या भाव है?" },
-    { "crop": "jeera", "q": "जीरा मेड़ता मंडी में क्या भाव है?" },
-    { "crop": "jeera", "q": "मेड़ता मंडी आज का भाव | जीरा" },
-    { "crop": "isabgol", "q": "मेड़ता मंडी इसबगोल का भाव" },
-    { "crop": "gwar", "q": "मेड़ता मंडी आज का भाव ग्वार" },
-    { "crop": "sarson", "q": "मेड़ता मंडी सरसों का भाव" },
-    { "crop": "sarson", "q": "मेड़ता मंडी आज का भाव रायड़ा" }
+    { "crop": "gwar", "q": "मेड़ता मंडी में आज ग्वार का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "jeera", "q": "जीरा मेड़ता मंडी में क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "jeera", "q": "मेड़ता मंडी आज का भाव | जीरा", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "isabgol", "q": "मेड़ता मंडी इसबगोल का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gwar", "q": "मेड़ता मंडी आज का भाव ग्वार", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "मेड़ता मंडी सरसों का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "मेड़ता मंडी आज का भाव रायड़ा", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "nokha": [
-    { "crop": "moth", "q": "मोठ का भाव नोखा मंडी" }
+    { "crop": "moth", "q": "मोठ का भाव नोखा मंडी", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "lunkaransar": [
-    { "crop": "moth", "q": "लूणकरणसर मंडी का आज का मोठ का भाव" }
+    { "crop": "moth", "q": "लूणकरणसर मंडी का आज का मोठ का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "baran": [
-    { "crop": "dhaniya", "q": "बारा मंडी में धनिया का भाव क्या है?" },
-    { "crop": "dhan", "q": "आज बारान मंडी में धान का भाव क्या है?" },
-    { "crop": "gehun", "q": "Baran Mandi Bhav today gehu" },
-    { "crop": "sarson", "q": "Baran Mandi sarso Bhav today" },
-    { "crop": "lahsun", "q": "बारां मंडी भाव लहसुन today" },
-    { "crop": "dhan", "q": "Baran Mandi Dhan Bhav Today" },
-    { "crop": "soyabean", "q": "Baran Mandi soyabean Bhav today" },
-    { "crop": "dhan", "q": "Baran Mandi Bhav today dhan 1718" },
-    { "crop": "makka", "q": "Baran mandi makka bhav today" }
+    { "crop": "dhaniya", "q": "बारा मंडी में धनिया का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "dhan", "q": "आज बारान मंडी में धान का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Baran Mandi Bhav today gehu", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Baran Mandi sarso Bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "lahsun", "q": "बारां मंडी भाव लहसुन today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "dhan", "q": "Baran Mandi Dhan Bhav Today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "soyabean", "q": "Baran Mandi soyabean Bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "dhan", "q": "Baran Mandi Bhav today dhan 1718", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "makka", "q": "Baran mandi makka bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "bikaner": [
-    { "crop": "gwar", "q": "आज बीकानेर में ग्वार का क्या भाव है?" },
-    { "crop": "bajra", "q": "बीकानेर मंडी में आज बाजरे का क्या भाव है?" },
-    { "crop": "moth", "q": "बीकानेर में मोठ का भाव क्या है?" },
-    { "crop": "moong", "q": "मूंग का भाव बीकानेर मंडी" },
-    { "crop": "gwar", "q": "बीकानेर मंडी आज का भाव ग्वार" },
-    { "crop": "gwar", "q": "ग्वार का भाव आज बीकानेर 2026" }
+    { "crop": "gwar", "q": "आज बीकानेर में ग्वार का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "bajra", "q": "बीकानेर मंडी में आज बाजरे का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "moth", "q": "बीकानेर में मोठ का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "moong", "q": "मूंग का भाव बीकानेर मंडी", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gwar", "q": "बीकानेर मंडी आज का भाव ग्वार", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gwar", "q": "ग्वार का भाव आज बीकानेर 2026", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "kekri": [
-    { "crop": "gehun", "q": "आज केकड़ी मंडी में गेहूं का क्या भाव है?" },
-    { "crop": "chana", "q": "आज केकड़ी में चना का भाव क्या है?" },
-    { "crop": "sarson", "q": "Kekri mandi sarso bhav today" },
-    { "crop": "urad", "q": "Kekri Mandi Bhav Today urad" },
-    { "crop": "jeera", "q": "Kekri mandi jeera bhav today" },
-    { "crop": "gehun", "q": "केकड़ी मंडी में गेहूं का भाव" },
-    { "crop": "moong", "q": "Kekri mandi moong bhav today" },
-    { "crop": "moong", "q": "केकड़ी मंडी मूंग का भाव" }
+    { "crop": "gehun", "q": "आज केकड़ी मंडी में गेहूं का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "chana", "q": "आज केकड़ी में चना का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Kekri mandi sarso bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "urad", "q": "Kekri Mandi Bhav Today urad", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "jeera", "q": "Kekri mandi jeera bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "केकड़ी मंडी में गेहूं का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "moong", "q": "Kekri mandi moong bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "moong", "q": "केकड़ी मंडी मूंग का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "beawar": [
-    { "crop": "gehun", "q": "ब्यावर मंडी में गेहूं का आज का रेट क्या है?" },
-    { "crop": "gehun", "q": "ब्यावर मंडी में गेहूं का भाव" },
-    { "crop": "chana", "q": "ब्यावर मंडी चना का भाव" },
-    { "crop": "kapas", "q": "ब्यावर मंडी कपास का भाव" }
+    { "crop": "gehun", "q": "ब्यावर मंडी में गेहूं का आज का रेट क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "ब्यावर मंडी में गेहूं का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "chana", "q": "ब्यावर मंडी चना का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "kapas", "q": "ब्यावर मंडी कपास का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "merta": [
-    { "crop": "gwar", "q": "मेड़ता मंडी ग्वार का भाव" }
+    { "crop": "gwar", "q": "मेड़ता मंडी ग्वार का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "ramganj": [
-    { "crop": "soyabean", "q": "आज रामगंज मंडी में सोयाबीन का क्या भाव बिकी?" },
-    { "crop": "dhaniya", "q": "रामगंज मंडी धनिया का भाव" }
+    { "crop": "soyabean", "q": "आज रामगंज मंडी में सोयाबीन का क्या भाव बिकी?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "dhaniya", "q": "रामगंज मंडी धनिया का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "shahabad": [
-    { "crop": "gehun", "q": "शाहबाद मंडी में गेहूं का आज का रेट क्या है?" }
+    { "crop": "gehun", "q": "शाहबाद मंडी में गेहूं का आज का रेट क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "panipat": [
-    { "crop": "gehun", "q": "पानीपत मंडी में गेहूं का आज का रेट क्या है?" }
+    { "crop": "gehun", "q": "पानीपत मंडी में गेहूं का आज का रेट क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "bhiwani": [
-    { "crop": "kapas", "q": "आज भिवानी, हरियाणा में कपास का भाव क्या है?" },
-    { "crop": "sarson", "q": "Bhiwani mandi sarso Bhav today" },
-    { "crop": "chana", "q": "Bhiwani mandi chana bhav today" },
-    { "crop": "gwar", "q": "Bhiwani mandi guar bhav today" },
-    { "crop": "gehun", "q": "Bhiwani mandi gehun ka bhav" },
-    { "crop": "bajra", "q": "Bhiwani मंडी भाव today bajra" },
-    { "crop": "sarson", "q": "Bhiwani mandi sarson ka bhav" }
+    { "crop": "kapas", "q": "आज भिवानी, हरियाणा में कपास का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Bhiwani mandi sarso Bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "chana", "q": "Bhiwani mandi chana bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gwar", "q": "Bhiwani mandi guar bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Bhiwani mandi gehun ka bhav", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "bajra", "q": "Bhiwani मंडी भाव today bajra", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Bhiwani mandi sarson ka bhav", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "sirsa": [
-    { "crop": "dhan", "q": "सिरसा मंडी में आज धान का भाव क्या है?" },
-    { "crop": "gehun", "q": "सिरसा में गेहूं का क्या रेट है?" },
-    { "crop": "kapas", "q": "आज सिरसा मंडी में कपास का भाव क्या है?" },
-    { "crop": "sarson", "q": "Sirsa mandi bhav today sarso" },
-    { "crop": "chana", "q": "Sirsa mandi chana bhav today" }
+    { "crop": "dhan", "q": "सिरसा मंडी में आज धान का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "सिरसा में गेहूं का क्या रेट है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "kapas", "q": "आज सिरसा मंडी में कपास का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Sirsa mandi bhav today sarso", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "chana", "q": "Sirsa mandi chana bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "hisar": [
-    { "crop": "gehun", "q": "हिसार मंडी में गेहूं का भाव क्या है?" },
-    { "crop": "kapas", "q": "हिसार, हरियाणा में आज कपास का क्या भाव है?" },
-    { "crop": "gehun", "q": "हिसार मंडी भाव टुडे गेहूं" },
-    { "crop": "sarson", "q": "Hisar Mandi sarso bhav Today" },
-    { "crop": "chana", "q": "Hisar mandi bhav today chana" }
+    { "crop": "gehun", "q": "हिसार मंडी में गेहूं का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "kapas", "q": "हिसार, हरियाणा में आज कपास का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "हिसार मंडी भाव टुडे गेहूं", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Hisar Mandi sarso bhav Today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "chana", "q": "Hisar mandi bhav today chana", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "gondal": [
-    { "crop": "lahsun", "q": "गोंडल में लहसुन का भाव क्या है?" }
+    { "crop": "lahsun", "q": "गोंडल में लहसुन का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "rajkot": [
-    { "crop": "jeera", "q": "राजकोट मंडी में जीरा का भाव क्या है?" }
+    { "crop": "jeera", "q": "राजकोट मंडी में जीरा का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "sri-ganganagar": MB.faqs["sri-ganganagar"].filter((item) => item.crop),
   "anupgarh": MB.faqs["anupgarh"].filter((item) => item.crop),
@@ -47980,182 +47980,180 @@ Object.assign(MB.dynamicMandiFaqs, {
 
 Object.assign(MB.dynamicMandiFaqs, {
   "guntur": [
-    { "crop": "mirch", "variety": "Red", "unit": "kg", "q": "1 किलो मिर्च का क्या रेट है?" },
-    { "crop": "mirch", "variety": "Red", "q": "गुंटूर में लाल मिर्च का आज का भाव क्या है?" }
+    { "crop": "mirch", "variety": "Red", "unit": "kg", "q": "1 किलो मिर्च का क्या रेट है?", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" },
+    { "crop": "mirch", "variety": "Red", "q": "गुंटूर में लाल मिर्च का आज का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "byadgi": [
-    { "crop": "mirch", "varieties": ["Kaddi", "Dabbi", "Guntur"], "q": "Byadgi mirchi price" },
-    { "crop": "mirch", "variety": "Kaddi", "unit": "kg", "q": "Byadgi Chilli 1kg price" },
-    { "crop": "mirch", "variety": "Dabbi", "unit": "kg", "q": "Dabbi Byadgi Chilli Price today" }
+    { "crop": "mirch", "varieties": ["Kaddi", "Dabbi", "Guntur"], "q": "Byadgi mirchi price", "a": "{dateLead}{mandi} में {crop} के किस्म-वार मॉडल भाव: {varietyPrices}। किस्म के अनुसार भाव अलग हैं।" },
+    { "crop": "mirch", "variety": "Kaddi", "unit": "kg", "q": "Byadgi Chilli 1kg price", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" },
+    { "crop": "mirch", "variety": "Dabbi", "unit": "kg", "q": "Dabbi Byadgi Chilli Price today", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" }
   ],
   "jodhpur": (MB.dynamicMandiFaqs["jodhpur"] || []).concat([
-    { "crop": "gehun", "q": "गेहूं का भाव जोधपुर मंडी" }
+    { "crop": "gehun", "q": "गेहूं का भाव जोधपुर मंडी", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]),
   "jaipur": (MB.dynamicMandiFaqs["jaipur"] || []).concat([
-    { "crop": "gehun", "q": "गेहूं का भाव जयपुर मंडी" }
+    { "crop": "gehun", "q": "गेहूं का भाव जयपुर मंडी", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ])
 });
 
 Object.assign(MB.dynamicMandiFaqs, {
   "kekri": (MB.dynamicMandiFaqs["kekri"] || []).concat([
-    { "crop": "kalonji", "q": "Kekri mandi mein kalonji ka bhav" }
+    { "crop": "kalonji", "q": "Kekri mandi mein kalonji ka bhav", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]),
   "beawar": (MB.dynamicMandiFaqs["beawar"] || []).concat([
-    { "crop": "gehun", "q": "आज ब्यावरा मंडी में गेहूं का क्या भाव है?" },
-    { "crop": "sarson", "q": "ब्यावर मंडी रायड़ा का भाव" }
+    { "crop": "gehun", "q": "आज ब्यावरा मंडी में गेहूं का क्या भाव है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "ब्यावर मंडी रायड़ा का भाव", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]),
   "merta": (MB.dynamicMandiFaqs["merta"] || []).concat([
-    { "crop": "asaliya", "q": "मेड़ता मंडी आज का भाव असालिया" }
+    { "crop": "asaliya", "q": "मेड़ता मंडी आज का भाव असालिया", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ])
 });
 
 Object.assign(MB.dynamicMandiFaqs, {
   "adampur": [
-    { "crop": "sarson", "q": "Adampur Mandi sarso bhav Today" }
+    { "crop": "sarson", "q": "Adampur Mandi sarso bhav Today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "siwani": [
-    { "crop": "sarson", "q": "Siwani mandi sarso bhav today" }
+    { "crop": "sarson", "q": "Siwani mandi sarso bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]
 });
 
 Object.assign(MB.dynamicMandiFaqs, {
   "goluwala": [
-    { "crop": "kapas", "q": "Narma bhav today goluwala" }
+    { "crop": "kapas", "q": "Narma bhav today goluwala", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "neemuch": [
-    { "crop": "chirayata", "cropHi": "चिरायता", "q": "नीमच मंडी में चिरायता का आज का भाव क्या है?" },
-    { "crop": "chia", "cropHi": "चिया", "q": "नीमच मंडी चिया भाव आज का" }
+    { "crop": "chirayata", "cropHi": "चिरायता", "q": "नीमच मंडी में चिरायता का आज का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "chia", "cropHi": "चिया", "q": "नीमच मंडी चिया भाव आज का", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]
 });
 
 Object.assign(MB.dynamicMandiFaqs, {
   "indore": (MB.dynamicMandiFaqs["indore"] || []).concat([
-    { "type": "container", "q": "डालर चने का कंटेनर रेट क्या है?" },
-    { "type": "container", "q": "Indore Mandi Bhav container" },
-    { "crop": "gehun", "variety": "Lokwan", "q": "इंदौर मंडी लोकवन में गेहूं का आज का भाव क्या है?" },
-    { "crop": "pyaz", "q": "Indore Mandi Bhav Today pyaj" },
-    { "crop": "lahsun", "q": "Indore Mandi bhav today lahsun" },
-    { "crop": "aalu", "q": "Indore mandi bhav today aalu" }
+    { "crop": "gehun", "variety": "Lokwan", "q": "इंदौर मंडी लोकवन में गेहूं का आज का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "pyaz", "q": "Indore Mandi Bhav Today pyaj", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "lahsun", "q": "Indore Mandi bhav today lahsun", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "aalu", "q": "Indore mandi bhav today aalu", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ])
 });
 
 Object.assign(MB.dynamicMandiFaqs, {
   "mandsaur": (MB.dynamicMandiFaqs["mandsaur"] || []).concat([
-    { "crop": "lahsun", "q": "मंदसौर में आज लहसुन का मंडी भाव क्या है?" },
-    { "crop": "soyabean", "q": "Mandsaur Mandi Bhav today soyabean" },
-    { "crop": "alsi", "q": "Mandsaur Mandi Bhav today alsi" },
-    { "crop": "lahsun", "q": "Mandsaur Mandi Bhav today lahsun" },
-    { "crop": "pyaz", "q": "Mandsaur Mandi Bhav today pyaj" },
-    { "type": "previous", "q": "Mandsaur mandi bhav yesterday" },
-    { "crop": "gehun", "q": "Mandsaur mandi bhav gehu" }
+    { "crop": "lahsun", "q": "मंदसौर में आज लहसुन का मंडी भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "soyabean", "q": "Mandsaur Mandi Bhav today soyabean", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "alsi", "q": "Mandsaur Mandi Bhav today alsi", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "lahsun", "q": "Mandsaur Mandi Bhav today lahsun", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "pyaz", "q": "Mandsaur Mandi Bhav today pyaj", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "type": "previous", "q": "Mandsaur mandi bhav yesterday", "a": "{dateLead}{mandi} मंडी की पिछली सारणी में फसलों का मध्य मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Mandsaur mandi bhav gehu", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ])
 });
 
 Object.assign(MB.dynamicMandiFaqs, {
   "agra": [
-    { "crop": "sarson", "q": "Agra mandi bhav today sarso" },
-    { "crop": "sarson", "q": "Agra mandi bhav sarso" },
-    { "crop": "sarson", "q": "Agra mandi sarso rate today" },
-    { "crop": "til", "q": "Agra mandi til ka bhav" },
-    { "crop": "bajra", "q": "agra mandi bajra bhav today" }
+    { "crop": "sarson", "q": "Agra mandi bhav today sarso", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Agra mandi bhav sarso", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Agra mandi sarso rate today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "til", "q": "Agra mandi til ka bhav", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "bajra", "q": "agra mandi bajra bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]
 });
 
 Object.assign(MB.dynamicMandiFaqs, {
   "kanpur": [
-    { "crop": "gehun", "q": "Kanpur mandi gehun ka bhav today" },
-    { "crop": "dhan", "q": "Kanpur mandi dhan ka bhav today" },
-    { "crop": "aalu", "q": "Kanpur mandi aalu ka bhav today" }
+    { "crop": "gehun", "q": "Kanpur mandi gehun ka bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "dhan", "q": "Kanpur mandi dhan ka bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "aalu", "q": "Kanpur mandi aalu ka bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "meerut": [
-    { "crop": "gehun", "q": "Meerut mandi gehun ka bhav today" },
-    { "crop": "sarson", "q": "Meerut mandi sarso bhav today" }
+    { "crop": "gehun", "q": "Meerut mandi gehun ka bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "sarson", "q": "Meerut mandi sarso bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "aligarh": [
-    { "crop": "sarson", "q": "Aligarh mandi sarso bhav today" },
-    { "crop": "dhan", "q": "Aligarh mandi dhan bhav today" },
-    { "crop": "gehun", "q": "Aligarh mandi gehun bhav today" }
+    { "crop": "sarson", "q": "Aligarh mandi sarso bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "dhan", "q": "Aligarh mandi dhan bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Aligarh mandi gehun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "bareilly": [
-    { "crop": "dhan", "q": "Bareilly mandi dhan bhav today" },
-    { "crop": "gehun", "q": "Bareilly mandi gehun bhav today" }
+    { "crop": "dhan", "q": "Bareilly mandi dhan bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Bareilly mandi gehun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "lucknow": [
-    { "crop": "aalu", "q": "Lucknow mandi aalu bhav today" },
-    { "crop": "tamatar", "q": "Lucknow mandi tamatar rate today" },
-    { "crop": "pyaz", "q": "Lucknow mandi pyaj bhav today" }
+    { "crop": "aalu", "q": "Lucknow mandi aalu bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "tamatar", "q": "Lucknow mandi tamatar rate today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "pyaz", "q": "Lucknow mandi pyaj bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "mathura": [
-    { "crop": "sarson", "q": "Mathura mandi sarso bhav today" },
-    { "crop": "gehun", "q": "Mathura mandi gehun bhav today" },
-    { "crop": "bajra", "q": "Mathura mandi bajra bhav today" }
+    { "crop": "sarson", "q": "Mathura mandi sarso bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Mathura mandi gehun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "bajra", "q": "Mathura mandi bajra bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "hathras": [
-    { "crop": "sarson", "q": "Hathras mandi sarso bhav today" },
-    { "crop": "gehun", "q": "Hathras mandi gehun bhav today" },
-    { "crop": "bajra", "q": "Hathras mandi bajra bhav today" }
+    { "crop": "sarson", "q": "Hathras mandi sarso bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Hathras mandi gehun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "bajra", "q": "Hathras mandi bajra bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "gorakhpur": [
-    { "crop": "dhan", "q": "Gorakhpur mandi dhan bhav today" },
-    { "crop": "gehun", "q": "Gorakhpur mandi gehun bhav today" }
+    { "crop": "dhan", "q": "Gorakhpur mandi dhan bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Gorakhpur mandi gehun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "muzaffarnagar": [
-    { "crop": "gehun", "q": "Muzaffarnagar mandi gehun bhav today" },
-    { "crop": "dhan", "q": "Muzaffarnagar mandi dhan bhav today" }
+    { "crop": "gehun", "q": "Muzaffarnagar mandi gehun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "dhan", "q": "Muzaffarnagar mandi dhan bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "hapur": [
-    { "crop": "gehun", "q": "Hapur mandi gehun bhav today" },
-    { "crop": "dhan", "q": "Hapur mandi dhan bhav today" }
+    { "crop": "gehun", "q": "Hapur mandi gehun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "dhan", "q": "Hapur mandi dhan bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "saharanpur": [
-    { "crop": "dhan", "q": "Saharanpur mandi dhan bhav today" },
-    { "crop": "gehun", "q": "Saharanpur mandi gehun bhav today" },
-    { "crop": "aalu", "q": "Saharanpur mandi aalu bhav today" }
+    { "crop": "dhan", "q": "Saharanpur mandi dhan bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "gehun", "q": "Saharanpur mandi gehun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "aalu", "q": "Saharanpur mandi aalu bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ],
   "mainpuri": [
-    { "crop": "aalu", "q": "Mainpuri mandi aalu bhav today" },
-    { "crop": "lahsun", "q": "Mainpuri mandi lahsun bhav today" }
+    { "crop": "aalu", "q": "Mainpuri mandi aalu bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "crop": "lahsun", "q": "Mainpuri mandi lahsun bhav today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]
 });
 
 MB.dynamicCropFaqs = {
   "moong": [
-    { "type": "per-kg", "q": "1 किलो मूंग का दाम क्या है?" },
-    { "type": "mandi", "mandi": "jhunjhunu", "mandiHi": "झुंझुनू", "q": "झुंझुनू मंडी में मूंग का आज का भाव क्या है?" },
-    { "type": "mandi", "mandi": "malpura", "mandiHi": "मालपुरा", "q": "Moong ka bhav malpura mandi" },
-    { "type": "mandi", "mandi": "jaipur", "mandiHi": "जयपुर", "q": "Moong Price in Jaipur Mandi today" },
-    { "type": "per-kg", "q": "1 kilo mung ka bhav" },
-    { "type": "per-kg", "q": "Moong rate today per kg" }
+    { "type": "per-kg", "q": "1 किलो मूंग का दाम क्या है?", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" },
+    { "type": "mandi", "mandi": "jhunjhunu", "mandiHi": "झुंझुनू", "q": "झुंझुनू मंडी में मूंग का आज का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "type": "mandi", "mandi": "malpura", "mandiHi": "मालपुरा", "q": "Moong ka bhav malpura mandi", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "type": "mandi", "mandi": "jaipur", "mandiHi": "जयपुर", "q": "Moong Price in Jaipur Mandi today", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" },
+    { "type": "per-kg", "q": "1 kilo mung ka bhav", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" },
+    { "type": "per-kg", "q": "Moong rate today per kg", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" }
   ],
   "gehun": [
-    { "type": "per-kg", "q": "गेहूं का भाव 1 kg" },
-    { "type": "msp", "q": "Gehu ka bhav msp" }
+    { "type": "per-kg", "q": "गेहूं का भाव 1 kg", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" },
+    { "type": "msp", "q": "Gehu ka bhav msp", "a": "{crop} का सरकारी MSP {msp} प्रति क्विंटल है। यह मंडी भाव नहीं है।" }
   ],
   "mirch": [
-    { "type": "per-kg", "q": "1 किलो मिर्च का क्या रेट है?" },
-    { "type": "per-kg", "q": "1 किलो सूखी मिर्च का भाव कैसे समझें?" }
+    { "type": "per-kg", "q": "1 किलो मिर्च का क्या रेट है?", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" },
+    { "type": "per-kg", "q": "1 किलो सूखी मिर्च का भाव कैसे समझें?", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" }
   ],
   "gwarphali": [
-    { "type": "per-kg", "q": "ग्वार फली का रेट क्या है?" }
+    { "type": "per-kg", "q": "ग्वार फली का रेट क्या है?", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" }
   ],
   "pyaz": [
-    { "type": "per-kg", "q": "1 किलो प्याज का रेट क्या है?" },
-    { "type": "per-kg", "q": "1 किलो प्याज का आज का भाव क्या है?" }
+    { "type": "per-kg", "q": "1 किलो प्याज का रेट क्या है?", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" },
+    { "type": "per-kg", "q": "1 किलो प्याज का आज का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" }
   ],
   "lahsun": [
-    { "type": "per-kg", "q": "1 किलो लहसुन का भाव क्या है?" }
+    { "type": "per-kg", "q": "1 किलो लहसुन का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव लगभग {kgModal} प्रति किलो है। मंडी-वार और खुदरा भाव अलग हो सकते हैं।" }
   ]
 };
 
 Object.assign(MB.dynamicCropFaqs, {
   "gehun": (MB.dynamicCropFaqs["gehun"] || []).concat([
-    { "type": "msp", "q": "गेहूं का रेट सरकारी" }
+    { "type": "msp", "q": "गेहूं का रेट सरकारी", "a": "{crop} का सरकारी MSP {msp} प्रति क्विंटल है। यह मंडी भाव नहीं है।" }
   ])
 });
 
 MB.dynamicStateFaqs = {
   "gujarat": [
-    { "type": "mandi-crop", "mandi": "rajkot", "crop": "jeera", "q": "राजकोट मंडी में जीरा का भाव क्या है?" }
+    { "type": "mandi-crop", "mandi": "rajkot", "crop": "jeera", "q": "राजकोट मंडी में जीरा का भाव क्या है?", "a": "{dateLead}{label}: मॉडल भाव {modal} प्रति क्विंटल है। न्यूनतम भाव {min} और अधिकतम भाव {max} है।" }
   ]
 };
 
@@ -48201,7 +48199,9 @@ MB.pendingFaqs = {
   ],
   "indore": [
     { "q": "Indore Mandi Bhav", "a": "इंदौर मंडी में सोयाबीन, गेहूं, चना, मक्का, मसूर, प्याज और लहसुन जैसी प्रमुख फसलों के हाजिर भाव क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें।" },
-    { "q": "इंदौर मंडी कंटेनर भाव", "a": "इंदौर मंडी में काबुली चना और अन्य प्रमुख जिंसों के कंटेनर भाव (जैसे क्वालिटी और काउंट के अनुसार) क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें। हमसे जुड़े रहने के लिए WhatsApp ग्रुप जॉइन करें।" }
+    { "q": "इंदौर मंडी कंटेनर भाव", "a": "इंदौर मंडी में काबुली चना और अन्य प्रमुख जिंसों के कंटेनर भाव (जैसे क्वालिटी और काउंट के अनुसार) क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें। हमसे जुड़े रहने के लिए WhatsApp ग्रुप जॉइन करें।" },
+    { "q": "डालर चने का कंटेनर रेट क्या है?", "a": "इंदौर मंडी में काबुली चना और अन्य प्रमुख जिंसों के कंटेनर भाव (जैसे क्वालिटी और काउंट के अनुसार) क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें। हमसे जुड़े रहने के लिए WhatsApp ग्रुप जॉइन करें।" },
+    { "q": "Indore Mandi Bhav container", "a": "इंदौर मंडी में काबुली चना और अन्य प्रमुख जिंसों के कंटेनर भाव (जैसे क्वालिटी और काउंट के अनुसार) क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें। हमसे जुड़े रहने के लिए WhatsApp ग्रुप जॉइन करें।" }
   ],
   "ujjain": [
     { "q": "आज उज्जैन मंडी में क्या भाव चल रहे हैं?", "a": "उज्जैन मंडी में आज सोयाबीन, गेहूं, लहसुन, प्याज और चना जैसी प्रमुख फसलों के हाजिर भाव क्या चल रहे हैं, इसकी विस्तृत जानकारी ऊपर दी गई है। कृषि जिंसों के ये दाम दैनिक आवक, गुणवत्ता और बाजार की मांग के अनुसार बदलते रहते हैं। सटीक और ताज़ा आंकड़ों के लिए कृपया ऊपर दी गई तालिका को देखें।" },
