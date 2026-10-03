@@ -23,12 +23,9 @@ MB.page = function statePage() {
         if (!market || !crop) return "";
         let answer;
         if (row) {
-          const isCurrent = u.isFreshPrice(row);
-          answer = isCurrent
-            ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
-            : u.formatUpdatedHi(row.date) + " को " + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " था।";
+          answer = u.faqAnswerDateLead(item.q, row.date) + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।";
         } else {
-          answer = market.hi + " में " + crop.hi + " का भाव अभी नहीं मिला है। नया रिकॉर्ड आने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+          answer = state.hi + " के नवीनतम मंडी भाव ऊपर दिए मंडी कार्डों में देखें।";
         }
         return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
       }

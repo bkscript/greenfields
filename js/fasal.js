@@ -336,17 +336,11 @@ MB.page = function cropPage() {
       const cropLabel = crop.hi + (item.variety ? " (" + item.variety + ")" : "");
       let answer;
       if (row) {
-        const isCurrent = u.isFreshPrice(row);
-        answer = isCurrent
-          ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
-            u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
-            " और अधिकतम भाव " + u.rupee(row.max) + " है।"
-          : u.formatUpdatedHi(row.date) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
-            u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
-            " और अधिकतम भाव " + u.rupee(row.max) + " था।";
+        answer = u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+          u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
+          " और अधिकतम भाव " + u.rupee(row.max) + " है।";
       } else {
-        answer = mandi.hi + " में " + cropLabel +
-          " का भाव अभी नहीं मिला है। नया रिकॉर्ड आने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+        answer = cropLabel + " के नवीनतम मंडीवार भाव ऊपर तालिका में देखें।";
       }
 
       return (
@@ -370,25 +364,18 @@ MB.page = function cropPage() {
         const mandi = u.mandiBySlug(item.mandi);
         const mandiName = mandi ? mandi.hi : item.mandiHi;
         if (!row) {
-          answer = mandiName + " मंडी में " + crop.hi +
-            " का सत्यापित रिकॉर्ड अभी नहीं मिला है। ऊपर तालिका में दूसरी मंडियों के भाव देखें।";
+          answer = crop.hi + " के नवीनतम मंडीवार भाव ऊपर तालिका में देखें।";
         } else {
-          const isCurrent = u.isFreshPrice(row);
-          answer = isCurrent
-            ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandiName + " मंडी में " + crop.hi +
-              " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " +
-              u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।"
-            : u.formatUpdatedHi(row.date) + " को " + mandiName + " मंडी में " + crop.hi + " का मॉडल भाव " +
-              u.rupee(row.modal) +
-              " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
-              " और अधिकतम भाव " + u.rupee(row.max) + " था।";
+          answer = u.faqAnswerDateLead(item.q, row.date) + mandiName + " मंडी में " + crop.hi +
+            " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " +
+            u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।";
         }
       } else if (item.type === "per-kg") {
         answer = Number.isFinite(med)
-          ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + crop.hi +
+          ? u.faqAnswerDateLead(item.q, MB.PRICE_DATE) + crop.hi +
             " का 1 किलो मॉडल भाव लगभग ₹" + (med / 100).toFixed(2) +
             " है। अलग-अलग मंडियों और खुदरा बाजार में भाव अलग हो सकता है; मंडीवार भाव ऊपर तालिका में देखें।"
-          : "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + crop.hi + " का मॉडल भाव नहीं मिला। मंडीवार भाव ऊपर तालिका में देखें।";
+          : crop.hi + " के नवीनतम मंडीवार भाव ऊपर तालिका में देखें।";
       } else if (item.type === "msp") {
         answer = crop.msp
           ? crop.hi +

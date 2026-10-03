@@ -104,11 +104,12 @@ MB.page = function mandiPage() {
       const cropLabel = cropHi + (item.variety ? " की " + item.variety + " किस्म" : "");
       let answer;
       if (item.type === "previous") {
-        answer = mandi.hi + " मंडी के कल के भाव का अलग सत्यापित रिकॉर्ड अभी नहीं मिला है। ऊपर तालिका में दी गई तारीख के भाव देखें।";
+        answer = (mandiPriceDate ? u.formatUpdatedHi(mandiPriceDate) + " को " : "") + mandi.hi + " मंडी के नवीनतम भाव ऊपर तालिका में दिए हैं।";
       } else if (item.type === "container") {
-        answer = "इंदौर के डॉलर चने का अलग सत्यापित कंटेनर रेट अभी इस साइट के डेटा में नहीं है। ऊपर दिए मंडी के प्रति क्विंटल भाव को कंटेनर रेट न मानें।";
+        answer = "ऊपर तालिका में इंदौर मंडी के प्रति क्विंटल भाव दिए हैं; इन्हें कंटेनर रेट न मानें।";
       } else if (item.varieties && varietyRows.length) {
         answer =
+          u.faqAnswerDateLead(item.q, mandiPriceDate) +
           mandi.hi +
           " में " +
           cropHi +
@@ -116,35 +117,18 @@ MB.page = function mandiPage() {
           varietyRows
             .map((price) => price.variety + " " + u.rupee(price.modal) + " प्रति क्विंटल")
             .join(", ") +
-          "। ये रिकॉर्ड " +
-          varietyRows.map((price) => u.formatUpdatedHi(price.date)).filter((date, index, dates) => dates.indexOf(date) === index).join(" और ") +
-          " के हैं। किस्म अलग होने से इन्हें एक ही भाव न मानें।";
+          "। किस्म अलग होने से इन्हें एक ही भाव न मानें।";
       } else if (!row) {
-        answer =
-          mandi.hi +
-          " में " +
-          cropLabel +
-          " का भाव अभी नहीं मिला है। नया रिकॉर्ड आने पर यह उत्तर अपने-आप भाव के साथ दिखेगा।";
+        answer = mandi.hi + " मंडी के नवीनतम भाव ऊपर तालिका में देखें।";
       } else if (item.unit === "kg") {
-        const isCurrent = isCurrentMandiDate;
-        answer = isCurrent
-          ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
-            u.rupee(row.modal / 100) + " प्रति किलो के बराबर है। स्रोत दर " + u.rupee(row.modal) +
-            " प्रति क्विंटल है; न्यूनतम " + u.rupee(row.min / 100) + " और अधिकतम " +
-            u.rupee(row.max / 100) + " प्रति किलो के बराबर हैं। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं।"
-          : u.formatUpdatedHi(row.date) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
-            u.rupee(row.modal / 100) + " प्रति किलो के बराबर था। स्रोत दर " + u.rupee(row.modal) +
-            " प्रति क्विंटल थी; उस दिन न्यूनतम " + u.rupee(row.min / 100) + " और अधिकतम " +
-            u.rupee(row.max / 100) + " प्रति किलो के बराबर थे। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं।";
+        answer = u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+          u.rupee(row.modal / 100) + " प्रति किलो के बराबर है। स्रोत दर " + u.rupee(row.modal) +
+          " प्रति क्विंटल है; न्यूनतम " + u.rupee(row.min / 100) + " और अधिकतम " +
+          u.rupee(row.max / 100) + " प्रति किलो के बराबर हैं। ये केवल क्विंटल दर का 100 से विभाजन हैं, खुदरा भाव नहीं।";
       } else {
-        const isCurrent = isCurrentMandiDate;
-        answer = isCurrent
-          ? "आज " + u.formatUpdatedHi(MB.PRICE_DATE) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
-            u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
-            " और अधिकतम भाव " + u.rupee(row.max) + " है।"
-          : u.formatUpdatedHi(row.date) + " को " + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
-            u.rupee(row.modal) + " प्रति क्विंटल था। उस दिन न्यूनतम भाव " + u.rupee(row.min) +
-            " और अधिकतम भाव " + u.rupee(row.max) + " था।";
+        answer = u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+          u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
+          " और अधिकतम भाव " + u.rupee(row.max) + " है।";
       }
       mandiFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
       return (

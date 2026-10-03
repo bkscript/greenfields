@@ -199,6 +199,19 @@
     });
   }
 
+  function faqQuestionMentionsDate(question) {
+    return /((^|[^\u0900-\u097f])(आज|कल|परसों)(?=$|[^\u0900-\u097f])|\b(aaj|today|yesterday|tomorrow|date)\b|तारीख|\b20\d{2}\b|\b\d{1,2}[/.\-]\d{1,2}(?:[/.\-]\d{2,4})?\b|जनवरी|फरवरी|मार्च|अप्रैल|मई|जून|जुलाई|अगस्त|सितंबर|अक्टूबर|नवंबर|दिसंबर)/i.test(
+      String(question || "")
+    );
+  }
+
+  function faqAnswerDateLead(question, priceDate) {
+    const text = String(question || "");
+    if (/((^|[^\u0900-\u097f])आज(?=$|[^\u0900-\u097f])|\b(aaj|today)\b)/i.test(text)) return "आज ";
+    if (!faqQuestionMentionsDate(text)) return "";
+    return priceDate ? formatUpdatedHi(priceDate) + " को " : "";
+  }
+
   function sharePrice(crop, mandi, row) {
     const c = cropBySlug(crop);
     const m = mandiBySlug(mandi);
@@ -508,6 +521,8 @@
     freshFirst,
     formatDateHi,
     formatUpdatedHi,
+    faqQuestionMentionsDate,
+    faqAnswerDateLead,
     pricesFor,
     varietyPricesFor,
     dedupeGenericVarietyRows,
