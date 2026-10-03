@@ -46,6 +46,13 @@ MB.page = function mandiPage() {
       return b.modal - a.modal;
     });
   const currentTableRows = sortedRows;
+  const mandiTableModal = u.median(currentTableRows.map((row) => row.modal));
+  const mandiTableModelAnswer = (question) => {
+    if (!Number.isFinite(mandiTableModal)) return "";
+    return u.faqAnswerDateLead(question, mandiPriceDate) + mandi.hi +
+      " मंडी की सारणी में दर्ज फसलों का मध्य मॉडल भाव " + u.rupee(mandiTableModal) +
+      " प्रति क्विंटल है। अलग-अलग फसलों के भाव अलग हैं।";
+  };
   const renderPriceRow = (r) => {
     const c = u.cropBySlug(r.crop);
     const grade = r.grade
@@ -86,10 +93,10 @@ MB.page = function mandiPage() {
   const dynamicFaqs = ((MB.dynamicMandiFaqs || {})[slug] || [])
     .map((item) => {
       const row = item.variety
-        ? sourceVarietyRows.find(
-            (price) => price.crop === item.crop && price.variety === item.variety && isMandiDisplayPrice(price)
+        ? currentTableRows.find(
+            (price) => price.crop === item.crop && price.variety === item.variety
           )
-        : baseRows.find((price) => price.crop === item.crop && isMandiDisplayPrice(price));
+        : currentTableRows.find((price) => price.crop === item.crop);
       const varietyRows = Array.isArray(item.varieties)
         ? item.varieties
             .map((variety) =>
@@ -104,9 +111,12 @@ MB.page = function mandiPage() {
       const cropLabel = cropHi + (item.variety ? " की " + item.variety + " किस्म" : "");
       let answer;
       if (item.type === "previous") {
-        answer = (mandiPriceDate ? u.formatUpdatedHi(mandiPriceDate) + " को " : "") + mandi.hi + " मंडी के नवीनतम भाव ऊपर तालिका में दिए हैं।";
+        answer = mandiTableModelAnswer(item.q);
       } else if (item.type === "container") {
-        answer = "ऊपर तालिका में इंदौर मंडी के प्रति क्विंटल भाव दिए हैं; इन्हें कंटेनर रेट न मानें।";
+        answer = row
+          ? u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel +
+            " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है; इसे कंटेनर रेट न मानें।"
+          : mandiTableModelAnswer(item.q);
       } else if (item.varieties && varietyRows.length) {
         answer =
           u.faqAnswerDateLead(item.q, mandiPriceDate) +
@@ -119,7 +129,7 @@ MB.page = function mandiPage() {
             .join(", ") +
           "। किस्म अलग होने से इन्हें एक ही भाव न मानें।";
       } else if (!row) {
-        answer = mandi.hi + " मंडी के नवीनतम भाव ऊपर तालिका में देखें।";
+        answer = mandiTableModelAnswer(item.q);
       } else if (item.unit === "kg") {
         answer = u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
           u.rupee(row.modal / 100) + " प्रति किलो के बराबर है। स्रोत दर " + u.rupee(row.modal) +
@@ -130,6 +140,7 @@ MB.page = function mandiPage() {
           u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
           " और अधिकतम भाव " + u.rupee(row.max) + " है।";
       }
+      if (!answer) return "";
       mandiFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
       return (
         '<details class="faq-item"><summary>' +
@@ -152,7 +163,7 @@ MB.page = function mandiPage() {
     schema.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: mandiFaqEntities });
   }
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
+    ? '<section class="faq-section dynamic-faq"><h2>भाव संबंधित सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
 
   const tables =

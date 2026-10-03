@@ -205,6 +205,9 @@ MB.page = function cropPage() {
     u.dedupeGenericVarietyRows(yesterdaySnapshot.filter((row) => row.crop === slug))
   );
   const yesterdayBody = yesterdayRows.map(renderPriceRow).join("");
+  const faqTableRows = currentTableRows.length ? currentTableRows : yesterdayRows;
+  const faqPriceDate = currentTableRows.length ? MB.PRICE_DATE : yesterdayDate;
+  const tableMed = u.median(faqTableRows.map((row) => row.modal));
 
   const currentHistoryDate = MB.PRICE_DATE;
   const historyByDate = {};
@@ -316,6 +319,16 @@ MB.page = function cropPage() {
 
   const subHi = "सभी राज्यों की मंडियां।";
   const subEn = "Mandis across all available states.";
+  const cropTableModelAnswer = (question, unit) => {
+    if (!Number.isFinite(tableMed)) return "";
+    const lead = u.faqAnswerDateLead(question, faqPriceDate);
+    if (unit === "kg") {
+      return lead + crop.hi + " का 1 किलो मॉडल भाव लगभग ₹" + (tableMed / 100).toFixed(2) +
+        " है। अलग-अलग मंडियों और खुदरा बाजार में भाव अलग हो सकते हैं।";
+    }
+    return lead + crop.hi + " का सारणी में दर्ज मध्य मॉडल भाव " + u.rupee(tableMed) +
+      " प्रति क्विंटल है। अलग-अलग मंडियों में भाव अलग हो सकते हैं।";
+  };
 
   const mandiDynamicFaqs = Object.keys(MB.dynamicMandiFaqs || {})
     .reduce((all, mandiSlug) => {
@@ -329,19 +342,22 @@ MB.page = function cropPage() {
     .map((item) => {
       const mandi = u.mandiBySlug(item.mandi);
       const row = item.variety
-        ? u.varietyPricesFor({ mandi: item.mandi, crop: slug }).find((price) => price.variety === item.variety && u.isFreshPrice(price))
-        : u.pricesFor({ mandi: item.mandi, crop: slug }).find(u.isFreshPrice);
+        ? currentTableRows.find((price) => price.mandi === item.mandi && price.variety === item.variety) ||
+          yesterdayRows.find((price) => price.mandi === item.mandi && price.variety === item.variety)
+        : currentTableRows.find((price) => price.mandi === item.mandi) ||
+          yesterdayRows.find((price) => price.mandi === item.mandi);
       if (!mandi) return "";
 
       const cropLabel = crop.hi + (item.variety ? " (" + item.variety + ")" : "");
       let answer;
       if (row) {
-        answer = u.faqAnswerDateLead(item.q, row.date) + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
+        answer = u.faqAnswerDateLead(item.q, row.date || faqPriceDate) + mandi.hi + " में " + cropLabel + " का मॉडल भाव " +
           u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) +
           " और अधिकतम भाव " + u.rupee(row.max) + " है।";
       } else {
-        answer = cropLabel + " के नवीनतम मंडीवार भाव ऊपर तालिका में देखें।";
+        answer = cropTableModelAnswer(item.q);
       }
+      if (!answer) return "";
 
       return (
         '<details class="faq-item"><summary>' +
@@ -360,36 +376,35 @@ MB.page = function cropPage() {
       let answer;
 
       if (item.type === "mandi") {
-        const row = baseRows.find((price) => price.mandi === item.mandi && u.isFreshPrice(price));
+        const row = currentTableRows.find((price) => price.mandi === item.mandi) ||
+          yesterdayRows.find((price) => price.mandi === item.mandi);
         const mandi = u.mandiBySlug(item.mandi);
         const mandiName = mandi ? mandi.hi : item.mandiHi;
         if (!row) {
-          answer = crop.hi + " के नवीनतम मंडीवार भाव ऊपर तालिका में देखें।";
+          answer = cropTableModelAnswer(item.q);
         } else {
-          answer = u.faqAnswerDateLead(item.q, row.date) + mandiName + " मंडी में " + crop.hi +
+          answer = u.faqAnswerDateLead(item.q, row.date || faqPriceDate) + mandiName + " मंडी में " + crop.hi +
             " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " +
             u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।";
         }
       } else if (item.type === "per-kg") {
-        answer = Number.isFinite(med)
-          ? u.faqAnswerDateLead(item.q, MB.PRICE_DATE) + crop.hi +
-            " का 1 किलो मॉडल भाव लगभग ₹" + (med / 100).toFixed(2) +
-            " है। अलग-अलग मंडियों और खुदरा बाजार में भाव अलग हो सकता है; मंडीवार भाव ऊपर तालिका में देखें।"
-          : crop.hi + " के नवीनतम मंडीवार भाव ऊपर तालिका में देखें।";
+        answer = cropTableModelAnswer(item.q, "kg");
       } else if (item.type === "msp") {
         answer = crop.msp
           ? crop.hi +
             " का सरकारी MSP " +
             u.rupee(crop.msp) +
             " प्रति क्विंटल है। यह मंडी का भाव नहीं है; मंडी भाव ऊपर तालिका में देखें।"
-          : crop.hi + " के लिए सरकारी MSP रिकॉर्ड नहीं मिला।";
+          : cropTableModelAnswer(item.q);
       } else {
         return "";
       }
+      if (!answer) return "";
 
       cropFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
       return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
     })
+    .filter(Boolean)
     .join("");
 
   const dynamicFaqs = mandiDynamicFaqs + cropDynamicFaqs;
@@ -406,7 +421,7 @@ MB.page = function cropPage() {
   }
 
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' के भाव से जुड़े सवाल</h2>' +
+    ? '<section class="faq-section dynamic-faq"><h2>भाव संबंधित सवाल</h2>' +
       dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') +
       "</section>"
     : "";

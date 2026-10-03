@@ -13,6 +13,8 @@ MB.page = function statePage() {
   document.title = state.hi + " मंडी भाव आज | " + state.en + " Mandi Bhav Today";
 
   const rows = u.pricesFor({ state: slug });
+  const currentRows = rows.filter(u.isFreshPrice);
+  const stateTableModal = u.median(currentRows.map((row) => row.modal));
   const mandis = MB.mandis.filter((m) => m.state === slug);
   const dynamicFaqs = ((MB.dynamicStateFaqs || {})[slug] || [])
     .map((item) => {
@@ -25,8 +27,13 @@ MB.page = function statePage() {
         if (row) {
           answer = u.faqAnswerDateLead(item.q, row.date) + market.hi + " में " + crop.hi + " का मॉडल भाव " + u.rupee(row.modal) + " प्रति क्विंटल है। न्यूनतम भाव " + u.rupee(row.min) + " और अधिकतम भाव " + u.rupee(row.max) + " है।";
         } else {
-          answer = state.hi + " के नवीनतम मंडी भाव ऊपर दिए मंडी कार्डों में देखें।";
+          answer = Number.isFinite(stateTableModal)
+            ? u.faqAnswerDateLead(item.q, MB.PRICE_DATE) + state.hi +
+              " की सारणी में दर्ज फसलों का मध्य मॉडल भाव " + u.rupee(stateTableModal) +
+              " प्रति क्विंटल है। अलग-अलग मंडियों और फसलों के भाव अलग हैं।"
+            : "";
         }
+        if (!answer) return "";
         return '<details class="faq-item"><summary>' + item.q + "</summary><p>" + answer + "</p></details>";
       }
       return "";
@@ -34,7 +41,7 @@ MB.page = function statePage() {
     .filter(Boolean)
     .join("");
   const dynamicFaqSection = dynamicFaqs
-    ? '<section class="faq-section dynamic-faq"><h2>भाव से जुड़े सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
+    ? '<section class="faq-section dynamic-faq"><h2>भाव संबंधित सवाल</h2>' + dynamicFaqs.replace('<details class="faq-item">', '<details class="faq-item" open>') + "</section>"
     : "";
   const mandiCards = mandis
     .map((m) => {
