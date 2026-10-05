@@ -1969,6 +1969,26 @@ body[data-page="home"] .hero-search-panel .hero-search {
   border-color: #8ebd92;
   box-shadow: 0 10px 20px rgba(27, 94, 32, 0.12);
 }
+.mandi-tile-with-image {
+  min-height: 0;
+  padding: 0;
+}
+.mandi-tile-image {
+  display: block;
+  width: 100%;
+  height: 118px;
+  object-fit: cover;
+}
+.mandi-image-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 42px;
+  padding: 8px 12px;
+  color: #194e24;
+  font-size: 1rem;
+  font-weight: 700;
+}
 .mandi-tile-top {
   display: flex;
   align-items: center;
@@ -2030,6 +2050,8 @@ body[data-page="home"] .hero-search-panel .hero-search {
 @media (min-width: 850px) {
   .mandi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
   .mandi-tile { min-height: 154px; padding: 15px; }
+  .mandi-tile-with-image { padding: 0; }
+  .mandi-tile-image { height: 142px; }
 }
 @media (max-width: 380px) {
   .mandi-grid { grid-template-columns: 1fr; }

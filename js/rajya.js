@@ -18,6 +18,12 @@ MB.page = function statePage() {
   const stateTableMin = currentRows.length ? Math.min.apply(null, currentRows.map((row) => row.min)) : null;
   const stateTableMax = currentRows.length ? Math.max.apply(null, currentRows.map((row) => row.max)) : null;
   const mandis = MB.mandis.filter((m) => m.state === slug);
+  let mandiImages = {};
+  try {
+    mandiImages = JSON.parse(document.body.getAttribute("data-mandi-images") || "{}");
+  } catch (error) {
+    mandiImages = {};
+  }
   const stateFaqEntities = [];
   const dynamicFaqs = ((MB.dynamicStateFaqs || {})[slug] || [])
     .map((item) => {
@@ -77,17 +83,19 @@ MB.page = function statePage() {
       } else {
         price = "<small>मंडी भाव</small><b>भाव देखें</b>";
       }
-      return (
-        '<a class="mandi-tile" href="' +
-        u.mandiHref(m.slug) +
-        '"><span class="mandi-tile-top"><span class="mandi-state"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>' +
-        m.district.hi +
-        '</span><span class="mandi-arrow" aria-hidden="true">→</span></span><strong>' +
-        m.hi +
-        '</strong><span class="mandi-tile-price">' +
-        price +
-        "</span></a>"
-      );
+      const image = mandiImages[m.slug]
+        ? '<img class="mandi-tile-image" src="' + u.siteHref(mandiImages[m.slug]) + '" alt="' + u.escapeHtml(m.hi + ' मंडी का कृषि बाजार') + '" width="1200" height="630" loading="lazy" decoding="async" />'
+        : "";
+      const cardText = image
+        ? '<span class="mandi-image-label"><span>भाव देखें</span><span class="mandi-arrow" aria-hidden="true">→</span></span>'
+        : '<span class="mandi-tile-top"><span class="mandi-state"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>' +
+          m.district.hi +
+          '</span><span class="mandi-arrow" aria-hidden="true">→</span></span><strong>' +
+          m.hi +
+          '</strong><span class="mandi-tile-price">' +
+          price +
+          "</span>";
+      return '<a class="mandi-tile' + (image ? ' mandi-tile-with-image' : '') + '" href="' + u.mandiHref(m.slug) + '">' + image + cardText + "</a>";
     })
     .join("");
 
