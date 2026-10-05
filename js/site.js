@@ -531,7 +531,7 @@
     if (!cards) return "";
     return (
       '<section class="land-block pad state-home-block state-links-block price-page-state-links" ' +
-      'aria-labelledby="price-page-state-title"><h2 id="price-page-state-title">अपने राज्य के अनुसार मंडी भाव देखें</h2>' +
+      'aria-labelledby="price-page-state-title"><h2 id="price-page-state-title">अपने राज्य के अनुसार मंडी भाव देखें।</h2>' +
       '<div class="state-grid">' + cards + '</div></section>'
     );
   }

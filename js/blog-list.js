@@ -1,8 +1,13 @@
 (function renderBlogLists() {
-  const hosts = Array.from(document.querySelectorAll("[data-blog-list]"));
-  if (!hosts.length || !window.MB || !MB.ui || !Array.isArray(MB.blogs)) return;
+  if (!window.MB || !MB.ui) return;
 
   const u = MB.ui;
+  Array.from(document.querySelectorAll("[data-state-navigation]")).forEach(function (host) {
+    host.innerHTML = u.stateNavigationSection("");
+  });
+
+  const hosts = Array.from(document.querySelectorAll("[data-blog-list]"));
+  if (!hosts.length || !Array.isArray(MB.blogs)) return;
   const pathMatch = window.location.pathname.match(/\/blog\/([^/]+)\/?$/);
   const currentSlug = pathMatch ? pathMatch[1] : "";
   const currentBlog = MB.blogs.find(function (blog) { return blog.slug === currentSlug; });
