@@ -48,6 +48,8 @@ MB.page = function homePage() {
   anar: "img/crops/anar.webp",
   ker: "img/crops/ker.webp",
   sangri: "img/crops/sangri.webp",
+  asaliya: "img/crops/asaliya.webp",
+  kalonji: "img/crops/kalonji.webp",
 };
   const rajasthaniCrops = ["ker", "sangri", "sua-patti"];
   const lastUpdateDate = MB.LAST_UPDATED_DATE || MB.PRICE_DATE;
