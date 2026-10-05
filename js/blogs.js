@@ -2,6 +2,14 @@ window.MB = window.MB || {};
 
 MB.blogs = [
   {
+    "slug": "ker-ke-bhav-ayurvedik-upyog",
+    "category": "फसल गाइड",
+    "title": "केर और केर के भाव: आयुर्वेदिक गुण, फायदे, उपयोग और केर-सांगरी",
+    "excerpt": "केर के भाव के साथ जानें केर क्या है, इसके आयुर्वेदिक गुण, फायदे, उपयोग, केर-सांगरी, अचार, पोषक तत्व और वैज्ञानिक शोध की पूरी जानकारी।",
+    "image": "img/blog/ker-ke-bhav-ayurvedik-upyog.webp",
+    "alt": "केर के भाव आज Capparis decidua"
+  },
+  {
     "slug": "jeera-cumin-ki-kheti",
     "category": "फसल गाइड",
     "title": "जीरे की खेती का पूरा गणित: अंकुरण, उकठा-झुलसा से बचाव और दाना चमकाने का सीक्रेट",
