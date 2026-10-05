@@ -510,6 +510,32 @@
     return html;
   }
 
+  function stateNavigationSection(currentState) {
+    const cards = (MB.states || [])
+      .map(function (state) {
+        const mandiCount = (MB.mandis || []).filter(function (mandi) {
+          return mandi.state === state.slug;
+        }).length;
+        if (!mandiCount) return "";
+        const isCurrent = state.slug === currentState;
+        return (
+          '<a class="state-tile' + (isCurrent ? ' state-tile-current' : '') + '" href="' +
+          stateHref(state.slug) + '"' + (isCurrent ? ' aria-current="page"' : '') + '>' +
+          '<span class="state-code">' + escapeHtml(state.short) + '</span>' +
+          '<span class="state-copy"><strong>' + escapeHtml(state.hi) + '</strong><small>' +
+          mandiCount + ' मंडियां</small></span><span class="state-arrow" aria-hidden="true">→</span></a>'
+        );
+      })
+      .filter(Boolean)
+      .join("");
+    if (!cards) return "";
+    return (
+      '<section class="land-block pad state-home-block state-links-block price-page-state-links" ' +
+      'aria-labelledby="price-page-state-title"><h2 id="price-page-state-title">अपने राज्य के अनुसार मंडी भाव देखें</h2>' +
+      '<div class="state-grid">' + cards + '</div></section>'
+    );
+  }
+
   MB.ui = {
     nameHi,
     nameMix,
@@ -548,6 +574,7 @@
     pageStateSlug,
     pageMandi,
     priceCell,
+    stateNavigationSection,
     bindSearch,
     goSearch,
     searchPlaceholder: function () {

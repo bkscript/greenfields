@@ -12,6 +12,8 @@ MB.page = function mandiPage() {
   }
 
   const state = u.stateBySlug(mandi.state);
+  const stateNavigationHost = document.getElementById("price-page-state-nav");
+  if (stateNavigationHost) stateNavigationHost.innerHTML = u.stateNavigationSection(mandi.state);
   const mandiHi = mandi.hi.endsWith("मंडी") ? mandi.hi : mandi.hi + " मंडी";
   const mandiEn = / mandi$/i.test(mandi.en) ? mandi.en : mandi.en + " Mandi";
   const pageTitle = mandiHi + " भाव आज | " + mandiEn + " Bhav Today";

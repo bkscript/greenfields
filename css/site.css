@@ -1682,6 +1682,12 @@ body[data-page="home"] .hero-search-panel .hero-search {
   border-color: #8ebd92;
   box-shadow: 0 8px 17px rgba(27, 94, 32, .1);
 }
+.state-links-block { margin: 26px 0 32px; }
+.land-block.state-links-block > h2 { font-size: 1rem; }
+.state-tile-current {
+  border-color: #8ebd92;
+  background: #f2f9f2;
+}
 .state-code {
   display: grid;
   width: 38px;

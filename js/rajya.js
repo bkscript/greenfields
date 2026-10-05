@@ -99,6 +99,26 @@ MB.page = function statePage() {
     })
     .join("");
 
+  const stateLinks = MB.states
+    .map((item) => {
+      const mandisOfState = MB.mandis.filter((m) => m.state === item.slug);
+      if (!mandisOfState.length) return "";
+      const isCurrent = item.slug === slug;
+      return (
+        '<a class="state-tile' + (isCurrent ? ' state-tile-current' : '') + '" href="' +
+        u.stateHref(item.slug) +
+        '"' + (isCurrent ? ' aria-current="page"' : '') + '><span class="state-code">' +
+        item.short +
+        '</span><span class="state-copy"><strong>' +
+        item.hi +
+        '</strong><small>' +
+        mandisOfState.length +
+        ' मंडियाँ</small></span><span class="state-arrow" aria-hidden="true">→</span></a>'
+      );
+    })
+    .filter(Boolean)
+    .join("");
+
   const tables =
     '<p class="share-bar"><span class="price-date">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ': ' +
     state.hi +
@@ -106,9 +126,14 @@ MB.page = function statePage() {
     '</span></p>' +
     '<section class="state-mandi-directory"><h2>' +
     state.hi +
-    ' की सभी मंडियां</h2><div class="mandi-grid">' +
+    ' की प्रमुख मंडियां</h2><div class="mandi-grid">' +
     mandiCards +
     "</div></section>" +
+    (stateLinks
+      ? '<section class="land-block pad state-home-block state-links-block"><h2>अपने राज्य के अनुसार मंडी भाव देखें।</h2><div class="state-grid">' +
+        stateLinks +
+        "</div></section>"
+      : "") +
     dynamicFaqSection;
 
   const seo = (MB.seo && MB.seo[slug]) || {};

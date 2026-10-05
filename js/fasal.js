@@ -9,6 +9,8 @@ MB.page = function cropPage() {
     box.innerHTML = '<p class="empty">फसल नहीं मिली · Crop not found.</p>';
     return;
   }
+  const stateNavigationHost = document.getElementById("price-page-state-nav");
+  if (stateNavigationHost) stateNavigationHost.innerHTML = u.stateNavigationSection("");
 
   // Ker and sangri are dry desert produce sold in city/wholesale markets. They
   // have no mandi auction record, so the mandi price table, min/max range,
