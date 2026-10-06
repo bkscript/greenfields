@@ -1978,6 +1978,8 @@ body[data-page="home"] .hero-search-panel .hero-search {
 .mandi-tile-with-image {
   min-height: 0;
   padding: 0;
+  overflow: hidden;
+  border-radius: 15px;
 }
 .mandi-tile-image {
   display: block;
@@ -2291,6 +2293,6 @@ a.mover > .vs-flat {
   .faq-section { padding: 28px; }
   .mandi-grid,
   .state-grid { gap: 16px; }
-  .mandi-tile,
+  .mandi-tile:not(.mandi-tile-with-image),
   .state-tile { padding-left: 18px; padding-right: 18px; }
 }
