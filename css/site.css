@@ -432,6 +432,69 @@ body[data-page="bullion"] {
 .bullion-seo-intro p { margin: 0 0 9px; color: #536052; font-size: .85rem; line-height: 1.62; }
 .bullion-seo-intro p:last-child { margin-bottom: 0; }
 .bullion-seo-intro strong { color: #4c5e26; }
+.bullion-overview {
+  margin-top: 22px;
+  padding: 20px 22px;
+  border: 1px solid #d8ddcf;
+  border-radius: 16px;
+  background: linear-gradient(120deg, #fffaf0 0%, #f4f7f3 48%, #eef4f3 100%);
+  box-shadow: 0 8px 22px rgba(54, 73, 55, .07);
+}
+.bullion-overview h2 { margin: 0 0 9px; color: #244c31; font-size: 1.18rem; }
+.bullion-overview p { margin: 0 0 8px; color: #536052; font-size: .88rem; line-height: 1.65; }
+.bullion-overview p:last-child { margin-bottom: 0; }
+.bullion-metal-section {
+  position: relative;
+  overflow: hidden;
+  margin-top: 24px;
+  padding: 22px;
+  border-radius: 20px;
+}
+.bullion-metal-section::before {
+  position: absolute;
+  top: -90px;
+  right: -70px;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+.gold-section {
+  border: 1px solid #d9ba58;
+  background: linear-gradient(145deg, #fffdf5 0%, #f9edbd 54%, #fff9e5 100%);
+  box-shadow: 0 13px 30px rgba(117, 84, 13, .13);
+}
+.gold-section::before { border: 1px solid rgba(186, 137, 18, .22); box-shadow: 0 0 0 32px rgba(238, 197, 83, .08); }
+.silver-section {
+  border: 1px solid #b7c5c5;
+  background: linear-gradient(145deg, #fbfdfd 0%, #e2ebea 54%, #f4f8f8 100%);
+  box-shadow: 0 13px 30px rgba(54, 81, 79, .12);
+}
+.silver-section::before { border: 1px solid rgba(100, 132, 129, .2); box-shadow: 0 0 0 32px rgba(152, 181, 178, .08); }
+.bullion-metal-heading { position: relative; z-index: 1; display: flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 15px; }
+.bullion-metal-heading h2 { margin: 0; font-size: clamp(1.3rem, 3vw, 1.65rem); }
+.bullion-metal-heading p:not(.metal-kicker) { margin: 5px 0 0; color: #596158; font-size: .86rem; }
+.metal-kicker { margin: 0 0 3px; font-size: .75rem; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
+.gold-section .metal-kicker { color: #8b650b; }
+.silver-section .metal-kicker { color: #496b68; }
+.bullion-metal-layout { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(230px, .85fr) minmax(0, 2fr); gap: 12px; align-items: stretch; }
+.single-tola, .single-tola .tola-card { height: 100%; }
+.single-tola .tola-card { min-height: 178px; }
+.gold-rate-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.silver-rate-grid { grid-template-columns: minmax(0, 1fr); }
+.silver-rate-grid .metal-card { min-height: 178px; }
+.metal-info { position: relative; z-index: 1; margin-top: 14px; padding: 15px 17px; border-radius: 13px; }
+.metal-info h3 { margin: 0 0 6px; font-size: .98rem; }
+.metal-info p { margin: 0; font-size: .84rem; line-height: 1.62; }
+.gold-info { border: 1px solid rgba(173, 126, 15, .25); background: rgba(255, 252, 236, .74); }
+.gold-info p { color: #655d42; }
+.silver-info { border: 1px solid rgba(75, 108, 105, .22); background: rgba(252, 255, 255, .72); }
+.silver-info p { color: #516361; }
+.metal-faq { position: relative; z-index: 1; margin-top: 14px; background: rgba(255,255,255,.7); }
+.metal-faq > h3 { margin: 0 0 10px; font-size: 1rem; }
+.gold-section .metal-faq { border-color: rgba(173, 126, 15, .28); }
+.silver-section .metal-faq { border-color: rgba(75, 108, 105, .25); }
 .bullion-rates-section { margin-top: 22px; }
 .bullion-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 0 3px 12px; }
 .section-eyebrow { margin: 0 0 3px; color: #98751c; font-size: .76rem; font-weight: 800; letter-spacing: .06em; }
@@ -521,6 +584,15 @@ body[data-page="bullion"] {
   .bullion-seo-intro { margin-top: 14px; padding: 14px; }
   .bullion-seo-intro h2 { font-size: 1rem; }
   .bullion-seo-intro p { font-size: .82rem; }
+  .bullion-overview { margin-top: 16px; padding: 16px; }
+  .bullion-metal-section { margin-top: 17px; padding: 16px; border-radius: 16px; }
+  .bullion-metal-heading { align-items: start; }
+  .bullion-metal-heading p:not(.metal-kicker) { font-size: .8rem; }
+  .bullion-metal-layout { grid-template-columns: 1fr; gap: 9px; }
+  .single-tola .tola-card { min-height: 116px; }
+  .gold-rate-grid { grid-template-columns: 1fr; }
+  .silver-rate-grid .metal-card { min-height: 142px; }
+  .metal-info { padding: 14px; }
   .bullion-guides { grid-template-columns: 1fr; gap: 9px; }
   .bullion-guide-card { min-height: 0; padding: 14px; }
   .bullion-source-note { align-items: flex-start; gap: 11px; padding: 14px; }
@@ -531,6 +603,7 @@ body[data-page="bullion"] {
 }
 @media (max-width: 400px) {
   .tola-grid { grid-template-columns: 1fr; }
+  .gold-rate-grid { grid-template-columns: 1fr; }
 }
 
 /* Gold and silver featured card on the home page */
