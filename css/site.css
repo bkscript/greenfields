@@ -2184,6 +2184,30 @@ body[data-page="home"] .hero-search-panel .hero-search {
   text-decoration: none !important;
   color: inherit;
 }
+.all-pages-price-tape {
+  width: 100%;
+  max-width: 1080px;
+  margin: 40px auto 10px;
+  padding: 0;
+}
+.all-pages-price-tape > h2 {
+  margin: 0 0 12px;
+  color: #173f21;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  text-align: center;
+}
+.all-pages-price-tape .price-tape {
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .all-pages-price-tape {
+    margin-top: 30px;
+  }
+  .all-pages-price-tape > h2 {
+    padding: 0 12px;
+    font-size: 1.22rem;
+  }
+}
 .price-tape:hover { background: #f7f3ea; }
 .price-tape-track {
   display: flex;

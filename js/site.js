@@ -536,6 +536,40 @@
     );
   }
 
+  function renderAllCropPriceTape() {
+    if (document.body.getAttribute("data-page") === "home") return;
+    const main = document.querySelector("main");
+    if (!main || main.querySelector(".all-pages-price-tape")) return;
+    const items = (MB.TAPE || [])
+      .map(function (item) {
+        const crop = cropBySlug(item.crop);
+        const mandi = mandiBySlug(item.mandi);
+        const state = mandi ? stateBySlug(mandi.state) : null;
+        const row = (MB.prices || []).find(function (price) {
+          return price.crop === item.crop && price.mandi === item.mandi;
+        });
+        if (!crop || !mandi || !row || !isFreshPrice(row)) return "";
+        return (
+          '<span class="tape-item">' + escapeHtml(crop.hi) + " <b>" + rupee(row.modal) +
+          "</b><i>(" + escapeHtml(mandi.hi) + (state ? ", " + escapeHtml(state.short) : "") +
+          ")</i></span>"
+        );
+      })
+      .filter(Boolean)
+      .join('<span class="tape-dot">•</span>');
+    if (!items) return;
+    const repeated = [items, items, items].join('<span class="tape-dot">•</span>');
+    const section = document.createElement("section");
+    section.className = "all-pages-price-tape";
+    section.setAttribute("aria-labelledby", "all-pages-price-tape-title");
+    section.innerHTML =
+      '<h2 id="all-pages-price-tape-title">सभी फसलों के भाव</h2>' +
+      '<a class="price-tape" href="' + siteHref("") + '#aaj-ke-bhav" aria-label="सभी फसलों के मंडी भाव देखें">' +
+      '<div class="price-tape-track"><div class="price-tape-run">' + repeated +
+      '</div><div class="price-tape-run" aria-hidden="true">' + repeated + "</div></div></a>";
+    main.appendChild(section);
+  }
+
   MB.ui = {
     nameHi,
     nameMix,
@@ -586,6 +620,7 @@
     document.documentElement.lang = "hi";
     renderChrome();
     if (typeof MB.page === "function") MB.page();
+    renderAllCropPriceTape();
     renderFooter();
   });
 })();
