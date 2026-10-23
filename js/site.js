@@ -112,9 +112,13 @@
   }
 
   function samePriceRecord(a, b) {
-    return Number(a.min) === Number(b.min) &&
-      Number(a.modal) === Number(b.modal) &&
-      Number(a.max) === Number(b.max);
+    const sameValue = (left, right) => {
+      if (left == null || right == null) return left == null && right == null;
+      return Number(left) === Number(right);
+    };
+    return sameValue(a.min, b.min) &&
+      sameValue(a.modal, b.modal) &&
+      sameValue(a.max, b.max);
   }
 
   function dedupeGenericVarietyRows(rows) {

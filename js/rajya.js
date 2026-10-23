@@ -15,8 +15,11 @@ MB.page = function statePage() {
   const rows = u.pricesFor({ state: slug });
   const currentRows = rows.filter(u.isFreshPrice);
   const stateTableModal = u.median(currentRows.map((row) => row.modal));
-  const stateTableMin = currentRows.length ? Math.min.apply(null, currentRows.map((row) => row.min)) : null;
-  const stateTableMax = currentRows.length ? Math.max.apply(null, currentRows.map((row) => row.max)) : null;
+  const hasStateTableRange = currentRows.length > 0 && currentRows.every(
+    (row) => Number.isFinite(row.min) && Number.isFinite(row.max)
+  );
+  const stateTableMin = hasStateTableRange ? Math.min.apply(null, currentRows.map((row) => row.min)) : null;
+  const stateTableMax = hasStateTableRange ? Math.max.apply(null, currentRows.map((row) => row.max)) : null;
   const mandis = MB.mandis.filter((m) => m.state === slug);
   let mandiImages = {};
   try {
@@ -33,9 +36,9 @@ MB.page = function statePage() {
         const row = rows.find((price) => price.mandi === item.mandi && price.crop === item.crop && u.isFreshPrice(price));
         if (!market || !crop) return "";
         const modal = row ? Number(row.modal) : Number(stateTableModal);
-        const min = row ? Number(row.min) : Number(stateTableMin);
-        const max = row ? Number(row.max) : Number(stateTableMax);
-        if (![modal, min, max].every(Number.isFinite)) return "";
+        const min = row ? row.min : stateTableMin;
+        const max = row ? row.max : stateTableMax;
+        if (!Number.isFinite(modal)) return "";
         const answer = u.fillFaqAnswer(item.a, {
           dateLead: u.faqAnswerDateLead(item.q, (row && row.date) || MB.PRICE_DATE),
           label: row
@@ -47,8 +50,8 @@ MB.page = function statePage() {
           min: u.rupee(min),
           max: u.rupee(max),
           kgModal: u.rupee(modal / 100),
-          kgMin: u.rupee(min / 100),
-          kgMax: u.rupee(max / 100),
+          kgMin: Number.isFinite(min) ? u.rupee(min / 100) : u.rupee(null),
+          kgMax: Number.isFinite(max) ? u.rupee(max / 100) : u.rupee(null),
         });
         if (!answer) return "";
         stateFaqEntities.push({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: answer } });
@@ -79,7 +82,7 @@ MB.page = function statePage() {
       let price = "";
       if (crop && top) {
         const value = crop.veg ? u.rupee(u.kgFromQtl(top.modal)) + "/kg" : u.rupee(top.modal) + "/qtl";
-        price = '<small>' + crop.hi + ' · मॉडल भाव</small><b>' + value + "</b>";
+        price = '<small>' + crop.hi + ' · भाव</small><b>' + value + "</b>";
       } else {
         price = "<small>मंडी भाव</small><b>भाव देखें</b>";
       }

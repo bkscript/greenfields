@@ -68,9 +68,9 @@ MB.page = function mandiPage() {
       u.priceCell(r.crop, r) +
       "</td>" +
       '<td class="num range-col">' +
-      u.rupee(r.min) +
-      "–" +
-      u.rupee(r.max).replace("₹", "") +
+      (Number.isFinite(r.min) && Number.isFinite(r.max)
+        ? u.rupee(r.min) + "–" + u.rupee(r.max).replace("₹", "")
+        : u.rupee(null)) +
       "</td></tr>"
     );
   };
@@ -112,12 +112,15 @@ MB.page = function mandiPage() {
       const cropHi = crop ? crop.hi : item.cropHi || item.crop;
       const cropLabel = cropHi + (item.variety ? " की " + item.variety + " किस्म" : "");
       const summaryModal = u.median(faqRows.map((price) => price.modal));
-      const summaryMin = faqRows.length ? Math.min.apply(null, faqRows.map((price) => price.min)) : null;
-      const summaryMax = faqRows.length ? Math.max.apply(null, faqRows.map((price) => price.max)) : null;
+      const hasSummaryRange = faqRows.length > 0 && faqRows.every(
+        (price) => Number.isFinite(price.min) && Number.isFinite(price.max)
+      );
+      const summaryMin = hasSummaryRange ? Math.min.apply(null, faqRows.map((price) => price.min)) : null;
+      const summaryMax = hasSummaryRange ? Math.max.apply(null, faqRows.map((price) => price.max)) : null;
       const modal = row ? Number(row.modal) : Number(summaryModal);
-      const min = row ? Number(row.min) : Number(summaryMin);
-      const max = row ? Number(row.max) : Number(summaryMax);
-      if (![modal, min, max].every(Number.isFinite)) return "";
+      const min = row ? row.min : summaryMin;
+      const max = row ? row.max : summaryMax;
+      if (!Number.isFinite(modal)) return "";
       const values = {
         dateLead: u.faqAnswerDateLead(item.q, (row && row.date) || faqDate),
         label: row
@@ -130,8 +133,8 @@ MB.page = function mandiPage() {
         min: u.rupee(min),
         max: u.rupee(max),
         kgModal: u.rupee(modal / 100),
-        kgMin: u.rupee(min / 100),
-        kgMax: u.rupee(max / 100),
+        kgMin: Number.isFinite(min) ? u.rupee(min / 100) : u.rupee(null),
+        kgMax: Number.isFinite(max) ? u.rupee(max / 100) : u.rupee(null),
         varietyPrices: varietyRows
           .map((price) => price.variety + " " + u.rupee(price.modal) + " प्रति क्विंटल")
           .join(", "),
@@ -182,7 +185,7 @@ MB.page = function mandiPage() {
     '</h2>' +
     (currentBody
       ? "<table><thead><tr><th>फसल</th><th>किस्म</th>" +
-        '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+        '<th class="num">भाव</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
         currentBody +
         "</tbody></table>"
       : '<p class="empty">इस मंडी का भाव जारी नहीं हुआ।</p>') +
@@ -191,7 +194,7 @@ MB.page = function mandiPage() {
       ? '<section class="card mandi-crop-list crop-yesterday-list"><h2>' +
         u.formatUpdatedHi(previousMandiDate) + ' को ' + mandi.hi +
         ' मंडी में फसलों के भाव</h2><table><thead><tr><th>फसल</th><th>किस्म</th>' +
-        '<th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+        '<th class="num">भाव</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
         previousBody + "</tbody></table></section>"
       : "") +
     '<div class="chips">' +

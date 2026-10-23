@@ -113,7 +113,10 @@ MB.page = function cropPage() {
 
   const currentRows = baseRows.filter(u.isFreshPrice);
   const med = u.median(currentRows.map((r) => r.modal));
-  const vsMed = u.median(currentRows.map((r) => r.vs));
+  const vsMed = u.median(currentRows.map((r) => r.vs).filter(Number.isFinite));
+  const hasCompleteRange = currentRows.length > 0 && currentRows.every(
+    (row) => Number.isFinite(row.min) && Number.isFinite(row.max)
+  );
   const mins = currentRows.map((r) => r.min);
   const maxs = currentRows.map((r) => r.max);
 
@@ -133,18 +136,24 @@ MB.page = function cropPage() {
   };
 
   const stats = currentRows.length ? [
-    { v: u.rupee(med), l: "मॉडल भाव", i: "modal" },
+    { v: u.rupee(med), l: "मंडी भाव", i: "modal" },
     crop.veg
       ? { v: u.rupee(u.kgFromQtl(med)), l: "प्रति किलो", i: "kilo" }
       : crop.msp
         ? { v: u.rupee(crop.msp), l: "MSP", i: "msp" }
         : { v: String(currentRows.length), l: "मंडियां", i: "mandis" },
     {
-      v: u.rupee(Math.min.apply(null, mins)) + "–" + u.rupee(Math.max.apply(null, maxs)).replace("₹", ""),
+      v: hasCompleteRange
+        ? u.rupee(Math.min.apply(null, mins)) + "–" + u.rupee(Math.max.apply(null, maxs)).replace("₹", "")
+        : u.rupee(null),
       l: "न्यूनतम–अधिकतम",
       i: "range",
     },
-    { v: u.vsText(vsMed || 0), l: "कल से", i: vsMed > 0 ? "up" : vsMed < 0 ? "down" : "flat" },
+    {
+      v: Number.isFinite(vsMed) ? u.vsText(vsMed) : u.rupee(null),
+      l: "कल से",
+      i: vsMed > 0 ? "up" : vsMed < 0 ? "down" : "flat",
+    },
   ] : [];
 
   const shareAll = currentRows.length
@@ -190,9 +199,9 @@ MB.page = function cropPage() {
       u.priceCell(slug, r) +
       "</td>" +
       '<td class="num range-col">' +
-      u.rupee(r.min) +
-      "–" +
-      u.rupee(r.max).replace("₹", "") +
+      (Number.isFinite(r.min) && Number.isFinite(r.max)
+        ? u.rupee(r.min) + "–" + u.rupee(r.max).replace("₹", "")
+        : u.rupee(null)) +
       "</td></tr>"
     );
   };
@@ -215,8 +224,11 @@ MB.page = function cropPage() {
   const faqTableRows = currentTableRows.length ? currentTableRows : previousRows;
   const faqPriceDate = currentTableRows.length ? MB.PRICE_DATE : previousDate;
   const tableMed = u.median(faqTableRows.map((row) => row.modal));
-  const tableMin = faqTableRows.length ? Math.min.apply(null, faqTableRows.map((row) => row.min)) : null;
-  const tableMax = faqTableRows.length ? Math.max.apply(null, faqTableRows.map((row) => row.max)) : null;
+  const hasTableRange = faqTableRows.length > 0 && faqTableRows.every(
+    (row) => Number.isFinite(row.min) && Number.isFinite(row.max)
+  );
+  const tableMin = hasTableRange ? Math.min.apply(null, faqTableRows.map((row) => row.min)) : null;
+  const tableMax = hasTableRange ? Math.max.apply(null, faqTableRows.map((row) => row.max)) : null;
 
   const currentHistoryDate = MB.PRICE_DATE;
   const historyByDate = {};
@@ -300,7 +312,7 @@ MB.page = function cropPage() {
       .map((point) => {
         const entry = point.entry;
         const mandiCount = Number(entry.mandis || 0);
-        const label = u.formatDateHi(entry.date) + ", मॉडल भाव " +
+        const label = u.formatDateHi(entry.date) + ", प्रकाशित भाव " +
           u.rupee(Number(entry.modal)) + " प्रति क्विंटल, " + mandiCount + " मंडियां";
         return '<g class="history-point" tabindex="0" role="img" aria-label="' +
           u.escapeHtml(label) + '" data-tooltip="' + u.escapeHtml(label) + '">' +
@@ -311,19 +323,19 @@ MB.page = function cropPage() {
       })
       .join("");
     return '<section class="card crop-model-history" id="price-history"><h2>पिछली ' + historyRows.length + " तारीखों का " +
-      crop.hi + ' मॉडल भाव</h2><div class="history-chart-wrap">' +
+      crop.hi + ' मंडी भाव</h2><div class="history-chart-wrap">' +
       '<svg class="history-chart" viewBox="0 0 ' + width + " " + height +
-      '" role="img" aria-label="' + u.escapeHtml(crop.hi + " के मॉडल भाव का ग्राफ") +
+      '" role="img" aria-label="' + u.escapeHtml(crop.hi + " के मंडी भाव का ग्राफ") +
       '" aria-describedby="history-chart-desc">' +
       '<desc id="history-chart-desc">पिछली दर्ज तारीखों में ' + crop.hi +
-      ' के मॉडल भाव का उतार-चढ़ाव। हर बिंदु पर तारीख, भाव और मंडियों की संख्या देखी जा सकती है।</desc>' +
+      ' के प्रकाशित भाव का उतार-चढ़ाव। हर बिंदु पर तारीख, भाव और मंडियों की संख्या देखी जा सकती है।</desc>' +
       yGrid + (areaPath ? '<path class="history-area" d="' + areaPath + '"></path>' : "") +
       '<polyline class="history-line" points="' + linePoints + '"></polyline>' + points + xLabels +
       '</svg><div class="history-tooltip" role="status" hidden></div></div></section>';
   })();
   const historyIntro = historyRows.length
     ? '<p class="history-intro">नीचे के ग्राफ में पिछली ' + historyRows.length +
-      ' दर्ज तारीखों के मॉडल भाव हैं, जिनसे भाव का उतार-चढ़ाव समझ सकते हैं।</p>'
+      ' दर्ज तारीखों के प्रकाशित भाव हैं, जिनसे भाव का उतार-चढ़ाव समझ सकते हैं।</p>'
     : "";
 
   const subHi = "सभी राज्यों की मंडियां।";
@@ -331,9 +343,9 @@ MB.page = function cropPage() {
   const cropFaqValues = (question, row, mandiName, cropLabel) => {
     const hasRow = !!row;
     const modal = hasRow ? Number(row.modal) : Number(tableMed);
-    const min = hasRow ? Number(row.min) : Number(tableMin);
-    const max = hasRow ? Number(row.max) : Number(tableMax);
-    if (![modal, min, max].every(Number.isFinite)) return null;
+    const min = hasRow ? row.min : tableMin;
+    const max = hasRow ? row.max : tableMax;
+    if (!Number.isFinite(modal)) return null;
     return {
       dateLead: u.faqAnswerDateLead(question, (row && row.date) || faqPriceDate),
       label: hasRow
@@ -346,8 +358,8 @@ MB.page = function cropPage() {
       min: u.rupee(min),
       max: u.rupee(max),
       kgModal: u.rupee(modal / 100),
-      kgMin: u.rupee(min / 100),
-      kgMax: u.rupee(max / 100),
+      kgMin: Number.isFinite(min) ? u.rupee(min / 100) : u.rupee(null),
+      kgMax: Number.isFinite(max) ? u.rupee(max / 100) : u.rupee(null),
       msp: crop.msp ? u.rupee(crop.msp) : "",
     };
   };
@@ -450,11 +462,11 @@ MB.page = function cropPage() {
     "</span>" +
     (shareAll ? u.shareBtn(shareAll) : "") +
     "</p>" +
-    '<section class="card crop-mandi-list"><h2>आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को ' + crop.hi + ' के मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+    '<section class="card crop-mandi-list"><h2>आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' को ' + crop.hi + ' के मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">भाव</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
     (currentBody || '<tr><td class="empty" colspan="4">आज ' + u.formatUpdatedHi(MB.PRICE_DATE) + ' का भाव जारी नहीं हुआ।</td></tr>') +
     "</tbody></table></section>" +
     (previousBody
-      ? '<section class="card crop-mandi-list crop-yesterday-list"><h2>' + u.formatUpdatedHi(previousDate) + ' को ' + crop.hi + ' के मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">मॉडल</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
+      ? '<section class="card crop-mandi-list crop-yesterday-list"><h2>' + u.formatUpdatedHi(previousDate) + ' को ' + crop.hi + ' के मंडी भाव</h2><table><thead><tr><th>मंडी</th><th>किस्म</th><th class="num">भाव</th><th class="num range-col">न्यून.–अधि.</th></tr></thead><tbody>' +
         previousBody + "</tbody></table></section>"
       : "") +
     historyIntro +
