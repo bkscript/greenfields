@@ -206,63 +206,6 @@ MB.page = function homePage() {
       tapeRun +
       "</div></div></a>";
 
-  const byCropMove = {};
-  const moveDate = MB.PRICE_DATE;
-  MB.prices.forEach((r) => {
-    // "आज के बड़े बदलाव" only means the current published update, never an older record.
-    if (!r.vs || r.date !== moveDate) return;
-    const prev = byCropMove[r.crop];
-    if (!prev || Math.abs(r.vs) > Math.abs(prev.vs)) byCropMove[r.crop] = r;
-  });
-  const moveList = Object.keys(byCropMove).map((crop) => ({
-    crop: u.cropBySlug(crop),
-    row: byCropMove[crop],
-    mandi: u.mandiBySlug(byCropMove[crop].mandi),
-  }));
-  const moversUp = moveList
-    .filter((x) => x.crop && x.row.vs > 0)
-    .sort((a, b) => b.row.vs - a.row.vs)
-    .slice(0, 4);
-  const moversDown = moveList
-    .filter((x) => x.crop && x.row.vs < 0)
-    .sort((a, b) => a.row.vs - b.row.vs)
-    .slice(0, 4);
-  function moverCard(x) {
-    const mandiName = x.mandi ? u.nameHi(x.mandi) : "";
-    const isUp = x.row.vs > 0;
-    const trendIcon = isUp
-      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 15 5-5 3 3 6-7"/><path d="M15 6h4v4"/></svg>'
-      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 5 5 3-3 6 7"/><path d="M15 18h4v-4"/></svg>';
-    return (
-      '<a class="mover mover-' + (isUp ? "up" : "down") + '" href="' +
-      u.cropHref(x.crop.slug) +
-      '"><span class="mover-icon">' + trendIcon + '</span><span class="mover-txt"><strong>' +
-      x.crop.hi +
-      "</strong><em>" +
-      (mandiName ? " · " + mandiName : "") +
-      '</em></span><span class="' +
-      u.vsClass(x.row.vs) +
-      '">' +
-      u.vsText(x.row.vs) +
-      "/qtl</span></a>"
-    );
-  }
-  const moversHtml =
-    !moversUp.length && !moversDown.length
-      ? ""
-      : '<section class="land-block" id="bade-badlav">' +
-        "<h2>आज के बड़े बदलाव</h2>" +
-        '<div class="movers">' +
-        (moversUp.length
-          ? '<div class="mover-group mover-group-up"><p class="mover-group-title"><span>↗</span> तेजी वाली फसलें</p>' + moversUp.map(moverCard).join("") +
-            "</div>"
-          : "") +
-        (moversDown.length
-          ? '<div class="mover-group mover-group-down"><p class="mover-group-title"><span>↘</span> गिरावट वाली फसलें</p>' + moversDown.map(moverCard).join("") +
-            "</div>"
-          : "") +
-        "</div></section>";
-
   document.getElementById("main").innerHTML =
     '<section class="hero">' +
     '<div class="hero-layout">' +
@@ -288,7 +231,6 @@ MB.page = function homePage() {
     "</b><small class=\"stat-update\">Last update</small></div>" +
     "</div>" +
     tapeHtml +
-    moversHtml +
     '<section class="land-block pad" id="aaj-ke-bhav">' +
     "<h2 class='all-crops-heading'>सभी फसलों के भाव</h2>" +
     '<div class="grid-crops landing-crops">' +
