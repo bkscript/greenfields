@@ -5,12 +5,12 @@ MB.LAST_UPDATED_DATE = "2026-11-03";
 MB.BULLION = {
   source: "IBJA",
   sourceUrl: "https://www.ibjarates.com/",
-  date: "2026-10-23",
+  date: "2026-11-03",
   rates: [
-    { slug: "gold-999", name: "24 कैरेट सोना", purity: "Gold 999", value: 141630, unit: "₹ / 10 ग्राम", metal: "gold" },
-    { slug: "gold-916", name: "22 कैरेट सोना", purity: "Gold 916", value: 129733, unit: "₹ / 10 ग्राम", metal: "gold" },
-    { slug: "gold-750", name: "18 कैरेट सोना", purity: "Gold 750", value: 106223, unit: "₹ / 10 ग्राम", metal: "gold" },
-    { slug: "silver-999", name: "चांदी", purity: "Silver 999", value: 194415, unit: "₹ / किलो", metal: "silver" },
+    { slug: "gold-999", name: "24 कैरेट सोना", purity: "Gold 999", value: 137576, unit: "₹ / 10 ग्राम", metal: "gold" },
+    { slug: "gold-916", name: "22 कैरेट सोना", purity: "Gold 916", value: 126020, unit: "₹ / 10 ग्राम", metal: "gold" },
+    { slug: "gold-750", name: "18 कैरेट सोना", purity: "Gold 750", value: 103182, unit: "₹ / 10 ग्राम", metal: "gold" },
+    { slug: "silver-999", name: "चांदी", purity: "Silver 999", value: 176425, unit: "₹ / किलो", metal: "silver" },
   ],
 };
 
