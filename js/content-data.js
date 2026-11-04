@@ -74,6 +74,8 @@ MB.specialProduce = [
   { slug: "sua-patti", hi: "सुआ पत्ती", en: "Dill Leaves" },
 ];
 
+MB.KER_MARKET_PHONE = "";
+
 // Contextual link to the owner's separate food brand. These appear only on
 // the relevant crop pages, after the price content and before FAQs.
 MB.marwarMadePromos = {
