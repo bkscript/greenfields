@@ -14,107 +14,6 @@ MB.BULLION = {
   ],
 };
 
-// Rajasthani special produce (ker, sangri, sua-patti). These are dry desert
-// produce and fresh dill leaves sold in city and wholesale markets, NOT
-// recorded in any mandi auction. They never come from Agmarknet, so they are
-// stored separately from MB.prices and are never converted to a quintal rate,
-// never given a min/max range and never shown with a visible date. The
-// published rate stays as recorded until the owner uploads a newer verified
-// rate for that crop.
-MB.CITY_RATES = {
-  "ker": {
-    "date": "2026-10-01",
-    "modal": 1150,
-    "cities": [
-      {
-        "hi": "Jodhpur",
-        "modal": 1200
-      },
-      {
-        "hi": "Nagaur",
-        "modal": 1225
-      },
-      {
-        "hi": "Barmer",
-        "modal": 1100
-      },
-      {
-        "hi": "Bikaner",
-        "modal": 1150
-      },
-      {
-        "hi": "Churu",
-        "modal": 1025
-      },
-      {
-        "hi": "Jalore",
-        "modal": 1000
-      },
-      {
-        "hi": "Pali",
-        "modal": 1000
-      },
-      {
-        "hi": "Balotara",
-        "modal": 1125
-      },
-      {
-        "hi": "Jaisalmer",
-        "modal": 1150
-      }
-    ],
-    "unit": "kg"
-  },
-  "sangri": {
-    "date": "2026-10-01",
-    "modal": 1150,
-    "cities": [
-      {
-        "hi": "Jodhpur",
-        "modal": 1200
-      },
-      {
-        "hi": "Nagaur",
-        "modal": 1225
-      },
-      {
-        "hi": "Barmer",
-        "modal": 1100
-      },
-      {
-        "hi": "Bikaner",
-        "modal": 1150
-      },
-      {
-        "hi": "Churu",
-        "modal": 1025
-      },
-      {
-        "hi": "Jalore",
-        "modal": 1000
-      },
-      {
-        "hi": "Pali",
-        "modal": 1000
-      },
-      {
-        "hi": "Balotara",
-        "modal": 1125
-      },
-      {
-        "hi": "Jaisalmer",
-        "modal": 1150
-      }
-    ],
-    "unit": "kg"
-  }
-};
-
-// Note shown wherever a city/wholesale rate is published. It must stay on the
-// page so no reader mistakes this for a mandi auction record.
-MB.CITY_RATE_NOTE =
-  "यह भाव किसी मंडी की नीलामी का रिकॉर्ड नहीं है। मरुधरा की ये शुष्क और हरी उपज शहर और थोक बाज़ार में बिकती है, इसलिए इनका भाव अलग रूप से दर्ज किया जाता है।";
-
 MB.TAPE = [
   { crop: "sarson", mandi: "sri-ganganagar" },
   { crop: "moong", mandi: "nagaur" },
@@ -271,13 +170,11 @@ MB.prices = [
   { mandi: "bikaner", crop: "jeera", min: 23000, modal: 23400, max: 25700, vs: 0, arrivals: "med", date: "2026-10-13", fresh: false },
   { mandi: "bikaner", crop: "jowar", min: null, modal: 4935, max: null, vs: 1179, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "bikaner", crop: "kela", min: 2800, modal: 2800, max: 2800, vs: 0, arrivals: "med", date: "2026-08-27", fresh: false },
-  { mandi: "bikaner", crop: "ker", min: 1000, modal: 1150, max: 1250, vs: 0, arrivals: "med", date: "2026-10-01", fresh: false },
   { mandi: "bikaner", crop: "methi", min: 6050, modal: 6050, max: 6050, vs: 0, arrivals: "med", date: "2026-10-05", fresh: false },
   { mandi: "bikaner", crop: "moong", min: null, modal: 8070, max: null, vs: 223, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "bikaner", crop: "moongphali", min: null, modal: 7904, max: null, vs: -24, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "bikaner", crop: "moth", min: 8400, modal: 8100, max: 9100, vs: 0, arrivals: "med", date: "2026-10-13", fresh: false },
   { mandi: "bikaner", crop: "pyaz", min: null, modal: 3731, max: null, vs: 210, arrivals: "med", date: "2026-10-21", fresh: false },
-  { mandi: "bikaner", crop: "sangri", min: 1000, modal: 1150, max: 1250, vs: 0, arrivals: "med", date: "2026-10-01", fresh: false },
   { mandi: "bikaner", crop: "sarson", min: null, modal: 8419, max: null, vs: 38, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "bikaner", crop: "seb", min: 5000, modal: 5000, max: 5000, vs: 0, arrivals: "med", date: "2026-08-27", fresh: false },
   { mandi: "bikaner", crop: "tamatar", min: null, modal: 1092, max: null, vs: -261, arrivals: "med", date: "2026-10-21", fresh: false },
@@ -529,10 +426,8 @@ MB.prices = [
   { mandi: "jalore", crop: "hara-dhaniya", min: 2000, modal: 2300, max: 2500, vs: 0, arrivals: "med", date: "2026-11-04", fresh: true },
   { mandi: "jalore", crop: "hari-mirch", min: 2800, modal: 3000, max: 3200, vs: 0, arrivals: "med", date: "2026-11-04", fresh: true },
   { mandi: "jalore", crop: "kela", min: 3000, modal: 3300, max: 3500, vs: 0, arrivals: "med", date: "2026-09-24", fresh: false },
-  { mandi: "jalore", crop: "ker", min: 980, modal: 1000, max: 1250, vs: 0, arrivals: "med", date: "2026-10-01", fresh: false },
   { mandi: "jalore", crop: "lahsun", min: 13000, modal: 13500, max: 14000, vs: 0, arrivals: "med", date: "2026-08-25", fresh: false },
   { mandi: "jalore", crop: "pyaz", min: null, modal: 3731, max: null, vs: 210, arrivals: "med", date: "2026-10-21", fresh: false },
-  { mandi: "jalore", crop: "sangri", min: 980, modal: 1000, max: 1250, vs: 0, arrivals: "med", date: "2026-10-01", fresh: false },
   { mandi: "jalore", crop: "tamatar", min: 1200, modal: 1400, max: 1600, vs: 0, arrivals: "med", date: "2026-11-04", fresh: true },
   { mandi: "jind", crop: "aalu", min: null, modal: 1041, max: null, vs: -43, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "jind", crop: "pyaz", min: null, modal: 3731, max: null, vs: 210, arrivals: "med", date: "2026-10-21", fresh: false },
@@ -554,18 +449,15 @@ MB.prices = [
   { mandi: "jodhpur", crop: "jowar", min: null, modal: 4935, max: null, vs: 1179, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "jodhpur", crop: "kapas", min: null, modal: 9260, max: null, vs: -124, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "jodhpur", crop: "kela", min: 1000, modal: 1500, max: 2000, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
-  { mandi: "jodhpur", crop: "ker", min: 1000, modal: 1200, max: 1250, vs: 0, arrivals: "med", date: "2026-10-01", fresh: false },
   { mandi: "jodhpur", crop: "lahsun", min: 4000, modal: 8000, max: 12000, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
   { mandi: "jodhpur", crop: "methi", min: 5500, modal: 5900, max: 6250, vs: 0, arrivals: "med", date: "2026-10-06", fresh: false },
   { mandi: "jodhpur", crop: "moong", min: null, modal: 8070, max: null, vs: 223, arrivals: "low", date: "2026-10-21", fresh: false },
   { mandi: "jodhpur", crop: "moongphali", min: null, modal: 7904, max: null, vs: -24, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "jodhpur", crop: "moth", min: 4050, modal: 4320, max: 4480, vs: 20, arrivals: "med", date: "2026-08-22", fresh: false },
   { mandi: "jodhpur", crop: "pyaz", min: null, modal: 3731, max: null, vs: 210, arrivals: "med", date: "2026-10-21", fresh: false },
-  { mandi: "jodhpur", crop: "sangri", min: 1000, modal: 1200, max: 1250, vs: 0, arrivals: "med", date: "2026-10-01", fresh: false },
   { mandi: "jodhpur", crop: "sarson", min: null, modal: 8419, max: null, vs: 38, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "jodhpur", crop: "saunf", min: 10000, modal: 10600, max: 11200, vs: 0, arrivals: "med", date: "2026-09-30", fresh: false },
   { mandi: "jodhpur", crop: "seb", min: 5000, modal: 8000, max: 11000, vs: 0, arrivals: "med", date: "2026-08-31", fresh: false },
-  { mandi: "jodhpur", crop: "sua-patti", min: 5000, modal: 5600, max: 7000, vs: 0, arrivals: "med", date: "2026-08-25", fresh: false },
   { mandi: "jodhpur", crop: "tamatar", min: null, modal: 1092, max: null, vs: -261, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "jodhpur", crop: "til", min: null, modal: 14781, max: null, vs: 756, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "kanpur", crop: "aalu", min: 550, modal: 550, max: 550, vs: 0, arrivals: "med", date: "2026-11-04", fresh: true },
@@ -793,10 +685,8 @@ MB.prices = [
   { mandi: "nagaur", crop: "jau", min: null, modal: 2764, max: null, vs: -42, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "nagaur", crop: "jeera", min: 20000, modal: 23000, max: 24000, vs: 0, arrivals: "med", date: "2026-10-08", fresh: false },
   { mandi: "nagaur", crop: "jowar", min: null, modal: 4935, max: null, vs: 1179, arrivals: "low", date: "2026-10-21", fresh: false },
-  { mandi: "nagaur", crop: "ker", min: 1050, modal: 1225, max: 1250, vs: 0, arrivals: "med", date: "2026-10-01", fresh: false },
   { mandi: "nagaur", crop: "moong", min: null, modal: 8070, max: null, vs: 223, arrivals: "high", date: "2026-10-21", fresh: false },
   { mandi: "nagaur", crop: "moth", min: 4100, modal: 4380, max: 4520, vs: 25, arrivals: "low", date: "2026-08-22", fresh: false },
-  { mandi: "nagaur", crop: "sangri", min: 1050, modal: 1225, max: 1250, vs: 0, arrivals: "med", date: "2026-10-01", fresh: false },
   { mandi: "nagaur", crop: "sarson", min: null, modal: 8419, max: null, vs: 38, arrivals: "med", date: "2026-10-21", fresh: false },
   { mandi: "nagaur", crop: "saunf", min: 8000, modal: 11000, max: 13500, vs: 0, arrivals: "med", date: "2026-10-07", fresh: false },
   { mandi: "neemuch", crop: "adrak", min: 16600, modal: 16600, max: 16600, vs: 0, arrivals: "med", date: "2026-10-03", fresh: false },
@@ -81384,28 +81274,6 @@ MB.cropModalHistory = {
       "modal": 10075
     }
   ],
-  "sua-patti": [
-    {
-      "date": "2026-08-25",
-      "mandis": 1,
-      "modal": 5600
-    },
-    {
-      "date": "2026-08-26",
-      "mandis": 1,
-      "modal": 5600
-    },
-    {
-      "date": "2026-08-27",
-      "mandis": 1,
-      "modal": 5600
-    },
-    {
-      "date": "2026-08-28",
-      "mandis": 1,
-      "modal": 5600
-    }
-  ],
   "tamatar": [
     {
       "date": "2026-10-04",
@@ -81563,4 +81431,3 @@ MB.cropModalHistory = {
     }
   ]
 };
-

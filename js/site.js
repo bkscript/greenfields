@@ -541,7 +541,8 @@
   }
 
   function renderAllCropPriceTape() {
-    if (document.body.getAttribute("data-page") === "home") return;
+    const pageType = document.body.getAttribute("data-page");
+    if (pageType === "home" || pageType === "special-produce") return;
     const main = document.querySelector("main");
     if (!main || main.querySelector(".all-pages-price-tape")) return;
     const items = (MB.TAPE || [])

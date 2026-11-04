@@ -8,7 +8,6 @@ MB.page = function homePage() {
   dhaniya: "img/crops/dhaniya.webp",
   saunf: "img/crops/saunf.webp",
   sua: "img/crops/sua.webp",
-  "sua-patti": "img/crops/sua-patti.webp",
   methi: "img/crops/methi.webp",
   "hari-methi": "img/crops/hari-methi.webp",
   isabgol: "img/crops/isabgol.webp",
@@ -46,43 +45,43 @@ MB.page = function homePage() {
   kela: "img/crops/kela.webp",
   seb: "img/crops/seb.webp",
   anar: "img/crops/anar.webp",
-  ker: "img/crops/ker.webp",
-  sangri: "img/crops/sangri.webp",
   asaliya: "img/crops/asaliya.webp",
   kalonji: "img/crops/kalonji.webp",
 };
-  const rajasthaniCrops = ["ker", "sangri", "sua-patti"];
   const lastUpdateDate = MB.LAST_UPDATED_DATE || MB.PRICE_DATE;
   const fieldCrops = MB.crops
-    .filter((crop) => !crop.veg && !rajasthaniCrops.includes(crop.slug))
+    .filter((crop) => !crop.veg)
     .map((crop) => crop.slug);
   const produceCrops = MB.crops
-    .filter((crop) => crop.veg && !rajasthaniCrops.includes(crop.slug))
+    .filter((crop) => crop.veg)
     .map((crop) => crop.slug);
+  const specialProduceTiles = (MB.specialProduce || []).map((crop) => {
+    const image = '<span class="crop-image"><img src="img/crops/' +
+      u.escapeHtml(crop.slug) + '.webp" alt="' + u.escapeHtml(crop.hi) +
+      '" width="42" height="42" loading="lazy" decoding="async" /></span>';
+    return (
+      '<a class="crop-tile" href="' + u.siteHref("upaj/" + crop.slug + "/") +
+      '">' + image + '<span class="crop-copy"><strong>' +
+      u.escapeHtml(crop.hi) +
+      '</strong><em>जानकारी देखें</em></span></a>'
+    );
+  }).join("");
   function tilesFor(slugs, kgOnly) {
     return slugs
       .slice()
       .sort((a, b) => {
-        const rateFor = (slug) => {
-          const c = u.cropBySlug(slug);
-          if (c && c.cityRate && (MB.CITY_RATES || {})[slug]) return true;
-          return u.pricesFor({ crop: slug }).some(u.isFreshPrice);
-        };
+        const rateFor = (slug) => u.pricesFor({ crop: slug }).some(u.isFreshPrice);
         return Number(rateFor(b)) - Number(rateFor(a));
       })
       .map((slug) => {
       const c = u.cropBySlug(slug);
-      // Ker and sangri publish a city/wholesale rate per kilo instead of a
-      // mandi record, so they are read from MB.CITY_RATES.
-      const cityRate = c && c.cityRate ? (MB.CITY_RATES || {})[slug] : null;
-      const rows = cityRate ? [] : u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
-      const med = cityRate ? Number(cityRate.modal) : u.median(rows.map((r) => r.modal));
+      const rows = u.pricesFor({ crop: slug }).filter(u.isFreshPrice);
+      const med = u.median(rows.map((r) => r.modal));
       if (!c) return "";
       let price = med == null ? "भाव देखें" : u.rupee(med) + "/qtl";
-      if (med != null && cityRate) price = '<span class="kg-inline">' + u.rupee(med) + "/kg</span>";
-      else if (med != null && kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
+      if (med != null && kgOnly && c.veg) price = '<span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + "/kg</span>";
       else if (med != null && c.veg) price += ' · <span class="kg-inline">' + u.rupee(u.kgFromQtl(med)) + '/kg</span>';
-      const imageAlt = c.cityRate ? "सूखी " + c.hi + " की उपज" : c.hi + " की फसल";
+      const imageAlt = c.hi + " की फसल";
       const image = cropImages[slug]
         ? '<span class="crop-image"><img src="' + cropImages[slug] + '" alt="' + imageAlt + '" width="42" height="42" loading="lazy" decoding="async" /></span>'
         : "";
@@ -100,15 +99,16 @@ MB.page = function homePage() {
       .join("");
   }
   const fieldTiles = tilesFor(fieldCrops, false);
-  const rajasthaniTiles = tilesFor(rajasthaniCrops, false);
   const produceTiles = tilesFor(produceCrops, true);
-  const rajasthaniSection =
-    '<div class="produce-break"><span>मरुधरा की खास उपज</span><small>Rajasthani special produce</small></div>' +
-    '<div class="grid-crops landing-crops rajasthani-crops">' + rajasthaniTiles + "</div>";
   const produceSection = !produceTiles
     ? ""
     : '<div class="produce-break"><span>सब्जियां और फल</span><small>Vegetables &amp; fruits</small></div>' +
       '<div class="grid-crops landing-crops produce-crops">' + produceTiles + "</div>";
+  const specialProduceSection = !specialProduceTiles
+    ? ""
+    : '<div class="produce-break"><span>मरुधरा की खास उपज</span><small>Special Produce</small></div>' +
+      '<div class="grid-crops landing-crops special-produce-tiles">' +
+      specialProduceTiles + "</div>";
 
   const stateCards = MB.states
     .map((state) => {
@@ -237,7 +237,7 @@ MB.page = function homePage() {
     fieldTiles +
     "</div>" +
     produceSection +
-    rajasthaniSection +
+    specialProduceSection +
     "</section>" +
     bullionPromo +
     stateSection +
