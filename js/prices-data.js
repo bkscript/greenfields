@@ -1,7 +1,7 @@
 window.MB = window.MB || {};
 
 MB.PRICE_DATE = "2026-11-04";
-MB.LAST_UPDATED_DATE = "2026-11-04";
+MB.LAST_UPDATED_DATE = "2026-11-05";
 MB.BULLION = {
   source: "IBJA",
   sourceUrl: "https://www.ibjarates.com/",
