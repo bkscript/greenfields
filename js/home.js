@@ -173,34 +173,33 @@ MB.page = function homePage() {
       '"><div class="bullion-home-copy"><h2>1 तोला सोना-चांदी का भाव</h2><small>Gold 999 · Silver 999</small></div><div class="bullion-home-mark" aria-hidden="true"><span class="bullion-gold-mark">Au</span><span class="bullion-silver-mark">Ag</span></div><strong class="bullion-home-link">आज का भाव देखें <b>→</b></strong></a></section>'
     : "";
 
-  const tapeBits = (MB.TAPE || [])
-    .map(function (t) {
-      const crop = u.cropBySlug(t.crop);
-      const mandi = u.mandiBySlug(t.mandi);
+  const tapeItems = u.randomFreshTapePrices()
+    .map(function (row) {
+      const crop = u.cropBySlug(row.crop);
+      const mandi = u.mandiBySlug(row.mandi);
       const state = mandi ? u.stateBySlug(mandi.state) : null;
-      const row = MB.prices.find(function (price) {
-        return price.crop === t.crop && price.mandi === t.mandi;
-      });
-      if (!crop || !mandi || !row || !u.isFreshPrice(row)) return "";
+      if (!crop || !mandi) return "";
       return (
         '<span class="tape-item">' +
-        crop.hi +
+        u.escapeHtml(crop.hi) +
         " <b>" +
         u.rupee(row.modal) +
         "</b><i>(" +
-        mandi.hi +
-        (state ? ", " + state.short : "") +
+        u.escapeHtml(mandi.hi) +
+        (state ? ", " + u.escapeHtml(state.short) : "") +
         ")</i></span>"
       );
     })
-    .filter(Boolean)
-    .join('<span class="tape-dot">•</span>');
-  const tapeRun = tapeBits
-    ? [tapeBits, tapeBits, tapeBits].join('<span class="tape-dot">•</span>')
+    .filter(Boolean);
+  const tapeRun = tapeItems.length
+    ? tapeItems.join('<span class="tape-dot">•</span>')
     : "";
+  const tapeDuration = Math.max(32, tapeItems.length * 2);
   const tapeHtml = !tapeRun
     ? ""
-    : '<a class="price-tape" href="#aaj-ke-bhav"><div class="price-tape-track"><div class="price-tape-run">' +
+    : '<a class="price-tape" href="#aaj-ke-bhav"><div class="price-tape-track" style="--price-tape-duration:' +
+      tapeDuration +
+      's"><div class="price-tape-run">' +
       tapeRun +
       '</div><div class="price-tape-run" aria-hidden="true">' +
       tapeRun +

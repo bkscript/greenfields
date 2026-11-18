@@ -174,6 +174,44 @@
     return !!row && !!displayDate && row.date === displayDate;
   }
 
+  function randomFreshTapePrices(limit = 30) {
+    const candidates = (MB.prices || []).filter(function (row) {
+      return isFreshPrice(row) &&
+        Number.isFinite(Number(row.modal)) &&
+        Number(row.modal) > 0 &&
+        !!cropBySlug(row.crop) &&
+        !!mandiBySlug(row.mandi);
+    });
+    for (let i = candidates.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    }
+
+    const selected = [];
+    const selectedKeys = new Set();
+    const selectedCrops = new Set();
+    const selectedMandis = new Set();
+    const maxItems = Math.min(candidates.length, Math.max(0, Math.floor(Number(limit) || 0)));
+    const passes = [
+      (row) => !selectedCrops.has(row.crop) && !selectedMandis.has(row.mandi),
+      (row) => !selectedCrops.has(row.crop) || !selectedMandis.has(row.mandi),
+      () => true,
+    ];
+
+    passes.forEach(function (matchesPass) {
+      for (const row of candidates) {
+        if (selected.length >= maxItems) break;
+        const key = row.mandi + "\u0000" + row.crop;
+        if (selectedKeys.has(key) || !matchesPass(row)) continue;
+        selected.push(row);
+        selectedKeys.add(key);
+        selectedCrops.add(row.crop);
+        selectedMandis.add(row.mandi);
+      }
+    });
+    return selected;
+  }
+
   function freshFirst(a, b) {
     return Number(isFreshPrice(b)) - Number(isFreshPrice(a));
   }
@@ -545,33 +583,30 @@
     if (pageType === "home" || pageType === "special-produce" || pageType === "ker-market") return;
     const main = document.querySelector("main");
     if (!main || main.querySelector(".all-pages-price-tape")) return;
-    const items = (MB.TAPE || [])
-      .map(function (item) {
-        const crop = cropBySlug(item.crop);
-        const mandi = mandiBySlug(item.mandi);
+    const items = randomFreshTapePrices()
+      .map(function (row) {
+        const crop = cropBySlug(row.crop);
+        const mandi = mandiBySlug(row.mandi);
         const state = mandi ? stateBySlug(mandi.state) : null;
-        const row = (MB.prices || []).find(function (price) {
-          return price.crop === item.crop && price.mandi === item.mandi;
-        });
-        if (!crop || !mandi || !row || !isFreshPrice(row)) return "";
+        if (!crop || !mandi) return "";
         return (
           '<span class="tape-item">' + escapeHtml(crop.hi) + " <b>" + rupee(row.modal) +
           "</b><i>(" + escapeHtml(mandi.hi) + (state ? ", " + escapeHtml(state.short) : "") +
           ")</i></span>"
         );
       })
-      .filter(Boolean)
-      .join('<span class="tape-dot">•</span>');
-    if (!items) return;
-    const repeated = [items, items, items].join('<span class="tape-dot">•</span>');
+      .filter(Boolean);
+    if (!items.length) return;
+    const tapeRun = items.join('<span class="tape-dot">•</span>');
+    const duration = Math.max(32, items.length * 2);
     const section = document.createElement("section");
     section.className = "all-pages-price-tape";
     section.setAttribute("aria-labelledby", "all-pages-price-tape-title");
     section.innerHTML =
       '<h2 id="all-pages-price-tape-title">सभी फसलों के भाव</h2>' +
       '<a class="price-tape" href="' + siteHref("") + '#aaj-ke-bhav" aria-label="सभी फसलों के मंडी भाव देखें">' +
-      '<div class="price-tape-track"><div class="price-tape-run">' + repeated +
-      '</div><div class="price-tape-run" aria-hidden="true">' + repeated + "</div></div></a>";
+      '<div class="price-tape-track" style="--price-tape-duration:' + duration + 's"><div class="price-tape-run">' + tapeRun +
+      '</div><div class="price-tape-run" aria-hidden="true">' + tapeRun + "</div></div></a>";
     main.appendChild(section);
   }
 
@@ -591,6 +626,7 @@
     isStalePrice,
     priceAgeDays,
     freshFirst,
+    randomFreshTapePrices,
     formatDateHi,
     formatUpdatedHi,
     faqQuestionMentionsDate,

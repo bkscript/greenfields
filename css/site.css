@@ -2212,7 +2212,7 @@ body[data-page="home"] .hero-search-panel .hero-search {
 .price-tape-track {
   display: flex;
   width: max-content;
-  animation: tape-marquee 32s linear infinite;
+  animation: tape-marquee var(--price-tape-duration, 32s) linear infinite;
 }
 .price-tape:hover .price-tape-track { animation-play-state: paused; }
 .price-tape-run {
