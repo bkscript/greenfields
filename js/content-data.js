@@ -199,7 +199,11 @@ MB.AGMARKNET_ALIASES = {
     "jodhpur": ["Jodhpur (Grain) APMC"],
     "jaipur": ["Bassi APMC"],
     "amreli": ["The Agricultural Produce Market Committee-Amreli"],
+    "gondal": ["Gondal(Veg.market Gondal) APMC"],
+    "harda": ["Harda(F&V) APMC"],
     "sirsa": ["New Grain Market , Sirsa APMC"],
+    "panipat": ["Panipat(Babarpur) APMC"],
+    "rajkot": ["Rajkot(Veg.Sub Yard) APMC"],
     "hisar": ["Hissar APMC"],
     "guntur": ["Guntur APMC"],
     "byadgi": ["Byadagi APMC"],
@@ -220,6 +224,7 @@ MB.AGMARKNET_ALIASES = {
   },
   "crops": {
     "kapas": ["Cotton", "Desi Cotton", "Kapas", "Narma", "American Cotton", "Bt Cotton", "BT Cotton"],
+    "moongphali": ["Ground Nut Seed", "Groundnut(Split)"],
     "dhan": ["Paddy(Common)", "Paddy(Basmati)"],
     "chana": ["Bengal Gram(Gram)(Whole)", "Kabuli Chana(Chickpeas-White)"],
     "moong": ["Green Gram(Moong)(Whole)"],
@@ -245,16 +250,13 @@ MB.AGMARKNET_ALIASES = {
     "hara-dhaniya": ["Coriander(Leaves)"],
     "saunf": ["Soanf"],
     "sua": ["Dill", "Dill Seed", "Dill Seeds", "Sowa", "Suva", "Suva(Dill Seed)"],
-    "sua-patti": ["Dill Leaves", "Dill(Leaves)", "Sowa Leaves", "Suva Leaves", "Shepu"],
     "methi": ["Methi Seeds"],
     "hari-methi": ["Methi(Leaves)"],
     "arandi": ["Castor Seed"],
     "matar": ["Field Pea"],
     "hara-matar": ["Peas Wet", "Pea Pod/Pea Cod/हरी मटर"],
     "alsi": ["Linseed"],
-    "kela": ["Banana - Green"],
-    "ker": ["Ker", "Kera", "Keri", "Ker Berries", "Keri Berries", "Kair", "Kenia", "Capparis decidua", "केर", "केरिया"],
-    "sangri": ["Sangri", "Sangri Bean", "Desert Bean", "Desert Bean Pods", "Khingora", "Moth Bean", "Sangri Pods", "सांगरी", "संगरी", "खिंगोरा"]
+    "kela": ["Banana - Green"]
   }
 };
 
