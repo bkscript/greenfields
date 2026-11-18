@@ -200,6 +200,7 @@ MB.AGMARKNET_ALIASES = {
     "jaipur": ["Bassi APMC"],
     "amreli": ["The Agricultural Produce Market Committee-Amreli"],
     "sirsa": ["New Grain Market , Sirsa APMC"],
+    "hisar": ["Hissar APMC"],
     "guntur": ["Guntur APMC"],
     "byadgi": ["Byadagi APMC"],
     "mathania": ["Osiyan Mathania APMC"],
